@@ -1,12 +1,13 @@
 import { Button } from "../../../../components/button";
-import { dataState } from "../types/login.types";
+// import { dataState } from "../types/login.types";
 import { Input } from "../../../../components/inputs";
 
 type Props = {
-  data: dataState;
+  // data: dataState;
 };
 
-export const CheckOtp: React.FC<Props> = ({ data }: Props) => {
+export const CheckOtp: React.FC<Props> = ({}: // data
+Props) => {
   return (
     <div className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm">
       <div>
@@ -14,12 +15,7 @@ export const CheckOtp: React.FC<Props> = ({ data }: Props) => {
           SMS Kodunu Doğrula
         </h1>
         <p className="text-base-content-light mt-1 text-sm opacity-60">
-          Sonu
-          <span className="text-sm font-bold mx-1 !opacity-100">
-            {/* {data.payload.phoneNumber} */}
-            5** *** 6707
-          </span>
-          ile biten numarana güvenlik kodu gönderdik. Kimliğinden emin
+          Sonu 6707 ile biten numarana kod gönderdik. Kimliğinden emin
           olmalıyız.
         </p>
       </div>

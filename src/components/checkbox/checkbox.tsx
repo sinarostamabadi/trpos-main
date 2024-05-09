@@ -28,7 +28,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
         {...rest}
       />
       <label
-        className="checkbox_label text-sm flex gap-x-2 select-none"
+        className="checkbox_label lg:text-sm text-xs flex gap-x-2 select-none"
         htmlFor={id}
         onClick={() => setChecked((checked) => !checked)}
       >

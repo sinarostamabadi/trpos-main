@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   });
   // const {info , loading}=useAppSelector(state => state.loginSlice);
 
-  return <>{data.step === 2 ? <RequestLogin /> : <CheckOtp data={data} />}</>;
+  return <>{data.step === 1 ? <RequestLogin /> : <CheckOtp data={data} />}</>;
 };
 
 export default Login;

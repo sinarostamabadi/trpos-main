@@ -34,6 +34,7 @@ export const Input: React.FC<InputType> = ({
           id={label}
           className={`form__field`}
           disabled={isDisable}
+          placeholder=""
           {...register}
           {...rest}
         />

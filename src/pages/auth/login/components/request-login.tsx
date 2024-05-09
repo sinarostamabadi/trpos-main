@@ -36,6 +36,7 @@ export const RequestLogin: React.FC = () => {
   const validatePhone = (phone: number | undefined) => {
     return yup
       .number()
+      .required()
       .integer()
       .positive()
       .test((phone) => {
@@ -67,6 +68,7 @@ export const RequestLogin: React.FC = () => {
           register={{ ...register("phoneNumber") }}
           error={errors.phoneNumber?.message}
           touched={touchedFields.phoneNumber}
+          className="mb-4"
         />
         <Input
           type="password"
@@ -82,7 +84,7 @@ export const RequestLogin: React.FC = () => {
         size="medium"
         shape="full"
         className="mt-6"
-        loadingText="ورود..."
+        loadingText="giriş yapmak..."
       >
         Devam Et
       </Button>
