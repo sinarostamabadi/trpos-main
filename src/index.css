@@ -1,0 +1,31 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./tailwind/component.css";
+
+@font-face {
+  font-family: "Euclid";
+  src: url("./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Bold.ttf")format("truetype"),
+    url("./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Bold\ Italic.ttf")format("truetype"),
+    url("./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Italic.ttf")format("truetype"),
+    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Light.ttf')format("truetype"),
+    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Light\ Italic.ttf')format("truetype"),
+    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Medium.ttf')format("truetype"),
+    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Medium\ Italic.ttf')format("truetype"),
+    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Regular.ttf')format("truetype"),
+    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ SemiBold.ttf')format("truetype"),
+    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ SemiBold\ Italic.ttf')format("truetype"),
+}
+
+body {
+  font-family: "Euclid";
+}
+
+:lang(tr) {
+  font-family: "Euclid", sans-serif;
+}
+
+.Toastify__toast-body {
+  font-family: "Euclid" !important;
+}
