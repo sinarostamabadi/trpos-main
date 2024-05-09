@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { dataState } from "./types/login.types";
 import { RequestLogin } from "./components/request-login";
-import { CheckOtp } from "./components/checkOtp";
+import { CheckOtp } from "./components/check-Otp";
 
 const Login: React.FC = () => {
   const [data, setData] = useState<dataState>({
@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   });
   // const {info , loading}=useAppSelector(state => state.loginSlice);
 
-  return <>{data.step === 1 ? <RequestLogin /> : <CheckOtp data={data} />}</>;
+  return <>{data.step === 2 ? <RequestLogin /> : <CheckOtp data={data} />}</>;
 };
 
 export default Login;

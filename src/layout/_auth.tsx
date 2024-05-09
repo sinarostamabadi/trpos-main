@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import signupHero from "../assets/images/signup-hero.png";
 import loginHero from "../assets/images/login-hero.png";
 import forgotPassHero from "../assets/images/forgot-password-hero.png";
@@ -99,6 +99,22 @@ const AuthLayout = () => {
 
       <div className="w-full min-h-screen flex justify-center items-center bg-base-gray p-4 sm:p-10">
         <Outlet />
+        {(pathname === "/login" || pathname === "/") && (
+          <p className="absolute bottom-10 text-sm">
+            Hesabın yok mu?{" "}
+            <Link to={"signup"} className="text-primary">
+              Kayıt Ol
+            </Link>
+          </p>
+        )}
+        {pathname === "/signup" && (
+          <p className="absolute bottom-10 text-sm">
+            Hesabın var mı?{" "}
+            <Link to={"login"} className="text-primary">
+              Giriş Yap
+            </Link>
+          </p>
+        )}
       </div>
     </section>
   );

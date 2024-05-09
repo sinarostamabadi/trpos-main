@@ -15,7 +15,8 @@ export const Router: React.FC = () => {
       <Routes>
         <Route path="/" element={<AuthLayout />}>
           <Route index element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
           {/* <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-phone" element={<ChangePhone />} /> */}
         </Route>
