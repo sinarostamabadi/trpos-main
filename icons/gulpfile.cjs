@@ -44,7 +44,7 @@ gulp.task("icons_components", function () {
                         name: "removeAttrs",
                         params: {
                             attrs: [
-                                "(filter|fill|stroke|fill-rule|stroke-linecap|stroke-linejoin|stroke-width|transform|style|class|data.*)",
+                                "(filter|fill|stroke|fillRule|stroke-linecap|stroke-linejoin|stroke-width|transform|style|class|data.*)",
                                 "svg:(width|height)",
                             ],
                         },

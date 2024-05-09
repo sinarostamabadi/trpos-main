@@ -4,11 +4,12 @@ import loginHero from "../assets/images/login-hero.png";
 import forgotPassHero from "../assets/images/forgot-password-hero.png";
 import changePhoneHero from "../assets/images/change-phone-hero.png";
 
-export const AuthLayout = () => {
+const AuthLayout = () => {
   const { pathname } = useLocation();
 
   const imageSelector = (path: string) => {
     const image: { [key: string]: string } = {
+      "/": loginHero,
       "/login": loginHero,
       "/signup": signupHero,
       "/forgot-password": forgotPassHero,
@@ -72,7 +73,6 @@ export const AuthLayout = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="-mt-0.5"
               >
                 <path
                   fillRule="evenodd"
@@ -81,6 +81,7 @@ export const AuthLayout = () => {
                   fill="#00636D"
                 />
               </svg>
+
               <div className="mb-6 font-normal">
                 <span className="text-primary">https://</span>www.trpos.com
               </div>
@@ -102,3 +103,5 @@ export const AuthLayout = () => {
     </section>
   );
 };
+
+export default AuthLayout;
