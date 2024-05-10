@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { dataState } from "./types/login.types";
 import { RequestLogin } from "./components/request-login";
-import { CheckOtp } from "./components/checkOtp";
+import { CheckOtp } from "./components/check-Otp";
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   const [data, setData] = useState<dataState>({
     step: 1,
     payload: {
@@ -15,3 +15,5 @@ export const Login: React.FC = () => {
 
   return <>{data.step === 1 ? <RequestLogin /> : <CheckOtp data={data} />}</>;
 };
+
+export default Login;

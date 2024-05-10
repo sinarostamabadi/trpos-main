@@ -1,5 +1,7 @@
 import { PersonalInfo } from "./components/personal-info";
 
-export const SignUp: React.FC = () => {
+const SignUp: React.FC = () => {
   return <PersonalInfo />;
 };
+
+export default SignUp;

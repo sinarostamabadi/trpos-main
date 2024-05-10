@@ -1,18 +1,22 @@
 import { Route, Routes } from "react-router-dom";
 import { Private } from "./private/private";
-import { Login } from "../pages/auth/login";
-import { SignUp } from "../pages/auth/signup";
-import { Suspense } from "react";
-import { AuthLayout } from "../layout/_auth";
-import { PanelLayout } from "../layout/_panel";
+import { Suspense, lazy } from "react";
+
+// begin:: Lazy imports
+const AuthLayout = lazy(() => import("../layout/_auth"));
+const PanelLayout = lazy(() => import("../layout/_panel"));
+const Login = lazy(() => import("../pages/auth/login"));
+const SignUp = lazy(() => import("../pages/auth/signup"));
+// end:: Lazy imports
 
 export const Router: React.FC = () => {
   return (
     <Suspense fallback={<span>Loading...</span>}>
       <Routes>
         <Route path="/" element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route index element={<Login />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
           {/* <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-phone" element={<ChangePhone />} /> */}
         </Route>

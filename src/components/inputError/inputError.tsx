@@ -1,17 +1,11 @@
-import classNames from "classnames"
-import { InputError } from "./inputError.types"
+import classNames from "classnames";
+import { InputError } from "./inputError.types";
 
-export const InputErrorComponent:React.FC<InputError> = ({
-    className,
-    text
-} : InputError) => {
+export const InputErrorComponent: React.FC<InputError> = ({
+  className,
+  text,
+}: InputError) => {
+  const classes = classNames("inputError", className);
 
-    const classes=classNames(
-        "inputError",
-        className
-    )
-
-    return (
-        <span className={classes}>{text}</span>
-    )
-}
+  return <span className={classes}>{text}</span>;
+};

@@ -1,4 +1,4 @@
 export type InputError = {
-    className?:string,
-    text?:string
-}
+  className?: string;
+  text?: string;
+};
