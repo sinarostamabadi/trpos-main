@@ -15,8 +15,10 @@ Props) => {
           E-Postanı Doğrula
         </h1>
         <p className="text-base-content-light mt-1 text-sm opacity-60">
-          bestami.coban@raven.com.tr e-posta adresine kod gönderdik. Kimliğinden
-          emin olmalıyız.
+          <span className="text-primary font-semibold">
+            bestami.coban@raven.com.tr
+          </span>{" "}
+          e-posta adresine kod gönderdik. Kimliğinden emin olmalıyız.
         </p>
       </div>
       <div className="w-full h-full flex flex-col justify-center items-center mt-6">

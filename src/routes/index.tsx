@@ -9,6 +9,7 @@ const PanelLayout = lazy(() => import("../layout/_panel"));
 const Login = lazy(() => import("../pages/auth/login"));
 const SignUp = lazy(() => import("../pages/auth/signup"));
 const ChangePhone = lazy(() => import("../pages/auth/change-phone"));
+const ForgotPassword = lazy(() => import("../pages/auth/forgot-password"));
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -20,7 +21,7 @@ export const Router: React.FC = () => {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="/change-phone" element={<ChangePhone />} />
-          {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
 
         <Route element={<Private />}>

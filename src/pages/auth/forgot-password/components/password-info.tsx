@@ -1,12 +1,12 @@
+import { Link } from "react-router-dom";
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/inputs";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { LoginInputs } from "../../login/types/login.types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { LoginInputs } from "../types/login.types";
-import { Link } from "react-router-dom";
 import * as yup from "yup";
 
-export const RequestLogin: React.FC = () => {
+export const PasswordInfo = () => {
   const loginSchema = yup.object().shape({
     phoneNumber: yup
       .string()
@@ -53,14 +53,14 @@ export const RequestLogin: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
+      className="w-full max-w-[500px] min-w-96 sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
     >
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">
-          Giriş yap.
+          Şifremi unuttum.
         </h1>
-        <p className="text-sm text-base-content-60 t mt-2">
-          Telefon ya da E-Postanız ile giriş yapınız.
+        <p className="xl:text-sm text-[12px] text-base-content-light mt-1 pl-1 opacity-60">
+          Şifrenizi sıfırlayınız.
         </p>
       </div>
       <div className="mt-6">
@@ -69,31 +69,33 @@ export const RequestLogin: React.FC = () => {
           register={{ ...register("phoneNumber") }}
           error={errors.phoneNumber?.message}
           touched={touchedFields.phoneNumber}
-          className="mb-4"
-        />
-        <Input
-          type="password"
-          label="Şifre"
-          register={{ ...register("password") }}
-          error={errors.password?.message}
-          isPassword={true}
         />
       </div>
+
       <Button
         type="submit"
         variant="primary"
         size="medium"
         shape="full"
         className="mt-6"
+        isDisable={Object.keys(errors).length > 0 ? true : false}
         loadingText="giriş yapmak..."
       >
         Devam Et
       </Button>
-      <div className="w-full flex justify-center items-center gap-6 text-sm text-base-content-80 mt-6">
-        <Link to={"/change-phone"}>Telefon Numaram Değişti</Link>
-        <div className="w-2 h-2 rounded-full bg-base-content/20"></div>
-        <Link to={"/forgot-password"}>Şifremi Unuttum</Link>
-      </div>
+
+      <p className="opacity-40 text-sm my-6 w-full text-center flex">
+        <div className="w-full border-b-2 -translate-y-2"></div>
+        <span className="text-nowrap px-5">ya da</span>
+        <div className="w-full border-b-2 -translate-y-2"></div>
+      </p>
+
+      <Link
+        to={"/change-phone"}
+        className="text-success block text-center font-medium text-sm"
+      >
+        Cep Numaranı Değiştir
+      </Link>
     </form>
   );
 };
