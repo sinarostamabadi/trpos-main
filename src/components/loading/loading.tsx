@@ -1,5 +1,5 @@
 import { FadeLoader } from "react-spinners";
 
 export const Loading = () => {
-  return <FadeLoader />;
+  return <FadeLoader width={3} height={9} />;
 };

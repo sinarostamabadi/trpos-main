@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Private } from "./private/private";
 import { Suspense, lazy } from "react";
+import { SplashScreen } from "../components/splashScreen";
 
 // begin:: Lazy imports
 const AuthLayout = lazy(() => import("../layout/_auth"));
@@ -11,7 +12,7 @@ const SignUp = lazy(() => import("../pages/auth/signup"));
 
 export const Router: React.FC = () => {
   return (
-    <Suspense fallback={<span>Loading...</span>}>
+    <Suspense fallback={<SplashScreen />}>
       <Routes>
         <Route path="/" element={<AuthLayout />}>
           <Route index element={<Login />} />
