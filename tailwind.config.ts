@@ -57,6 +57,9 @@ export const tailwindColors: colorObject = {
   "base-200": "#191e24",
   "base-300": "#15191e",
   "base-content": "#18181C",
+  "base-content-3":"#18181C08",
+  "base-content-2":"#18181C05",
+  "base-content-40":"#18181C66",
   "base-content-60": "#18181C99",
   "base-content-80":"#18181CCC",
   "base-content-medium": generateLightenFromColor("#18181C", 0.4),
@@ -82,6 +85,9 @@ export const config: Config = {
       borderRadius: {
         "2.5xl": "20px",
       },
+      fontSize:{
+        "xs":"12px"
+      }
     },
     container: {
       center: true,

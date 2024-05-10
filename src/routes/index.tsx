@@ -10,18 +10,19 @@ export const Router: React.FC = () => {
   return (
     <Suspense fallback={<span>Loading...</span>}>
       <Routes>
-        <Route path="/" element={<AuthLayout />}>
+        <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           {/* <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-phone" element={<ChangePhone />} /> */}
         </Route>
 
+        <Route path="/" element={<PanelLayout />}>
+          {/* <Route index element={<Dashboard />} /> */}
+          {/*  .......pages routes...... */}
+        </Route>
+
         <Route element={<Private />}>
-          <Route path="/" element={<PanelLayout />}>
-            {/* <Route index element={<Dashboard />} /> */}
-            {/*  .......pages routes...... */}
-          </Route>
         </Route>
       </Routes>
     </Suspense>

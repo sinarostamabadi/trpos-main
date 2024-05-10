@@ -18,8 +18,8 @@ export const AuthLayout = () => {
   };
 
   return (
-    <section className="w-full min-h-screen md:grid md:grid-cols-2">
-      <div className="w-full h-full hidden md:grid grid-rows-[auto_1fr_auto] p-10 2xl:p-20">
+    <section className="w-full h-full min-h-screen md:grid md:grid-cols-2">
+      <div className="w-full h-full min-h-screen hidden md:grid grid-rows-[auto_1fr_auto] p-10 2xl:p-20">
         {/* begin:: Logo */}
         <div className="w-full flex justify-center items-center">
           <svg
@@ -64,7 +64,7 @@ export const AuthLayout = () => {
             src={imageSelector(pathname)}
             alt=""
           />
-          <div className="bg-gray-100 w-1/2 bg-opacity-50 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[550px]">
+          <div className="bg-gray-100 w-full max-w-[450px] bg-opacity-10 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[550px]">
             <span className="flex gap-x-3">
               <svg
                 width="24"
@@ -96,7 +96,7 @@ export const AuthLayout = () => {
         {/* end:: Hero section */}
       </div>
 
-      <div className="w-full min-h-screen flex justify-center items-center bg-base-gray p-4 sm:p-10">
+      <div className="w-full h-full min-h-screen flex justify-center items-center bg-base-gray p-4 sm:p-10">
         <Outlet />
       </div>
     </section>

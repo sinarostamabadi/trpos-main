@@ -5,17 +5,13 @@
 @import "./tailwind/component.css";
 
 @font-face {
-  font-family: "Euclid";
-  src: url("./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Bold.ttf")format("truetype"),
-    url("./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Bold\ Italic.ttf")format("truetype"),
-    url("./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Italic.ttf")format("truetype"),
-    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Light.ttf')format("truetype"),
-    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Light\ Italic.ttf')format("truetype"),
-    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Medium.ttf')format("truetype"),
-    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Medium\ Italic.ttf')format("truetype"),
-    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ Regular.ttf')format("truetype"),
-    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ SemiBold.ttf')format("truetype"),
-    url('./assets/fonts/Euclid-circular-a/Euclid\ Circular\ A\ SemiBold\ Italic.ttf')format("truetype"),
+  font-family: "Euclid Circular A Light";
+  src: url("https://db.onlinewebfonts.com/t/1dced00e473a2db7b3d52a4c8392f31e.eot");
+  src: url("https://db.onlinewebfonts.com/t/1dced00e473a2db7b3d52a4c8392f31e.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/1dced00e473a2db7b3d52a4c8392f31e.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/1dced00e473a2db7b3d52a4c8392f31e.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/1dced00e473a2db7b3d52a4c8392f31e.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/1dced00e473a2db7b3d52a4c8392f31e.svg#Euclid Circular A Light")format("svg");
 }
 
 body {
@@ -23,9 +19,21 @@ body {
 }
 
 :lang(tr) {
-  font-family: "Euclid", sans-serif;
+  font-family: "Euclid Circular A Light"; 
 }
 
 .Toastify__toast-body {
   font-family: "Euclid" !important;
+}
+
+.ant-menu {
+  background-color: #FAFAFA !important;
+}
+
+.ant-menu-title-content {
+  color: #18181c75 !important;
+}
+
+.ant-menu-item-icon {
+  color: #18181c75 !important;
 }
