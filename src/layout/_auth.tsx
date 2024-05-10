@@ -65,7 +65,7 @@ const AuthLayout = () => {
             src={imageSelector(pathname)}
             alt=""
           />
-          <div className="bg-gray-100 w-1/2 bg-opacity-50 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[550px]">
+          <div className="bg-gray-100 w-2/3 lg:text-sm bg-opacity-50 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[70%]">
             <span className="flex gap-x-3">
               <svg
                 width="24"
@@ -82,12 +82,16 @@ const AuthLayout = () => {
                 />
               </svg>
 
-              <a href="https://www.trpos.com" target="_blank" className="mb-6 font-normal">
+              <a
+                href="https://www.trpos.com"
+                target="_blank"
+                className="mb-6 font-normal"
+              >
                 <span className="text-primary">https://</span>www.trpos.com
               </a>
             </span>
             <hr />
-            <ul className="ps-5 list-disc opacity-60 mt-6 text-sm gap-y-4">
+            <ul className="ps-5 list-disc opacity-60 mt-6 gap-y-4">
               <li className="mb-2">6 adet rakamdan oluşmalıdır.</li>
               <li className="mb-2"> ⁠En az 4 farklı rakam içermelidir.</li>
               <li>İlk 2 hane ile son 2 hane aynı olmamalıdır.</li>
@@ -97,8 +101,8 @@ const AuthLayout = () => {
         {/* end:: Hero section */}
       </div>
 
-      <div className="w-full min-h-screen flex justify-center items-center bg-base-gray p-4 sm:p-10">
-        <div className="absolute top-10 lg:hidden">
+      <div className="w-full min-h-screen flex flex-col justify-between items-center gap-y-4 bg-base-gray p-4 sm:p-10">
+        <div className="lg:invisible">
           <svg
             width="196"
             height="40"
@@ -132,23 +136,30 @@ const AuthLayout = () => {
             />
           </svg>
         </div>
-        <Outlet />
-        {(pathname === "/login" || pathname === "/") && (
-          <p className="absolute bottom-10 text-sm">
-            Hesabın yok mu?{" "}
-            <Link to={"signup"} className="text-primary">
-              Kayıt Ol
-            </Link>
-          </p>
-        )}
-        {pathname === "/signup" && (
-          <p className="absolute bottom-10 text-sm">
-            Hesabın var mı?{" "}
-            <Link to={"login"} className="text-primary">
-              Giriş Yap
-            </Link>
-          </p>
-        )}
+        <div>
+          <Outlet />
+        </div>
+
+        {/* begin:: navigation link */}
+        <p className="">
+          {(pathname === "/login" || pathname === "/") && (
+            <p className="text-sm">
+              Hesabın yok mu?{" "}
+              <Link to={"signup"} className="text-primary">
+                Kayıt Ol
+              </Link>
+            </p>
+          )}
+          {pathname === "/signup" && (
+            <p className="text-sm">
+              Hesabın var mı?{" "}
+              <Link to={"login"} className="text-primary">
+                Giriş Yap
+              </Link>
+            </p>
+          )}
+        </p>
+        {/* end:: navigation link */}
       </div>
     </section>
   );
