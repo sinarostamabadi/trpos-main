@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginInputs } from "../types/login.types";
 import * as yup from "yup";
+import { Link } from "react-router-dom";
 
 export const RequestLogin: React.FC = () => {
   const loginSchema = yup.object().shape({
@@ -89,9 +90,9 @@ export const RequestLogin: React.FC = () => {
         Devam Et
       </Button>
       <div className="w-full flex justify-center items-center gap-6 text-sm text-base-content-80 mt-6">
-        <p>Telefon Numaram Değişti</p>
+        <Link to={"/change-phone"}>Telefon Numaram Değişti</Link>
         <div className="w-2 h-2 rounded-full bg-base-content/20"></div>
-        <p>Şifremi Unuttum</p>
+        <Link to={"/forgot-password"}>Şifremi Unuttum</Link>
       </div>
     </form>
   );

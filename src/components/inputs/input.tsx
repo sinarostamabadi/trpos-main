@@ -50,20 +50,20 @@ export const Input: React.FC<InputType> = ({
           {isPassword ? (
             inputType === "text" ? (
               <IconEye
-                className={`cursor-pointer w-6 ${error && "text-error"}`}
+                className={`cursor-pointer w-6 mt-2 ${error && "text-error"}`}
                 onClick={() => setInputType("password")}
               />
             ) : (
               <IconHide
-                className={`cursor-pointer w-6 ${error && "text-error"}`}
+                className={`cursor-pointer w-6 mt-2 ${error && "text-error"}`}
                 onClick={() => setInputType("text")}
               />
             )
           ) : touched ? (
             error ? (
-              <IconRemoveCircle className="w-6 text-error" />
+              <IconRemoveCircle className="w-6 mt-2 text-error" />
             ) : (
-              <IconCheckCircle className="w-6 text-success" />
+              <IconCheckCircle className="w-6 mt-2 text-success" />
             )
           ) : null}
         </div>

@@ -65,43 +65,53 @@ const AuthLayout = () => {
             src={imageSelector(pathname)}
             alt=""
           />
-          <div className="bg-gray-100 w-2/3 lg:text-sm bg-opacity-50 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[70%]">
-            <span className="flex gap-x-3">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M15.7017 9.10048C15.4017 9.09648 15.0717 9.09548 14.6957 9.09548H9.30375C8.92975 9.09548 8.60275 9.09648 8.30475 9.10048V7.48848C8.33875 5.47648 9.94375 3.88148 11.9567 3.85548H12.0037C14.0217 3.85548 15.6768 5.48348 15.7017 7.49648V9.10048ZM15.0717 14.0755L11.6547 17.4965C11.5138 17.6365 11.3227 17.7165 11.1237 17.7165C10.9237 17.7165 10.7318 17.6355 10.5917 17.4945L8.93175 15.8235C8.63975 15.5295 8.64175 15.0545 8.93575 14.7625C9.22975 14.4705 9.70475 14.4735 9.99675 14.7665L11.1248 15.9035L14.0098 13.0145C14.3027 12.7215 14.7787 12.7215 15.0707 13.0145C15.3637 13.3065 15.3637 13.7825 15.0717 14.0755ZM19.5597 11.0775C19.2127 10.3595 18.6298 9.77948 17.9237 9.44648C17.7028 9.33848 17.4657 9.26648 17.2017 9.21548V7.48748C17.1657 4.62248 14.8077 2.34948 11.9387 2.35548C9.10775 2.39148 6.85275 4.63448 6.80475 7.47548V9.21348C6.53875 9.26448 6.30175 9.33648 6.08075 9.44348C5.36975 9.77948 4.78675 10.3595 4.43875 11.0795C4.09375 11.8025 4.09375 12.6395 4.09375 14.3055V16.4355C4.09375 18.1105 4.09375 18.9515 4.43775 19.6605C4.77575 20.3705 5.35675 20.9545 6.08175 21.3075C6.79875 21.6455 7.63575 21.6455 9.30375 21.6455H14.6958C16.3638 21.6455 17.2008 21.6455 17.9237 21.3045C18.6418 20.9545 19.2227 20.3705 19.5588 19.6645C19.9058 18.9515 19.9058 18.1105 19.9058 16.4355V14.3055C19.9058 12.6395 19.9057 11.8025 19.5597 11.0775Z"
-                  fill="#00636D"
-                />
-              </svg>
+          {(pathname === "/" ||
+            pathname === "/login" ||
+            pathname === "/signup") && (
+            <div className="bg-gray-100 w-2/3 lg:text-sm bg-opacity-50 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[70%]">
+              <span className="flex gap-x-3">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M15.7017 9.10048C15.4017 9.09648 15.0717 9.09548 14.6957 9.09548H9.30375C8.92975 9.09548 8.60275 9.09648 8.30475 9.10048V7.48848C8.33875 5.47648 9.94375 3.88148 11.9567 3.85548H12.0037C14.0217 3.85548 15.6768 5.48348 15.7017 7.49648V9.10048ZM15.0717 14.0755L11.6547 17.4965C11.5138 17.6365 11.3227 17.7165 11.1237 17.7165C10.9237 17.7165 10.7318 17.6355 10.5917 17.4945L8.93175 15.8235C8.63975 15.5295 8.64175 15.0545 8.93575 14.7625C9.22975 14.4705 9.70475 14.4735 9.99675 14.7665L11.1248 15.9035L14.0098 13.0145C14.3027 12.7215 14.7787 12.7215 15.0707 13.0145C15.3637 13.3065 15.3637 13.7825 15.0717 14.0755ZM19.5597 11.0775C19.2127 10.3595 18.6298 9.77948 17.9237 9.44648C17.7028 9.33848 17.4657 9.26648 17.2017 9.21548V7.48748C17.1657 4.62248 14.8077 2.34948 11.9387 2.35548C9.10775 2.39148 6.85275 4.63448 6.80475 7.47548V9.21348C6.53875 9.26448 6.30175 9.33648 6.08075 9.44348C5.36975 9.77948 4.78675 10.3595 4.43875 11.0795C4.09375 11.8025 4.09375 12.6395 4.09375 14.3055V16.4355C4.09375 18.1105 4.09375 18.9515 4.43775 19.6605C4.77575 20.3705 5.35675 20.9545 6.08175 21.3075C6.79875 21.6455 7.63575 21.6455 9.30375 21.6455H14.6958C16.3638 21.6455 17.2008 21.6455 17.9237 21.3045C18.6418 20.9545 19.2227 20.3705 19.5588 19.6645C19.9058 18.9515 19.9058 18.1105 19.9058 16.4355V14.3055C19.9058 12.6395 19.9057 11.8025 19.5597 11.0775Z"
+                    fill="#00636D"
+                  />
+                </svg>
 
-              <a
-                href="https://www.trpos.com"
-                target="_blank"
-                className="mb-6 font-normal"
-              >
-                <span className="text-primary">https://</span>www.trpos.com
-              </a>
-            </span>
-            <hr />
-            <ul className="ps-5 list-disc opacity-60 mt-6 gap-y-4">
-              <li className="mb-2">6 adet rakamdan oluşmalıdır.</li>
-              <li className="mb-2"> ⁠En az 4 farklı rakam içermelidir.</li>
-              <li>İlk 2 hane ile son 2 hane aynı olmamalıdır.</li>
-            </ul>
-          </div>
+                <a
+                  href="https://www.trpos.com"
+                  target="_blank"
+                  className="mb-6 font-normal"
+                >
+                  <span className="text-primary">https://</span>www.trpos.com
+                </a>
+              </span>
+              <hr />
+              <ul className="ps-5 list-disc opacity-60 mt-6 gap-y-4">
+                <li className="mb-2">6 adet rakamdan oluşmalıdır.</li>
+                <li className="mb-2"> ⁠En az 4 farklı rakam içermelidir.</li>
+                <li>İlk 2 hane ile son 2 hane aynı olmamalıdır.</li>
+              </ul>
+            </div>
+          )}
         </div>
         {/* end:: Hero section */}
       </div>
 
-      <div className="w-full min-h-screen flex flex-col justify-between items-center gap-y-4 bg-base-gray p-4 sm:p-10">
+      <div
+        className={`${
+          pathname === "/forgot-password" || pathname === "/change-phone"
+            ? ""
+            : "justify-between"
+        } w-full min-h-screen flex flex-col  items-center gap-y-4 bg-base-gray p-4 sm:p-10`}
+      >
         <div className="lg:invisible">
           <svg
             width="196"
@@ -136,12 +146,17 @@ const AuthLayout = () => {
             />
           </svg>
         </div>
-        <div>
+        <div
+          className={`${
+            pathname === "/forgot-password" ||
+            (pathname === "/change-phone" && "mt-[12%]")
+          }`}
+        >
           <Outlet />
         </div>
 
         {/* begin:: navigation link */}
-        <p className="">
+        <p>
           {(pathname === "/login" || pathname === "/") && (
             <p className="text-sm">
               Hesabın yok mu?{" "}
@@ -155,6 +170,15 @@ const AuthLayout = () => {
               Hesabın var mı?{" "}
               <Link to={"login"} className="text-primary">
                 Giriş Yap
+              </Link>
+            </p>
+          )}
+          {(pathname === "/forgot-password" ||
+            pathname === "/change-phone") && (
+            <p className="text-sm">
+              Bir sorun mu yaşıyorusun?{" "}
+              <Link to={"login"} className="text-primary">
+                İletişime Geç
               </Link>
             </p>
           )}
