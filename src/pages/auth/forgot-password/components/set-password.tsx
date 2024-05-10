@@ -1,5 +1,6 @@
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/inputs";
+import { SelectInput } from "../../../../components/select/select";
 
 export const SetPassword = () => {
   return (
@@ -32,9 +33,16 @@ export const SetPassword = () => {
             isPassword={true}
             // register={{ ...register("confirmPassword") }}
           />
-          <Input
-            label="Şifre Değiştirme Süresi"
-            className="mt-4"
+          <SelectInput
+            placeholder="Şifre Değiştirme Süresi"
+            options={[
+              { value: "3 ay", label: "3 ay" },
+              { value: "6 ay", label: "6 ay" },
+              { value: "1 yıl", label: "1 yıl" },
+            ]}
+            className="mt-4 w-full"
+            // isError={error?.time.message}
+            isError={false}
             // register={{ ...register("confirmPassword") }}
           />
         </div>

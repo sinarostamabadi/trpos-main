@@ -1,0 +1,15 @@
+.select_field {
+  @apply px-0.5 border rounded-2xl py-2
+}
+
+.select {
+  @apply w-full placeholder:text-red-500
+}
+
+.ant-select-selection-placeholder {
+  color: #9b9b9b !important
+}
+
+.ant-select-arrow{
+  color: black !important;
+}
