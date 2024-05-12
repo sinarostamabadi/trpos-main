@@ -19,8 +19,8 @@ const AuthLayout = () => {
   };
 
   return (
-    <section className="w-full h-full min-h-screen md:grid md:grid-cols-2">
-      <div className="w-full h-full min-h-screen hidden md:grid grid-rows-[auto_1fr_auto] p-10 2xl:p-20">
+    <section className="w-full min-h-screen lg:grid lg:grid-cols-2">
+      <div className="w-full h-full hidden lg:grid grid-rows-[auto_1fr_auto] p-10 2xl:p-20">
         {/* begin:: Logo */}
         <div className="w-full flex justify-center items-center">
           <svg
