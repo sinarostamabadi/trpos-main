@@ -1,9 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 
-export type LoginInputs = {
-  phoneNumber: string;
+export interface LoginInputs {
+  phoneOrEmail: string;
+  lang?: string;
+  phoneCountry?: string;
+  phoneNumber?: string;
   password: string;
-};
+  email?: string;
+  ip?: string;
+  version?: string;
+}
 
 export type dataState = {
   step: 1 | 2;

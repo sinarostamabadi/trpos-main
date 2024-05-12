@@ -1,9 +1,9 @@
-import { Size } from "./size.type"
-import { Variant } from "./variant.type"
+import { Size } from "./size.type";
+import { Variant } from "./variant.type";
 
-export type ComponentBase={
-    isDisable?:boolean,
-    className?:string,
-    variant?:Variant,
-    size?:Size
-}
+export type ComponentBase = {
+  isDisabled?: boolean;
+  className?: string;
+  variant?: Variant;
+  size?: Size;
+};

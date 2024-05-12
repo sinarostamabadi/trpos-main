@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../../components/button";
-import { Input } from "../../../../components/inputs";
+import { Input } from "../../../../components/input";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginInputs } from "../../login/types/login.types";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ForgotPasswordInputs } from "../forgot-password.types";
 import * as yup from "yup";
 
 export const PasswordInfo = () => {
@@ -14,19 +15,33 @@ export const PasswordInfo = () => {
       .test("email_or_phone", "Email / Phone is invalid", (value) => {
         return validateEmail(value) || validatePhone(parseInt(value ?? "0"));
       }),
-    password: yup.string().required("Şifrenizi giriniz Lütfen"),
+    lang: yup.string(),
+    phoneCountry: yup.string(),
+    email: yup.string(),
+    ip: yup.string(),
+    version: yup.string(),
+    customerNo: yup.string().required(),
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors, touchedFields },
-  } = useForm<LoginInputs>({
+    trigger,
+  } = useForm<ForgotPasswordInputs>({
+    defaultValues: {
+      customerNo: "100",
+      lang: "tr",
+      phoneCountry: "",
+      phoneNumber: "",
+      email: "",
+      ip: "1.1.1.1",
+    },
     resolver: yupResolver(loginSchema),
     mode: "all",
   });
 
-  const onSubmit: SubmitHandler<LoginInputs> = (data) => {
+  const onSubmit: SubmitHandler<ForgotPasswordInputs> = (data) => {
     console.log(data);
   };
 
@@ -50,10 +65,14 @@ export const PasswordInfo = () => {
       .isValidSync(phone);
   };
 
+  useEffect(() => {
+    trigger();
+  }, [trigger]);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[500px] min-w-96 sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
+      className="w-full max-w-[500px] sm:min-w-96 sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm mt-[30%]"
     >
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">
@@ -78,7 +97,7 @@ export const PasswordInfo = () => {
         size="medium"
         shape="full"
         className="mt-6"
-        isDisable={Object.keys(errors).length > 0 ? true : false}
+        isDisabled={Object.keys(errors).length > 0 ? true : false}
         loadingText="giriş yapmak..."
       >
         Devam Et

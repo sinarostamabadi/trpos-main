@@ -1,6 +1,6 @@
 import { Button } from "../../../../components/button";
 import { dataState } from "../types/login.types";
-import { Input } from "../../../../components/inputs";
+import { Input } from "../../../../components/input";
 
 type Props = {
   data: dataState;

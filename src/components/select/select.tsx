@@ -6,6 +6,9 @@ export const SelectInput = ({
   options,
   placeholder,
   isError,
+  register,
+  error,
+  touched,
 }: SelectProps) => {
   return (
     <div className={`select_field ${className}`}>
@@ -17,6 +20,7 @@ export const SelectInput = ({
         status={isError ? "error" : ""}
         variant="borderless"
         listHeight={150}
+        {...register}
       />
     </div>
   );

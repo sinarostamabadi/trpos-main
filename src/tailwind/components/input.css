@@ -19,6 +19,10 @@
   color: transparent;
 }
 
+label.red__placeholder {
+  @apply text-error !important;
+}
+
 .form__field:placeholder-shown ~ .form__label {
   font-size: 15px;
   cursor: text;

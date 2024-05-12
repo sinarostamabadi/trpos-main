@@ -88,7 +88,7 @@ const AuthLayout = () => {
                 <a
                   href="https://www.trpos.com"
                   target="_blank"
-                  className="mb-6 font-normal"
+                  className="mb-6 font-normal text-lg"
                 >
                   <span className="text-primary">https://</span>www.trpos.com
                 </a>
@@ -148,8 +148,8 @@ const AuthLayout = () => {
         </div>
         <div
           className={`${
-            pathname === "/forgot-password" ||
-            (pathname === "/change-phone" && "mt-[12%]")
+            (pathname === "/forgot-password" || pathname === "/change-phone") &&
+            "mt-[10%]"
           }`}
         >
           <Outlet />
@@ -158,29 +158,29 @@ const AuthLayout = () => {
         {/* begin:: navigation link */}
         <p>
           {(pathname === "/login" || pathname === "/") && (
-            <p className="text-sm">
+            <span className="text-sm">
               Hesabın yok mu?{" "}
               <Link to={"signup"} className="text-primary">
                 Kayıt Ol
               </Link>
-            </p>
+            </span>
           )}
           {pathname === "/signup" && (
-            <p className="text-sm">
+            <span className="text-sm">
               Hesabın var mı?{" "}
               <Link to={"login"} className="text-primary">
                 Giriş Yap
               </Link>
-            </p>
+            </span>
           )}
           {(pathname === "/forgot-password" ||
             pathname === "/change-phone") && (
-            <p className="text-sm">
+            <span className="text-sm">
               Bir sorun mu yaşıyorusun?{" "}
-              <Link to={"login"} className="text-primary">
+              <Link to={"#"} className="text-primary">
                 İletişime Geç
               </Link>
-            </p>
+            </span>
           )}
         </p>
         {/* end:: navigation link */}

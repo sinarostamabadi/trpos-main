@@ -8,5 +8,6 @@ export type CheckBoxProps = Omit<ComponentBase, "variant"> &
     label: string;
     linkLabel?: string;
     error?: string;
-    isChecked: boolean;
+    isChecked?: boolean;
+    touched?: boolean;
   };

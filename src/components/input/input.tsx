@@ -10,7 +10,7 @@ import {
 
 export const Input: React.FC<InputType> = ({
   label,
-  isDisable,
+  isDisabled: isDisable,
   type = "text",
   className,
   isPassword,
@@ -23,14 +23,14 @@ export const Input: React.FC<InputType> = ({
   const [inputType, setInputType] = useState<typeof type>(type);
 
   return (
-    <>
+    <div className="w-full">
       <div
         className={`form__group flex ${className} ${
-          error && type === "password" && "border-error"
+          error && type === "password" && touched && "border-error"
         }`}
       >
         <input
-          type={inputType}
+          type={inputType != "email" ? inputType : "text"}
           id={label}
           className={`form__field`}
           disabled={isDisable}
@@ -41,7 +41,7 @@ export const Input: React.FC<InputType> = ({
         <label
           htmlFor={label}
           className={`form__label ${
-            type === "password" && error && "text-error"
+            type === "password" && error && touched && "red__placeholder"
           }`}
         >
           {label}
@@ -50,12 +50,16 @@ export const Input: React.FC<InputType> = ({
           {isPassword ? (
             inputType === "text" ? (
               <IconEye
-                className={`cursor-pointer w-6 mt-2 ${error && "text-error"}`}
+                className={`cursor-pointer w-6 mt-2 ${
+                  error && touched && "text-error"
+                }`}
                 onClick={() => setInputType("password")}
               />
             ) : (
               <IconHide
-                className={`cursor-pointer w-6 mt-2 ${error && "text-error"}`}
+                className={`cursor-pointer w-6 mt-2 ${
+                  error && touched && "text-error"
+                }`}
                 onClick={() => setInputType("text")}
               />
             )
@@ -68,7 +72,7 @@ export const Input: React.FC<InputType> = ({
           ) : null}
         </div>
       </div>
-      <InputErrorComponent />
-    </>
+      {isPassword && touched && <InputErrorComponent text={error} />}
+    </div>
   );
 };

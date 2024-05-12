@@ -1,5 +1,5 @@
 import { Button } from "../../../../components/button";
-import { Input } from "../../../../components/inputs";
+import { Input } from "../../../../components/input";
 import { SelectInput } from "../../../../components/select/select";
 
 export const SetPassword = () => {

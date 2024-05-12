@@ -3,7 +3,7 @@ import { CheckBoxProps } from "./checkbox.types";
 import { useState } from "react";
 
 export const CheckBox: React.FC<CheckBoxProps> = ({
-  isDisable,
+  isDisabled: isDisable,
   className,
   isChecked = false,
   register,
@@ -11,6 +11,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   linkLabel,
   id,
   error,
+  touched,
   ...rest
 }: CheckBoxProps) => {
   const classes = classNames("checkbox", className);
@@ -44,9 +45,9 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
             <path
               d="M13.5 7.59375L8.6875 12.4062L6.5 10.2188"
               stroke="white"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         ) : (
@@ -64,14 +65,14 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
               height="19"
               rx="9.5"
               stroke="#18181C"
-              stroke-opacity="0.1"
+              strokeOpacity="0.1"
             />
             <path
               d="M13.5 7.59375L8.6875 12.4062L6.5 10.2188"
               stroke="white"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         )}

@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../../../../components/button";
-import { Input } from "../../../../components/inputs";
+import { Input } from "../../../../components/input";
 import { SignupInput } from "../types/signup.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckBox } from "../../../../components/checkbox";
@@ -8,15 +9,28 @@ import * as yup from "yup";
 
 export const PersonalInfo: React.FC = () => {
   const registerSchema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
-    phoneNumber: yup.string().required(),
-    email: yup.string().required(),
-    password: yup.string().required(),
-    confirmPassword: yup
+    name: yup.string().min(3).max(50).required(),
+    surname: yup.string().min(3).max(50).required(),
+    phoneNumber: yup
       .string()
       .required()
-      .oneOf([yup.ref("password"), "Not match"]),
+      .matches(/^\+(?:[0-9]●?){6,14}[0-9]$/),
+    email: yup.string().required(),
+    password: yup
+      .string()
+      .min(8, "Minimum 8 karakter")
+      .max(16, "Maksimum 16 karakter")
+      .required()
+      .matches(
+        /^(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir"
+      ),
+    passwordRepeat: yup
+      .string()
+      .required()
+      .oneOf([yup.ref("password")], "Şifre ve tekrar şifre eşleşmiyor"),
+    ip: yup.string().required(),
+    lang: yup.string().required(),
     checkbox_role_1: yup.bool().required().oneOf([true]),
     checkbox_role_2: yup.bool().required().oneOf([true]),
     checkbox_role_3: yup.bool().required().oneOf([true]),
@@ -25,14 +39,21 @@ export const PersonalInfo: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    trigger,
+    formState: { errors, touchedFields },
   } = useForm<SignupInput>({
+    defaultValues: { ip: "1.1.1.1", lang: "tr" },
     resolver: yupResolver(registerSchema),
+    mode: "all",
   });
 
   const onSubmit: SubmitHandler<SignupInput> = (data) => {
     console.log(data);
   };
+
+  useEffect(() => {
+    trigger();
+  }, [trigger]);
 
   return (
     <form
@@ -48,43 +69,55 @@ export const PersonalInfo: React.FC = () => {
         </p>
       </div>
       <div className="mt-6">
-        <div className="lg:flex gap-x-1 justify-between">
+        <div className="lg:flex gap-x-3 justify-between">
           <Input
             label="Adınız"
-            register={{ ...register("firstName") }}
-            className="lg:w-1/2"
+            register={{ ...register("name") }}
+            touched={touchedFields.name}
+            error={errors.name?.message}
           />
           <Input
             label="Soyadınız"
-            register={{ ...register("lastName") }}
-            className="lg:w-1/2 mt-4 lg:mt-0"
+            register={{ ...register("surname") }}
+            className="mt-4 lg:mt-0"
+            touched={touchedFields.surname}
+            error={errors.surname?.message}
           />
         </div>
         <Input
           label="Cep No"
           className="mt-4"
           register={{ ...register("phoneNumber") }}
+          touched={touchedFields.phoneNumber}
+          error={errors.phoneNumber?.message}
         />
         <Input
           type="email"
           label="E-Posta"
           className="mt-4"
           register={{ ...register("email") }}
+          touched={touchedFields.email}
+          error={errors.email?.message}
         />
-        <div className="lg:flex gap-x-1 justify-between lg:mt-4">
+        <div className="lg:flex gap-x-3 justify-between lg:mt-4">
           <Input
             type="password"
             label="Şifre"
             className="mt-4 lg:mt-0"
             isPassword={true}
             register={{ ...register("password") }}
+            touched={touchedFields.password}
+            error={errors.password?.message}
+            autoComplete="new-password"
           />
           <Input
             type="password"
             label="Şifre (Tekrar)"
-            className="lg:w-1/2 mt-4 lg:mt-0"
+            className="mt-4 lg:mt-0"
             isPassword={true}
-            register={{ ...register("confirmPassword") }}
+            register={{ ...register("passwordRepeat") }}
+            touched={touchedFields.passwordRepeat}
+            error={errors.passwordRepeat?.message}
           />
         </div>
       </div>
@@ -96,7 +129,7 @@ export const PersonalInfo: React.FC = () => {
           register={{ ...register("checkbox_role_1") }}
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="KVKK Aydınlatma Metni"
-          isChecked={true}
+          touched={touchedFields.checkbox_role_1}
         />
 
         <CheckBox
@@ -105,7 +138,7 @@ export const PersonalInfo: React.FC = () => {
           register={{ ...register("checkbox_role_2") }}
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="Açık Rıza Metni"
-          isChecked={false}
+          touched={touchedFields.checkbox_role_2}
         />
 
         <CheckBox
@@ -114,7 +147,7 @@ export const PersonalInfo: React.FC = () => {
           register={{ ...register("checkbox_role_3") }}
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="Trpos Kullanıcı Sözleşmesi"
-          isChecked={false}
+          touched={touchedFields.checkbox_role_2}
         />
       </div>
 
@@ -124,7 +157,7 @@ export const PersonalInfo: React.FC = () => {
         size="medium"
         shape="full"
         className="mt-6"
-        isDisable={Object.keys(errors).length > 0 ? true : false}
+        isDisabled={Object.keys(errors).length > 0 ? true : false}
         loadingText="giriş yapmak..."
       >
         Devam Et

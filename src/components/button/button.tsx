@@ -13,7 +13,7 @@ const shapeClasses: Record<ButtonShape, string> = {
 export const Button: React.FC<ButtonProps> = ({
   variant,
   size = "normal",
-  isDisable = false,
+  isDisabled: isDisable = false,
   isOutline = false,
   shape = "default",
   isLoading = false,
