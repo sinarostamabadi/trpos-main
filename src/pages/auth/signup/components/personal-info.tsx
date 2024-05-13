@@ -27,7 +27,7 @@ export const PersonalInfo: React.FC = () => {
     phoneNumber: yup
       .string()
       .required()
-      .matches(/^(05)[0-9][0-9][\s]([0-9]){3}[\s]([0-9]){2}[\s]([0-9]){2}/),
+      .matches(/^(05)[0-9][0-9]([0-9]){3}([0-9]){2}([0-9]){2}/),
     email: yup
       .string()
       .required()
