@@ -110,11 +110,11 @@
   }
 
   &-outline {
-    @apply border-current bg-transparent text-base-content;
+    @apply border-base-content-40 bg-transparent text-base-content-40;
 
     @media (hover: hover) {
       &:hover {
-        @apply border-base-content bg-base-content text-base-100;
+        @apply border-base-content bg-transparent text-base-100;
       }
     }
 

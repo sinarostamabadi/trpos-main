@@ -24,12 +24,12 @@ label.red__placeholder {
 }
 
 .form__field:placeholder-shown ~ .form__label {
-  font-size: 15px;
+  font-size: 14px;
   cursor: text;
-  top: 17px;
+  top: 19px;
 }
 
-label:not(.checkbox_label),
+.form__label:not(.checkbox_label),
 .form__field:focus ~ .form__label {
   position: absolute;
   top: 5px;

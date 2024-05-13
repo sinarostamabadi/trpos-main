@@ -10,6 +10,8 @@ const Login = lazy(() => import("../pages/auth/login"));
 const SignUp = lazy(() => import("../pages/auth/signup"));
 const ChangePhone = lazy(() => import("../pages/auth/change-phone"));
 const ForgotPassword = lazy(() => import("../pages/auth/forgot-password"));
+const WebManagement = lazy(() => import("../pages/panel/web-management"));
+const LinkPayment = lazy(() => import("../pages/panel/link-payment"));
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -25,12 +27,13 @@ export const Router: React.FC = () => {
         </Route>
 
         <Route path="/dashboard" element={<PanelLayout />}>
+          <Route path="webManagement" element={<WebManagement />} />
+          <Route path="linkPayment" element={<LinkPayment />} />
           {/* <Route index element={<Dashboard />} /> */}
           {/*  .......pages routes...... */}
         </Route>
 
-        <Route element={<Private />}>
-        </Route>
+        <Route element={<Private />}></Route>
       </Routes>
     </Suspense>
   );
