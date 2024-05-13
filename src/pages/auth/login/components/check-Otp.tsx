@@ -1,12 +1,12 @@
 import { Button } from "../../../../components/button";
-import { dataState } from "../types/login.types";
+// import { dataState } from "../types/login.types";
 import { Input } from "../../../../components/input";
 
-type Props = {
-  data: dataState;
-};
+// type Props = {
+//   data: dataState;
+// };
 
-export const CheckOtp: React.FC<Props> = ({ data }: Props) => {
+export const CheckOtp: React.FC = () => {
   return (
     <div className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm">
       <div>

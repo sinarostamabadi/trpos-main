@@ -1,5 +1,3 @@
-import { apiType } from '../../../../types/api.type';
+// import { apiType } from "../../../../types/api.type";
 
-export const loginApi:apiType={
-    
-}
+// export const loginApi: apiType = {};
