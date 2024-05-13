@@ -10,4 +10,5 @@ export type CheckBoxProps = Omit<ComponentBase, "variant"> &
     error?: string;
     isChecked?: boolean;
     touched?: boolean;
+    handleClick?: () => void;
   };

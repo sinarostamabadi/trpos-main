@@ -13,12 +13,12 @@ const shapeClasses: Record<ButtonShape, string> = {
 export const Button: React.FC<ButtonProps> = ({
   variant,
   size = "normal",
-  isDisabled: isDisable = false,
+  isDisabled = false,
   isOutline = false,
   shape = "default",
   isLoading = false,
   loadingType = "spinner",
-  loadingText = "در حال ارسال درخواست...",
+  loadingText = "",
   type = "button",
   isLink = false,
   animatedIcon = false,
@@ -39,7 +39,7 @@ export const Button: React.FC<ButtonProps> = ({
   );
 
   return (
-    <button type={type} disabled={isDisable} {...rest} className={classes}>
+    <button type={type} disabled={isDisabled} {...rest} className={classes}>
       {isLoading ? loadingText : children}
       {isLoading && <Loading />}
     </button>

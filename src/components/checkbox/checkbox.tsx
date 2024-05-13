@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { CheckBoxProps } from "./checkbox.types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const CheckBox: React.FC<CheckBoxProps> = ({
   isDisabled: isDisable,
@@ -12,11 +12,16 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   id,
   error,
   touched,
+  handleClick,
   ...rest
 }: CheckBoxProps) => {
   const classes = classNames("checkbox", className);
 
   const [checked, setChecked] = useState<boolean>(isChecked);
+
+  useEffect(() => {
+    setChecked(isChecked);
+  }, [isChecked]);
 
   return (
     <div className={`${classes} flex`}>
@@ -79,7 +84,8 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
 
         <p>
           <span
-            className={`font-semibold ${
+            onClick={handleClick}
+            className={`font-semibold cursor-pointer select-none ${
               checked ? "text-primary" : "text-success"
             }`}
           >

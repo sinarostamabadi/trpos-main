@@ -1,13 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
 import { SignupInput } from "../types/signup.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckBox } from "../../../../components/checkbox";
+import { RuleModal } from "./modal/rules";
 import * as yup from "yup";
 
 export const PersonalInfo: React.FC = () => {
+  const [rulesAccepted, setRulesAccepted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  // console.log(rulesAccepted);
+
   const registerSchema = yup.object().shape({
     name: yup.string().min(3).max(50).required(),
     surname: yup.string().min(3).max(50).required(),
@@ -60,6 +65,14 @@ export const PersonalInfo: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
     >
+      <RuleModal
+        state={isModalOpen}
+        handleRuleAccept={() => {
+          setRulesAccepted(true);
+          setIsModalOpen(false);
+        }}
+        handleCloseModal={() => setIsModalOpen(false)}
+      />
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">
           Trpos’a üye ol.
@@ -130,6 +143,8 @@ export const PersonalInfo: React.FC = () => {
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="KVKK Aydınlatma Metni"
           touched={touchedFields.checkbox_role_1}
+          isChecked={rulesAccepted}
+          handleClick={() => setIsModalOpen(true)}
         />
 
         <CheckBox
@@ -139,6 +154,8 @@ export const PersonalInfo: React.FC = () => {
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="Açık Rıza Metni"
           touched={touchedFields.checkbox_role_2}
+          isChecked={rulesAccepted}
+          handleClick={() => setIsModalOpen(true)}
         />
 
         <CheckBox
@@ -147,7 +164,9 @@ export const PersonalInfo: React.FC = () => {
           register={{ ...register("checkbox_role_3") }}
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="Trpos Kullanıcı Sözleşmesi"
-          touched={touchedFields.checkbox_role_2}
+          touched={touchedFields.checkbox_role_3}
+          isChecked={rulesAccepted}
+          handleClick={() => setIsModalOpen(true)}
         />
       </div>
 

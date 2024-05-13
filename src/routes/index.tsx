@@ -24,7 +24,7 @@ export const Router: React.FC = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
 
-        <Route path="/" element={<PanelLayout />}>
+        <Route path="/dashboard" element={<PanelLayout />}>
           {/* <Route index element={<Dashboard />} /> */}
           {/*  .......pages routes...... */}
         </Route>
