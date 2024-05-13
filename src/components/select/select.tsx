@@ -7,8 +7,8 @@ export const SelectInput = ({
   placeholder,
   isError,
   register,
-  error,
-  touched,
+  // error,
+  // touched,
 }: SelectProps) => {
   return (
     <div className={`select_field ${className}`}>

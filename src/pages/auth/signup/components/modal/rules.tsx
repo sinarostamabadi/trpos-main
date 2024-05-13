@@ -14,7 +14,7 @@ export const RuleModal: React.FC<Props> = ({
   state,
 }) => {
   const handleClick = () => {
-    handleRuleAccept();
+    handleRuleAccept && handleRuleAccept();
   };
 
   return (

@@ -25,7 +25,7 @@ export const Input: React.FC<InputType> = ({
   return (
     <div className="w-full">
       <div
-        className={`form__group flex ${className} ${
+        className={`form__group flex items-center ${className} ${
           error && type === "password" && touched && "border-error"
         }`}
       >

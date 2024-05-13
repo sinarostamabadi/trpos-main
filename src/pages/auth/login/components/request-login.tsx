@@ -11,7 +11,7 @@ export const RequestLogin: React.FC = () => {
   const loginSchema = yup.object().shape({
     phoneOrEmail: yup
       .string()
-      .required("Cep telefonu numarasını veya e-posta adresini girin")
+      // .required("Cep telefonu numarasını veya e-posta adresini girin")
       .test("phoneOrEmail", "Email / Phone is invalid", (value) => {
         return validateEmail(value) || validatePhone(parseInt(value ?? "0"));
       }),

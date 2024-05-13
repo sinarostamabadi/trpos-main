@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface LoginInputs {
-  phoneOrEmail: string;
+  phoneOrEmail?: string;
   lang?: string;
   phoneCountry?: string;
   phoneNumber?: string;
