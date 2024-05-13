@@ -3,5 +3,5 @@
 }
 
 .rule__text {
-  @apply font-medium text-sm;
+  @apply text-sm font-normal;
 }

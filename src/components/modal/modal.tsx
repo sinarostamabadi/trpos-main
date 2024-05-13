@@ -34,7 +34,7 @@ export const Modal = ({
         <span className="text-xl font-medium">
           {title}
           {subTitle && (
-            <div className="text-[12px] text-base-content-40">{subTitle}</div>
+            <div className="text-sm mt-2 text-base-content-40">{subTitle}</div>
           )}
         </span>
         <span className="cursor-pointer mt-1">

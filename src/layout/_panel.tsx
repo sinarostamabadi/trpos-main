@@ -1,6 +1,5 @@
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
-import logo from "../assets/images/logo.svg";
 import {
   IconArrowDown,
   IconArrowLeft,
@@ -15,10 +14,11 @@ import {
   IconWebPage,
 } from "../components/icons/icons";
 import { Dropdown } from "antd";
-import user from "../assets/images/user.png";
 import { useState } from "react";
 import { RiUserLine } from "react-icons/ri";
 import { Link, Outlet } from "react-router-dom";
+import logo from "../assets/images/logo.svg";
+import user from "../assets/images/user.png";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -137,8 +137,14 @@ const items2: MenuItem[] = [
   },
 ];
 
+const toggleStyles = {
+  off: "transform translate-x-0",
+  on: "transform translate-x-full",
+};
+
 const PanelLayout = () => {
   const [menuNumber, setMenuNumber] = useState<1 | 2>(2);
+  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <section className="w-full h-screen grid grid-cols-[280px_1fr] bg-base-gray">
@@ -150,11 +156,14 @@ const PanelLayout = () => {
           </div>
         </div>
         <div className="mt-10">
-          <div className="w-full h-[55px] grid grid-cols-2 rounded-2.5xl bg-actual-white p-1">
+          <div
+            className="w-full relative h-[55px] grid grid-cols-2 rounded-2.5xl bg-actual-white p-1"
+            onClick={() => setIsToggled(!isToggled)}
+          >
             <div
               onClick={() => setMenuNumber(1)}
               className={`flex items-center gap-1 text-base-content-40 p-2 rounded-2.5xl cursor-pointer ${
-                menuNumber === 1 && "bg-base-content-3 !text-base-content"
+                menuNumber === 1 && "bg-base-content-3 transition-colors duration-300 !text-base-content"
               }`}
             >
               <RiUserLine />
@@ -163,7 +172,7 @@ const PanelLayout = () => {
             <div
               onClick={() => setMenuNumber(2)}
               className={`flex items-center gap-1 text-base-content-40 p-2 rounded-2.5xl cursor-pointer ${
-                menuNumber === 2 && "bg-base-content-3 !text-base-content"
+                menuNumber === 2 && "bg-base-content-3 transition-colors duration-300 !text-base-content"
               }`}
             >
               <IconBag width={20} height={20} viewBox="0 0 24 24" />
@@ -200,7 +209,7 @@ const PanelLayout = () => {
                 </div>
                 <div>
                   <Dropdown menu={{ items: items1 }}>
-                    <div className="flex items-center gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
+                    <div className="flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
                       <p>Değiştir</p>
                       <IconArrowDown
                         width={20}

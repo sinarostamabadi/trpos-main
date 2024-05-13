@@ -1,11 +1,10 @@
 import classNames from "classnames";
 import { CheckBoxProps } from "./checkbox.types";
-import { useEffect, useState } from "react";
 
 export const CheckBox: React.FC<CheckBoxProps> = ({
   isDisabled: isDisable,
   className,
-  isChecked = false,
+  isChecked,
   register,
   label,
   linkLabel,
@@ -15,13 +14,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   handleClick,
   ...rest
 }: CheckBoxProps) => {
-  const [checked, setChecked] = useState<boolean>(isChecked);
-
   const classes = classNames("checkbox", className);
-
-  useEffect(() => {
-    setChecked(isChecked);
-  }, [isChecked]);
 
   return (
     <div className={`${classes} flex`}>
@@ -29,8 +22,8 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
         id={id}
         type="checkbox"
         hidden
-        onClick={(e: any) => setChecked(e.target.checked)}
-        checked={checked}
+        onClick={handleClick}
+        checked={isChecked}
         {...register}
         {...rest}
       />
@@ -38,7 +31,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
         className="checkbox_label lg:text-sm text-xs flex gap-x-2 select-none"
         htmlFor={id}
       >
-        {checked ? (
+        {isChecked ? (
           <svg
             width="20"
             height="20"
@@ -84,9 +77,8 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
 
         <p>
           <span
-            onClick={handleClick}
             className={`font-semibold cursor-pointer select-none ${
-              checked ? "text-primary" : "text-success"
+              isChecked ? "text-primary" : "text-success"
             }`}
           >
             {linkLabel}
