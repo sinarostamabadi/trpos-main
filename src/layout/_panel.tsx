@@ -1,11 +1,12 @@
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import logo from "../assets/images/logo.svg"
-import { IconArrowDown, IconArrowLeft, IconBag, IconBank, IconClipboard, IconLink, IconNotification, IconSetting, IconSupport, IconUser, IconWebPage } from '../components/icons/icons';
+import { IconArrowDown, IconArrowLeft , IconBag, IconBank, IconClipboard, IconLink, IconNotification, IconSetting, IconSupport, IconUser, IconWebPage } from '../components/icons/icons';
 import { Dropdown } from 'antd';
 import user from "../assets/images/user.png"
 import { useState } from 'react';
 import { RiUserLine } from "react-icons/ri";
+import { Link, Outlet } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -65,29 +66,29 @@ const items2: MenuItem[] = [
     children: [
       {
         key: 'g1',
-        label: 'Web Site Yönetimi',
+        label:<Link to="/webManagement">Web Site Yönetimi</Link>,
         icon:<IconWebPage width={24} height={24} viewBox='0 0 24 24' />
       },
       {
-        key: 'g1',
-        label: 'Ödeme Linkleri',
+        key: 'g2',
+        label:<Link to="/linkPayment">Ödeme Linkleri</Link>,
         icon:<IconLink width={24} height={24} viewBox='0 0 24 24' />
       },
       {
-        key: 'g1',
+        key: 'g3',
         label: 'Raporlarım',
         icon:<IconClipboard width={24} height={24} viewBox='0 0 24 24' />,
         children:[
           {
 
-          key:"g10",
+          key:"g4",
           label: 'Raporlarım',
           icon:<IconClipboard width={24} height={24} viewBox='0 0 24 24' />,
         }
       ]
       },
       {
-        key: 'g1',
+        key: 'g5',
         label: 'Kullanıcı Yetkilendirme',
         icon:<IconUser width={24} height={24} viewBox='0 0 24 24' />
       },
@@ -100,7 +101,7 @@ const items2: MenuItem[] = [
     style:{backgroundColor:"#FAFAFA" , marginTop:"25px"},
     children: [
       {
-        key: 'g1',
+        key: 'g6',
         label: 'Fiziki POS',
         icon:<IconBank width={24} height={24} viewBox='0 0 24 24' />
       },
@@ -113,12 +114,12 @@ const items2: MenuItem[] = [
     style:{backgroundColor:"#FAFAFA" , marginTop:"25px"},
     children: [
       {
-        key: 'g1',
+        key: 'g7',
         label: 'Yardım ve Destek',
         icon:<IconSupport width={24} height={24} viewBox='0 0 24 24' />
       },
       {
-        key: 'g1',
+        key: 'g8',
         label: 'Ayarlar',
         icon:<IconSetting width={24} height={24} viewBox='0 0 24 24' />
       },
@@ -126,7 +127,7 @@ const items2: MenuItem[] = [
   },
 ];
 
-export const PanelLayout = () => {
+const PanelLayout = () => {
 
   const [menuNumber , setMenuNumber]=useState<1 | 2>(2);
 
@@ -162,49 +163,55 @@ export const PanelLayout = () => {
         </div>
       </div>
       <div>
-        <div className='container w-full h-full grid grid-rows-[80px_1fr]'>
-          <div className='w-full flex justify-between items-center p-4 border-b-2 border-actual-white'>
-            <div className='flex gap-20 items-center'>
-              <div className='flex flex-col gap-1'>
-                <p className='text-base-content font-semibold'>Raven Soft</p>
-                <div className='flex items-center gap-1'>
-                  <div className='w-1 h-1 bg-success rounded-full'>
+        <div className='w-full h-full grid grid-rows-[100px_auto_1fr]'>
+          <div className='w-full flex items-center border-b-2 border-actual-white'>
+            <div className='container w-full flex justify-between items-center p-4'>
+              <div className='flex gap-10 items-center'>
+                <div className='flex flex-col gap-[1px]'>
+                  <p className='text-[15px] text-base-content'>Raven Soft</p>
+                  <div className='flex items-center gap-2'>
+                    <div className='w-[5px] h-[5px] bg-success rounded-full'>
 
-                  </div>
-                  <p className='text-sm text-base-content-40'>Kurumsal</p>
-                </div>
-              </div>
-              <div>
-              <Dropdown menu={{items:items1}}>
-                <div className='flex items-center gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-sm'>
-                  <p>
-                    Değiştir
-                  </p>
-                  <IconArrowDown width={20} height={20} viewBox='0 0 20 20' />
-                </div>
-              </Dropdown>
-              </div>
-            </div>
-            <div className='flex gap-20'>
-              <div className='px-4 py-[14px] border rounded-2.5xl'>
-                <IconNotification width={17} height={20} viewBox='0 0 24 24' fill='black' />
-              </div>
-              <div className='flex items-center gap-14 px-2 py-1 bg-actual-white rounded-2xl'>
-                <div className='flex items-center gap-2'>
-                  <img src={user} className='w-[30px] h-[30px]' alt="" />
-                  <div className='flex flex-col gap-[1px]'>
-                    <p className='text-xs text-base-content-40'>Üye</p>
-                    <p className='text-xs text-base-content font-semibold'>Bestami Çoban</p>
+                    </div>
+                    <p className='text-sm text-base-content-40'>Kurumsal</p>
                   </div>
                 </div>
                 <div>
-                  <IconArrowDown width={20} height={20} viewBox='0 0 20 20' className='text-base-content-40' />
+                <Dropdown menu={{items:items1}}>
+                  <div className='flex items-center gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]'>
+                    <p>
+                      Değiştir
+                    </p>
+                    <IconArrowDown width={20} height={20} viewBox='0 0 20 20' />
+                  </div>
+                </Dropdown>
+                </div>
+              </div>
+              <div className='flex gap-10'>
+                <div className='px-[14px] py-[12px] border rounded-[18px]'>
+                  <IconNotification width={17} height={20} viewBox='0 0 24 24' fill='black' />
+                </div>
+                <div className='flex items-center gap-14 px-2 py-1 bg-actual-white rounded-2xl'>
+                  <div className='flex items-center gap-2'>
+                    <img src={user} className='w-[30px] h-[30px]' alt="" />
+                    <div className='flex flex-col gap-[1px]'>
+                      <p className='text-xs text-base-content-40'>Üye</p>
+                      <p className='text-xs text-base-content font-medium'>Bestami Çoban</p>
+                    </div>
+                  </div>
+                  <div>
+                    <IconArrowDown width={20} height={20} viewBox='0 0 20 20' className='text-base-content-40' />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <Outlet />
         </div>
       </div>
     </section>
   )
 };
+
+
+export default PanelLayout;

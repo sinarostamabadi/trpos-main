@@ -1,14 +1,15 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import signupHero from "../assets/images/signup-hero.png";
 import loginHero from "../assets/images/login-hero.png";
 import forgotPassHero from "../assets/images/forgot-password-hero.png";
 import changePhoneHero from "../assets/images/change-phone-hero.png";
 
-export const AuthLayout = () => {
+const AuthLayout = () => {
   const { pathname } = useLocation();
 
   const imageSelector = (path: string) => {
     const image: { [key: string]: string } = {
+      "/": loginHero,
       "/login": loginHero,
       "/signup": signupHero,
       "/forgot-password": forgotPassHero,
@@ -64,7 +65,7 @@ export const AuthLayout = () => {
             src={imageSelector(pathname)}
             alt=""
           />
-          <div className="bg-gray-100 w-full max-w-[450px] bg-opacity-10 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[550px]">
+          <div className="bg-gray-100 w-1/2 bg-opacity-50 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[550px]">
             <span className="flex gap-x-3">
               <svg
                 width="24"
@@ -72,7 +73,6 @@ export const AuthLayout = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="-mt-0.5"
               >
                 <path
                   fillRule="evenodd"
@@ -81,12 +81,17 @@ export const AuthLayout = () => {
                   fill="#00636D"
                 />
               </svg>
-              <div className="mb-6 font-normal">
+
+              <a
+                href="https://www.trpos.com"
+                target="_blank"
+                className="mb-6 font-normal"
+              >
                 <span className="text-primary">https://</span>www.trpos.com
-              </div>
+              </a>
             </span>
             <hr />
-            <ul className="ps-5 list-disc opacity-60 mt-6 text-sm gap-y-4">
+            <ul className="ps-5 list-disc opacity-60 mt-6 gap-y-4">
               <li className="mb-2">6 adet rakamdan oluşmalıdır.</li>
               <li className="mb-2"> ⁠En az 4 farklı rakam içermelidir.</li>
               <li>İlk 2 hane ile son 2 hane aynı olmamalıdır.</li>
@@ -96,9 +101,11 @@ export const AuthLayout = () => {
         {/* end:: Hero section */}
       </div>
 
-      <div className="w-full h-full min-h-screen flex justify-center items-center bg-base-gray p-4 sm:p-10">
+      <div className="w-full min-h-screen flex justify-center items-center bg-base-gray p-4 sm:p-10">
         <Outlet />
       </div>
     </section>
   );
 };
+
+export default AuthLayout;

@@ -1,1 +1,1 @@
-export * from "./inputError"
+export * from "./inputError";
