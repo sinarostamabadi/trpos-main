@@ -15,9 +15,9 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   handleClick,
   ...rest
 }: CheckBoxProps) => {
-  const classes = classNames("checkbox", className);
-
   const [checked, setChecked] = useState<boolean>(isChecked);
+
+  const classes = classNames("checkbox", className);
 
   useEffect(() => {
     setChecked(isChecked);
@@ -29,14 +29,14 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
         id={id}
         type="checkbox"
         hidden
-        defaultChecked={isChecked}
+        onClick={(e: any) => setChecked(e.target.checked)}
+        checked={checked}
         {...register}
         {...rest}
       />
       <label
         className="checkbox_label lg:text-sm text-xs flex gap-x-2 select-none"
         htmlFor={id}
-        onClick={() => setChecked((checked) => !checked)}
       >
         {checked ? (
           <svg

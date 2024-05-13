@@ -9,9 +9,12 @@ import { RuleModal } from "./modal/rules";
 import * as yup from "yup";
 
 export const PersonalInfo: React.FC = () => {
-  const [rulesAccepted, setRulesAccepted] = useState(false);
+  const [rulesAccepted, setRulesAccepted] = useState({
+    rule_one: false,
+    rule_two: false,
+    rule_three: false,
+  });
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  // console.log(rulesAccepted);
 
   const registerSchema = yup.object().shape({
     name: yup.string().min(3).max(50).required(),
@@ -59,6 +62,7 @@ export const PersonalInfo: React.FC = () => {
   useEffect(() => {
     trigger();
   }, [trigger]);
+  // console.log(error);
 
   return (
     <form
@@ -68,7 +72,11 @@ export const PersonalInfo: React.FC = () => {
       <RuleModal
         state={isModalOpen}
         handleRuleAccept={() => {
-          setRulesAccepted(true);
+          setRulesAccepted({
+            rule_one: true,
+            rule_two: true,
+            rule_three: true,
+          });
           setIsModalOpen(false);
         }}
         handleCloseModal={() => setIsModalOpen(false)}
@@ -143,7 +151,7 @@ export const PersonalInfo: React.FC = () => {
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="KVKK Aydınlatma Metni"
           touched={touchedFields.checkbox_role_1}
-          isChecked={rulesAccepted}
+          isChecked={rulesAccepted.rule_one}
           handleClick={() => setIsModalOpen(true)}
         />
 
@@ -154,7 +162,7 @@ export const PersonalInfo: React.FC = () => {
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="Açık Rıza Metni"
           touched={touchedFields.checkbox_role_2}
-          isChecked={rulesAccepted}
+          isChecked={rulesAccepted.rule_two}
           handleClick={() => setIsModalOpen(true)}
         />
 
@@ -165,7 +173,7 @@ export const PersonalInfo: React.FC = () => {
           label="’ni okudum, anladım ve onaylıyorum."
           linkLabel="Trpos Kullanıcı Sözleşmesi"
           touched={touchedFields.checkbox_role_3}
-          isChecked={rulesAccepted}
+          isChecked={rulesAccepted.rule_three}
           handleClick={() => setIsModalOpen(true)}
         />
       </div>
