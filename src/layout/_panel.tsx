@@ -18,18 +18,18 @@ const items1: MenuItem[] = [
     style:{backgroundColor:"#FAFAFA"},
     children: [
       {
-        key: 'g1',
+        key: 'g20',
         label: 'Ödeme Linkleri',
         icon:<IconLink width={24} height={24} viewBox='0 0 24 24' />
       },
       {
-        key: 'g2',
+        key: 'g21',
         label: 'Raporlarım',
         icon:<IconClipboard width={24} height={24} viewBox='0 0 24 24' />,
         children:[
           {
 
-          key:"g3",
+          key:"g22",
           label: 'Raporlarım',
           icon:<IconClipboard width={24} height={24} viewBox='0 0 24 24' />,
         }
