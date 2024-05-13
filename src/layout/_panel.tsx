@@ -23,13 +23,13 @@ const items1: MenuItem[] = [
         icon:<IconLink width={24} height={24} viewBox='0 0 24 24' />
       },
       {
-        key: 'g1',
+        key: 'g2',
         label: 'Raporlarım',
         icon:<IconClipboard width={24} height={24} viewBox='0 0 24 24' />,
         children:[
           {
 
-          key:"g10",
+          key:"g3",
           label: 'Raporlarım',
           icon:<IconClipboard width={24} height={24} viewBox='0 0 24 24' />,
         }
@@ -44,12 +44,12 @@ const items1: MenuItem[] = [
     style:{backgroundColor:"#FAFAFA" , marginTop:"25px"},
     children: [
       {
-        key: 'g1',
+        key: 'g4',
         label: 'Yardım ve Destek',
         icon:<IconSupport width={24} height={24} viewBox='0 0 24 24' />
       },
       {
-        key: 'g1',
+        key: 'g5',
         label: 'Ayarlar',
         icon:<IconSetting width={24} height={24} viewBox='0 0 24 24' />
       },
