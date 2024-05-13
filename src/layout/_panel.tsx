@@ -137,11 +137,6 @@ const items2: MenuItem[] = [
   },
 ];
 
-const toggleStyles = {
-  off: "transform translate-x-0",
-  on: "transform translate-x-full",
-};
-
 const PanelLayout = () => {
   const [menuNumber, setMenuNumber] = useState<1 | 2>(2);
   const [isToggled, setIsToggled] = useState(false);
@@ -163,7 +158,8 @@ const PanelLayout = () => {
             <div
               onClick={() => setMenuNumber(1)}
               className={`flex items-center gap-1 text-base-content-40 p-2 rounded-2.5xl cursor-pointer ${
-                menuNumber === 1 && "bg-base-content-3 transition-colors duration-300 !text-base-content"
+                menuNumber === 1 &&
+                "bg-base-content-3 transition-colors duration-300 !text-base-content"
               }`}
             >
               <RiUserLine />
@@ -172,7 +168,8 @@ const PanelLayout = () => {
             <div
               onClick={() => setMenuNumber(2)}
               className={`flex items-center gap-1 text-base-content-40 p-2 rounded-2.5xl cursor-pointer ${
-                menuNumber === 2 && "bg-base-content-3 transition-colors duration-300 !text-base-content"
+                menuNumber === 2 &&
+                "bg-base-content-3 transition-colors duration-300 !text-base-content"
               }`}
             >
               <IconBag width={20} height={20} viewBox="0 0 24 24" />
