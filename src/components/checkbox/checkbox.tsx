@@ -28,7 +28,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
         {...rest}
       />
       <label
-        className="checkbox_label lg:text-sm text-xs flex gap-x-2 select-none"
+        className="checkbox_label lg:text-sm text-xs flex gap-x-3 select-none"
         htmlFor={id}
       >
         {isChecked ? (
@@ -77,7 +77,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
 
         <p>
           <span
-            className={`font-semibold cursor-pointer select-none ${
+            className={`font-semibold select-none ${
               isChecked ? "text-primary" : "text-success"
             }`}
           >

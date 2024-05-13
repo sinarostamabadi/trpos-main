@@ -31,6 +31,7 @@ export const Input: React.FC<InputType> = ({
       >
         <input
           type={inputType != "email" ? inputType : "text"}
+          maxLength={isPassword && 6}
           id={label}
           className={`form__field`}
           disabled={isDisable}
@@ -50,14 +51,14 @@ export const Input: React.FC<InputType> = ({
           {isPassword ? (
             inputType === "text" ? (
               <IconEye
-                className={`cursor-pointer w-6 mt-2 ${
+                className={`cursor-pointer w-6 mt-1 ${
                   error && touched && "text-error"
                 }`}
                 onClick={() => setInputType("password")}
               />
             ) : (
               <IconHide
-                className={`cursor-pointer w-6 mt-2 ${
+                className={`cursor-pointer w-6 mt-1 ${
                   error && touched && "text-error"
                 }`}
                 onClick={() => setInputType("text")}
@@ -65,9 +66,9 @@ export const Input: React.FC<InputType> = ({
             )
           ) : touched ? (
             error ? (
-              <IconRemoveCircle className="w-6 mt-2 text-error" />
+              <IconRemoveCircle className="w-6 mt-1 text-error" />
             ) : (
-              <IconCheckCircle className="w-6 mt-2 text-success" />
+              <IconCheckCircle className="w-6 mt-1 text-success" />
             )
           ) : null}
         </div>

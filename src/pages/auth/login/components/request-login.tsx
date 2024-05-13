@@ -11,15 +11,23 @@ export const RequestLogin: React.FC = () => {
   const loginSchema = yup.object().shape({
     phoneOrEmail: yup
       .string()
-      // .required("Cep telefonu numarasını veya e-posta adresini girin")
+      .required("Cep telefonu numarasını veya e-posta adresini girin")
       .test("phoneOrEmail", "Email / Phone is invalid", (value) => {
         return validateEmail(value) || validatePhone(parseInt(value ?? "0"));
       }),
-    password: yup.string().required("Şifrenizi giriniz Lütfen"),
+    password: yup
+      .string()
+      .min(6, "Şifre 6 rakamdan oluşmalıdır")
+      .max(6, "Maksimum 6 karakter")
+      .required()
+      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
     phoneNumber: yup.string(),
     lang: yup.string(),
     phoneCountry: yup.string(),
-    email: yup.string(),
+    email: yup
+      .string()
+      .required()
+      .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
     ip: yup.string(),
     version: yup.string(),
   });
@@ -91,8 +99,8 @@ export const RequestLogin: React.FC = () => {
         <Input
           label="Cep No ya da E-Posta"
           register={{ ...register("phoneOrEmail") }}
-          error={errors.phoneNumber?.message}
-          touched={touchedFields.phoneNumber}
+          error={errors.phoneOrEmail?.message}
+          touched={touchedFields.phoneOrEmail}
           className="mb-4"
         />
         <Input
@@ -100,6 +108,7 @@ export const RequestLogin: React.FC = () => {
           label="Şifre"
           register={{ ...register("password") }}
           error={errors.password?.message}
+          touched={touchedFields.password}
           isPassword={true}
           autoComplete="new-password"
         />

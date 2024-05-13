@@ -8,6 +8,7 @@ import { CheckBox } from "../../../../components/checkbox";
 import { RuleModal } from "./modal/rules";
 import TermsData from "../../../../data/trpos_rules.json";
 import * as yup from "yup";
+import { PhoneInput } from "../../../../components/phoneInput";
 
 export const PersonalInfo: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState({
@@ -22,19 +23,22 @@ export const PersonalInfo: React.FC = () => {
   });
 
   const registerSchema = yup.object().shape({
-    name: yup.string().min(3).max(50).required(),
-    surname: yup.string().min(3).max(50).required(),
+    name: yup.string().min(2).max(50).required(),
+    surname: yup.string().min(2).max(50).required(),
     phoneNumber: yup
       .string()
-      .required()
-      .matches(/^(05)[0-9][0-9]([0-9]){3}([0-9]){2}([0-9]){2}/),
+      .required("Telefon numarası gerekli")
+      .matches(
+        /^\+([1-9]{1,3})([0-9]{1,3})?([-.\s]?[0-9]{1,4}){1,3}$/,
+        "Biçim: +901234567..."
+      ),
     email: yup
       .string()
       .required()
       .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
     password: yup
       .string()
-      .min(6, "Minimum 6 karakter")
+      .min(6, "Şifre 6 rakamdan oluşmalıdır")
       .max(6, "Maksimum 6 karakter")
       .required()
       .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
@@ -143,7 +147,7 @@ export const PersonalInfo: React.FC = () => {
               error={errors.surname?.message}
             />
           </div>
-          <Input
+          <PhoneInput
             label="Cep No"
             className="mt-4"
             register={{ ...register("phoneNumber") }}

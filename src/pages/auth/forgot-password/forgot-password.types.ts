@@ -3,6 +3,6 @@ export interface ForgotPasswordInputs {
   lang?: string;
   phoneCountry?: string;
   phoneNumber: string;
-  email?: string;
+  email: string;
   ip?: string;
 }

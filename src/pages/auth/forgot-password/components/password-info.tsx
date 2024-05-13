@@ -17,7 +17,10 @@ export const PasswordInfo = () => {
       }),
     lang: yup.string(),
     phoneCountry: yup.string(),
-    email: yup.string(),
+    email: yup
+      .string()
+      .required()
+      .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
     ip: yup.string(),
     version: yup.string(),
     customerNo: yup.string().required(),

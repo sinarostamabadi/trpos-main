@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
+import { PhoneInput } from "../../../../components/phoneInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { changePhoneInputs } from "../change-phone.types";
@@ -12,27 +13,47 @@ export const PhoneInfo = () => {
     customerNo: yup.string().required(),
     lang: yup.string().required(),
     phoneCountry: yup.string(),
-    phoneNumber: yup.string(),
+    phoneNumber: yup
+      .string()
+      .required("Telefon numarası gerekli")
+      .matches(
+        /^\+([1-9]{1,3})([0-9]{1,3})?([-.\s]?[0-9]{1,4}){1,3}$/,
+        "Biçim: +901234567..."
+      ),
     ip: yup.string().required(),
-    currentPhoneNumber: yup.string(),
+    currentPhoneNumber: yup
+      .string()
+      .required("Telefon numarası gerekli")
+      .matches(
+        /^\+([1-9]{1,3})([0-9]{1,3})?([-.\s]?[0-9]{1,4}){1,3}$/,
+        "Biçim: +901234567..."
+      ),
     currentPhoneCountry: yup.string(),
-    email: yup.string(),
-    password: yup.string().required("rrr"),
+    email: yup
+      .string()
+      .required()
+      .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
+    password: yup
+      .string()
+      .min(6, "Şifre 6 rakamdan oluşmalıdır")
+      .max(6, "Maksimum 6 karakter")
+      .required()
+      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
   });
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, touchedFields },
     trigger,
   } = useForm<changePhoneInputs>({
     defaultValues: {
       customerNo: "100",
       lang: "tr",
       phoneCountry: "",
-      phoneNumber: "",
+      // phoneNumber: "",
       ip: "1.1.1.1",
-      currentPhoneNumber: "",
+      // currentPhoneNumber: "",
       currentPhoneCountry: "",
       email: "",
       password: "",
@@ -52,7 +73,7 @@ export const PhoneInfo = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[500px] sm:min-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
+      className="w-full max-w-[500px] sm:min-w-[550px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
     >
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">
@@ -64,14 +85,18 @@ export const PhoneInfo = () => {
       </div>
       <div className="mt-6">
         <div className="lg:flex gap-x-3 justify-between">
-          <Input
+          <PhoneInput
             label="Mevcut Telefon Numaranız"
             register={{ ...register("currentPhoneNumber") }}
+            touched={touchedFields.currentPhoneNumber}
+            error={errors.currentPhoneNumber?.message}
           />
-          <Input
+          <PhoneInput
             label="Yeni Telefon Numaranız"
             register={{ ...register("phoneNumber") }}
             className="mt-4 lg:mt-0"
+            touched={touchedFields.phoneNumber}
+            error={errors.phoneNumber?.message}
           />
         </div>
         <Input
@@ -79,6 +104,8 @@ export const PhoneInfo = () => {
           label="E-Posta Adresiniz"
           className="mt-4"
           register={{ ...register("email") }}
+          touched={touchedFields.email}
+          error={errors.email?.message}
         />
         <Input
           type="password"
@@ -87,6 +114,8 @@ export const PhoneInfo = () => {
           isPassword={true}
           register={{ ...register("password") }}
           autoComplete="new-password"
+          touched={touchedFields.password}
+          error={errors.password?.message}
         />
       </div>
 
