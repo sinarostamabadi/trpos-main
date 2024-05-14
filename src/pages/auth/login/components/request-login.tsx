@@ -8,13 +8,18 @@ import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 export const RequestLogin: React.FC = () => {
+  const phoneRegex = /^\+([1-9]{1,3})([0-9]{8,13})$/;
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
   const loginSchema = yup.object().shape({
     phoneOrEmail: yup
       .string()
-      .required("Cep telefonu numarasını veya e-posta adresini girin")
-      .test("phoneOrEmail", "Email / Phone is invalid", (value) => {
-        return validateEmail(value) || validatePhone(parseInt(value ?? "0"));
-      }),
+      .required()
+      .test(
+        "is_phone_or_email",
+        "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com",
+        (value) => phoneRegex.test(value) || emailRegex.test(value)
+      ),
     password: yup
       .string()
       .min(6, "Şifre 6 rakamdan oluşmalıdır")
@@ -24,10 +29,7 @@ export const RequestLogin: React.FC = () => {
     phoneNumber: yup.string(),
     lang: yup.string(),
     phoneCountry: yup.string(),
-    email: yup
-      .string()
-      .required()
-      .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
+    email: yup.string(),
     ip: yup.string(),
     version: yup.string(),
   });
@@ -56,28 +58,6 @@ export const RequestLogin: React.FC = () => {
     console.log(data);
   };
 
-  const validateEmail = (email: string | undefined) => {
-    return email?.includes("@")
-      ? yup.string().email().isValidSync(email)
-      : true;
-  };
-
-  const validatePhone = (phone: number | undefined) => {
-    return yup
-      .number()
-      .required()
-      .integer()
-      .positive()
-      .test((phone) => {
-        return phone &&
-          phone.toString().length >= 8 &&
-          phone.toString().length <= 14
-          ? true
-          : false;
-      })
-      .isValidSync(phone);
-  };
-
   useEffect(() => {
     trigger();
   }, [trigger]);
@@ -102,6 +82,7 @@ export const RequestLogin: React.FC = () => {
           error={errors.phoneOrEmail?.message}
           touched={touchedFields.phoneOrEmail}
           className="mb-4"
+          isPhoneOrEmail
         />
         <Input
           type="password"

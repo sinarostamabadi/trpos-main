@@ -16,18 +16,12 @@ export const PhoneInfo = () => {
     phoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
-      .matches(
-        /^\+([1-9]{1,3})([0-9]{1,3})?([-.\s]?[0-9]{1,4}){1,3}$/,
-        "Biçim: +901234567..."
-      ),
+      .matches(/^\+([1-9]{1,3})([0-9]{8,13})$/, "Biçim: +901234567..."),
     ip: yup.string().required(),
     currentPhoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
-      .matches(
-        /^\+([1-9]{1,3})([0-9]{1,3})?([-.\s]?[0-9]{1,4}){1,3}$/,
-        "Biçim: +901234567..."
-      ),
+      .matches(/^\+([1-9]{1,3})([0-9]{8,13})$/, "Biçim: +901234567..."),
     currentPhoneCountry: yup.string(),
     email: yup
       .string()

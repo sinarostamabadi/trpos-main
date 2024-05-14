@@ -35,17 +35,8 @@ export const PhoneInput: React.FC<PhoneInputType> = ({
           className={`form__field`}
           disabled={isDisabled}
           placeholder=""
-          defaultValue={value}
+          value={value}
           onInput={handleChange}
-          // Prevent user from deleting '+' using backspace or delete key
-          onKeyDown={(e) => {
-            if (
-              (e.key === "Backspace" || e.key === "Delete") &&
-              value === "+"
-            ) {
-              e.preventDefault();
-            }
-          }}
           {...register}
           {...rest}
         />

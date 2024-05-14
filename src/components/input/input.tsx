@@ -7,6 +7,7 @@ import {
   IconHide,
   IconRemoveCircle,
 } from "../icons/icons";
+import { Popover } from "antd";
 
 export const Input: React.FC<InputType> = ({
   label,
@@ -14,6 +15,7 @@ export const Input: React.FC<InputType> = ({
   type = "text",
   className,
   isPassword,
+  isPhoneOrEmail,
   isError,
   register,
   error,
@@ -21,6 +23,15 @@ export const Input: React.FC<InputType> = ({
   ...rest
 }: InputType) => {
   const [inputType, setInputType] = useState<typeof type>(type);
+
+  const errorMessageSplitter = (message: string) => {
+    return (
+      <div className="flex flex-col">
+        <span className="">{message.split("...")[0] + "..."}</span>
+        <span className="">{message.split("...")[1]}</span>
+      </div>
+    );
+  };
 
   return (
     <div className="w-full">
@@ -66,7 +77,18 @@ export const Input: React.FC<InputType> = ({
             )
           ) : touched ? (
             error ? (
-              <IconRemoveCircle className="w-6 mt-1 text-error" />
+              isPhoneOrEmail &&
+              error ==
+                "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com" ? (
+                <Popover
+                  content={errorMessageSplitter(error)}
+                  title="E-posta/Telefon geçersiz."
+                >
+                  <IconRemoveCircle className="w-6 mt-1 text-error" />
+                </Popover>
+              ) : (
+                <IconRemoveCircle className="w-6 mt-1 text-error" />
+              )
             ) : (
               <IconCheckCircle className="w-6 mt-1 text-success" />
             )

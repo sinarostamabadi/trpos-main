@@ -6,7 +6,7 @@ export interface LoginInputs {
   phoneCountry?: string;
   phoneNumber?: string;
   password: string;
-  email: string;
+  email?: string;
   ip?: string;
   version?: string;
 }

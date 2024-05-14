@@ -28,7 +28,7 @@ body {
   color: #18181c75 !important;
 }
 
-/* ++++++++++ Scrollbar Customize ++++++++++ */
+/* ++++++++++ Scrollbar Customization ++++++++++ */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -76,4 +76,12 @@ body {
 
 .ant-menu-item-group-title {
   font-size: 12px;
+}
+
+/* ++++++++++ Input Customization ++++++++++ */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
