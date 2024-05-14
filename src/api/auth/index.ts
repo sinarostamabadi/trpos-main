@@ -1,0 +1,16 @@
+export const AuthApi = {
+  login: "/BFF/api/Auth/Login",
+  resendCode: "/BFF/api/Auth/ResendCode",
+  verifyCode: "/BFF/api/Auth/VerifyCode",
+  register: "/BFF/api/Auth/Register",
+  passwordRenew: "/BFF/api/Auth/PasswordRenew",
+  resetPassword: "/BFF/api/Auth/ResetPassword",
+  forgotPassword: "/BFF/api/Auth/ForgotPassword",
+  changeGsmNoLogin: "/BFF/api/Auth/ChangeGsmNoLogin",
+  changePassword: "/BFF/api/Auth/ChangePassword",
+  changeGsm: "/BFF/api/Auth/ChangeGsm",
+  changeEmail: "/BFF/api/Auth/ChangeEmail",
+  changeToken: "/BFF/api/Auth/ChangeToken",
+  rechangeToken: "/BFF/api/Auth/ReChangeToken",
+  layout: "/BFF/api/Auth/Logout",
+};
