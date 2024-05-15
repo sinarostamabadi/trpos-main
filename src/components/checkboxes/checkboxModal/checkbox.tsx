@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import { CheckBoxProps } from "./checkbox.types";
+import { CheckBoxModalProps } from "./checkbox.types";
 
-export const CheckBox: React.FC<CheckBoxProps> = ({
+export const CheckBoxModal: React.FC<CheckBoxModalProps> = ({
   isDisabled: isDisable,
   className,
   isChecked,
@@ -13,7 +13,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   touched,
   handleClick,
   ...rest
-}: CheckBoxProps) => {
+}: CheckBoxModalProps) => {
   const classes = classNames("checkbox", className);
 
   return (

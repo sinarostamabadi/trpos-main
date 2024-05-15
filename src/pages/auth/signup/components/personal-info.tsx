@@ -4,7 +4,7 @@ import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
 import { SignupInput } from "../types/signup.types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CheckBox } from "../../../../components/checkbox";
+import { CheckBoxModal } from "../../../../components/checkbox";
 import { RuleModal } from "./modal/rules";
 import TermsData from "../../../../data/trpos_rules.json";
 import * as yup from "yup";
@@ -183,7 +183,7 @@ export const PersonalInfo: React.FC = () => {
         </div>
 
         <div className="mt-4">
-          <CheckBox
+          <CheckBoxModal
             id="checkbox_roles_1"
             className="mt-2"
             register={{ ...register("checkbox_role_1") }}
@@ -200,7 +200,7 @@ export const PersonalInfo: React.FC = () => {
             }
           />
 
-          <CheckBox
+          <CheckBoxModal
             id="checkbox_roles_2"
             className="mt-2"
             register={{ ...register("checkbox_role_2") }}
@@ -217,7 +217,7 @@ export const PersonalInfo: React.FC = () => {
             }
           />
 
-          <CheckBox
+          <CheckBoxModal
             id="checkbox_roles_3"
             className="mt-2"
             register={{ ...register("checkbox_role_3") }}

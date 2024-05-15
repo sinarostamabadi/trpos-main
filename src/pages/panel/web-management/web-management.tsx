@@ -9,7 +9,8 @@ import { Modal } from "../../../components/modal";
 import { useState } from "react";
 import { Divider } from "../../../components/divider";
 import { Input } from "../../../components/input";
-import { CheckBox } from "../../../components/checkbox";
+import { SelectInput } from "../../../components/select";
+import { CheckBox } from "../../../components/checkboxes";
 
 const WebManagement: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -21,7 +22,7 @@ const WebManagement: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Web Site Yönetimi</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-success">Liste</p>
+        <p className="text-primary">Liste</p>
       </div>
       <div className="w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
@@ -62,7 +63,7 @@ const WebManagement: React.FC = () => {
         state={modalIsOpen}
         title="Yeni Site Ekle"
         small={true}
-        onCloseModal={()=>setModalIsOpen(false)}
+        onCloseModal={() => setModalIsOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
         <Divider text="Hesap Bilgileri" />
@@ -84,8 +85,19 @@ const WebManagement: React.FC = () => {
 
         <Divider text="Diğer Bilgiler" />
         <div className="p-1">
-          <Input label="Taksit Seçeneği" />
-          <Input label="E-Ticaret Altyapı Sağlayıcı" className="mt-3" />
+          <SelectInput
+            placeholder="Taksit Seçeneği"
+            options={[]}
+            error={""}
+            isError={false}
+          />
+          <SelectInput
+            placeholder="E-Ticaret Altyapı Sağlayıcı"
+            className="mt-3"
+            options={[]}
+            error={""}
+            isError={false}
+          />
           <div className="w-full p-4 flex justify-center items-center border-2 border-dashed to-base-content-20 mt-3 rounded-2xl">
             <label
               htmlFor="FileInput"

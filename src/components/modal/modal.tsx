@@ -17,7 +17,7 @@ export const Modal = ({
     border: "none",
     maxHeight: "95vh",
     width: small ? "500px" : "900px",
-    overflow: "scroll",
+    overflow: "hidden",
     padding: "20px",
   };
 
@@ -41,7 +41,7 @@ export const Modal = ({
           <IconClose color="red" onClick={onCloseModal} />
         </span>
       </div>
-      {children}
+      <div className="overflow-y-scroll max-h-[80vh]">{children}</div>
     </Popup>
   );
 };

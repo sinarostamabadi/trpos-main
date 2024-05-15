@@ -11,7 +11,7 @@ const LinkPayment: React.FC = () => {
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
         <p>Trpos</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-success">Ödeme Linkleri</p>
+        <p className="text-primary">Ödeme Linkleri</p>
       </div>
       <div className="w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">

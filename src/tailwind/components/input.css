@@ -36,7 +36,7 @@ label.red__placeholder {
   display: block;
   transition: 0.2s;
   font-size: 12px;
-  color: #9b9b9b;
+  color: #18181C99;
 }
 
 .form__field:focus ~ .form__label {

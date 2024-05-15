@@ -1,8 +1,8 @@
 export type SelectProps = {
   className?: string;
-  options: { [key: string]: string }[];
+  options: { [key: string]: string | number }[] | [];
   placeholder: string;
-  isError: boolean;
+  isError?: boolean;
   register?: any;
   error?: string;
   touched?: boolean;

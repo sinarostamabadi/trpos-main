@@ -6,7 +6,7 @@ type Props = {
   // data: dataState;
 };
 
-const CheckOTP: React.FC<Props> = ({}: // data
+export const CheckOTP: React.FC<Props> = ({}: // data
 Props) => {
   return (
     <div className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 mt-[15%] rounded-2.5xl sm:shadow-sm">
@@ -37,5 +37,3 @@ Props) => {
     </div>
   );
 };
-
-export default CheckOTP;

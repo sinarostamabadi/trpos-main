@@ -6,3 +6,10 @@ export interface ForgotPasswordInputs {
   email: string;
   ip?: string;
 }
+
+export interface SetPasswordInputs {
+  password: string;
+  confirmPassword: string;
+  passwordEndDate?: number;
+  ip: string;
+}
