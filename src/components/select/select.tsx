@@ -7,6 +7,7 @@ export const SelectInput = ({
   placeholder,
   isError,
   register,
+  size="middle"
   // error,
   // touched,
 }: SelectProps) => {
@@ -16,7 +17,7 @@ export const SelectInput = ({
         className={"select"}
         options={options}
         placeholder={placeholder}
-        size="large"
+        size={size}
         status={isError ? "error" : ""}
         variant="borderless"
         listHeight={150}

@@ -141,7 +141,7 @@ const PanelLayout = () => {
   const [menuNumber, setMenuNumber] = useState<1 | 2>(2);
 
   return (
-    <section className="w-full h-screen grid grid-cols-[280px_1fr] bg-base-gray">
+    <section className="w-full min-h-screen grid grid-cols-[280px_1fr] bg-base-gray">
       <div className="w-full h-full grid grid-rows-[auto_auto_1fr] p-6 bg-base-gray border-r-2 border-actual-white">
         <div className="flex justify-between items-center">
           <img className="w-[140PX] h-[28PX]" src={logo} alt="logo" />

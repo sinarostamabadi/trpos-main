@@ -24,6 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
   animatedIcon = false,
   children,
   className,
+  isLight=false,
   ...rest
 }: ButtonProps) => {
   const classes = classNames(
@@ -35,7 +36,8 @@ export const Button: React.FC<ButtonProps> = ({
     { "pointer-events-none opacity-70": isLoading },
     { [`btn-${variant}`]: variant },
     { [`btn-${sizeClasses[size]}`]: size },
-    { [`${shapeClasses[shape]}`]: shape }
+    { [`${shapeClasses[shape]}`]: shape },
+    {"btn-light": isLight}
   );
 
   return (
