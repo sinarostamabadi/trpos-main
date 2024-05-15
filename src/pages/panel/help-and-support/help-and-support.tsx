@@ -5,7 +5,7 @@ import clouds from "../../../assets/images/Clouds.svg";
 const HelpAndSupport = () => {
   return (
     <div className="w-full h-full container p-4 mt-4 pb-8">
-      <div className="w-full bg-actual-white rounded-2.5xl p-6">
+      <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
         <div className="w-full h-full flex flex-col">
           <div className="w-full flex justify-between items-center">
             <div>
@@ -21,7 +21,7 @@ const HelpAndSupport = () => {
               </Button>
             </div>
           </div>
-          <div className="w-full h-full min-h-[650px] flex-grow flex justify-center items-center">
+          <div className="w-full h-[630px] flex-grow flex justify-center items-center">
             <div className="text-center">
               <img src={clouds} alt="" className="mx-auto" />
               <h1 className="text-base-content mt-2">

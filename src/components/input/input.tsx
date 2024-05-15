@@ -20,6 +20,7 @@ export const Input: React.FC<InputType> = ({
   register,
   error,
   touched,
+  isSimple = false,
   ...rest
 }: InputType) => {
   const [inputType, setInputType] = useState<typeof type>(type);
@@ -32,6 +33,24 @@ export const Input: React.FC<InputType> = ({
       </div>
     );
   };
+  if (isSimple) {
+    return (
+      <div className="w-full flex flex-col gap-2">
+        <label className="text-sm text-base-content-40" htmlFor={label}>
+          {label}
+        </label>
+        <input
+          type={inputType != "email" ? inputType : "text"}
+          id={label}
+          className="h-14 border outline-none px-2 rounded-2.5xl"
+          disabled={isDisable}
+          placeholder=""
+          {...register}
+          {...rest}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">

@@ -8,6 +8,10 @@
     }
   }
 
+  &-light {
+    @apply px-4 !bg-opacity-5 !border-none !rounded-2xl;
+  }
+
   /* brand colors */
   &-primary {
     @apply bg-primary border-primary text-primary-content outline-primary;
@@ -100,7 +104,7 @@
   }
 
   &-link {
-    @apply bg-transparent border-transparent text-primary outline-none;
+    @apply h-fit px-4 bg-transparent border-transparent text-primary outline-none;
 
     @media (hover: hover) {
       &:hover {
