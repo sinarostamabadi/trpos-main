@@ -9,22 +9,8 @@ import {
   IconSearch,
 } from "../../../components/icons/icons";
 import { SelectInput } from "../../../components/select";
-import DataTable, { TableColumn } from "react-data-table-component";
-
-const customStyles = {
-  headCells: {
-    style: {
-      color: "#00636D",
-      fontSize: "16px",
-    },
-  },
-  cells: {
-    style: {
-      minHeight: "80px",
-      width: "fit-content",
-    },
-  },
-};
+import { TableColumn } from "react-data-table-component";
+import { Table } from "../../../components/table";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -166,12 +152,7 @@ const LinkPayment = () => {
               </div>
             </div>
             <div className="w-full flex-grow mt-6">
-              <DataTable
-                columns={columns}
-                data={data}
-                customStyles={customStyles}
-                responsive={true}
-              />
+              <Table columns={columns} data={data} />
             </div>
           </div>
         </div>
