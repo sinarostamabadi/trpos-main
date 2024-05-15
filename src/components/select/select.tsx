@@ -6,10 +6,10 @@ export const SelectInput = ({
   className,
   options,
   placeholder,
-  isError,
   register,
   error,
   touched,
+  size = "middle",
 }: SelectProps) => {
   const [value, setValue] = useState<string | number | undefined>(undefined);
 
@@ -29,7 +29,7 @@ export const SelectInput = ({
         options={options}
         placeholder={placeholder}
         onSelect={(value) => setValue(value)}
-        size="large"
+        size={size}
         variant="borderless"
         listHeight={150}
         {...register}

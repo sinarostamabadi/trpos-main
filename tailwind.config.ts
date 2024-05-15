@@ -76,6 +76,8 @@ export const tailwindColors: colorObject = {
   "gradient-second": "#0fa2e9",
   "main-purple": "#9900EF",
   "base-gray": "#FAFAFA",
+  "base-blue":"#3B82F6",
+  "orange":"#FF6600",
 };
 
 export const config: Config = {

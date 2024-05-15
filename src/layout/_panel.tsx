@@ -31,7 +31,7 @@ const items1: MenuItem[] = [
     children: [
       {
         key: "g20",
-        label: "Ödeme Linkleri",
+        label: <Link to="linkPayment">Ödeme Linkleri</Link>,
         icon: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
       },
       {
@@ -144,7 +144,7 @@ const PanelLayout = () => {
   const { pathname } = useLocation();
 
   return (
-    <section className="w-full h-screen grid grid-cols-[280px_1fr] bg-base-gray">
+    <section className="w-full min-h-screen grid grid-cols-[280px_1fr] bg-base-gray">
       <div className="w-full h-full grid grid-rows-[auto_auto_1fr] p-6 bg-base-gray border-r-2 border-actual-white">
         <div className="flex justify-between items-center">
           <img className="w-[140PX] h-[28PX]" src={logo} alt="logo" />

@@ -47,7 +47,7 @@ const WebManagement: React.FC = () => {
                 </Button>
               </div>
             </div>
-            <div className="w-full flex-grow flex justify-center items-center">
+            <div className="w-full h-full flex-grow flex justify-center items-center">
               <div className="text-center">
                 <img src={clouds} alt="" />
                 <h1 className="text-base-content mt-2">
