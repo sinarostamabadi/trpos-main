@@ -16,7 +16,7 @@ import {
 import { Dropdown } from "antd";
 import { useState } from "react";
 import { RiUserLine } from "react-icons/ri";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import user from "../assets/images/user.png";
 
@@ -56,7 +56,7 @@ const items1: MenuItem[] = [
     children: [
       {
         key: "g4",
-        label: "Yardım ve Destek",
+        label: <Link to="helpAndSupport">Yardım ve Destek</Link>,
         icon: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
       },
       {
@@ -125,7 +125,7 @@ const items2: MenuItem[] = [
     children: [
       {
         key: "g7",
-        label: "Yardım ve Destek",
+        label: <Link to="helpAndSupport">Yardım ve Destek</Link>,
         icon: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
       },
       {
@@ -140,6 +140,8 @@ const items2: MenuItem[] = [
 const PanelLayout = () => {
   const [menuNumber, setMenuNumber] = useState<1 | 2>(2);
   const [isToggled, setIsToggled] = useState(false);
+
+  const { pathname } = useLocation();
 
   return (
     <section className="w-full h-screen grid grid-cols-[280px_1fr] bg-base-gray">
@@ -198,25 +200,36 @@ const PanelLayout = () => {
             <div className="container w-full flex justify-between items-center p-4">
               <div className="flex gap-10 items-center">
                 <div className="flex flex-col gap-[1px]">
-                  <p className="text-[15px] text-base-content">Raven Soft</p>
+                  <p className="text-[15px] text-base-content">
+                    {pathname == "/dashboard/helpAndSupport"
+                      ? "Yardım ve Destek"
+                      : "Raven Soft"}
+                  </p>
                   <div className="flex items-center gap-2">
                     <div className="w-[5px] h-[5px] bg-success rounded-full"></div>
-                    <p className="text-sm text-base-content-40">Kurumsal</p>
+                    <p className="text-sm text-base-content-40">
+                      {pathname == "/dashboard/helpAndSupport"
+                        ? "Trpos"
+                        : "Kurumsal"}
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <Dropdown menu={{ items: items1 }}>
-                    <div className="flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
-                      <p>Değiştir</p>
-                      <IconArrowDown
-                        width={20}
-                        height={20}
-                        viewBox="0 0 20 20"
-                      />
-                    </div>
-                  </Dropdown>
-                </div>
+                {pathname != "/dashboard/helpAndSupport" && (
+                  <div>
+                    <Dropdown menu={{ items: items1 }}>
+                      <div className="flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
+                        <p>Değiştir</p>
+                        <IconArrowDown
+                          width={20}
+                          height={20}
+                          viewBox="0 0 20 20"
+                        />
+                      </div>
+                    </Dropdown>
+                  </div>
+                )}
               </div>
+
               <div className="flex gap-10">
                 <div className="px-[14px] py-[12px] border rounded-[18px]">
                   <IconNotification
