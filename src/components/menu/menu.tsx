@@ -17,7 +17,8 @@ export const Menu: React.FC<MenuProps> = ({ menuNumber }: MenuProps) => {
                 <MenuItem
                   title={item.title}
                   href={item.href}
-                  icon={item.icon}
+                  iconActive={item.iconActive}
+                  iconDeactive={item.iconDeactive}
                   isActive={pathName === item.href}
                   isParent={item.isParent}
                 />
@@ -34,7 +35,8 @@ export const Menu: React.FC<MenuProps> = ({ menuNumber }: MenuProps) => {
                 <MenuItem
                   title={item.title}
                   href={item.href}
-                  icon={item.icon}
+                  iconActive={item.iconActive}
+                  iconDeactive={item.iconDeactive}
                   isActive={pathName === item.href}
                   isParent={item.isParent}
                 />
@@ -56,7 +58,8 @@ export const Menu: React.FC<MenuProps> = ({ menuNumber }: MenuProps) => {
               <MenuItem
                 title={item.title}
                 href={item.href}
-                icon={item.icon}
+                iconActive={item.iconActive}
+                iconDeactive={item.iconDeactive}
                 isActive={pathName === item.href}
                 isParent={item.isParent}
               />
@@ -73,7 +76,8 @@ export const Menu: React.FC<MenuProps> = ({ menuNumber }: MenuProps) => {
               <MenuItem
                 title={item.title}
                 href={item.href}
-                icon={item.icon}
+                iconActive={item.iconActive}
+                iconDeactive={item.iconDeactive}
                 isActive={pathName === item.href}
                 isParent={item.isParent}
               />
@@ -90,7 +94,8 @@ export const Menu: React.FC<MenuProps> = ({ menuNumber }: MenuProps) => {
               <MenuItem
                 title={item.title}
                 href={item.href}
-                icon={item.icon}
+                iconActive={item.iconActive}
+                iconDeactive={item.iconDeactive}
                 isActive={pathName === item.href}
                 isParent={item.isParent}
               />

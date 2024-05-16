@@ -63,7 +63,17 @@ const PanelLayout = () => {
             <MenuItem
               title="Panel"
               href="/dashboard"
-              icon={<IconPieChart width={24} height={24} viewBox="0 0 24 24" />}
+              iconActive={
+                <IconPieChart
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  className="text-black"
+                />
+              }
+              iconDeactive={
+                <IconPieChart width={24} height={24} viewBox="0 0 24 24" />
+              }
               isActive={pathname === "/dashboard"}
             />
           </div>

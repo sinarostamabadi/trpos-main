@@ -5,7 +5,8 @@ import { IconArrowDown } from "../../icons/icons";
 export const MenuItem: React.FC<MenuItemProps> = ({
   title,
   href,
-  icon,
+  iconActive,
+  iconDeactive,
   isActive = false,
   isParent = false,
 }) => {
@@ -18,7 +19,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       {isActive && (
         <div className="h-9 w-[6px] absolute left-0 rounded-r-3xl bg-base-content"></div>
       )}
-      {icon}
+      {isActive ? iconActive : iconDeactive}
       <Link to={href}>{title}</Link>
       {isParent && (
         <IconArrowDown

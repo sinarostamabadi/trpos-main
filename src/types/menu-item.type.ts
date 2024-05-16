@@ -1,8 +1,9 @@
-import { ReactElement, ReactNode } from "react"
+import { ReactNode } from "react";
 
 export type MenuItem = {
-    title:string,
-    href:string,
-    icon:ReactNode,
-    isParent?:Boolean
-}
+  title: string;
+  href: string;
+  iconActive: ReactNode;
+  iconDeactive: ReactNode;
+  isParent?: Boolean;
+};
