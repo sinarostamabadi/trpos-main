@@ -7,6 +7,7 @@ import {
   IconClipboard,
   IconLink,
   IconNotification,
+  IconPieChart,
   IconSetting,
   IconSupport,
   IconUser,
@@ -19,6 +20,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import user from "../assets/images/user.png";
 import { Menu } from "../components/menu/menu";
+import { MenuItem } from "../components/menu/components/menu-item";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -180,6 +182,9 @@ const PanelLayout = () => {
           </div>
         </div>
         <div className="w-full mt-10">
+          <div className="mb-10">
+            <MenuItem title="Panel" href="/dashboard" icon={<IconPieChart width={24} height={24} viewBox="0 0 24 24" />} isActive={pathname==="/dashboard"} />
+          </div>
           <Menu menuNumber={menuNumber} />
         </div>
       </div>
