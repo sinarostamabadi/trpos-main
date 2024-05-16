@@ -1,77 +1,178 @@
-import { IconBank, IconClipboard, IconLink, IconSetting, IconSupport, IconUser, IconWebPage } from "../components/icons/icons"
-import { MenuItem } from "../types/menu-item.type"
+import {
+  IconBank,
+  IconClipboard,
+  IconLink,
+  IconSetting,
+  IconSupport,
+  IconUser,
+  IconWebPage,
+} from "../components/icons/icons";
+import { MenuItem } from "../types/menu-item.type";
 
-export const menuItems1 : {
-    [key:string]:MenuItem[]
-}={
-    "SANAL POS":[
-        {
-            title:"Web Site Yönetimi",
-            href:"/dashboard/webManagement",
-            icon:<IconWebPage width={24} height={24} viewBox="0 0 24 24" />
-        },
-        {
-            title:"Ödeme Linkleri",
-            href:"/dashboard/linkPayment",
-            icon:<IconLink width={24} height={24} viewBox="0 0 24 24" />
-        },
-        {
-            title:"Raporlarım",
-            href:"",
-            icon:<IconClipboard width={24} height={24} viewBox="0 0 24 24" />,
-            isParent:true
-        },
-        {
-            title:"Kullanıcı Yetkilendirme",
-            href:"",
-            icon:<IconUser width={24} height={24} viewBox="0 0 24 24" />
-        }
-    ],
-    "FİZİKİ POS":[
-        {
-            title:"Fiziki POS",
-            href:"",
-            icon:<IconBank width={24} height={24} viewBox="0 0 24 24" />
-        },
-    ],
-    "Daha Fazlası":[
-        {
-            title:"Yardım ve Destek",
-            href:"/dashboard/helpAndSupport",
-            icon:<IconSupport width={24} height={24} viewBox="0 0 24 24" />
-        },{
-            title:"Ayarlar",
-            href:"",
-            icon:<IconSetting width={24} height={24} viewBox="0 0 24 24" />
-        },
-    ]
-}
+export const menuItems1: {
+  [key: string]: MenuItem[];
+} = {
+  "SANAL POS": [
+    {
+      title: "Web Site Yönetimi",
+      href: "/dashboard/webManagement",
+      iconDeactive: <IconWebPage width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconWebPage
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+    {
+      title: "Ödeme Linkleri",
+      href: "/dashboard/linkPayment",
+      iconDeactive: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconLink
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+    {
+      title: "Raporlarım",
+      href: "",
+      iconDeactive: (
+        <IconClipboard width={24} height={24} viewBox="0 0 24 24" />
+      ),
+      iconActive: (
+        <IconClipboard
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+      isParent: true,
+    },
+    {
+      title: "Kullanıcı Yetkilendirme",
+      href: "",
+      iconDeactive: <IconUser width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconUser
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+  ],
+  "FİZİKİ POS": [
+    {
+      title: "Fiziki POS",
+      href: "/dashboard/physicalPOS",
+      iconDeactive: <IconBank width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconBank
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+  ],
+  "Daha Fazlası": [
+    {
+      title: "Yardım ve Destek",
+      href: "/dashboard/helpAndSupport",
+      iconDeactive: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconSupport
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+    {
+      title: "Ayarlar",
+      href: "",
+      iconDeactive: <IconSetting width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconSetting
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+  ],
+};
 
-
-export const menuItems2 : {
-    [key:string]:MenuItem[]
-}={
-    "İŞLEMLER":[
-        {
-            title:"Ödeme Linkleri",
-            href:"/dashboard/linkPayment",
-            icon:<IconLink width={24} height={24} viewBox="0 0 24 24" />
-        },
-        {
-            title:"Raporlarım",
-            href:"",
-            icon:<IconClipboard width={24} height={24} viewBox="0 0 24 24" />
-        },
-    ],
-    "Daha Fazlası":[
-        {
-            title:"Yardım ve Destek",
-            href:"/dashboard/helpAndSupport",
-            icon:<IconSupport width={24} height={24} viewBox="0 0 24 24" />
-        },{
-            title:"Ayarlar",
-            href:"",
-            icon:<IconSetting width={24} height={24} viewBox="0 0 24 24" />
-        },
-    ]
-}
+export const menuItems2: {
+  [key: string]: MenuItem[];
+} = {
+  İŞLEMLER: [
+    {
+      title: "Ödeme Linkleri",
+      href: "/dashboard/linkPayment",
+      iconDeactive: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconLink
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+    {
+      title: "Raporlarım",
+      href: "",
+      iconDeactive: (
+        <IconClipboard width={24} height={24} viewBox="0 0 24 24" />
+      ),
+      iconActive: (
+        <IconClipboard
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+  ],
+  "Daha Fazlası": [
+    {
+      title: "Yardım ve Destek",
+      href: "/dashboard/helpAndSupport",
+      iconDeactive: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconSupport
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+    {
+      title: "Ayarlar",
+      href: "",
+      iconDeactive: <IconSetting width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconSetting
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+  ],
+};

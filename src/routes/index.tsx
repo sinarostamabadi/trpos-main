@@ -13,6 +13,7 @@ const ForgotPassword = lazy(() => import("../pages/auth/forgot-password"));
 const WebManagement = lazy(() => import("../pages/panel/web-management"));
 const LinkPayment = lazy(() => import("../pages/panel/link-payment"));
 const SiteDetail = lazy(() => import("../pages/panel/web-management/site-detail"));
+const PhysicalPOS = lazy(()=>import('../pages/panel/physical-POS'))
 const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
 // end:: Lazy imports
 
@@ -34,6 +35,7 @@ export const Router: React.FC = () => {
           <Route path="webManagement" element={<WebManagement />} />
           <Route path="linkPayment" element={<LinkPayment />} />
           <Route path="siteDetail/:id" element={<SiteDetail />} />
+          <Route path="physicalPOS" element={<PhysicalPOS />} />
           <Route path="helpAndSupport" element={<HelpAndSupport />} />
         </Route>
 

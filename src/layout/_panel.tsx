@@ -3,141 +3,18 @@ import {
   IconArrowDown,
   IconArrowLeft,
   IconBag,
-  IconBank,
-  IconClipboard,
-  IconLink,
   IconNotification,
   IconPieChart,
-  IconSetting,
-  IconSupport,
-  IconUser,
-  IconWebPage,
 } from "../components/icons/icons";
-import { Dropdown } from "antd";
 import { useState } from "react";
 import { RiUserLine } from "react-icons/ri";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import logo from "../assets/images/logo.svg";
-import user from "../assets/images/user.png";
+import { Outlet, useLocation } from "react-router-dom";
 import { Menu } from "../components/menu/menu";
 import { MenuItem } from "../components/menu/components/menu-item";
+import logo from "../assets/images/logo.svg";
+import user from "../assets/images/user.png";
 
 type MenuItem = Required<MenuProps>["items"][number];
-
-const items1: MenuItem[] = [
-  {
-    key: " grp1",
-    type: "group",
-    label: "İŞLEMLER",
-    style: { backgroundColor: "#FAFAFA" },
-    children: [
-      {
-        key: "g20",
-        label: <Link to="linkPayment">Ödeme Linkleri</Link>,
-        icon: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
-      },
-      {
-        key: "g21",
-        label: "Raporlarım",
-        icon: <IconClipboard width={24} height={24} viewBox="0 0 24 24" />,
-        children: [
-          {
-            key: "g22",
-            label: "Raporlarım",
-            icon: <IconClipboard width={24} height={24} viewBox="0 0 24 24" />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    key: " grp3",
-    type: "group",
-    label: "Daha Fazlası",
-    style: { backgroundColor: "#FAFAFA", marginTop: "25px" },
-    children: [
-      {
-        key: "g4",
-        label: <Link to="helpAndSupport">Yardım ve Destek</Link>,
-        icon: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
-      },
-      {
-        key: "g5",
-        label: "Ayarlar",
-        icon: <IconSetting width={24} height={24} viewBox="0 0 24 24" />,
-      },
-    ],
-  },
-];
-
-const items2: MenuItem[] = [
-  {
-    key: " grp1",
-    type: "group",
-    label: "SANAL POS",
-    style: { backgroundColor: "#FAFAFA" },
-    children: [
-      {
-        key: "g1",
-        label: <Link to="webManagement">Web Site Yönetimi</Link>,
-        icon: <IconWebPage width={24} height={24} viewBox="0 0 24 24" />,
-      },
-      {
-        key: "g2",
-        label: <Link to="linkPayment">Ödeme Linkleri</Link>,
-        icon: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
-      },
-      {
-        key: "g3",
-        label: "Raporlarım",
-        icon: <IconClipboard width={24} height={24} viewBox="0 0 24 24" />,
-        children: [
-          {
-            key: "g4",
-            label: "Raporlarım",
-            icon: <IconClipboard width={24} height={24} viewBox="0 0 24 24" />,
-          },
-        ],
-      },
-      {
-        key: "g5",
-        label: "Kullanıcı Yetkilendirme",
-        icon: <IconUser width={24} height={24} viewBox="0 0 24 24" />,
-      },
-    ],
-  },
-  {
-    key: " grp2",
-    type: "group",
-    label: "FİZİKİ POS",
-    style: { backgroundColor: "#FAFAFA", marginTop: "25px" },
-    children: [
-      {
-        key: "g6",
-        label: "Fiziki POS",
-        icon: <IconBank width={24} height={24} viewBox="0 0 24 24" />,
-      },
-    ],
-  },
-  {
-    key: " grp3",
-    type: "group",
-    label: "Daha Fazlası",
-    style: { backgroundColor: "#FAFAFA", marginTop: "25px" },
-    children: [
-      {
-        key: "g7",
-        label: <Link to="helpAndSupport">Yardım ve Destek</Link>,
-        icon: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
-      },
-      {
-        key: "g8",
-        label: "Ayarlar",
-        icon: <IconSetting width={24} height={24} viewBox="0 0 24 24" />,
-      },
-    ],
-  },
-];
 
 const PanelLayout = () => {
   const [menuNumber, setMenuNumber] = useState<1 | 2>(2);
@@ -183,7 +60,22 @@ const PanelLayout = () => {
         </div>
         <div className="w-full mt-10">
           <div className="mb-10">
-            <MenuItem title="Panel" href="/dashboard" icon={<IconPieChart width={24} height={24} viewBox="0 0 24 24" />} isActive={pathname==="/dashboard"} />
+            <MenuItem
+              title="Panel"
+              href="/dashboard"
+              iconActive={
+                <IconPieChart
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  className="text-black"
+                />
+              }
+              iconDeactive={
+                <IconPieChart width={24} height={24} viewBox="0 0 24 24" />
+              }
+              isActive={pathname === "/dashboard"}
+            />
           </div>
           <Menu menuNumber={menuNumber} />
         </div>
@@ -209,17 +101,9 @@ const PanelLayout = () => {
                   </div>
                 </div>
                 {pathname != "/dashboard/helpAndSupport" && (
-                  <div>
-                    <Dropdown menu={{ items: items1 }}>
-                      <div className="flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
-                        <p>Değiştir</p>
-                        <IconArrowDown
-                          width={20}
-                          height={20}
-                          viewBox="0 0 20 20"
-                        />
-                      </div>
-                    </Dropdown>
+                  <div className="flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
+                    <p>Değiştir</p>
+                    <IconArrowDown width={20} height={20} viewBox="0 0 20 20" />
                   </div>
                 )}
               </div>

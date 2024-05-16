@@ -23,6 +23,8 @@ export const CheckBoxModal: React.FC<CheckBoxModalProps> = ({
         type="checkbox"
         hidden
         onClick={handleClick}
+        onChange={(e) => e.preventDefault()}
+        onInput={(e) => e.preventDefault()}
         checked={isChecked}
         {...register}
         {...rest}

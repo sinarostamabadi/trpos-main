@@ -71,9 +71,7 @@ const LinkPayment = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to="/dashboard/siteDetail/1">
-              Görüntüle
-            </Link>
+            <Link to="/dashboard/siteDetail/1">Görüntüle</Link>
           </Button>
           <Button isLink={true} className="hover:no-underline !text-orange">
             <IconPen
@@ -146,6 +144,7 @@ const LinkPayment = () => {
                   />
                   Ara...
                 </Button>
+<<<<<<< HEAD
                 <div className="h-[48px] relative flex justify-center items-center gap-2 border rounded-2xl pl-6 pr-10 overflow-hidden">
                   <select className="w-full h-full text-sm text-center pr-6 absolute right-0 z-50 cursor-pointer" style={{appearance:"none" , background:"unset"}} name="" id="numberSelect">
                     <option value="5">5</option>
@@ -153,6 +152,19 @@ const LinkPayment = () => {
                   <IconArrowDown2 width={20} height={20} viewBox="0 0 20 20" className="relative text-base-content-40 translate-x-[100%]" />
                 </div>
                 <Button variant="primary" className="text-sm !rounded-2xl" isInTop>
+=======
+                <SelectInput
+                  className="!px-4"
+                  size="middle"
+                  placeholder="5"
+                  isError={false}
+                />
+                <Button
+                  variant="primary"
+                  className="text-sm !rounded-2xl"
+                  isInTop
+                >
+>>>>>>> 5ebdffb7774dbf7e02e94cbf46f245734bb1ace8
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
                   Yeni Link Oluştur
                 </Button>
