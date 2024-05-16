@@ -13,7 +13,7 @@ export const MenuItem:React.FC<MenuItemProps> = ({
     return (
         <li className={`flex items-center gap-2 py-2 my-3 cursor-pointer ${isActive ? "text-base-content" : "text-base-content-40"}`}>
             {isActive &&
-            <div className="h-9 w-[6px] absolute left-0 -translate-y-[6px] rounded-r-3xl bg-base-content">
+            <div className="h-9 w-[6px] absolute left-0 rounded-r-3xl bg-base-content">
 
             </div>
             }
