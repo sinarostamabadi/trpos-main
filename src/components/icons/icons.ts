@@ -20,6 +20,7 @@ export { default as IconLockCheck } from './src/Lock-check';
 export { default as IconLogo } from './src/Logo';
 export { default as IconNotification } from './src/Notification';
 export { default as IconPen } from './src/Pen';
+export { default as IconPieChart } from './src/PieChart';
 export { default as IconPlus } from './src/Plus';
 export { default as IconRemoveCircle } from './src/RemoveCircle';
 export { default as IconSearch } from './src/Search';

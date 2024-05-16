@@ -94,3 +94,8 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
+
+.ant-menu-item-selected {
+  background-color: unset;
+  color: red !important;
+}
