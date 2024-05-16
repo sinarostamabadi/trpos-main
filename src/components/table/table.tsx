@@ -7,6 +7,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
       style: {
         color: "#00636D",
         fontSize: "16px",
+        fontFamily: "inter",
       },
     },
     cells: {
@@ -14,6 +15,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         minHeight: "80px",
         width: "fit-content",
         color: "#18181C99",
+        fontFamily: "inter",
       },
     },
   };

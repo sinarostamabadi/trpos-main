@@ -34,13 +34,14 @@ export const NoContentSupport = () => {
                   variant="primary"
                   className="text-sm !rounded-2xl"
                   onClick={() => setIsOpenModal(true)}
+                  isInTop
                 >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
                   Yeni Talep Oluştur
                 </Button>
               </div>
             </div>
-            <div className="w-full h-[630px] flex-grow flex justify-center items-center">
+            <div className="outlet w-full h-[630px] flex-grow flex justify-center items-center">
               <div className="text-center">
                 <img src={clouds} alt="" className="mx-auto" />
                 <h1 className="text-base-content mt-2">

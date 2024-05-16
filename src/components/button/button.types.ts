@@ -9,7 +9,8 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     isLink?: boolean;
     animatedIcon?: boolean;
     shape?: ButtonShape;
-    isLight?:boolean
+    isLight?: boolean;
+    isInTop?: boolean;
   };
 
 export type ButtonShape = "default" | "wide" | "full" | "square";

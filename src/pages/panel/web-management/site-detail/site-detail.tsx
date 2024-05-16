@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Button } from "../../../components/button";
-import { CheckBox } from "../../../components/checkboxes/checkbox";
-import { Divider } from "../../../components/divider";
+import { Button } from "../../../../components/button";
+import { CheckBox } from "../../../../components/checkboxes/checkbox";
+import { Divider } from "../../../../components/divider";
 import {
   IconArrowRight,
   IconDelete,
   IconPen,
-} from "../../../components/icons/icons";
-import { Input } from "../../../components/input";
-import { Modal } from "../../../components/modal";
+} from "../../../../components/icons/icons";
+import { Input } from "../../../../components/input";
+import { Modal } from "../../../../components/modal";
 
 const SiteDetail: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -21,7 +21,7 @@ const SiteDetail: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Liste</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-success">Site Detayları</p>
+        <p className="text-primary">Site Detayları</p>
       </div>
       <div className="w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
@@ -39,11 +39,17 @@ const SiteDetail: React.FC = () => {
                   variant="primary"
                   isLight={true}
                   className="!text-primary"
+                  isInTop
                 >
                   <IconPen width={20} height={20} viewBox="0 0 20 20" />
                   Düzenle
                 </Button>
-                <Button variant="error" isLight={true} className="!text-error">
+                <Button
+                  variant="error"
+                  isLight={true}
+                  className="!text-error"
+                  isInTop
+                >
                   <IconDelete width={20} height={20} viewBox="0 0 20 20" />
                   Sil
                 </Button>

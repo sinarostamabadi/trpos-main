@@ -35,7 +35,7 @@ export const GridSupport = () => {
       name: "Başlık",
       selector: (row) => row.title,
       grow: 2,
-      style:{color:"black", fontWeight:"500"}
+      style: { color: "black", fontWeight: "500" },
     },
     {
       name: "Açıklama",
@@ -117,6 +117,7 @@ export const GridSupport = () => {
                   variant="primary"
                   className="text-sm !rounded-2xl"
                   onClick={() => setIsOpenModal(true)}
+                  isInTop
                 >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
                   Yeni Talep Oluştur

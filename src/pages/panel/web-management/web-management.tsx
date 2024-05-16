@@ -38,13 +38,14 @@ const WebManagement: React.FC = () => {
                   onClick={() => setModalIsOpen(true)}
                   variant="primary"
                   className="text-sm !rounded-2xl"
+                  isInTop
                 >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
                   Yeni Site Ekle
                 </Button>
               </div>
             </div>
-            <div className="w-full h-full flex-grow flex justify-center items-center">
+            <div className="outlet w-full h-full flex-grow flex justify-center items-center">
               <div className="text-center">
                 <img src={clouds} alt="" />
                 <h1 className="text-base-content mt-2">

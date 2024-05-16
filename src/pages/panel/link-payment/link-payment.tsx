@@ -115,7 +115,7 @@ const LinkPayment = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p className="text-primary">Ödeme Linkleri</p>
       </div>
-      <div className="w-full h-full container p-4 pb-8">
+      <div className="outlet w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
           <div className="w-full h-full flex flex-col">
             <div className="w-full flex justify-between items-center">
@@ -146,7 +146,7 @@ const LinkPayment = () => {
                   placeholder="5"
                   isError={false}
                 />
-                <Button variant="primary" className="text-sm !rounded-2xl">
+                <Button variant="primary" className="text-sm !rounded-2xl" isInTop>
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
                   Yeni Link Oluştur
                 </Button>

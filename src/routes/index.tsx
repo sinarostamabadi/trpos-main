@@ -12,7 +12,7 @@ const ChangePhone = lazy(() => import("../pages/auth/change-phone"));
 const ForgotPassword = lazy(() => import("../pages/auth/forgot-password"));
 const WebManagement = lazy(() => import("../pages/panel/web-management"));
 const LinkPayment = lazy(() => import("../pages/panel/link-payment"));
-const SiteDetail = lazy(() => import("../pages/panel/site-detail"));
+const SiteDetail = lazy(() => import("../pages/panel/web-management/site-detail"));
 const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
 // end:: Lazy imports
 

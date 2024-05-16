@@ -21,10 +21,11 @@ export const Button: React.FC<ButtonProps> = ({
   loadingText = "",
   type = "button",
   isLink = false,
+  isInTop,
   animatedIcon = false,
   children,
   className,
-  isLight=false,
+  isLight = false,
   ...rest
 }: ButtonProps) => {
   const classes = classNames(
@@ -37,11 +38,17 @@ export const Button: React.FC<ButtonProps> = ({
     { [`btn-${variant}`]: variant },
     { [`btn-${sizeClasses[size]}`]: size },
     { [`${shapeClasses[shape]}`]: shape },
-    {"btn-light": isLight}
+    { "btn-light": isLight }
   );
 
   return (
-    <button type={type} disabled={isDisabled} {...rest} className={classes}>
+    <button
+      type={type}
+      disabled={isDisabled}
+      {...rest}
+      className={classes}
+      style={isInTop ? { fontFamily: "Rubik" } : { fontFamily: "inter" }}
+    >
       {isLoading ? loadingText : children}
       {isLoading && <Loading />}
     </button>
