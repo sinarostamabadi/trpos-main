@@ -1,5 +1,4 @@
 import type { MenuProps } from "antd";
-import { Menu } from "antd";
 import {
   IconArrowDown,
   IconArrowLeft,
@@ -19,6 +18,7 @@ import { RiUserLine } from "react-icons/ri";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import user from "../assets/images/user.png";
+import { Menu } from "../components/menu/menu";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -180,18 +180,7 @@ const PanelLayout = () => {
           </div>
         </div>
         <div className="w-full mt-10">
-          <Menu
-            style={{
-              width: "100%",
-              border: "none",
-              backgroundColor: "#FAFAFA",
-              color: "#18181C66",
-            }}
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
-            mode="inline"
-            items={menuNumber === 1 ? items1 : items2}
-          />
+          <Menu menuNumber={menuNumber} />
         </div>
       </div>
       <div>
