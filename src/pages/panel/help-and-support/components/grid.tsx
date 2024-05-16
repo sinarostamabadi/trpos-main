@@ -18,6 +18,7 @@ type DataType = {
   title: string;
   explanation: string;
   ticketNo: string;
+  reqDate: string;
   badge: BadgeProps["badgeColor"];
 };
 
@@ -28,29 +29,35 @@ export const GridSupport = () => {
     {
       name: "Sıra",
       selector: (row) => row.id,
-      grow: 0,
+      width: "70px",
     },
     {
       name: "Başlık",
       selector: (row) => row.title,
       grow: 2,
+      style:{color:"black", fontWeight:"500"}
     },
     {
       name: "Açıklama",
       selector: (row) => row.explanation.substring(0, 50),
-      grow: 2,
+      grow: 3,
     },
     {
       name: "Ticket No",
       selector: (row) => row.ticketNo,
-      grow: 1,
+      grow: 2,
+    },
+    {
+      name: "Talep Tarihi",
+      selector: (row) => row.reqDate,
+      grow: 2,
     },
     {
       name: "Durum",
       cell: (row) => (
         <Badge badgeColor={row.badge} text={badgeText[row.badge]} />
       ),
-      grow: 1,
+      grow: 2,
     },
     {
       name: "",
@@ -78,6 +85,7 @@ export const GridSupport = () => {
       explanation:
         "Anchovies sauce style bacon dolor melted sauce. Thin thin marinara sauce sausage. Wing dolor chicken ham cheese garlic. Pork garlic buffalo ham sausage garlic and. White extra green broccoli bacon pepperoni thin ipsum.",
       ticketNo: "1234567890",
+      reqDate: "01.02.2024",
       badge: "primary",
     },
   ];

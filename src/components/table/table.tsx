@@ -13,6 +13,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
       style: {
         minHeight: "80px",
         width: "fit-content",
+        color: "#18181C99",
       },
     },
   };

@@ -37,6 +37,7 @@ const LinkPayment = () => {
       name: "Site / işletme / Mağaza Adı",
       selector: (row) => row.site,
       grow: 4,
+      style: { color: "black", fontWeight: "500" },
     },
     {
       name: "URL",
@@ -79,7 +80,7 @@ const LinkPayment = () => {
           </Button>
         </div>
       ),
-      grow: 4,
+      grow: 5,
     },
   ];
 
