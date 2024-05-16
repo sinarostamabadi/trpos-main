@@ -19,7 +19,7 @@ export const Modal = ({
     width: small ? "500px" : "900px",
     overflow: "hidden",
     padding: "20px",
-    fontFamily:"inter"
+    fontFamily: "inter",
   };
 
   // ---------- render jsx ----------

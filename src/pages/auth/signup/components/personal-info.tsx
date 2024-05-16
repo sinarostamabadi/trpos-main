@@ -4,11 +4,11 @@ import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
 import { SignupInput } from "../types/signup.types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CheckBoxModal } from "../../../../components/checkbox";
+import { CheckBoxModal } from "../../../../components/checkboxes";
 import { RuleModal } from "./modal/rules";
+import { PhoneInput } from "../../../../components/phoneInput";
 import TermsData from "../../../../data/trpos_rules.json";
 import * as yup from "yup";
-import { PhoneInput } from "../../../../components/phoneInput";
 
 export const PersonalInfo: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState({

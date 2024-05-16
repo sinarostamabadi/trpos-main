@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../../../../components/button";
-import { IconPlus } from "../../../../components/icons/icons";
+import { IconPlus } from "../../../../components/icons/icon";
 import { CreateSupportRequest } from "../modal/create";
 import clouds from "../../../../assets/images/Clouds.svg";
 

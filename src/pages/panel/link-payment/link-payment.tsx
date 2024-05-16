@@ -68,9 +68,7 @@ const LinkPayment = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to="/dashboard/siteDetail/1">
-              Görüntüle
-            </Link>
+            <Link to="/dashboard/siteDetail/1">Görüntüle</Link>
           </Button>
           <Button isLink={true} className="hover:no-underline !text-orange">
             <IconPen
@@ -149,7 +147,11 @@ const LinkPayment = () => {
                   placeholder="5"
                   isError={false}
                 />
-                <Button variant="primary" className="text-sm !rounded-2xl" isInTop>
+                <Button
+                  variant="primary"
+                  className="text-sm !rounded-2xl"
+                  isInTop
+                >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
                   Yeni Link Oluştur
                 </Button>
