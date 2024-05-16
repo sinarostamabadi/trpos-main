@@ -2,6 +2,8 @@ import { Badge } from "../../../components/badge/badge";
 import { BadgeProps } from "../../../components/badge/badge.type";
 import { Button } from "../../../components/button";
 import {
+  IconArrowDown,
+  IconArrowDown2,
   IconArrowRight,
   IconEyeComplete,
   IconPen,
@@ -12,6 +14,7 @@ import { SelectInput } from "../../../components/select";
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../components/table";
 import { Link } from "react-router-dom";
+import { Select } from "antd";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -133,7 +136,7 @@ const LinkPayment = () => {
               <div className="flex items-center gap-6">
                 <Button
                   isOutline={true}
-                  className="text-sm !rounded-2xl !border-base-content-20 !text-base-content-20"
+                  className="text-sm !rounded-2xl !border-[#e5e7eb] !text-base-content-20"
                 >
                   <IconSearch
                     width={24}
@@ -143,12 +146,12 @@ const LinkPayment = () => {
                   />
                   Ara...
                 </Button>
-                <SelectInput
-                  className="!px-4"
-                  size="middle"
-                  placeholder="5"
-                  isError={false}
-                />
+                <div className="h-[48px] relative flex justify-center items-center gap-2 border rounded-2xl pl-6 pr-10 overflow-hidden">
+                  <select className="w-full h-full text-sm text-center pr-6 absolute right-0 z-50 cursor-pointer" style={{appearance:"none" , background:"unset"}} name="" id="numberSelect">
+                    <option value="5">5</option>
+                  </select>
+                  <IconArrowDown2 width={20} height={20} viewBox="0 0 20 20" className="relative text-base-content-40 translate-x-[100%]" />
+                </div>
                 <Button variant="primary" className="text-sm !rounded-2xl" isInTop>
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
                   Yeni Link Oluştur
