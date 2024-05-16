@@ -11,6 +11,7 @@ import {
 import { SelectInput } from "../../../components/select";
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../components/table";
+import { Link } from "react-router-dom";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -67,7 +68,9 @@ const LinkPayment = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            Görüntüle
+            <Link to="/dashboard/siteDetail/1">
+              Görüntüle
+            </Link>
           </Button>
           <Button isLink={true} className="hover:no-underline !text-orange">
             <IconPen
