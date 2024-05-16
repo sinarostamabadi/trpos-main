@@ -1,16 +1,13 @@
 import { Button } from "../../../components/button";
-import {
-  IconArrowRight,
-  IconFileUpload,
-  IconPlus,
-} from "../../../components/icons/icons";
-import clouds from "../../../assets/images/Clouds.svg";
+import { IconArrowRight, IconPlus } from "../../../components/icons/icons";
 import { Modal } from "../../../components/modal";
 import { useState } from "react";
 import { Divider } from "../../../components/divider";
 import { Input } from "../../../components/input";
 import { SelectInput } from "../../../components/select";
 import { CheckBox } from "../../../components/checkboxes";
+import { FileUploader } from "../../../components/uploader";
+import clouds from "../../../assets/images/Clouds.svg";
 
 const WebManagement: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -84,7 +81,7 @@ const WebManagement: React.FC = () => {
         </div>
 
         <Divider text="Diğer Bilgiler" />
-        <div className="p-1">
+        <div className="p-1 flex flex-col gap-y-3">
           <SelectInput
             placeholder="Taksit Seçeneği"
             options={[]}
@@ -93,24 +90,11 @@ const WebManagement: React.FC = () => {
           />
           <SelectInput
             placeholder="E-Ticaret Altyapı Sağlayıcı"
-            className="mt-3"
             options={[]}
             error={""}
             isError={false}
           />
-          <div className="w-full p-4 flex justify-center items-center border-2 border-dashed to-base-content-20 mt-3 rounded-2xl">
-            <label
-              htmlFor="FileInput"
-              className="text-center flex flex-col justify-center items-center gap-1 cursor-pointer"
-            >
-              <IconFileUpload />
-              <p className="text-sm">Dekont Yükle</p>
-              <p className="text-xs text-base-content-40">
-                Sürükle bırak ya da Seç
-              </p>
-            </label>
-            <input type="file" name="" id="FileInput" className="hidden" />
-          </div>
+          <FileUploader />
         </div>
 
         <CheckBox
