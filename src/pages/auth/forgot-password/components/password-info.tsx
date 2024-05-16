@@ -8,13 +8,21 @@ import { ForgotPasswordInputs } from "../forgot-password.types";
 import * as yup from "yup";
 
 export const PasswordInfo = () => {
+  const phoneRegex = /^\+([1-9]{1,3})([0-9]{8,13})$/;
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
   const loginSchema = yup.object().shape({
+    phoneOrEmail: yup
+      .string()
+      .required()
+      .test(
+        "is_phone_or_email",
+        "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com",
+        (value) => phoneRegex.test(value) || emailRegex.test(value)
+      ),
     phoneNumber: yup
       .string()
-      .required("Cep telefonu numarasını veya e-posta adresini girin")
-      .test("email_or_phone", "Email / Phone is invalid", (value) => {
-        return validateEmail(value) || validatePhone(parseInt(value ?? "0"));
-      }),
+      .required("Cep telefonu numarasını veya e-posta adresini girin"),
     lang: yup.string(),
     phoneCountry: yup.string(),
     email: yup
@@ -48,26 +56,6 @@ export const PasswordInfo = () => {
     console.log(data);
   };
 
-  const validateEmail = (email: string | undefined) => {
-    return yup.string().email().isValidSync(email);
-  };
-
-  const validatePhone = (phone: number | undefined) => {
-    return yup
-      .number()
-      .required()
-      .integer()
-      .positive()
-      .test((phone) => {
-        return phone &&
-          phone.toString().length >= 8 &&
-          phone.toString().length <= 14
-          ? true
-          : false;
-      })
-      .isValidSync(phone);
-  };
-
   useEffect(() => {
     trigger();
   }, [trigger]);
@@ -88,9 +76,10 @@ export const PasswordInfo = () => {
       <div className="mt-6">
         <Input
           label="Cep No ya da E-Posta"
-          register={{ ...register("phoneNumber") }}
-          error={errors.phoneNumber?.message}
-          touched={touchedFields.phoneNumber}
+          register={{ ...register("phoneOrEmail") }}
+          error={errors.phoneOrEmail?.message}
+          touched={touchedFields.phoneOrEmail}
+          isPhoneOrEmail
         />
       </div>
 
