@@ -15,12 +15,12 @@ export const menuItems1: {
   "SANAL POS": [
     {
       title: "Web Site Yönetimi",
-      href: "webManagement",
+      href: "/dashboard/webManagement",
       icon: <IconWebPage width={24} height={24} viewBox="0 0 24 24" />,
     },
     {
       title: "Ödeme Linkleri",
-      href: "linkPayment",
+      href: "/dashboard/linkPayment",
       icon: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
     },
     {
@@ -38,14 +38,14 @@ export const menuItems1: {
   "FİZİKİ POS": [
     {
       title: "Fiziki POS",
-      href: "physicalPOS",
+      href: "/dashboard/physicalPOS",
       icon: <IconBank width={24} height={24} viewBox="0 0 24 24" />,
     },
   ],
   "Daha Fazlası": [
     {
       title: "Yardım ve Destek",
-      href: "helpAndSupport",
+      href: "/dashboard/helpAndSupport",
       icon: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
     },
     {
