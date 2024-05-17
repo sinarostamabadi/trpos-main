@@ -1,5 +1,6 @@
-import classNames from "classnames";
+import React from "react";
 import { CheckBoxModalProps } from "./checkbox.types";
+import classNames from "classnames";
 
 export const CheckBoxModal: React.FC<CheckBoxModalProps> = ({
   isDisabled: isDisable,
@@ -22,10 +23,10 @@ export const CheckBoxModal: React.FC<CheckBoxModalProps> = ({
         id={id}
         type="checkbox"
         hidden
-        onClick={handleClick}
-        onChange={(e) => e.preventDefault()}
-        onInput={(e) => e.preventDefault()}
-        checked={isChecked}
+        onClick={(e) => {
+          e.preventDefault();
+          handleClick && handleClick();
+        }}
         {...register}
         {...rest}
       />
