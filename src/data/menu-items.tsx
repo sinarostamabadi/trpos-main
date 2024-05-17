@@ -57,7 +57,7 @@ export const menuItems1: {
     },
     {
       title: "Kullanıcı Yetkilendirme",
-      href: "",
+      href: "/dashboard/userAuthorization",
       iconDeactive: <IconUser width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconUser
@@ -120,7 +120,7 @@ export const menuItems2: {
   İŞLEMLER: [
     {
       title: "Ödeme Linkleri",
-      href: "/dashboard/linkPayment",
+      href: "",
       iconDeactive: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconLink

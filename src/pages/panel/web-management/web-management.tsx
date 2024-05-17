@@ -2,7 +2,7 @@ import { Button } from "../../../components/button";
 import { IconArrowRight, IconPlus } from "../../../components/icons/icons";
 import { Modal } from "../../../components/modal";
 import { useState } from "react";
-import { Divider } from "../../../components/divider";
+import { Devider } from "../../../components/devider";
 import { Input } from "../../../components/input";
 import { SelectInput } from "../../../components/select";
 import { CheckBox } from "../../../components/checkboxes";
@@ -21,12 +21,12 @@ const WebManagement: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p className="text-primary">Liste</p>
       </div>
-      <div className="w-full h-full container p-4 pb-8">
+      <div className="outlet w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
           <div className="w-full h-full flex flex-col">
             <div className="w-full flex justify-between items-center">
               <div>
-                <h1 className="text-[18px] text-base-content font-medium">
+                <h1 className="text-[20px] text-base-content font-semibold">
                   Web Siteleriniz
                 </h1>
                 <p className="text-xs text-base-content-40 mt-2">
@@ -64,14 +64,14 @@ const WebManagement: React.FC = () => {
         onCloseModal={() => setModalIsOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
-        <Divider text="Hesap Bilgileri" />
+        <Devider text="Hesap Bilgileri" />
         <div className="p-1">
           <Input label="Hakediş Hesap IBAN Numarası" />
           <Input label="Hesap Sahibi Adı Soyadı" className="mt-3" />
           <Input label="Banka Hesabı Başlığı" className="mt-3" />
         </div>
 
-        <Divider text="Web Site Bilgileri" />
+        <Devider text="Web Site Bilgileri" />
         <div className="p-1">
           <Input label="Web Site Başlığı" />
           <Input label="Web Site / İş Yeri / Mağaza Adı" className="mt-3" />
@@ -81,7 +81,7 @@ const WebManagement: React.FC = () => {
           <Input label="Web Site IP Adresi" className="mt-3" />
         </div>
 
-        <Divider text="Diğer Bilgiler" />
+        <Devider text="Diğer Bilgiler" />
         <div className="p-1 flex flex-col gap-y-3">
           <SelectInput
             placeholder="Taksit Seçeneği"
