@@ -6,6 +6,7 @@ import { Badge } from "../../../../components/badge";
 import { BadgeProps } from "../../../../components/badge/badge.type";
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../../components/table";
+import { Link } from "react-router-dom";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -70,7 +71,7 @@ export const GridSupport = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            Görüntüle
+            <Link to={"ticketDetail/1"}>Görüntüle</Link>
           </Button>
         </div>
       ),

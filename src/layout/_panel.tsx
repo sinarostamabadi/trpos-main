@@ -87,20 +87,20 @@ const PanelLayout = () => {
               <div className="flex gap-10 items-center">
                 <div className="flex flex-col gap-[1px]">
                   <p className="text-[15px] text-base-content">
-                    {pathname == "/dashboard/helpAndSupport"
+                    {pathname.includes("/dashboard/helpAndSupport")
                       ? "Yardım ve Destek"
                       : "Raven Soft"}
                   </p>
                   <div className="flex items-center gap-2">
                     <div className="w-[5px] h-[5px] bg-success rounded-full"></div>
                     <p className="text-sm text-base-content-40">
-                      {pathname == "/dashboard/helpAndSupport"
+                      {pathname.includes("/dashboard/helpAndSupport")
                         ? "Trpos"
                         : "Kurumsal"}
                     </p>
                   </div>
                 </div>
-                {pathname != "/dashboard/helpAndSupport" && (
+                {!pathname.includes("/dashboard/helpAndSupport") && (
                   <div className="flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
                     <p>Değiştir</p>
                     <IconArrowDown width={20} height={20} viewBox="0 0 20 20" />

@@ -12,10 +12,17 @@ const ChangePhone = lazy(() => import("../pages/auth/change-phone"));
 const ForgotPassword = lazy(() => import("../pages/auth/forgot-password"));
 const WebManagement = lazy(() => import("../pages/panel/web-management"));
 const LinkPayment = lazy(() => import("../pages/panel/link-payment"));
-const SiteDetail = lazy(() => import("../pages/panel/web-management/site-detail"));
-const PhysicalPOS = lazy(() => import('../pages/panel/physical-POS'))
-const UserAuthorization = lazy(()=>import("../pages/panel/user-authorization"))
+const SiteDetail = lazy(
+  () => import("../pages/panel/web-management/site-detail")
+);
+const PhysicalPOS = lazy(() => import("../pages/panel/physical-POS"));
+const UserAuthorization = lazy(
+  () => import("../pages/panel/user-authorization")
+);
 const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
+const SupportTicketDetails = lazy(
+  () => import("../pages/panel/help-and-support/ticket-detail")
+);
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -39,6 +46,10 @@ export const Router: React.FC = () => {
           <Route path="physicalPOS" element={<PhysicalPOS />} />
           <Route path="userAuthorization" element={<UserAuthorization />} />
           <Route path="helpAndSupport" element={<HelpAndSupport />} />
+          <Route
+            path="helpAndSupport/ticketDetail/:id"
+            element={<SupportTicketDetails />}
+          />
         </Route>
 
         <Route element={<Private />}></Route>
