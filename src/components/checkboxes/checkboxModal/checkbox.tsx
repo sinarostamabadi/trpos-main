@@ -22,11 +22,8 @@ export const CheckBoxModal: React.FC<CheckBoxModalProps> = ({
       <input
         id={id}
         type="checkbox"
-        hidden
-        onClick={(e) => {
-          e.preventDefault();
-          handleClick && handleClick();
-        }}
+        className="w-0"
+        onInput={() => handleClick && handleClick()}
         {...register}
         {...rest}
       />

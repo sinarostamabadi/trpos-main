@@ -199,13 +199,14 @@ export const PersonalInfo: React.FC = () => {
             linkLabel="KVKK Aydınlatma Metni"
             touched={touchedFields.checkbox_role_1}
             isChecked={values.checkbox_role_1}
-            handleClick={() =>
+            handleClick={() => {
+              setValue("checkbox_role_1", false);
               setIsModalOpen(() => ({
                 rule_one: true,
                 rule_two: false,
                 rule_three: false,
-              }))
-            }
+              }));
+            }}
           />
 
           <CheckBoxModal
@@ -216,13 +217,14 @@ export const PersonalInfo: React.FC = () => {
             linkLabel="Açık Rıza Metni"
             touched={touchedFields.checkbox_role_2}
             isChecked={values.checkbox_role_2}
-            handleClick={() =>
+            handleClick={() => {
+              setValue("checkbox_role_2", false);
               setIsModalOpen(() => ({
                 rule_one: false,
                 rule_two: true,
                 rule_three: false,
-              }))
-            }
+              }));
+            }}
           />
 
           <CheckBoxModal
@@ -233,13 +235,14 @@ export const PersonalInfo: React.FC = () => {
             linkLabel="Trpos Kullanıcı Sözleşmesi"
             touched={touchedFields.checkbox_role_3}
             isChecked={values.checkbox_role_3}
-            handleClick={() =>
+            handleClick={() => {
+              setValue("checkbox_role_3", false);
               setIsModalOpen(() => ({
                 rule_one: false,
                 rule_two: false,
                 rule_three: true,
-              }))
-            }
+              }));
+            }}
           />
         </div>
 
