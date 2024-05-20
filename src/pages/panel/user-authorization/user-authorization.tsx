@@ -10,6 +10,7 @@ import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../components/table";
 import { CreateUserAuthentication } from "./modal/create";
 import { useState } from "react";
+import { EditUserAuthentication } from "./modal/edit";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Admin",
@@ -18,7 +19,10 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
 };
 
 const UserAuthorization = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState({
+    create: false,
+    edit: false,
+  });
 
   type DataType = {
     id: number;
@@ -61,7 +65,11 @@ const UserAuthorization = () => {
       name: "",
       cell: () => (
         <div className="flex flex-col gap-1 2xl:flex-row 2xl:gap-0 items-center">
-          <Button isLink={true} className="hover:no-underline !text-orange">
+          <Button
+            isLink={true}
+            className="hover:no-underline !text-orange"
+            onClick={() => setIsOpenModal({ create: false, edit: true })}
+          >
             <IconPen
               width={24}
               height={24}
@@ -85,14 +93,14 @@ const UserAuthorization = () => {
       badge: "primary",
     },
     {
-      id: 1,
+      id: 2,
       name: "Beyazıt Bestami Çoban",
       phone: "+90 552 895 67 07",
       mail: "bestam.coban@raven.com.tr",
       badge: "success",
     },
     {
-      id: 1,
+      id: 3,
       name: "Seda Gül Uçar",
       phone: "+90 555 555 55 55",
       mail: "sadegul.ucar@raven.com.tr",
@@ -101,13 +109,20 @@ const UserAuthorization = () => {
   ];
 
   const closeModalHandler = () => {
-    isOpenModal && setIsOpenModal(false);
+    setIsOpenModal({
+      create: false,
+      edit: false,
+    });
   };
 
   return (
     <>
       <CreateUserAuthentication
-        state={isOpenModal}
+        state={isOpenModal.create}
+        onCloseModal={closeModalHandler}
+      />
+      <EditUserAuthentication
+        state={isOpenModal.edit}
         onCloseModal={closeModalHandler}
       />
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
@@ -131,7 +146,7 @@ const UserAuthorization = () => {
                 <Button
                   variant="primary"
                   className="text-sm !rounded-2xl"
-                  onClick={() => setIsOpenModal(true)}
+                  onClick={() => setIsOpenModal({ create: true, edit: false })}
                   isInTop
                 >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
