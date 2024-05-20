@@ -2,7 +2,7 @@ import { Button } from "../../../components/button";
 import { IconArrowRight, IconPlus } from "../../../components/icons/icons";
 import { Modal } from "../../../components/modal";
 import { useState } from "react";
-import { Devider } from "../../../components/devider";
+import { Devider } from "../../../components/divider";
 import { Input } from "../../../components/input";
 import { SelectInput } from "../../../components/select";
 import { CheckBox } from "../../../components/checkboxes";

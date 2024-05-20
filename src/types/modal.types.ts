@@ -1,4 +1,4 @@
-export type ModalProps = {
+export type BaseModalProps = {
   state: boolean;
-  onCloseModal: () => void;
+  onCloseModal?: () => void;
 };

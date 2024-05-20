@@ -1,4 +1,4 @@
-import { DividerProps } from "./devider.types";
+import { DividerProps } from "./divider.types";
 
 export const Devider: React.FC<DividerProps> = ({ text }: DividerProps) => {
   return (

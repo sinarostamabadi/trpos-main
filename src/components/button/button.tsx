@@ -45,9 +45,9 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       disabled={isDisabled}
-      {...rest}
       className={classes}
       style={isInTop ? { fontFamily: "Rubik" } : { fontFamily: "inter" }}
+      {...rest}
     >
       {isLoading ? loadingText : children}
       {isLoading && <Loading />}

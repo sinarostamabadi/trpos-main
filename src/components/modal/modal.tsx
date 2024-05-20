@@ -8,8 +8,10 @@ export const Modal = ({
   title,
   children,
   small,
-  onCloseModal,
+  icon,
+  isDeleteModal,
   subTitle,
+  onCloseModal,
 }: ModalProps) => {
   // ---------- variables ----------
   const contentStyle = {
@@ -31,16 +33,21 @@ export const Modal = ({
       onClose={onCloseModal}
       {...{ contentStyle }}
     >
-      <div className="flex justify-between w-full my-3">
-        <span className="text-xl font-medium">
+      {isDeleteModal && <div className="w-fit mx-auto">{icon}</div>}
+      <div className={`flex justify-between w-full my-3`}>
+        <span
+          className={`text-xl font-medium ${isDeleteModal && "text-center"}`}
+        >
           {title}
           {subTitle && (
-            <div className="text-sm mt-2 text-base-content-40">{subTitle}</div>
+            <div className="text-sm mt-2 text-base-content-60">{subTitle}</div>
           )}
         </span>
-        <span className="cursor-pointer mt-1">
-          <IconClose color="red" onClick={onCloseModal} />
-        </span>
+        {!isDeleteModal && (
+          <span className="cursor-pointer mt-1">
+            <IconClose color="red" onClick={onCloseModal} />
+          </span>
+        )}
       </div>
       <div className="overflow-y-scroll max-h-[80vh]">{children}</div>
     </Popup>

@@ -2,6 +2,7 @@
   @apply no-underline inline-flex gap-2 h-12 px-7 border cursor-pointer select-none items-center justify-center border-transparent;
 
   @apply border-base-200 bg-base-200 text-base-content outline-base-content transition-all duration-100 ease-in-out rounded-2.5xl;
+
   @media (hover: hover) {
     &:hover {
       @apply border-base-300 bg-base-300;
@@ -191,6 +192,16 @@
         }
       }
     }
+
+    &.btn-neutral {
+      @apply border-neutral text-neutral;
+
+      /* @media (hover: hover) {
+        &:hover {
+          @apply bg-error border-error text-base-100;
+        }
+      } */
+    }
   }
 
   /* disabled */
@@ -200,6 +211,7 @@
     @apply pointer-events-none border-opacity-0 bg-neutral bg-opacity-20 text-base-content text-opacity-20;
 
     @meida (hover : hover) {
+
       &[disabled]:hover,
       &:disabled:hover {
         @apply border-opacity-0 bg-neutral bg-opacity-20 text-base-content text-opacity-20;
@@ -237,12 +249,15 @@
 
   &-square {
     @apply w-12 h-12 p-0;
+
     &:where(.btn-xs) {
       @apply w-6 h-6 p-0;
     }
+
     &:where(.btn-sm) {
       @apply w-8 h-8 p-0;
     }
+
     &:where(.btn-lg) {
       @apply w-16 h-16 p-0;
     }

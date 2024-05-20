@@ -1,5 +1,5 @@
 import { Button } from "../../../../components/button";
-import { Devider } from "../../../../components/devider";
+import { Devider } from "../../../../components/divider";
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
 import { SelectInput } from "../../../../components/select";

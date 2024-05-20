@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../../components/button";
 import { CheckBox } from "../../../../components/checkboxes/checkbox";
-import { Devider } from "../../../../components/devider";
+import { Devider } from "../../../../components/divider";
 import {
   IconArrowRight,
   IconDelete,
@@ -10,11 +10,22 @@ import {
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
 import { Link } from "react-router-dom";
+import { DeleteModal } from "../../../../components/deleteModal";
 
 const SiteDetail: React.FC = () => {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState({
+    edit: false,
+    delete: false,
+  });
+
   return (
     <>
+      <DeleteModal
+        state={isModalOpen.delete}
+        confirmLabel="Siteyi Sil"
+        subTitle="Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+        onCloseModal={() => setIsModalOpen({ edit: false, delete: false })}
+      />
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
         <p>Trpos</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
@@ -36,7 +47,7 @@ const SiteDetail: React.FC = () => {
               </div>
               <div className="flex items-center gap-4">
                 <Button
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setIsModalOpen({ edit: true, delete: false })}
                   variant="primary"
                   isLight={true}
                   className="!text-primary"
@@ -50,6 +61,7 @@ const SiteDetail: React.FC = () => {
                   isLight={true}
                   className="!text-error"
                   isInTop
+                  onClick={() => setIsModalOpen({ edit: false, delete: true })}
                 >
                   <IconDelete width={20} height={20} viewBox="0 0 20 20" />
                   Sil
@@ -147,10 +159,10 @@ const SiteDetail: React.FC = () => {
         </div>
       </div>
       <Modal
-        state={modalIsOpen}
+        state={isModalOpen.edit}
         title="Düzenle"
         small={true}
-        onCloseModal={() => setModalIsOpen(false)}
+        onCloseModal={() => setIsModalOpen({ edit: false, delete: false })}
         subTitle="Lütfen formu doldurunuz."
       >
         <Devider text="Hesap Bilgileri" />

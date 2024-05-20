@@ -14,6 +14,7 @@ export { default as IconCheckWhite } from './src/CheckWhite';
 export { default as IconClipboard } from './src/Clipboard';
 export { default as IconClose } from './src/Close';
 export { default as IconDelete } from './src/Delete';
+export { default as IconDeleteFillRed } from './src/DeleteFillRed';
 export { default as IconEye } from './src/Eye';
 export { default as IconEyeComplete } from './src/EyeComplete';
 export { default as IconFileUpload } from './src/FileUpload';

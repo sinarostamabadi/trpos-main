@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
+import { BaseModalProps } from "../../types/modal.types";
 
-export type ModalProps = {
+export type ModalProps = BaseModalProps & {
   title: string;
-  state: boolean;
-  onCloseModal?: () => void;
   children?: ReactNode;
   small?: boolean;
   subTitle?: string;
+  icon?: ReactNode;
+  isDeleteModal?: boolean;
 };
