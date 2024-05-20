@@ -1,9 +1,9 @@
-import { Button } from "../button";
-import { Modal } from "../modal";
-import { DeleteModalProps } from "./delete-modal.types";
-import DeleteIcon from "../../assets/images/DeleteFillRed.svg";
+import { Button } from "../../button";
+import { Modal } from "../../modal";
+import { ActionModalProps } from "../action-modal.types";
+import DeleteIcon from "../../../assets/images/DeleteFillRed.svg";
 
-export const DeleteModal: React.FC<DeleteModalProps> = ({
+export const DeleteModal: React.FC<ActionModalProps> = ({
   state,
   subTitle,
   confirmLabel,

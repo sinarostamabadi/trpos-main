@@ -1,6 +1,6 @@
 import { BaseModalProps } from "../../types/modal.types";
 
-export type DeleteModalProps = BaseModalProps & {
+export type ActionModalProps = BaseModalProps & {
   subTitle?: string;
   confirmLabel: string;
 };

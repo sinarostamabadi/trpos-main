@@ -17,6 +17,7 @@ export const NoContentSupport = () => {
         state={isOpenModal}
         onCloseModal={closeModalHandler}
       />
+
       <div className="outlet w-full h-full container p-4 mt-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
           <div className="w-full h-full flex flex-col">

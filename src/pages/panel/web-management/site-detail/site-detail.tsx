@@ -10,7 +10,7 @@ import {
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
 import { Link } from "react-router-dom";
-import { DeleteModal } from "../../../../components/deleteModal";
+import { DeleteModal } from "../../../../components/actionModals/delete";
 
 const SiteDetail: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState({
