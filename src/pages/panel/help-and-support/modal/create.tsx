@@ -2,7 +2,7 @@ import TextArea from "antd/es/input/TextArea";
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
 import { SelectInput } from "../../../../components/select";
-import { ModalProps } from "./modal.types";
+import { ModalProps } from "../../../../types/modal.types";
 import { FileUploader } from "../../../../components/uploader";
 import { Button } from "../../../../components/button";
 

@@ -16,7 +16,7 @@ import { Table } from "../../../components/table";
 import { Link } from "react-router-dom";
 import { Select } from "antd";
 import { useState } from "react";
-import { Divider } from "../../../components/divider";
+import { Devider } from "../../../components/devider";
 import { Input } from "../../../components/input";
 import { CheckBox } from "../../../components/checkboxes";
 import { Modal } from "../../../components/modal";
@@ -193,20 +193,20 @@ const LinkPayment = () => {
         onCloseModal={() => setModalIsOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
-        <Divider text="Genel Bilgiler" />
+        <Devider text="Genel Bilgiler" />
         <div className="p-1">
           <Input label="Web Site" />
           <Input label="Ürün Hizmet Adı" className="mt-3" />
           <Input label="Ürün Açıklaması" className="mt-3" />
         </div>
 
-        <Divider text="Fiyatlar" />
+        <Devider text="Fiyatlar" />
         <div className="p-1">
           <Input label="Ürün Peşin Fiyatı" />
           <Input label="Taksit Seçeneği" className="mt-3" />
         </div>
 
-        <Divider text="Daha Fazla Detay" />
+        <Devider text="Daha Fazla Detay" />
         <div className="p-1">
           <Input label="Link Bitiş Tarihi" type="date" />
           <Input label="Ödeme Adedi" className="mt-3" />

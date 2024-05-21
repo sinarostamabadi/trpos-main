@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../../../../components/button";
-import { IconPlus } from "../../../../components/icons/icon";
+import { IconPlus } from "../../../../components/icons/icons";
 import { CreateSupportRequest } from "../modal/create";
 import clouds from "../../../../assets/images/Clouds.svg";
 
@@ -17,12 +17,12 @@ export const NoContentSupport = () => {
         state={isOpenModal}
         onCloseModal={closeModalHandler}
       />
-      <div className="w-full h-full container p-4 mt-4 pb-8">
+      <div className="outlet w-full h-full container p-4 mt-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
           <div className="w-full h-full flex flex-col">
             <div className="w-full flex justify-between items-center">
               <div>
-                <h1 className="text-[18px] text-base-content font-medium">
+                <h1 className="text-[20px] text-base-content font-semibold">
                   Destek Talepleriniz
                 </h1>
                 <p className="text-xs text-base-content-40 mt-2">

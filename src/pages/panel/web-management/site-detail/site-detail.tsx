@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../../components/button";
 import { CheckBox } from "../../../../components/checkboxes/checkbox";
-import { Divider } from "../../../../components/divider";
+import { Devider } from "../../../../components/devider";
 import {
   IconArrowRight,
   IconDelete,
@@ -9,6 +9,7 @@ import {
 } from "../../../../components/icons/icons";
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
+import { Link } from "react-router-dom";
 
 const SiteDetail: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -19,7 +20,7 @@ const SiteDetail: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Web Site Yönetimi</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p>Liste</p>
+        <Link to={"/dashboard/linkPayment"}>Liste</Link>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p className="text-primary">Site Detayları</p>
       </div>
@@ -29,7 +30,7 @@ const SiteDetail: React.FC = () => {
             <div className="w-full flex justify-between items-end">
               <div>
                 <p className="text-xs text-base-content-40 mt-2">Detaylar</p>
-                <h1 className="text-[18px] text-base-content font-medium">
+                <h1 className="text-[20px] text-base-content font-semibold">
                   Raven Soft Yazılım Şirketi
                 </h1>
               </div>
@@ -57,13 +58,13 @@ const SiteDetail: React.FC = () => {
             </div>
             <hr className="my-6" />
             <div className="w-full flex-grow">
-              <Divider text="Hesap Bilgileri" />
+              <Devider text="Hesap Bilgileri" />
               <div className="flex items-center gap-6 mt-4">
                 <Input label="Hakediş Hesap IBAN Numarası" isSimple={true} />
                 <Input label="Hesap Sahibi Adı ve Soyadı" isSimple={true} />
               </div>
 
-              <Divider text="WEB Site Bilgileri" />
+              <Devider text="WEB Site Bilgileri" />
               <div className="grid grid-cols-2 gap-6 mt-4">
                 <Input
                   label="Web Site / İş Yeri / Mağaza Adı"
@@ -74,7 +75,7 @@ const SiteDetail: React.FC = () => {
                 <Input label="MCC Kodu" isSimple={true} />
               </div>
 
-              <Divider text="API Bilgileri" />
+              <Devider text="API Bilgileri" />
               <div className="grid grid-cols-2 gap-6 mt-4">
                 <Input
                   label="Web Site / İş Yeri / Mağaza Adı"
@@ -83,7 +84,7 @@ const SiteDetail: React.FC = () => {
                 <Input label="Web Site URL Adresi" isSimple={true} />
               </div>
 
-              <Divider text="Kayıt Bilgileri" />
+              <Devider text="Kayıt Bilgileri" />
               <div className="grid grid-cols-2 gap-6 mt-4">
                 <Input label="Kayıt Tarihi" isSimple={true} />
                 <Input label="Durum" isSimple={true} />
@@ -152,14 +153,14 @@ const SiteDetail: React.FC = () => {
         onCloseModal={() => setModalIsOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
-        <Divider text="Hesap Bilgileri" />
+        <Devider text="Hesap Bilgileri" />
         <div className="p-1">
           <Input label="Hakediş Hesap IBAN Numarası" />
           <Input label="Hesap Sahibi Adı Soyadı" className="mt-3" />
           <Input label="Banka Hesabı Başlığı" className="mt-3" />
         </div>
 
-        <Divider text="Web Site Bilgileri" />
+        <Devider text="Web Site Bilgileri" />
         <div className="p-1">
           <Input label="Web Site Başlığı" />
           <Input label="Web Site / İş Yeri / Mağaza Adı" className="mt-3" />
@@ -169,7 +170,7 @@ const SiteDetail: React.FC = () => {
           <Input label="Web Site IP Adresi" className="mt-3" />
         </div>
 
-        <Divider text="Diğer Bilgiler" />
+        <Devider text="Diğer Bilgiler" />
         <div className="p-1">
           <Input label="Taksit Seçeneği" />
           <Input label="E-Ticaret Altyapı Sağlayıcı" className="mt-3" />

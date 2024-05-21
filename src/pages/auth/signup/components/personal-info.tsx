@@ -16,11 +16,6 @@ export const PersonalInfo: React.FC = () => {
     rule_two: false,
     rule_three: false,
   });
-  const [rulesAccepted, setRulesAccepted] = useState({
-    rule_one: false,
-    rule_two: false,
-    rule_three: false,
-  });
 
   const registerSchema = yup.object().shape({
     name: yup.string().min(2).max(50).required(),
@@ -53,21 +48,34 @@ export const PersonalInfo: React.FC = () => {
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
     trigger,
     formState: { errors, touchedFields },
   } = useForm<SignupInput>({
-    defaultValues: { ip: "1.1.1.1", lang: "tr" },
+    defaultValues: {
+      ip: "1.1.1.1",
+      lang: "tr",
+    },
     resolver: yupResolver(registerSchema),
     mode: "all",
   });
-
-  const onSubmit: SubmitHandler<SignupInput> = (data) => {
-    console.log(data);
-  };
+  const values = getValues();
 
   useEffect(() => {
     trigger();
   }, [trigger]);
+
+  useEffect(() => {
+    values.checkbox_role_1 &&
+      values.checkbox_role_2 &&
+      values.checkbox_role_3 &&
+      trigger();
+  }, [isModalOpen]);
+
+  const onSubmit: SubmitHandler<SignupInput> = (data) => {
+    console.log(data);
+  };
 
   return (
     <>
@@ -79,7 +87,7 @@ export const PersonalInfo: React.FC = () => {
           text: TermsData.rule_1.content,
         }}
         handleRuleAccept={() => {
-          setRulesAccepted((prev) => ({ ...prev, rule_one: true }));
+          setValue("checkbox_role_1", true);
           setIsModalOpen((prev) => ({ ...prev, rule_one: false }));
         }}
         handleCloseModal={() =>
@@ -93,7 +101,7 @@ export const PersonalInfo: React.FC = () => {
           text: TermsData.rule_2.content,
         }}
         handleRuleAccept={() => {
-          setRulesAccepted((prev) => ({ ...prev, rule_two: true }));
+          setValue("checkbox_role_2", true);
           setIsModalOpen((prev) => ({ ...prev, rule_two: false }));
         }}
         handleCloseModal={() =>
@@ -107,7 +115,7 @@ export const PersonalInfo: React.FC = () => {
           text: TermsData.rule_3.content,
         }}
         handleRuleAccept={() => {
-          setRulesAccepted((prev) => ({ ...prev, rule_three: true }));
+          setValue("checkbox_role_3", true);
           setIsModalOpen((prev) => ({ ...prev, rule_three: false }));
         }}
         handleCloseModal={() =>
@@ -190,7 +198,7 @@ export const PersonalInfo: React.FC = () => {
             label="’ni okudum, anladım ve onaylıyorum."
             linkLabel="KVKK Aydınlatma Metni"
             touched={touchedFields.checkbox_role_1}
-            isChecked={rulesAccepted.rule_one}
+            isChecked={values.checkbox_role_1}
             handleClick={() =>
               setIsModalOpen(() => ({
                 rule_one: true,
@@ -207,7 +215,7 @@ export const PersonalInfo: React.FC = () => {
             label="’ni okudum, anladım ve onaylıyorum."
             linkLabel="Açık Rıza Metni"
             touched={touchedFields.checkbox_role_2}
-            isChecked={rulesAccepted.rule_two}
+            isChecked={values.checkbox_role_2}
             handleClick={() =>
               setIsModalOpen(() => ({
                 rule_one: false,
@@ -224,7 +232,7 @@ export const PersonalInfo: React.FC = () => {
             label="’ni okudum, anladım ve onaylıyorum."
             linkLabel="Trpos Kullanıcı Sözleşmesi"
             touched={touchedFields.checkbox_role_3}
-            isChecked={rulesAccepted.rule_three}
+            isChecked={values.checkbox_role_3}
             handleClick={() =>
               setIsModalOpen(() => ({
                 rule_one: false,
