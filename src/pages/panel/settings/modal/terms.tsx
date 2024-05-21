@@ -1,11 +1,11 @@
 import { Modal } from "../../../../components/modal";
 import { SettingModalsProps } from "./setting-modals.types";
-import TermsData from "../../../../data/trpos_rules.json";
 
-export const Terms: React.FC<SettingModalsProps> = ({
-  state,
-  onCloseModal,
-}) => {
+type Termsprops = SettingModalsProps & {
+  rule: { title: string; content: string };
+};
+
+export const Terms: React.FC<Termsprops> = ({ rule, state, onCloseModal }) => {
   return (
     <Modal
       title="Trpos Kullanıcı Sözleşmesi"
@@ -14,17 +14,9 @@ export const Terms: React.FC<SettingModalsProps> = ({
       onCloseModal={onCloseModal}
       small
     >
-      <div>
-        <p className="rule__title">{TermsData.rule_1.title}</p>
-        <span className="rule__text">{TermsData.rule_1.content}</span>
-      </div>
-      <div>
-        <p className="rule__title">{TermsData.rule_2.title}</p>
-        <span className="rule__text">{TermsData.rule_2.content}</span>
-      </div>
-      <div>
-        <p className="rule__title">{TermsData.rule_3.title}</p>
-        <span className="rule__text">{TermsData.rule_3.content}</span>
+      <div className="mb-4">
+        <p className="rule__title">{rule?.title}</p>
+        <span className="rule__text">{rule?.content}</span>
       </div>
     </Modal>
   );

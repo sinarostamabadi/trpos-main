@@ -18,6 +18,7 @@ import { EditPhone } from "./modal/phone";
 import { VerifyEmail } from "./modal/verifyEmail";
 import { useNavigate } from "react-router-dom";
 import { VerifyPhone } from "./modal/verifyPhone";
+import TermsData from "../../../data/trpos_rules.json";
 
 type ModalTypes =
   | "password"
@@ -31,17 +32,32 @@ type ModalTypes =
   | "terms"
   | "";
 
+type TermsDataType = {
+  title: string;
+  content: string;
+};
+
 const Settings = () => {
-  const [isModalOpen, setIsModalOpen] = useState<ModalTypes>("verifyCodeEmail");
+  const [isModalOpen, setIsModalOpen] = useState<ModalTypes>("");
+  const [rule, setRule] = useState<1 | 2 | 3>(1);
 
   const navigate = useNavigate();
 
   const closeModalHandler = () => {
     setIsModalOpen("");
   };
+  const ruleSelector = (ruleNum: number) => {
+    const rule: Record<number, TermsDataType> = {
+      1: TermsData.rule_1,
+      2: TermsData.rule_2,
+      3: TermsData.rule_3,
+    };
+    return rule[ruleNum];
+  };
 
   return (
     <>
+      {/* begin:: Modals */}
       <EditPassword
         state={isModalOpen == "password"}
         onCloseModal={closeModalHandler}
@@ -63,7 +79,11 @@ const Settings = () => {
         onCloseModal={closeModalHandler}
       />
 
-      <Terms state={isModalOpen == "terms"} onCloseModal={closeModalHandler} />
+      <Terms
+        state={isModalOpen == "terms"}
+        onCloseModal={closeModalHandler}
+        rule={ruleSelector(rule)}
+      />
       <SuccessModal
         title="İşlem Başarılı"
         subTitle="Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth. Burnt fresh bacon parmesan sauce broccoli. Pan style Aussie chicken lot green deep NY pineapple hand. Garlic olives Bianca tomato deep crust meatball deep beef platter. Bacon ranch beef pepperoni fresh tomatoes fresh."
@@ -83,6 +103,7 @@ const Settings = () => {
         }
         shouldForceSignout={isModalOpen == "successNavigateLogin"}
       />
+      {/* end:: Modals */}
 
       <div className="outlet grid lg:grid-cols-2 grid-rows-2 gap-8 m-8 grid-cols-1">
         {/* begin:: First row */}
@@ -108,7 +129,10 @@ const Settings = () => {
                 <span className="me-2 text-sm font-medium mt-3 inline-block">
                   +90 552 895 67 07
                 </span>
-                <IconPen className="mt-3 cursor-pointer text-primary" />
+                <IconPen
+                  className="mt-3 cursor-pointer text-primary"
+                  onClick={() => setIsModalOpen("phone")}
+                />
               </div>
             </div>
             <div className="border-b flex justify-between pb-5">
@@ -125,7 +149,10 @@ const Settings = () => {
                 <span className="me-2 text-sm font-medium mt-3 inline-block">
                   bestami.coban@raven.com.tr
                 </span>
-                <IconPen className="mt-3 cursor-pointer text-primary" />
+                <IconPen
+                  className="mt-3 cursor-pointer text-primary"
+                  onClick={() => setIsModalOpen("email")}
+                />
               </div>
             </div>
             <div className="border-b flex justify-between pb-5">
@@ -142,7 +169,10 @@ const Settings = () => {
                 <span className="me-2 text-sm font-medium mt-3 inline-block">
                   ********
                 </span>
-                <IconPen className="mt-3 cursor-pointer text-primary" />
+                <IconPen
+                  className="mt-3 cursor-pointer text-primary"
+                  onClick={() => setIsModalOpen("password")}
+                />
               </div>
             </div>
             <div className="flex justify-between">
@@ -349,7 +379,13 @@ const Settings = () => {
                 </div>
               </div>
 
-              <IconArrowRight className="mt-3 cursor-pointer text-primary" />
+              <IconArrowRight
+                className="mt-3 cursor-pointer text-primary"
+                onClick={() => {
+                  setRule(1);
+                  setIsModalOpen("terms");
+                }}
+              />
             </div>
             <div className="border-b flex justify-between pb-5">
               <div className="flex gap-x-2">
@@ -361,7 +397,13 @@ const Settings = () => {
                 </div>
               </div>
 
-              <IconArrowRight className="mt-3 cursor-pointer text-primary" />
+              <IconArrowRight
+                className="mt-3 cursor-pointer text-primary"
+                onClick={() => {
+                  setRule(2);
+                  setIsModalOpen("terms");
+                }}
+              />
             </div>
             <div className="flex justify-between">
               <div className="flex gap-x-2">
@@ -375,7 +417,13 @@ const Settings = () => {
                 </div>
               </div>
 
-              <IconArrowRight className="mt-3 cursor-pointer text-primary" />
+              <IconArrowRight
+                className="mt-3 cursor-pointer text-primary"
+                onClick={() => {
+                  setRule(3);
+                  setIsModalOpen("terms");
+                }}
+              />
             </div>
           </div>
         </div>
