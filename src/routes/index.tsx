@@ -19,6 +19,7 @@ const PhysicalPOS = lazy(() => import("../pages/panel/physical-POS"));
 const UserAuthorization = lazy(
   () => import("../pages/panel/user-authorization")
 );
+const Settings = lazy(() => import("../pages/panel/settings"));
 const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
 const SupportTicketDetails = lazy(
   () => import("../pages/panel/help-and-support/ticket-detail")
@@ -45,6 +46,7 @@ export const Router: React.FC = () => {
           <Route path="siteDetail/:id" element={<SiteDetail />} />
           <Route path="physicalPOS" element={<PhysicalPOS />} />
           <Route path="userAuthorization" element={<UserAuthorization />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="helpAndSupport" element={<HelpAndSupport />} />
           <Route
             path="helpAndSupport/ticketDetail/:id"

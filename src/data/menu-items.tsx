@@ -100,7 +100,7 @@ export const menuItems1: {
     },
     {
       title: "Ayarlar",
-      href: "",
+      href: "/dashboard/settings",
       iconDeactive: <IconSetting width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconSetting
@@ -163,7 +163,7 @@ export const menuItems2: {
     },
     {
       title: "Ayarlar",
-      href: "",
+      href: "/dashboard/settings",
       iconDeactive: <IconSetting width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconSetting

@@ -12,6 +12,7 @@ import {
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../components/table";
 import { Link } from "react-router-dom";
+import { NumberSelectInput } from "../../../components/number-select";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -141,22 +142,16 @@ const LinkPayment = () => {
                   />
                   Ara...
                 </Button>
-                <div className="h-[48px] relative flex justify-center items-center gap-2 border rounded-2xl pl-6 pr-10 overflow-hidden">
-                  <select
-                    className="w-full h-full text-sm text-center pr-6 absolute right-0 z-50 cursor-pointer"
-                    style={{ appearance: "none", background: "unset" }}
-                    name=""
-                    id="numberSelect"
-                  >
-                    <option value="5">5</option>
-                  </select>
-                  <IconArrowDown2
-                    width={20}
-                    height={20}
-                    viewBox="0 0 20 20"
-                    className="relative text-base-content-40 translate-x-[100%]"
-                  />
-                </div>
+
+                <NumberSelectInput
+                  placeholder="Se..."
+                  options={[
+                    { value: 5, label: "5" },
+                    { value: 6, label: "6" },
+                    { value: 7, label: "7" },
+                  ]}
+                />
+
                 <Button
                   variant="primary"
                   className="text-sm !rounded-2xl"

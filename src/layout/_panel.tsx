@@ -89,12 +89,15 @@ const PanelLayout = () => {
                   <p className="text-[15px] text-base-content">
                     {pathname.includes("/dashboard/helpAndSupport")
                       ? "Yardım ve Destek"
+                      : pathname.includes("/dashboard/settings")
+                      ? "Ayarlar"
                       : "Raven Soft"}
                   </p>
                   <div className="flex items-center gap-2">
                     <div className="w-[5px] h-[5px] bg-success rounded-full"></div>
                     <p className="text-sm text-base-content-40">
-                      {pathname.includes("/dashboard/helpAndSupport")
+                      {pathname.includes("/dashboard/helpAndSupport") ||
+                      pathname.includes("/dashboard/settings")
                         ? "Trpos"
                         : "Kurumsal"}
                     </p>

@@ -6,6 +6,7 @@ import CheckCircleLight from "../../../assets/images/CheckCircleLight.svg";
 
 export const SuccessModal: React.FC<ActionModalProps> = ({
   state,
+  title,
   subTitle,
   confirmLabel,
   onCloseModal,
@@ -15,7 +16,7 @@ export const SuccessModal: React.FC<ActionModalProps> = ({
   return (
     <Modal
       state={state}
-      title="Ön başvurunuzu aldık."
+      title={title ? title : "Ön başvurunuzu aldık."}
       subTitle={subTitle}
       icon={<img src={CheckCircleLight} width={50} />}
       onCloseModal={onCloseModal}

@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Select } from "antd";
 import { SelectProps } from "./select.types";
-import { useState } from "react";
 
 export const SelectInput = ({
   className,

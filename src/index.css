@@ -17,6 +17,10 @@ html {
   font-family: "inter";
 }
 
+.subTitle_text {
+  font-family: "Rubik"
+}
+
 .ant-menu {
   background-color: #fafafa !important;
 }

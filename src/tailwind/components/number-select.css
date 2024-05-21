@@ -1,0 +1,13 @@
+.number_select {}
+
+.number_select .ant-select-selection-placeholder {
+    @apply text-[#18181C99] text-sm -mt-0.5 !important
+}
+
+.borderless .number_select .ant-select-selection-item {
+    @apply -mt-0.5 font-semibold !important
+}
+
+.borderless .number_select .ant-select-selector{
+    @apply gap-x-2
+}
