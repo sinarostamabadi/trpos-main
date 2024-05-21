@@ -24,6 +24,9 @@ const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
 const SupportTicketDetails = lazy(
   () => import("../pages/panel/help-and-support/ticket-detail")
 );
+const LinkDetail = lazy(
+  () => import("../pages/panel/link-payment/link-detail")
+);
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -52,6 +55,7 @@ export const Router: React.FC = () => {
             path="helpAndSupport/ticketDetail/:id"
             element={<SupportTicketDetails />}
           />
+          <Route path="linkDetail/:id" element={<LinkDetail />} />
         </Route>
 
         <Route element={<Private />}></Route>

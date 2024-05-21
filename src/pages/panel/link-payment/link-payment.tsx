@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { Badge } from "../../../components/badge/badge";
 import { BadgeProps } from "../../../components/badge/badge.type";
 import { Button } from "../../../components/button";
 import {
-  IconArrowDown2,
   IconArrowRight,
   IconEyeComplete,
   IconPen,
@@ -13,6 +13,10 @@ import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../components/table";
 import { Link } from "react-router-dom";
 import { NumberSelectInput } from "../../../components/number-select";
+import { Divider } from "../../../components/divider";
+import { Input } from "../../../components/input";
+import { CheckBox } from "../../../components/checkboxes";
+import { Modal } from "../../../components/modal";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -23,11 +27,14 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
 const LinkPayment = () => {
   type DataType = {
     id: number;
-    site: string;
-    url: string;
+    product: string;
+    webSite: string;
     installment: string;
+    expiration: string;
+    moq: string;
     badge: BadgeProps["badgeColor"];
   };
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const columns: TableColumn<DataType>[] = [
     {
@@ -36,19 +43,29 @@ const LinkPayment = () => {
       grow: 1,
     },
     {
-      name: "Site / işletme / Mağaza Adı",
-      selector: (row) => row.site,
+      name: "Ürün / Hizmet Adı",
+      selector: (row) => row.product,
       grow: 4,
       style: { color: "black", fontWeight: "500" },
     },
     {
-      name: "URL",
-      selector: (row) => row.url,
+      name: "Web Site",
+      selector: (row) => row.webSite,
       grow: 2,
     },
     {
       name: "Taksit",
       selector: (row) => row.installment,
+      grow: 2,
+    },
+    {
+      name: "Link Bitiş Tarihi",
+      selector: (row) => row.expiration,
+      grow: 2,
+    },
+    {
+      name: "Ö. Adedi",
+      selector: (row) => row.moq,
       grow: 2,
     },
     {
@@ -69,7 +86,7 @@ const LinkPayment = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to="/dashboard/siteDetail/1">Görüntüle</Link>
+            <Link to="/dashboard/linkDetail/1">Görüntüle</Link>
           </Button>
           <Button isLink={true} className="hover:no-underline !text-orange">
             <IconPen
@@ -89,23 +106,29 @@ const LinkPayment = () => {
   const data: DataType[] = [
     {
       id: 1,
-      site: "Raven Soft",
-      url: "raven.com.tr",
+      product: "Arçelik Televizyon QHD",
+      webSite: "arçelik.com",
       installment: "Peşin",
+      expiration: "01.02.2024",
+      moq: "10",
       badge: "primary",
     },
     {
       id: 2,
-      site: "Trpos Ödeme Şirketi",
-      url: "trpos.com",
+      product: "Arçelik Televizyon QHD",
+      webSite: "arçelik.com",
       installment: "3 Taksit",
+      expiration: "01.02.2024",
+      moq: "16",
       badge: "success",
     },
     {
       id: 3,
-      site: "Migros",
-      url: "migros.com",
+      product: "Vestel Klima",
+      webSite: "arçelik.com",
       installment: "6 Taksit",
+      expiration: "16.06.2024",
+      moq: "90",
       badge: "error",
     },
   ];
@@ -122,7 +145,7 @@ const LinkPayment = () => {
           <div className="w-full h-full flex flex-col">
             <div className="w-full flex justify-between items-center">
               <div>
-                <h1 className="text-[20px] text-base-content font-semibold">
+                <h1 className="text-[18px] text-base-content font-rubik font-medium">
                   Linkleriniz
                 </h1>
                 <p className="text-xs text-base-content-40 mt-2">
@@ -155,6 +178,7 @@ const LinkPayment = () => {
                 <Button
                   variant="primary"
                   className="text-sm !rounded-2xl"
+                  onClick={() => setModalIsOpen(true)}
                   isInTop
                 >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
@@ -168,6 +192,49 @@ const LinkPayment = () => {
           </div>
         </div>
       </div>
+      <Modal
+        state={modalIsOpen}
+        title="Yeni Ödeme Linki Ekle"
+        small={true}
+        onCloseModal={() => setModalIsOpen(false)}
+        subTitle="Lütfen formu doldurunuz."
+      >
+        <Divider text="Genel Bilgiler" />
+        <div className="p-1">
+          <Input label="Web Site" />
+          <Input label="Ürün Hizmet Adı" className="mt-3" />
+          <Input label="Ürün Açıklaması" className="mt-3" />
+        </div>
+
+        <Divider text="Fiyatlar" />
+        <div className="p-1">
+          <Input label="Ürün Peşin Fiyatı" />
+          <Input label="Taksit Seçeneği" className="mt-3" />
+        </div>
+
+        <Divider text="Daha Fazla Detay" />
+        <div className="p-1">
+          <Input label="Link Bitiş Tarihi" type="date" />
+          <Input label="Ödeme Adedi" className="mt-3" />
+          <Input label="Referans URL Adresi" className="mt-3" />
+        </div>
+
+        <CheckBox
+          id="checkbox"
+          isChecked={false}
+          label="Bilgilerin doğruluğunu onaylıyorum."
+          className="mt-4 !text-sm !font-normal"
+        />
+
+        <Button
+          variant="primary"
+          shape="full"
+          size="medium"
+          className="mt-6 !text-base !font-medium"
+        >
+          Onaya Gönder
+        </Button>
+      </Modal>
     </>
   );
 };

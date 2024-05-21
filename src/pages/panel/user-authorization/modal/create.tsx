@@ -1,5 +1,5 @@
 import { Button } from "../../../../components/button";
-import { Devider } from "../../../../components/divider";
+import { Divider } from "../../../../components/divider";
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
 import { SelectInput } from "../../../../components/select";
@@ -18,7 +18,7 @@ export const CreateUserAuthentication: React.FC<ModalProps> = ({
       small
     >
       <form className="flex flex-col gap-3 pe-2">
-        <Devider text="Genel Bilgiler" />
+        <Divider text="Genel Bilgiler" />
         <Input label="Adı - Soyadı" />
         <Input label="Telefonu" />
         <Input label="E-Posta Adresi" />

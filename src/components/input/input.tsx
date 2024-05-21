@@ -35,7 +35,7 @@ export const Input: React.FC<InputType> = ({
   };
   if (isSimple) {
     return (
-      <div className="w-full flex flex-col gap-2">
+      <div className={`w-full flex flex-col gap-2 ${className}`}>
         <label className="text-sm text-base-content-40" htmlFor={label}>
           {label}
         </label>

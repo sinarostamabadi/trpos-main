@@ -11,7 +11,7 @@ export const NumberSelectInput = ({
 NumberSelectProps) => {
   return (
     <div
-      className={`h-[48px] w-20 rounded-2xl pr-2 pl-4 pt-2.5 ${
+      className={`h-[58px] w-20 rounded-2xl pr-2 pl-4 pt-2.5 ${
         isBorderless ? "borderless" : "border"
       }`}
     >

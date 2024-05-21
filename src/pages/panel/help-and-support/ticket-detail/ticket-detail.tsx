@@ -35,8 +35,8 @@ const TicketDetails = () => {
 
         <Messenger messageList={messages} />
       </div>
-      <div className="flex justify-between rounded-full mt-5 bg-actual-white h-14 p-1">
-        <div className="flex mt-3 ml-5">
+      <div className="flex justify-between rounded-full mt-5 bg-actual-white h-16 p-1">
+        <div className="flex mt-4 ml-5">
           <IconImage width={50} className="cursor-pointer" />
           <span className="after:border-r-2 after:h-10 ml-5"></span>
           <input

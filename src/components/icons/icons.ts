@@ -4,6 +4,7 @@ export { default as IconArrowDown } from './src/ArrowDown';
 export { default as IconArrowDown2 } from './src/ArrowDown2';
 export { default as IconArrowLeft } from './src/ArrowLeft';
 export { default as IconArrowRight } from './src/ArrowRight';
+export { default as IconArrowUpRight } from './src/ArrowUpRight';
 export { default as IconBag } from './src/Bag';
 export { default as IconBank } from './src/Bank';
 export { default as IconBankCard } from './src/BankCard';

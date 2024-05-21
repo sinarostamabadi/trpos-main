@@ -10,9 +10,29 @@ export const SelectInput = ({
   error,
   touched,
   size = "middle",
+  isSimple=false,
+  label,
 }: SelectProps) => {
   const [value, setValue] = useState<string | number | undefined>(undefined);
 
+  if(isSimple) {
+    return (
+      <div className={`w-full flex flex-col gap-2 ${className}`}>
+        <label className="text-sm text-base-content-40" htmlFor={label}>
+          {label}
+        </label>
+        <Select
+        options={options}
+        onSelect={(value) => setValue(value)}
+        size={size}
+        className="h-full border !outline-none !rounded-2.5xl"
+        variant="borderless"
+        listHeight={150}
+        {...register}
+      />
+      </div>
+    )
+  }
   return (
     <div
       className={`select_field ${value ? "value_selected" : ""} ${

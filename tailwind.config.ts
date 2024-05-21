@@ -76,8 +76,9 @@ export const tailwindColors: colorObject = {
   "gradient-second": "#0fa2e9",
   "main-purple": "#9900EF",
   "base-gray": "#FAFAFA",
-  "base-blue": "#3B82F6",
-  orange: "#FF6600",
+  "base-blue":"#3B82F6",
+  "orange":"#FF6600",
+  "dark-green":"#00636D",
 };
 
 export const config: Config = {
@@ -90,6 +91,9 @@ export const config: Config = {
       },
       fontSize:{
         "xs":"12px"
+      },
+      fontFamily:{
+        rubik:"Rubik"
       }
     },
     container: {
