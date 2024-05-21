@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Button } from "../../button";
 import { Modal } from "../../modal";
 import { ActionModalProps } from "../action-modal.types";
@@ -9,10 +8,10 @@ export const SuccessModal: React.FC<ActionModalProps> = ({
   title,
   subTitle,
   confirmLabel,
+  shouldForceSignout,
   onCloseModal,
+  onSubmit,
 }) => {
-  const navigate = useNavigate();
-
   return (
     <Modal
       state={state}
@@ -20,16 +19,12 @@ export const SuccessModal: React.FC<ActionModalProps> = ({
       subTitle={subTitle}
       icon={<img src={CheckCircleLight} width={50} />}
       onCloseModal={onCloseModal}
-      isDeleteModal
+      shouldForceSignout={shouldForceSignout}
+      isActionModal
       small
     >
       <div className="flex gap-x-6 mt-3">
-        <Button
-          variant="primary"
-          shape="full"
-          isOutline
-          onClick={() => navigate("/dashboard")}
-        >
+        <Button variant="primary" shape="full" isOutline onClick={onSubmit}>
           {confirmLabel}
         </Button>
       </div>

@@ -7,5 +7,6 @@ export type ModalProps = BaseModalProps & {
   small?: boolean;
   subTitle?: string;
   icon?: ReactNode;
-  isDeleteModal?: boolean;
+  isActionModal?: boolean;
+  shouldForceSignout?: boolean;
 };

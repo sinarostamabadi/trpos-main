@@ -4,4 +4,6 @@ export type ActionModalProps = BaseModalProps & {
   title?: string;
   subTitle?: string;
   confirmLabel: string;
+  shouldForceSignout?: boolean;
+  onSubmit?: () => void;
 };

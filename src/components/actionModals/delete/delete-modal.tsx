@@ -16,7 +16,7 @@ export const DeleteModal: React.FC<ActionModalProps> = ({
       subTitle={subTitle}
       icon={<img src={DeleteIcon} width={50} />}
       onCloseModal={onCloseModal}
-      isDeleteModal
+      isActionModal
       small
     >
       <div className="flex gap-x-6 mt-3">

@@ -1,5 +1,5 @@
 .btn {
-  @apply no-underline inline-flex gap-2 h-12 px-7 border cursor-pointer select-none items-center justify-center border-transparent;
+  @apply no-underline inline-flex gap-2 h-14 px-7 border cursor-pointer select-none items-center justify-center border-transparent;
 
   @apply border-base-200 bg-base-200 text-base-content outline-base-content transition-all duration-100 ease-in-out rounded-2.5xl;
 
