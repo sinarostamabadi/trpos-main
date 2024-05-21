@@ -90,6 +90,9 @@ export const config: Config = {
       },
       fontSize:{
         "xs":"12px"
+      },
+      fontFamily:{
+        rubik:"Rubik"
       }
     },
     container: {

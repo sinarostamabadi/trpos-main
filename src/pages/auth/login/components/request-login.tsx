@@ -39,6 +39,7 @@ export const RequestLogin: React.FC = () => {
     handleSubmit,
     formState: { errors, touchedFields },
     trigger,
+    getFieldState
   } = useForm<LoginInputs>({
     defaultValues: {
       phoneOrEmail: "",
@@ -51,7 +52,7 @@ export const RequestLogin: React.FC = () => {
       version: "",
     },
     resolver: yupResolver(loginSchema),
-    mode: "all",
+    mode:"onChange"
   });
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
