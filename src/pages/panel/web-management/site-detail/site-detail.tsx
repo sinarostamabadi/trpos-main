@@ -4,15 +4,59 @@ import { CheckBox } from "../../../../components/checkboxes/checkbox";
 import { Devider } from "../../../../components/devider";
 import {
   IconArrowRight,
+  IconArrowUpRight,
   IconDelete,
   IconPen,
 } from "../../../../components/icons/icons";
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
 import { Link } from "react-router-dom";
+import akbank from "../../../../assets/images/Akbank_logo logo.png";
+import qnt from "../../../../assets/images/Finansbank_Logo logo.png";
+import garanti from "../../../../assets/images/Garanti_BBVA_Logo logo.png";
+import group from "../../../../assets/images/Group.png";
+import maxumim from "../../../../assets/images/maximum.png";
+import world from "../../../../assets/images/world.png";
+import { InstallmentRow } from "../../../../components/installment-row/installment-row";
 
 const SiteDetail: React.FC = () => {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [modalsData , setModalsData]=useState<{
+    type:"edit" | "delete" | "banks" | "card" | "installment"
+    data:any
+  }>({
+    type:"edit",
+    data:""
+  })
+  const [modalIsOpen , setModalIsOpen]=useState<boolean>(false);
+
+  function handleOpenModal(data:typeof modalsData) {
+    setModalsData(data);
+    setModalIsOpen(true);
+  }
+
+  const modalsTitleAndSubTitle : Record<NonNullable<typeof modalsData["type"]> , {title:string , subTitle:string}> = {
+    edit:{
+      title:"Düzenle",
+      subTitle:"Lütfen formu doldurunuz."
+    },
+    delete:{
+      title:"Silmek istediğinden emin misin?",
+      subTitle:"Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+    },
+    banks:{
+      title:"Banka Listesi",
+      subTitle:"Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+    },
+    card:{
+      title:"Tanımlı Kart Listesi",
+      subTitle:"Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+    },
+    installment:{
+      title:"Taksit / Komisyon Oranları",
+      subTitle:"Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+    }
+  }
+
   return (
     <>
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
@@ -36,7 +80,7 @@ const SiteDetail: React.FC = () => {
               </div>
               <div className="flex items-center gap-4">
                 <Button
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => handleOpenModal({type:"edit" , data:""})}
                   variant="primary"
                   isLight={true}
                   className="!text-primary"
@@ -103,6 +147,7 @@ const SiteDetail: React.FC = () => {
             mozzarella tomatoes thin bell lot ipsum pan roll buffalo.
           </p>
           <Button
+            onClick={() => handleOpenModal({type:"banks" , data:""})}
             variant="primary"
             isLight={true}
             className="!text-primary mt-6"
@@ -120,6 +165,7 @@ const SiteDetail: React.FC = () => {
             mozzarella tomatoes thin bell lot ipsum pan roll buffalo.
           </p>
           <Button
+            onClick={() => handleOpenModal({type:"card" , data:""})}
             variant="primary"
             isLight={true}
             className="!text-primary mt-6"
@@ -137,6 +183,7 @@ const SiteDetail: React.FC = () => {
             mozzarella tomatoes thin bell lot ipsum pan roll buffalo.
           </p>
           <Button
+            onClick={() => handleOpenModal({type:"installment" , data:""})}
             variant="primary"
             isLight={true}
             className="!text-primary mt-6"
@@ -148,49 +195,119 @@ const SiteDetail: React.FC = () => {
       </div>
       <Modal
         state={modalIsOpen}
-        title="Düzenle"
+        title={modalsTitleAndSubTitle[modalsData.type!].title}
         small={true}
         onCloseModal={() => setModalIsOpen(false)}
-        subTitle="Lütfen formu doldurunuz."
+        subTitle={modalsTitleAndSubTitle[modalsData.type!].subTitle}
       >
-        <Devider text="Hesap Bilgileri" />
-        <div className="p-1">
-          <Input label="Hakediş Hesap IBAN Numarası" />
-          <Input label="Hesap Sahibi Adı Soyadı" className="mt-3" />
-          <Input label="Banka Hesabı Başlığı" className="mt-3" />
+        {modalsData.type==="edit" && 
+        <>
+          <Devider text="Hesap Bilgileri" />
+          <div className="p-1">
+            <Input label="Hakediş Hesap IBAN Numarası" />
+            <Input label="Hesap Sahibi Adı Soyadı" className="mt-3" />
+            <Input label="Banka Hesabı Başlığı" className="mt-3" />
+          </div>
+
+          <Devider text="Web Site Bilgileri" />
+          <div className="p-1">
+            <Input label="Web Site Başlığı" />
+            <Input label="Web Site / İş Yeri / Mağaza Adı" className="mt-3" />
+            <Input label="Web Site URL Adresi" className="mt-3" />
+            <Input label="Başarılı İşlem Yönelnedirme Adresi" className="mt-3" />
+            <Input label="Hatalı İşlem Yönlendirme Adresi" className="mt-3" />
+            <Input label="Web Site IP Adresi" className="mt-3" />
+          </div>
+
+          <Devider text="Diğer Bilgiler" />
+          <div className="p-1">
+            <Input label="Taksit Seçeneği" />
+            <Input label="E-Ticaret Altyapı Sağlayıcı" className="mt-3" />
+          </div>
+
+          <CheckBox
+            id="checkbox"
+            isChecked={false}
+            label="Bilgilerin doğruluğunu onaylıyorum."
+            className="mt-4 !text-sm !font-normal"
+          />
+
+          <Button
+            variant="primary"
+            shape="full"
+            size="medium"
+            className="mt-6 !text-base !font-medium"
+          >
+            Onaya Gönder
+          </Button>
+        </>
+        }
+        {modalsData.type==="banks" && 
+        <>
+        <div className="p-1 border-t">
+          <div className="text-sm flex items-center my-6">
+            <span className="text-base-content-60">Site : </span>
+            <span className="font-medium underline">Kahraman Beyaz Eşya</span>
+            <span>
+              <IconArrowUpRight width={18} height={18} viewBox="0 0 18 18" />
+            </span>
+          </div>
+          <div>
+            <div className="w-full h-[104px] flex justify-center items-center border border-base-content-20 rounded-2.5xl">
+              <img src={akbank} alt="" />
+            </div>
+            <div className="w-full h-[104px] flex justify-center items-center border border-base-content-20 rounded-2.5xl mt-4">
+              <img src={qnt} alt="" />
+            </div>
+            <div className="w-full h-[104px] flex justify-center items-center border border-base-content-20 rounded-2.5xl mt-4">
+              <img src={garanti} alt="" />
+            </div>
+          </div>
         </div>
-
-        <Devider text="Web Site Bilgileri" />
-        <div className="p-1">
-          <Input label="Web Site Başlığı" />
-          <Input label="Web Site / İş Yeri / Mağaza Adı" className="mt-3" />
-          <Input label="Web Site URL Adresi" className="mt-3" />
-          <Input label="Başarılı İşlem Yönelnedirme Adresi" className="mt-3" />
-          <Input label="Hatalı İşlem Yönlendirme Adresi" className="mt-3" />
-          <Input label="Web Site IP Adresi" className="mt-3" />
+        </>
+        }
+        {modalsData.type==="card" && 
+        <>
+        <div className="p-1 border-t">
+          <div className="text-sm flex items-center my-6">
+            <span className="text-base-content-60">Site : </span>
+            <span className="font-medium underline">Kahraman Beyaz Eşya</span>
+            <span>
+              <IconArrowUpRight width={18} height={18} viewBox="0 0 18 18" />
+            </span>
+          </div>
+          <div>
+            <div className="w-full h-[104px] flex justify-center items-center border border-base-content-20 rounded-2.5xl">
+              <img src={group} alt="" />
+            </div>
+            <div className="w-full h-[104px] flex justify-center items-center border border-base-content-20 rounded-2.5xl mt-4">
+              <img src={maxumim} alt="" />
+            </div>
+            <div className="w-full h-[104px] flex justify-center items-center border border-base-content-20 rounded-2.5xl mt-4">
+              <img src={world} alt="" />
+            </div>
+          </div>
         </div>
+        </>
+        }
+        {modalsData.type==="installment" && 
+        <>
+        <div className="p-1 border-t">
+          <Devider text="Peşin Ödemeler" />
+          <InstallmentRow title="Kredi Kartı" data="%1" />
+          <InstallmentRow title="Debit (Banka) Kartı" data="%2 + 10 TL" />
+          <InstallmentRow title="Yurt Dışı Kartı" data="%3" />
 
-        <Devider text="Diğer Bilgiler" />
-        <div className="p-1">
-          <Input label="Taksit Seçeneği" />
-          <Input label="E-Ticaret Altyapı Sağlayıcı" className="mt-3" />
+          <Devider text="Taksitli Ödemeler" className="!mt-10" />
+          <InstallmentRow title="2 Taksit" data="%2 + 10 TL" />
+          <InstallmentRow title="3 Taksit" data="%3" />
+          <InstallmentRow title="4 Taksit" data="%6" />
+          <InstallmentRow title="6 Taksit" data="%10 + 50 TL" />
+          <InstallmentRow title="9 Taksit" data="%10 + 50 TL" />
+          <InstallmentRow title="12 Taksit" data="%10 + 50 TL" isLast={true} />
         </div>
-
-        <CheckBox
-          id="checkbox"
-          isChecked={false}
-          label="Bilgilerin doğruluğunu onaylıyorum."
-          className="mt-4 !text-sm !font-normal"
-        />
-
-        <Button
-          variant="primary"
-          shape="full"
-          size="medium"
-          className="mt-6 !text-base !font-medium"
-        >
-          Onaya Gönder
-        </Button>
+        </>
+        }
       </Modal>
     </>
   );

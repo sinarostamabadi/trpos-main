@@ -2,7 +2,6 @@ import { Badge } from "../../../components/badge/badge";
 import { BadgeProps } from "../../../components/badge/badge.type";
 import { Button } from "../../../components/button";
 import {
-  IconArrowDown,
   IconArrowDown2,
   IconArrowRight,
   IconEyeComplete,
@@ -10,11 +9,9 @@ import {
   IconPlus,
   IconSearch,
 } from "../../../components/icons/icons";
-import { SelectInput } from "../../../components/select";
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../components/table";
 import { Link } from "react-router-dom";
-import { Select } from "antd";
 import { useState } from "react";
 import { Devider } from "../../../components/devider";
 import { Input } from "../../../components/input";
@@ -89,7 +86,7 @@ const LinkPayment = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to="/dashboard/siteDetail/1">Görüntüle</Link>
+            <Link to="/dashboard/linkDetail/1">Görüntüle</Link>
           </Button>
           <Button isLink={true} className="hover:no-underline !text-orange">
             <IconPen

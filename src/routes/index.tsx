@@ -16,6 +16,7 @@ const SiteDetail = lazy(() => import("../pages/panel/web-management/site-detail"
 const PhysicalPOS = lazy(() => import('../pages/panel/physical-POS'))
 const UserAuthorization = lazy(()=>import("../pages/panel/user-authorization"))
 const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
+const LinkDetail = lazy(() => import("../pages/panel/link-payment/link-detail"));
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -39,6 +40,7 @@ export const Router: React.FC = () => {
           <Route path="physicalPOS" element={<PhysicalPOS />} />
           <Route path="userAuthorization" element={<UserAuthorization />} />
           <Route path="helpAndSupport" element={<HelpAndSupport />} />
+          <Route path="linkDetail/:id" element={<LinkDetail />} />
         </Route>
 
         <Route element={<Private />}></Route>
