@@ -1,10 +1,14 @@
 import {
+  IconArrowRight,
   IconEmail,
+  IconMessages,
   IconPasswordReload,
   IconPen,
   IconPhone,
+  IconVoicemail,
 } from "../../../components/icons/icons";
 import { NumberSelectInput } from "../../../components/number-select";
+import { Toggle } from "../../../components/toggle";
 
 const Settings = () => {
   return (
@@ -69,7 +73,7 @@ const Settings = () => {
               <IconPen className="mt-3 cursor-pointer text-primary" />
             </div>
           </div>
-          <div className="flex justify-between pb-5">
+          <div className="flex justify-between">
             <div className="flex gap-x-2">
               <IconPasswordReload width={20} className="mt-1" />
               <div className="flex flex-col">
@@ -172,7 +176,7 @@ const Settings = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-between pb-5">
+          <div className="flex justify-between">
             <div className="flex gap-x-2">
               <div className="flex flex-col">
                 <span className="text-sm font-medium">
@@ -200,8 +204,109 @@ const Settings = () => {
       {/* end:: First row */}
 
       {/* begin:: Second row */}
-      <div className="bg-actual-white rounded-2xl p-8">div 3</div>
-      <div className="bg-actual-white rounded-2xl p-8">div 4</div>
+      <div className="bg-actual-white rounded-2xl p-8 h-fit">
+        <p className="flex flex-col">
+          <span className="font-bold">İletişim İzinleri</span>
+          <span className="subTitle_text text-sm text-base-content mt-2 font-normal">
+            Bu ayarları <span className="text-primary font-medium">AÇIK</span>{" "}
+            duruma getirerek{" "}
+            <span className="text-success hover:text-green-400 duration-300 font-medium underline-offset-4 underline cursor-pointer">
+              Ticari Tanıtım İleti İzni’ni
+            </span>{" "}
+            onaylamaktasınız.
+          </span>
+        </p>
+        <div className="flex flex-col gap-y-5 mt-8">
+          <div className="border-b flex justify-between pb-5">
+            <div className="flex gap-x-2">
+              <IconMessages width={20} />
+              <span className="text-sm font-medium mt-1">SMS Mesajları</span>
+            </div>
+
+            <Toggle isChecked={true} />
+          </div>
+          <div className="border-b flex justify-between pb-5">
+            <div className="flex gap-x-2">
+              <IconEmail width={20} />
+              <span className="text-sm font-medium mt-1">
+                E-Posta Bültenleri
+              </span>
+            </div>
+
+            <Toggle isChecked={true} />
+          </div>
+          <div className="border-b flex justify-between pb-5">
+            <div className="flex gap-x-2">
+              <IconPhone width={20} />
+              <span className="text-sm font-medium mt-1">
+                Telefon Çağrıları
+              </span>
+            </div>
+
+            <Toggle isChecked={true} />
+          </div>
+          <div className="flex justify-between">
+            <div className="flex gap-x-2">
+              <IconVoicemail width={22} />
+              <span className="text-sm font-medium mt-1">
+                Sesli Yanıt Sistemi
+              </span>
+            </div>
+
+            <Toggle isChecked={false} />
+          </div>
+        </div>
+      </div>
+      <div className="bg-actual-white rounded-2xl p-8 h-fit">
+        <p className="flex flex-col">
+          <span className="font-bold">Onayladığınız Sözleşmeler</span>
+          <span className="subTitle_text text-sm text-base-content-40 mt-2 font-light">
+            Bilgilerinizin güncel olduğundan emin olun.
+          </span>
+        </p>
+        <div className="flex flex-col gap-y-5 mt-8">
+          <div className="border-b flex justify-between pb-5">
+            <div className="flex gap-x-2">
+              <div className="flex flex-col">
+                <span className="text-sm font-medium">
+                  KVKK Aydınlatma Metni
+                </span>
+                <span className="subTitle_text text-xs font-light text-base-content-40">
+                  V1.2 - 12.03.2024
+                </span>
+              </div>
+            </div>
+
+            <IconArrowRight className="mt-3 cursor-pointer text-primary" />
+          </div>
+          <div className="border-b flex justify-between pb-5">
+            <div className="flex gap-x-2">
+              <div className="flex flex-col">
+                <span className="text-sm font-medium">Açık Rıza Metni</span>
+                <span className="subTitle_text text-xs font-light text-base-content-40">
+                  V1.2 - 12.03.2024
+                </span>
+              </div>
+            </div>
+
+            <IconArrowRight className="mt-3 cursor-pointer text-primary" />
+          </div>
+          <div className="flex justify-between">
+            <div className="flex gap-x-2">
+              <div className="flex flex-col">
+                <span className="text-sm font-medium">
+                  Trpos Kullanıcı Sözleşmesi
+                </span>
+                <span className="subTitle_text text-xs font-light text-base-content-40">
+                  V1.2 - 12.03.2024
+                </span>
+              </div>
+            </div>
+
+            <IconArrowRight className="mt-3 cursor-pointer text-primary" />
+          </div>
+        </div>
+      </div>
       {/* end:: Second row */}
     </div>
   );
