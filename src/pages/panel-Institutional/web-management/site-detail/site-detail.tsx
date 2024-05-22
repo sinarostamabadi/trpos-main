@@ -59,13 +59,14 @@ const SiteDetail: React.FC = () => {
         "Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth.",
     },
     delete: {
-      title:"Siteyi Sil",
-      subTitle:"Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+      title: "Siteyi Sil",
+      subTitle:
+        "Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth.",
     },
     else: {
-      title:"",
-      subTitle:""
-    }
+      title: "",
+      subTitle: "",
+    },
   };
 
   return (
@@ -75,7 +76,7 @@ const SiteDetail: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Web Site Yönetimi</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <Link to={"/dashboard/linkPayment"}>Liste</Link>
+        <Link to={"/dashboard/Institutional/webManagement"}>Liste</Link>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p className="text-primary">Site Detayları</p>
       </div>

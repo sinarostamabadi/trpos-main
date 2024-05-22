@@ -18,7 +18,7 @@ import user from "../assets/images/user.png";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const PanelLayout = () => {
-  const [menuNumber, setMenuNumber] = useState<0 | 1 | 2>(1);
+  const [menuNumber, setMenuNumber] = useState<0 | 1 | 2>(0);
   const [isToggled, setIsToggled] = useState(true);
 
   const { pathname } = useLocation();
@@ -81,7 +81,8 @@ const PanelLayout = () => {
             </div>
           </div>
         )}
-        <div className="w-full mt-10">
+
+        <div className="w-full mt-10 h-screen no_scroll overflow-y-auto scroll-m-0">
           {menuNumber == 0 ? (
             <div className="ml-1">
               <MenuItem
@@ -126,6 +127,8 @@ const PanelLayout = () => {
           <Menu isToggled={isToggled} menuNumber={menuNumber} />
         </div>
       </div>
+
+
       <div>
         <div className="w-full h-full grid grid-rows-[100px_auto_1fr]">
           <div className="w-full flex items-center border-b-2 border-actual-white">

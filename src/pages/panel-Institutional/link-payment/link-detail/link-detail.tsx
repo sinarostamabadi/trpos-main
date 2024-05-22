@@ -21,7 +21,7 @@ const LinkDetail: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Web Site Yönetimi</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <Link to={"/dashboard/linkPayment"}>Liste</Link>
+        <Link to={"/dashboard/Institutional/linkPayment"}>Liste</Link>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p className="text-primary">Site Detayları</p>
       </div>

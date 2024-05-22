@@ -12,12 +12,12 @@ import { Input } from "../../../components/input";
 import { SelectInput } from "../../../components/select";
 import { CheckBox } from "../../../components/checkboxes";
 import { FileUploader } from "../../../components/uploader";
-import clouds from "../../../assets/images/Clouds.svg";
 import { Table } from "../../../components/table";
 import { TableColumn } from "react-data-table-component";
 import { BadgeProps } from "../../../components/badge/badge.type";
 import { Badge } from "../../../components/badge";
 import { Link } from "react-router-dom";
+import clouds from "../../../assets/images/Clouds.svg";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -125,7 +125,7 @@ const WebManagement: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Web Site Yönetimi</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-primary">Liste</p>
+        <p className="text-primary" >Liste</p>
       </div>
       <div className="outlet w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">

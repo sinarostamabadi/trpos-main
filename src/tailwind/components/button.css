@@ -69,7 +69,7 @@
 
     @media (hover: hover) {
       &:hover {
-        @apply bg-success border-success;
+        @apply bg-success/90 border-success/90;
       }
     }
   }

@@ -7,4 +7,5 @@
 @import "./components/badge.css";
 @import './components/textarea.css';
 @import './components/number-select.css';
-@import './components/toggle.css'
+@import './components/toggle.css';
+@import './components/stepper.css'
