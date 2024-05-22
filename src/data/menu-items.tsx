@@ -15,7 +15,7 @@ export const menuItems1: {
   "SANAL POS": [
     {
       title: "Web Site Yönetimi",
-      href: "/dashboard/webManagement",
+      href: "/dashboard/Institutional/webManagement",
       iconDeactive: <IconWebPage width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconWebPage
@@ -28,7 +28,7 @@ export const menuItems1: {
     },
     {
       title: "Ödeme Linkleri",
-      href: "/dashboard/linkPayment",
+      href: "/dashboard/Institutional/linkPayment",
       iconDeactive: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconLink
@@ -57,7 +57,7 @@ export const menuItems1: {
     },
     {
       title: "Kullanıcı Yetkilendirme",
-      href: "/dashboard/userAuthorization",
+      href: "/dashboard/Institutional/userAuthorization",
       iconDeactive: <IconUser width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconUser
@@ -72,7 +72,7 @@ export const menuItems1: {
   "FİZİKİ POS": [
     {
       title: "Fiziki POS",
-      href: "/dashboard/physicalPOS",
+      href: "/dashboard/Institutional/physicalPOS",
       iconDeactive: <IconBankCard width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconBankCard
@@ -120,7 +120,7 @@ export const menuItems2: {
   İŞLEMLER: [
     {
       title: "Ödeme Linkleri",
-      href: "",
+      href: "/dashboard/personal/linkPayment",
       iconDeactive: <IconLink width={24} height={24} viewBox="0 0 24 24" />,
       iconActive: (
         <IconLink
