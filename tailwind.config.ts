@@ -39,9 +39,9 @@ export const tailwindColors: colorObject = {
   primary: "#00636D",
   "primary-content": "#FFFFFF",
   "primary-focus": generateDarkenColorFrom("#00636D"),
-  secondary: "#6c5ce7",
+  secondary: "#FF6600",
   "secondary-content": "#FFFFFF",
-  "secondary-focus": generateDarkenColorFrom("#6c5ce7"),
+  "secondary-focus": generateDarkenColorFrom("#FF6600"),
   purple: "#9900EF",
   "purple-focus": generateDarkenColorFrom("#9900EF"),
   accent: "#1FB2A5",
@@ -79,6 +79,7 @@ export const tailwindColors: colorObject = {
   "base-blue":"#3B82F6",
   "orange":"#FF6600",
   "dark-green":"#00636D",
+  "blue":"#3B82F6"
 };
 
 export const config: Config = {

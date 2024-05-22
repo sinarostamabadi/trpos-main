@@ -21,6 +21,7 @@ export { default as IconEmail } from './src/Email';
 export { default as IconEye } from './src/Eye';
 export { default as IconEyeComplete } from './src/EyeComplete';
 export { default as IconFileUpload } from './src/FileUpload';
+export { default as IconFilter } from './src/Filter';
 export { default as IconHide } from './src/Hide';
 export { default as IconImage } from './src/Image';
 export { default as IconKey } from './src/Key';
