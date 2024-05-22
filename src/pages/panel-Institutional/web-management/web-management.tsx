@@ -77,7 +77,7 @@ const WebManagement: React.FC = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to="/dashboard/siteDetail/1">Görüntüle</Link>
+            <Link to="/dashboard/Institutional/siteDetail/1">Görüntüle</Link>
           </Button>
           <Button isLink={true} className="hover:no-underline !text-orange">
             <IconPen

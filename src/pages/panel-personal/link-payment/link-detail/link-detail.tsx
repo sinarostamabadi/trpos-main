@@ -60,8 +60,7 @@ const LinkDetail: React.FC = () => {
             <hr className="my-6" />
             <div className="w-full flex-grow">
               <Divider text="Genel Bilgiler" />
-              <div className="grid grid-cols-3 gap-6 mt-4">
-                <SelectInput label="Web Site" isSimple={true} />
+              <div className="grid grid-cols-2 gap-6 mt-4">
                 <Input label="Ürün Hizmet Adı" isSimple={true} />
                 <Input label="Ürün Linki" isSimple={true} />
                 <Input
@@ -105,7 +104,6 @@ const LinkDetail: React.FC = () => {
       >
         <Divider text="Genel Bilgiler" />
         <div className="p-1">
-          <Input label="Web Site" />
           <Input label="Ürün Hizmet Adı" className="mt-3" />
           <Input label="Ürün Açıklaması" className="mt-3" />
         </div>

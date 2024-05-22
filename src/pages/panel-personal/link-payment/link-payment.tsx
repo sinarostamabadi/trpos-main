@@ -28,7 +28,6 @@ const LinkPayment = () => {
   type DataType = {
     id: number;
     product: string;
-    webSite: string;
     installment: string;
     expiration: string;
     moq: string;
@@ -47,11 +46,6 @@ const LinkPayment = () => {
       selector: (row) => row.product,
       grow: 4,
       style: { color: "black", fontWeight: "500" },
-    },
-    {
-      name: "Web Site",
-      selector: (row) => row.webSite,
-      grow: 2,
     },
     {
       name: "Taksit",
@@ -86,7 +80,7 @@ const LinkPayment = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to="/dashboard/linkDetail/1">Görüntüle</Link>
+            <Link to="/dashboard/personal/linkDetail/1">Görüntüle</Link>
           </Button>
           <Button isLink={true} className="hover:no-underline !text-orange">
             <IconPen
@@ -107,7 +101,6 @@ const LinkPayment = () => {
     {
       id: 1,
       product: "Arçelik Televizyon QHD",
-      webSite: "arçelik.com",
       installment: "Peşin",
       expiration: "01.02.2024",
       moq: "10",
@@ -116,7 +109,6 @@ const LinkPayment = () => {
     {
       id: 2,
       product: "Arçelik Televizyon QHD",
-      webSite: "arçelik.com",
       installment: "3 Taksit",
       expiration: "01.02.2024",
       moq: "16",
@@ -125,7 +117,6 @@ const LinkPayment = () => {
     {
       id: 3,
       product: "Vestel Klima",
-      webSite: "arçelik.com",
       installment: "6 Taksit",
       expiration: "16.06.2024",
       moq: "90",
@@ -201,8 +192,7 @@ const LinkPayment = () => {
       >
         <Divider text="Genel Bilgiler" />
         <div className="p-1">
-          <Input label="Web Site" />
-          <Input label="Ürün Hizmet Adı" className="mt-3" />
+          <Input label="Ürün Hizmet Adı" />
           <Input label="Ürün Açıklaması" className="mt-3" />
         </div>
 

@@ -31,6 +31,7 @@ const LinkDetail = lazy(
 
 // personal panel
 const LinkPaymentPersonal=lazy(() => import("../pages/panel-personal/link-payment"));
+const LinkDetailPersonal=lazy(() => import("../pages/panel-personal/link-payment/link-detail"));
 
 // end:: Lazy imports
 
@@ -65,6 +66,7 @@ export const Router: React.FC = () => {
           </Route>
           <Route path="personal">
             <Route path="linkPayment" element={<LinkPaymentPersonal />} />
+            <Route path="linkDetail/:id" element={<LinkDetailPersonal />} />
           </Route>
         </Route>
 
