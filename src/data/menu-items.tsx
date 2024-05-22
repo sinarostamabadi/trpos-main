@@ -176,3 +176,36 @@ export const menuItems2: {
     },
   ],
 };
+
+export const menuItems3: {
+  [key: string]: MenuItem[];
+} = {
+  "Daha Fazlası": [
+    {
+      title: "Yardım ve Destek",
+      href: "/dashboard/helpAndSupport",
+      iconDeactive: <IconSupport width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconSupport
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+    {
+      title: "Ayarlar",
+      href: "/dashboard/settings",
+      iconDeactive: <IconSetting width={24} height={24} viewBox="0 0 24 24" />,
+      iconActive: (
+        <IconSetting
+          width={24}
+          height={24}
+          viewBox="0 0 24 24"
+          className="text-black"
+        />
+      ),
+    },
+  ],
+};

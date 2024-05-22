@@ -24,6 +24,7 @@ const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
 const SupportTicketDetails = lazy(
   () => import("../pages/panel/help-and-support/ticket-detail")
 );
+const Application = lazy(() => import("../pages/panel/application"));
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -47,6 +48,7 @@ export const Router: React.FC = () => {
           <Route path="physicalPOS" element={<PhysicalPOS />} />
           <Route path="userAuthorization" element={<UserAuthorization />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="application" element={<Application />} />
           <Route path="helpAndSupport" element={<HelpAndSupport />} />
           <Route
             path="helpAndSupport/ticketDetail/:id"

@@ -9,6 +9,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   iconDeactive,
   isActive = false,
   isParent = false,
+  isToggled,
 }) => {
   return (
     <li
@@ -19,9 +20,13 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       {isActive && (
         <div className="h-9 w-[6px] absolute left-0 rounded-r-3xl bg-base-content"></div>
       )}
-      {isActive ? iconActive : iconDeactive}
-      <Link to={href}>{title}</Link>
-      {isParent && (
+
+      <Link to={href} className="flex gap-x-2">
+        {isActive ? iconActive : iconDeactive}
+        {isToggled && title}
+      </Link>
+
+      {isToggled && isParent && (
         <IconArrowDown
           width={20}
           height={20}
