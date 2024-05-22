@@ -1,3 +1,4 @@
 export type MenuProps = {
-    menuNumber:number
-}
+  menuNumber: number;
+  isToggled?: boolean;
+};
