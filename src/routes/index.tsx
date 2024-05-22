@@ -10,23 +10,28 @@ const Login = lazy(() => import("../pages/auth/login"));
 const SignUp = lazy(() => import("../pages/auth/signup"));
 const ChangePhone = lazy(() => import("../pages/auth/change-phone"));
 const ForgotPassword = lazy(() => import("../pages/auth/forgot-password"));
-const WebManagement = lazy(() => import("../pages/panel/web-management"));
-const LinkPayment = lazy(() => import("../pages/panel/link-payment"));
+const WebManagement = lazy(() => import("../pages/panel-Institutional/web-management"));
+const LinkPayment = lazy(() => import("../pages/panel-Institutional/link-payment"));
 const SiteDetail = lazy(
-  () => import("../pages/panel/web-management/site-detail")
+  () => import("../pages/panel-Institutional/web-management/site-detail")
 );
-const PhysicalPOS = lazy(() => import("../pages/panel/physical-POS"));
+const PhysicalPOS = lazy(() => import("../pages/panel-Institutional/physical-POS"));
 const UserAuthorization = lazy(
-  () => import("../pages/panel/user-authorization")
+  () => import("../pages/panel-Institutional/user-authorization")
 );
-const Settings = lazy(() => import("../pages/panel/settings"));
-const HelpAndSupport = lazy(() => import("../pages/panel/help-and-support"));
+const Settings = lazy(() => import("../pages/panel-Institutional/settings"));
+const HelpAndSupport = lazy(() => import("../pages/panel-Institutional/help-and-support"));
 const SupportTicketDetails = lazy(
-  () => import("../pages/panel/help-and-support/ticket-detail")
+  () => import("../pages/panel-Institutional/help-and-support/ticket-detail")
 );
 const LinkDetail = lazy(
-  () => import("../pages/panel/link-payment/link-detail")
+  () => import("../pages/panel-Institutional/link-payment/link-detail")
 );
+
+
+// personal panel
+const LinkPaymentPersonal=lazy(() => import("../pages/panel-personal/link-payment"));
+
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -42,20 +47,25 @@ export const Router: React.FC = () => {
         </Route>
 
         <Route path="/dashboard" element={<PanelLayout />}>
-          {/*  .......pages routes...... */}
-          {/* <Route index element={<Dashboard />} /> */}
-          <Route path="webManagement" element={<WebManagement />} />
-          <Route path="linkPayment" element={<LinkPayment />} />
-          <Route path="siteDetail/:id" element={<SiteDetail />} />
-          <Route path="physicalPOS" element={<PhysicalPOS />} />
-          <Route path="userAuthorization" element={<UserAuthorization />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="helpAndSupport" element={<HelpAndSupport />} />
-          <Route
-            path="helpAndSupport/ticketDetail/:id"
-            element={<SupportTicketDetails />}
-          />
-          <Route path="linkDetail/:id" element={<LinkDetail />} />
+          <Route path="Institutional">
+            {/*  .......pages routes...... */}
+            {/* <Route index element={<Dashboard />} /> */}
+            <Route path="webManagement" element={<WebManagement />} />
+            <Route path="linkPayment" element={<LinkPayment />} />
+            <Route path="siteDetail/:id" element={<SiteDetail />} />
+            <Route path="physicalPOS" element={<PhysicalPOS />} />
+            <Route path="userAuthorization" element={<UserAuthorization />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="helpAndSupport" element={<HelpAndSupport />} />
+            <Route
+              path="helpAndSupport/ticketDetail/:id"
+              element={<SupportTicketDetails />}
+            />
+            <Route path="linkDetail/:id" element={<LinkDetail />} />
+          </Route>
+          <Route path="personal">
+            <Route path="linkPayment" element={<LinkPaymentPersonal />} />
+          </Route>
         </Route>
 
         <Route element={<Private />}></Route>

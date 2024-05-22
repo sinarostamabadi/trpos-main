@@ -58,17 +58,18 @@ const SiteDetail: React.FC = () => {
       subTitle:
         "Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth.",
     },
-    else: {},
+    delete: {
+      title:"Siteyi Sil",
+      subTitle:"Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+    },
+    else: {
+      title:"",
+      subTitle:""
+    }
   };
 
   return (
     <>
-      <DeleteModal
-        state={modalIsOpen && modalsData.type == "delete"}
-        confirmLabel="Siteyi Sil"
-        subTitle="Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
-        onCloseModal={() => handleOpenModal({ type: "else", data: "" })}
-      />
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
         <p>Trpos</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
@@ -204,6 +205,12 @@ const SiteDetail: React.FC = () => {
           </Button>
         </div>
       </div>
+      <DeleteModal
+        state={modalIsOpen && modalsData.type === "delete"}
+        confirmLabel={modalsTitleAndSubTitle[modalsData.type].title}
+        subTitle={modalsTitleAndSubTitle[modalsData.type].subTitle}
+        onCloseModal={() => handleOpenModal({ type: "else", data: "" })}
+      />
       <Modal
         state={modalIsOpen}
         title={modalsTitleAndSubTitle[modalsData.type!].title}
