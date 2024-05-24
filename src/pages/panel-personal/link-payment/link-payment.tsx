@@ -33,7 +33,7 @@ const LinkPayment = () => {
     moq: string;
     badge: BadgeProps["badgeColor"];
   };
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const columns: TableColumn<DataType>[] = [
     {
@@ -139,7 +139,7 @@ const LinkPayment = () => {
                 <h1 className="text-[18px] text-base-content font-rubik font-medium">
                   Linkleriniz
                 </h1>
-                <p className="text-xs text-base-content-40 mt-2">
+                <p className="subTitle_text text-xs text-base-content-40 mt-2">
                   Lorem, ipsum.
                 </p>
               </div>
@@ -169,7 +169,7 @@ const LinkPayment = () => {
                 <Button
                   variant="primary"
                   className="text-sm !rounded-2xl"
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setIsModalOpen(true)}
                   isInTop
                 >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />
@@ -184,10 +184,10 @@ const LinkPayment = () => {
         </div>
       </div>
       <Modal
-        state={modalIsOpen}
+        state={isModalOpen}
         title="Yeni Ödeme Linki Ekle"
         small={true}
-        onCloseModal={() => setModalIsOpen(false)}
+        onCloseModal={() => setIsModalOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
         <Divider text="Genel Bilgiler" />

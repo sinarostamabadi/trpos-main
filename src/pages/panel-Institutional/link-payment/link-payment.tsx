@@ -148,7 +148,7 @@ const LinkPayment = () => {
                 <h1 className="text-[18px] text-base-content font-rubik font-medium">
                   Linkleriniz
                 </h1>
-                <p className="text-xs text-base-content-40 mt-2">
+                <p className="subTitle_text text-xs text-base-content-40 mt-2">
                   Lorem, ipsum.
                 </p>
               </div>

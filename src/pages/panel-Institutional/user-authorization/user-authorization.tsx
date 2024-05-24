@@ -18,11 +18,10 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
   error: "",
 };
 
+type ModalTypes = "create" | "edit" | "";
+
 const UserAuthorization = () => {
-  const [isOpenModal, setIsOpenModal] = useState({
-    create: false,
-    edit: false,
-  });
+  const [isOpenModal, setIsOpenModal] = useState<ModalTypes>("");
 
   type DataType = {
     id: number;
@@ -68,7 +67,7 @@ const UserAuthorization = () => {
           <Button
             isLink={true}
             className="hover:no-underline !text-orange"
-            onClick={() => setIsOpenModal({ create: false, edit: true })}
+            onClick={() => setIsOpenModal("edit")}
           >
             <IconPen
               width={24}
@@ -109,20 +108,17 @@ const UserAuthorization = () => {
   ];
 
   const closeModalHandler = () => {
-    setIsOpenModal({
-      create: false,
-      edit: false,
-    });
+    setIsOpenModal("");
   };
 
   return (
     <>
       <CreateUserAuthentication
-        state={isOpenModal.create}
+        state={isOpenModal == "create"}
         onCloseModal={closeModalHandler}
       />
       <EditUserAuthentication
-        state={isOpenModal.edit}
+        state={isOpenModal == "edit"}
         onCloseModal={closeModalHandler}
       />
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
@@ -138,7 +134,7 @@ const UserAuthorization = () => {
                 <h1 className="text-[20px] text-base-content font-semibold">
                   Kullanıcılar
                 </h1>
-                <p className="text-xs text-base-content-40 mt-2">
+                <p className="subTitle_text text-xs text-base-content-40 mt-2">
                   Lorem, ipsum.
                 </p>
               </div>
@@ -146,7 +142,7 @@ const UserAuthorization = () => {
                 <Button
                   variant="primary"
                   className="text-sm !rounded-2xl"
-                  onClick={() => setIsOpenModal({ create: true, edit: false })}
+                  onClick={() => setIsOpenModal("create")}
                   isInTop
                 >
                   <IconPlus width={24} hanging={24} viewBox="0 0 24 24" />

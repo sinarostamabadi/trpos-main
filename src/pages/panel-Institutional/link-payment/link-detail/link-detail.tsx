@@ -9,8 +9,8 @@ import {
 } from "../../../../components/icons/icons";
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
-import { Link } from "react-router-dom";
 import { SelectInput } from "../../../../components/select";
+import { Link } from "react-router-dom";
 
 const LinkDetail: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -19,11 +19,11 @@ const LinkDetail: React.FC = () => {
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
         <p>Trpos</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p>Web Site Yönetimi</p>
+        <p>Ödeme Linkleri</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <Link to={"/dashboard/Institutional/linkPayment"}>Liste</Link>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-primary">Site Detayları</p>
+        <p className="text-primary">Link Detaylar</p>
       </div>
       <div className="w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
