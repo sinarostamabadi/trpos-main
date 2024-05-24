@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-// import { CreateApplication } from "./components/create-application";
+import { CreateApplication } from "./components/create-application";
 import { StepOneIndividual } from "./components/form/individual/step-one-individual";
 import { StepTwoIndividual } from "./components/form/individual/step-two-individual";
 import { StepThreeIndividual } from "./components/form/individual/step-three-individual";
@@ -15,6 +15,7 @@ import { ApplicationGrid } from "./components/grid";
 const Application = () => {
   const [individualStep, setIndividualStep] = useState(1);
   const [corporateStep, setCorporateStep] = useState(1);
+  const [isShowCreatePage, setIsShowCreatePage] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState<
     "individual" | "corporate" | ""
   >("");
@@ -65,8 +66,12 @@ const Application = () => {
       >
         {corporate[corporateStep]}
       </CreateCorporate>
-      <ApplicationGrid />
-      {/* <CreateApplication createTypeHandler={(type) => setIsModalOpen(type)} /> */}
+      {!isShowCreatePage && (
+        <ApplicationGrid setShow={() => setIsShowCreatePage(true)} />
+      )}
+      {isShowCreatePage && (
+        <CreateApplication createTypeHandler={(type) => setIsModalOpen(type)} />
+      )}
     </>
   );
 };

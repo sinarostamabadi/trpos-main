@@ -18,7 +18,7 @@ import user from "../assets/images/user.png";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const PanelLayout = () => {
-  const [menuNumber, setMenuNumber] = useState<0 | 1 | 2>(1);
+  const [menuNumber, setMenuNumber] = useState<0 | 1 | 2>(0);
   const [isToggled, setIsToggled] = useState(true);
 
   const { pathname } = useLocation();

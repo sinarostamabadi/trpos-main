@@ -3,7 +3,7 @@ import { Button } from "../../../../components/button";
 import { IconArrowDown } from "../../../../components/icons/icons";
 import UserAvatar from "../../../../assets/images/user.png";
 
-export const ApplicationGrid = () => {
+export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
   return (
     <div className="p-8">
       <div className="mb-16">
@@ -182,7 +182,10 @@ export const ApplicationGrid = () => {
             </div>
           </p>
 
-          <p className="flex gap-x-5 items-center justify-center p-8 bg-actual-white rounded-3xl cursor-pointer">
+          <p
+            className="flex gap-x-5 items-center justify-center p-8 bg-actual-white rounded-3xl cursor-pointer"
+            onClick={setShow}
+          >
             <img src={PlusFillBlue} width={50} />
             <div className="font-semibold">Yeni Kurumsal Başvuru</div>
           </p>
@@ -207,7 +210,10 @@ export const ApplicationGrid = () => {
               </div>
             </div>
           </p>
-          <p className="flex gap-x-5 items-center justify-center bg-actual-white rounded-3xl cursor-pointer">
+          <p
+            className="flex gap-x-5 items-center justify-center bg-actual-white rounded-3xl cursor-pointer"
+            onClick={setShow}
+          >
             <img src={PlusFillBlue} width={50} />
             <div className="font-semibold">Yeni Bireysel Başvuru</div>
           </p>
