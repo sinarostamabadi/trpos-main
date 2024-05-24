@@ -10,11 +10,11 @@ export const StepOneIndividual = () => {
     <form className="pe-2">
       <Divider text="Genel Bilgiler" />
       <div className="flex flex-col gap-y-3">
-        <Input label="Adı - Soyadı"></Input>
-        <Input label="TCKN"></Input>
-        <Input label="Doğum Tarihi" type="date"></Input>
-        <Input label="Adresiniz"></Input>
-        <Input label="Hakediş IBAN No"></Input>
+        <Input label="Adı - Soyadı" />
+        <Input label="TCKN" />
+        <Input label="Doğum Tarihi" type="date" />
+        <Input label="Adresiniz" />
+        <Input label="Hakediş IBAN No" />
       </div>
 
       <Divider text="Diğer Bilgiler" />

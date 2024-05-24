@@ -22,7 +22,7 @@ export const StepperModal = ({
     borderRadius: "32px",
     border: "none",
     maxHeight: "95vh",
-    width: small ? "500px" : "900px",
+    width: small ? "500px" : "650px",
     overflow: "hidden",
     padding: "20px",
     fontFamily: "inter",
@@ -43,7 +43,7 @@ export const StepperModal = ({
             <p className="bg-primary rounded-full w-1 h-1"></p>
           </div>
         );
-      
+
       // case "wait":
       //   return <IconUser />; // Custom wait icon
       // case "error":
@@ -67,7 +67,7 @@ export const StepperModal = ({
         current={current}
         progressDot={customDot}
         size="small"
-        className="py-3"
+        className={`py-3 ${!small && "sm:-mx-12"}`}
         items={titlesList}
         initial={1}
       />

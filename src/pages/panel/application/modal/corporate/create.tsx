@@ -1,7 +1,7 @@
 import { StepperModal } from "../../../../../components/stepperModal";
 import { CreateModalProps } from "../create.types";
 
-export const CreateIndividual: React.FC<CreateModalProps> = ({
+export const CreateCorporate: React.FC<CreateModalProps> = ({
   state,
   children,
   current,
@@ -16,12 +16,17 @@ export const CreateIndividual: React.FC<CreateModalProps> = ({
       title={title}
       subTitle={subTitle}
       onCloseModal={onCloseModal}
-      small
       hasCloseButton={hasCloseButton}
       current={current}
       titlesList={[
         {
-          title: "Kişisel Bilgiler",
+          title: "Kimlik",
+        },
+        {
+          title: "Kurumsal Bilgiler",
+        },
+        {
+          title: "Yetkili Bilgiler",
         },
         {
           title: "Evraklar",

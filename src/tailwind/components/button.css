@@ -10,7 +10,7 @@
   }
 
   &-light {
-    @apply px-4 !bg-opacity-5 !border-none !rounded-2xl;
+    @apply px-4 !bg-opacity-5 !border-none rounded-2xl;
   }
 
   /* brand colors */

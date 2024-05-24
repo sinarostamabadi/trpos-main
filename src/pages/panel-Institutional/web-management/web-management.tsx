@@ -125,7 +125,7 @@ const WebManagement: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Web Site Yönetimi</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-primary" >Liste</p>
+        <p className="text-primary">Liste</p>
       </div>
       <div className="outlet w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
@@ -209,7 +209,7 @@ const WebManagement: React.FC = () => {
             error={""}
             isError={false}
           />
-          <FileUploader />
+          <FileUploader id="Dekont" />
         </div>
 
         <CheckBox

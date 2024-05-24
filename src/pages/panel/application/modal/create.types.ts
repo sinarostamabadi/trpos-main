@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { BaseModalProps } from "../../../../../types/modal.types";
+import { BaseModalProps } from "../../../../types/modal.types";
 
-export type CreateIndividualProps = BaseModalProps & {
+export type CreateModalProps = BaseModalProps & {
   current: number;
   children: ReactNode;
   title: string;

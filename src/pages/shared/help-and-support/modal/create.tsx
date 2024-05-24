@@ -22,7 +22,7 @@ export const CreateSupportRequest: React.FC<BaseModalProps> = ({
         <SelectInput placeholder="Destek Talebi Açılan Firma" />
         <Input label="Başlık" />
         <TextArea rows={6} placeholder="Mesajınız" className="text_area" />
-        <FileUploader />
+        <FileUploader id="Dekont" />
         <Button variant="primary" className="mt-2">
           Destek Talebi Oluştur
         </Button>
