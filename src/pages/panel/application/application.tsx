@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { CreateApplication } from "./components/create-application";
 import { StepOneIndividual } from "./components/form/individual/step-one-individual";
 import { StepTwoIndividual } from "./components/form/individual/step-two-individual";
@@ -19,6 +19,11 @@ const Application = () => {
   const [isModalOpen, setIsModalOpen] = useState<
     "individual" | "corporate" | ""
   >("");
+
+  useEffect(() => {
+    setIndividualStep(1);
+    setCorporateStep(1);
+  }, []);
 
   const individual: Record<number, ReactNode> = {
     1: <StepOneIndividual />,

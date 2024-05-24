@@ -6,7 +6,7 @@ import {
   IconPlus,
 } from "../../../components/icons/icons";
 import { Modal } from "../../../components/modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Divider } from "../../../components/divider";
 import { Input } from "../../../components/input";
 import { SelectInput } from "../../../components/select";
@@ -26,8 +26,12 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
 };
 
 const WebManagement: React.FC = () => {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [stateData, setStateData] = useState<boolean>(true);
+
+  useEffect(() => {
+    setStateData(true);
+  }, []);
 
   type DataType = {
     id: number;
@@ -141,7 +145,7 @@ const WebManagement: React.FC = () => {
               </div>
               <div>
                 <Button
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setIsModalOpen(true)}
                   variant="primary"
                   className="text-sm !rounded-2xl"
                   isInTop
@@ -172,10 +176,10 @@ const WebManagement: React.FC = () => {
         </div>
       </div>
       <Modal
-        state={modalIsOpen}
+        state={isModalOpen}
         title="Yeni Site Ekle"
         small={true}
-        onCloseModal={() => setModalIsOpen(false)}
+        onCloseModal={() => setIsModalOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
         <Divider text="Hesap Bilgileri" />
