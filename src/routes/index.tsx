@@ -42,6 +42,9 @@ const LinkPaymentPersonal = lazy(
 const LinkDetailPersonal = lazy(
   () => import("../pages/panel-personal/link-payment/link-detail")
 );
+const TransactionReport = lazy(() => import("../pages/panel-Institutional/reports/transaction-report"));
+const ProgressPayment = lazy(() => import("../pages/panel-Institutional/reports/progress-payment"));
+const Bills = lazy(() => import("../pages/panel-Institutional/reports/bills"));
 
 // end:: Lazy imports
 
@@ -69,6 +72,9 @@ export const Router: React.FC = () => {
             <Route path="physicalPOS" element={<PhysicalPOS />} />
             <Route path="userAuthorization" element={<UserAuthorization />} />
             <Route path="linkDetail/:id" element={<LinkDetail />} />
+            <Route path="transactionReport" element={<TransactionReport />} />
+            <Route path="progressPayment" element={<ProgressPayment />} />
+            <Route path="bills" element={<Bills />} />
           </Route>
 
           <Route path="personal">

@@ -21,6 +21,7 @@ export const Input: React.FC<InputType> = ({
   error,
   touched,
   isSimple = false,
+  inputClassName,
   ...rest
 }: InputType) => {
   const [inputType, setInputType] = useState<typeof type>(type);
@@ -42,7 +43,7 @@ export const Input: React.FC<InputType> = ({
         <input
           type={inputType != "email" ? inputType : "text"}
           id={label}
-          className="h-14 border outline-none px-2 rounded-2.5xl"
+          className={`h-14 border outline-none px-2 rounded-2.5xl ${inputClassName}`}
           disabled={isDisable}
           placeholder=""
           {...register}
@@ -63,7 +64,7 @@ export const Input: React.FC<InputType> = ({
           type={inputType != "email" ? inputType : "text"}
           maxLength={isPassword && 6}
           id={label}
-          className={`form__field`}
+          className={`form__field ${inputClassName}`}
           disabled={isDisable}
           placeholder=""
           {...register}

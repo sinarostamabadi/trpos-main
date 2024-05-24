@@ -28,6 +28,7 @@ export const Menu: React.FC<MenuProps> = ({
                   isActive={pathName === item.href}
                   isParent={item.isParent}
                   isToggled={isToggled}
+                  children={item.children}
                 />
               );
             })}
@@ -78,6 +79,7 @@ export const Menu: React.FC<MenuProps> = ({
                   isActive={pathName === item.href}
                   isParent={item.isParent}
                   isToggled={isToggled}
+                  children={item.children}
                 />
               );
             })}

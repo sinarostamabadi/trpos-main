@@ -54,6 +54,20 @@ export const menuItems1: {
         />
       ),
       isParent: true,
+      children:[
+        {
+          title:"İşlem Raporları",
+          href:"/dashboard/Institutional/transactionReport"
+        },
+        {
+          title:"Hakedişler",
+          href:"/dashboard/Institutional/progressPayment"
+        },
+        {
+          title:"Faturalar",
+          href:"/dashboard/Institutional/bills"
+        }
+      ]
     },
     {
       title: "Kullanıcı Yetkilendirme",
