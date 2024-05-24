@@ -53,8 +53,8 @@ export const MenuItem: React.FC<MenuItemProps> = ({
             height={20}
             viewBox="0 0 20 20"
             className={`ml-auto rotate-180 mb-1 duration-200 ${
-              isOpen && "rotate-0 mb-0"
-            } ${isOpen && pathFinder() && "text-base-content"}`}
+              isOpen && "-rotate-0 mb-0"
+            } ${pathFinder() && "text-base-content"}`}
           />
         )}
       </li>
