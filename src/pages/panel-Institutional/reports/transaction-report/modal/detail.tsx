@@ -2,12 +2,14 @@ import { Button } from "../../../../../components/button";
 import { Divider } from "../../../../../components/divider";
 import { Input } from "../../../../../components/input";
 import { Modal } from "../../../../../components/modal";
-import { BaseModalProps } from "../../../../../types/modal.types";
+import { DetailModalProps } from "./types/detail.types";
 
-export const DetailModal: React.FC<BaseModalProps> = ({
+export const DetailModal: React.FC<DetailModalProps> = ({
   state,
   onCloseModal,
-}: BaseModalProps) => {
+  cancelModalHandler,
+  refundModalHandler,
+}) => {
   return (
     <Modal
       state={state}
@@ -70,6 +72,7 @@ export const DetailModal: React.FC<BaseModalProps> = ({
           size="medium"
           className="mt-6 !text-base !font-medium hover:!text-actual-white"
           isOutline={true}
+          onClick={cancelModalHandler}
         >
           İptal Et
         </Button>
@@ -79,6 +82,7 @@ export const DetailModal: React.FC<BaseModalProps> = ({
           size="medium"
           className="mt-6 !text-base !font-medium"
           isOutline={true}
+          onClick={refundModalHandler}
         >
           İade Yap
         </Button>

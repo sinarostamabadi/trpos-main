@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "../../../../components/button";
-import { CheckBox } from "../../../../components/checkboxes/checkbox";
 import { Divider } from "../../../../components/divider";
 import {
   IconArrowRight,
@@ -8,14 +7,31 @@ import {
   IconPen,
 } from "../../../../components/icons/icons";
 import { Input } from "../../../../components/input";
-import { Modal } from "../../../../components/modal";
 import { SelectInput } from "../../../../components/select";
 import { Link } from "react-router-dom";
+import { EditLink } from "./modal/edit";
+import { DeleteModal } from "../../../../components/actionModals/delete";
+
+type ModalsType = "edit" | "delete" | "";
 
 const LinkDetail: React.FC = () => {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<ModalsType>("");
+
+  const closeModalHandler = () => {
+    setIsModalOpen("");
+  };
   return (
     <>
+      <EditLink
+        state={isModalOpen == "edit"}
+        onCloseModal={closeModalHandler}
+      />
+      <DeleteModal
+        state={isModalOpen == "delete"}
+        onCloseModal={closeModalHandler}
+        confirmLabel="Siteyi Sil"
+        subTitle="Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
+      />
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
         <p>Trpos</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
@@ -37,7 +53,7 @@ const LinkDetail: React.FC = () => {
               </div>
               <div className="flex items-center gap-4">
                 <Button
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setIsModalOpen("edit")}
                   variant="primary"
                   isLight={true}
                   className="!text-primary"
@@ -51,6 +67,7 @@ const LinkDetail: React.FC = () => {
                   isLight={true}
                   className="!text-error"
                   isInTop
+                  onClick={() => setIsModalOpen("delete")}
                 >
                   <IconDelete width={20} height={20} viewBox="0 0 20 20" />
                   Sil
@@ -96,49 +113,6 @@ const LinkDetail: React.FC = () => {
           </div>
         </div>
       </div>
-      <Modal
-        state={modalIsOpen}
-        title="Yeni Ödeme Linki Ekle"
-        small={true}
-        onCloseModal={() => setModalIsOpen(false)}
-        subTitle="Lütfen formu doldurunuz."
-      >
-        <Divider text="Genel Bilgiler" />
-        <div className="p-1">
-          <Input label="Web Site" />
-          <Input label="Ürün Hizmet Adı" className="mt-3" />
-          <Input label="Ürün Açıklaması" className="mt-3" />
-        </div>
-
-        <Divider text="Fiyatlar" />
-        <div className="p-1">
-          <Input label="Ürün Peşin Fiyatı" />
-          <Input label="Taksit Seçeneği" className="mt-3" />
-        </div>
-
-        <Divider text="Daha Fazla Detay" />
-        <div className="p-1">
-          <Input label="Link Bitiş Tarihi" type="date" />
-          <Input label="Ödeme Adedi" className="mt-3" />
-          <Input label="Referans URL Adresi" className="mt-3" />
-        </div>
-
-        <CheckBox
-          id="checkbox"
-          isChecked={false}
-          label="Bilgilerin doğruluğunu onaylıyorum."
-          className="mt-4 !text-sm !font-normal"
-        />
-
-        <Button
-          variant="primary"
-          shape="full"
-          size="medium"
-          className="mt-6 !text-base !font-medium"
-        >
-          Onaya Gönder
-        </Button>
-      </Modal>
     </>
   );
 };

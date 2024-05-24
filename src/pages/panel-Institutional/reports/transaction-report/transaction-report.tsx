@@ -13,6 +13,8 @@ import { Table } from "../../../../components/table";
 import { NumberSelectInput } from "../../../../components/number-select";
 import { DetailModal } from "./modal/detail";
 import { FilterModal } from "./modal/filter";
+import { CancelModal } from "./modal/cancel";
+import { RefundModal } from "./modal/refund";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onayladnı",
@@ -20,14 +22,21 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
   error: "İade",
 };
 
-type ModalsType = "detail" | "filter" | "delete" | "";
+type ModalsType = "detail" | "filter" | "";
+type ActionModalsType = "cancel" | "refund" | "";
 
 const TransactionReport = () => {
   const [isModalOpen, setIsModalOpen] = useState<ModalsType>("");
+  const [isActionModalOpen, setIsActionModalOpen] =
+    useState<ActionModalsType>("");
 
-  function closeModalHandler() {
+  const closeModalHandler = () => {
     setIsModalOpen("");
-  }
+  };
+  const closeActionModalHandler = () => {
+    setIsActionModalOpen("");
+  };
+
   type DataType = {
     id: number;
     transactionName: string;
@@ -191,10 +200,26 @@ const TransactionReport = () => {
       <DetailModal
         state={isModalOpen === "detail"}
         onCloseModal={closeModalHandler}
+        cancelModalHandler={() => {
+          setIsModalOpen("");
+          setIsActionModalOpen("cancel");
+        }}
+        refundModalHandler={() => {
+          setIsModalOpen("");
+          setIsActionModalOpen("refund");
+        }}
       />
       <FilterModal
         state={isModalOpen === "filter"}
         onCloseModal={closeModalHandler}
+      />
+      <CancelModal
+        state={isActionModalOpen == "cancel"}
+        onCloseModal={closeActionModalHandler}
+      />
+      <RefundModal
+        state={isActionModalOpen == "refund"}
+        onCloseModal={closeActionModalHandler}
       />
     </>
   );
