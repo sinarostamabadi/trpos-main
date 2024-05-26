@@ -3,9 +3,9 @@ import { Divider } from "../../../../components/divider";
 import { Input } from "../../../../components/input";
 import { Modal } from "../../../../components/modal";
 import { SelectInput } from "../../../../components/select";
-import { ModalProps } from "../../../../types/modal.types";
+import { BaseModalProps } from "../../../../types/modal.types";
 
-export const EditUserAuthentication: React.FC<ModalProps> = ({
+export const EditUserAuthentication: React.FC<BaseModalProps> = ({
   state,
   onCloseModal,
 }) => {

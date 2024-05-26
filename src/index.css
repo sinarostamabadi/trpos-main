@@ -44,11 +44,11 @@ html {
   background-color: #bbbfca;
 }
 
-.no-scroll {
+.no_scroll {
   scrollbar-width: 0;
 }
 
-.no-scroll::-webkit-scrollbar {
+.no_scroll::-webkit-scrollbar {
   width: 0;
 }
 

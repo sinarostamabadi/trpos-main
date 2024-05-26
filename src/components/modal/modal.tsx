@@ -12,6 +12,7 @@ export const Modal = ({
   icon,
   shouldForceSignout,
   isActionModal,
+  stepper,
   onCloseModal,
 }: ModalProps) => {
   // ---------- variables ----------
@@ -35,14 +36,20 @@ export const Modal = ({
       closeOnDocumentClick={isActionModal && !shouldForceSignout ? true : false}
       {...{ contentStyle }}
     >
+      {stepper && stepper}
+      {stepper && <hr />}
       {isActionModal && <div className="w-fit mx-auto">{icon}</div>}
-      <div className={`flex justify-between w-full my-3`}>
-        <span
-          className={`text-xl font-bold ${isActionModal && "text-center"}`}
-        >
+      <div
+        className={`flex justify-between w-full my-3 ${
+          isActionModal && "text-center !justify-center"
+        }`}
+      >
+        <span className={`text-lg font-semibold`}>
           {title}
           {subTitle && (
-            <div className="text-sm font-normal mt-2 text-base-content-60">{subTitle}</div>
+            <div className="text-sm mt-2 text-base-content-60 font-normal">
+              {subTitle}
+            </div>
           )}
         </span>
         {!isActionModal && (

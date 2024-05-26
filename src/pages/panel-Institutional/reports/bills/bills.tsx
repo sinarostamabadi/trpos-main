@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Badge } from "../../../../components/badge/badge";
 import { BadgeProps } from "../../../../components/badge/badge.type";
 import { Button } from "../../../../components/button";
@@ -18,17 +18,17 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
   error: "İade",
 };
 
-type ModalsType="detail" | "filter" | "delete" | "";
+// type ModalsType = "detail" | "filter" | "delete" | "";
 
 const Bills = () => {
-  const [isModalOpen , setIsModalOpen] = useState<ModalsType>("");
+  // const [isModalOpen, setIsModalOpen] = useState<ModalsType>("");
 
-  function closeModalHandler() {
-    setIsModalOpen("");
-  }
+  // function closeModalHandler() {
+  //   setIsModalOpen("");
+  // }
   type DataType = {
     id: number;
-    billNumber:string,
+    billNumber: string;
     transactionDate: string;
     transactionAmount: string;
     badge: BadgeProps["badgeColor"];
@@ -55,7 +55,7 @@ const Bills = () => {
       name: "İşlem Tutarı",
       selector: (row) => row.transactionAmount,
       grow: 3,
-      style:{color:"#22B789" , fontWeight:"600"}
+      style: { color: "#22B789", fontWeight: "600" },
     },
     {
       name: "Durum",
@@ -68,7 +68,11 @@ const Bills = () => {
       name: "",
       cell: () => (
         <div className="flex flex-col gap-1 2xl:flex-row 2xl:gap-0 items-center">
-          <Button onClick={() => setIsModalOpen("detail")} isLink={true} className="hover:no-underline !font-semibold">
+          <Button
+            // onClick={() => setIsModalOpen("detail")}
+            isLink={true}
+            className="hover:no-underline !font-semibold"
+          >
             <IconEyeComplete
               width={24}
               height={24}
@@ -86,14 +90,14 @@ const Bills = () => {
   const data: DataType[] = [
     {
       id: 1,
-      billNumber:"234567890",
+      billNumber: "234567890",
       transactionDate: "12.09.2024",
       transactionAmount: "₺50.000.00",
       badge: "primary",
     },
     {
       id: 2,
-      billNumber:"234567890",
+      billNumber: "234567890",
       transactionDate: "12.09.2024",
       transactionAmount: "₺50.000.00",
       badge: "error",
@@ -107,7 +111,7 @@ const Bills = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Raporlar</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-primary">İşlem Raporları</p>
+        <p className="text-primary">Faturalar</p>
       </div>
       <div className="outlet w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
@@ -115,9 +119,9 @@ const Bills = () => {
             <div className="w-full flex justify-between items-center">
               <div>
                 <h1 className="text-[18px] text-base-content font-rubik font-medium">
-                    İşlem Raporları
+                  Faturalar
                 </h1>
-                <p className="text-xs text-base-content-40 mt-2">
+                <p className="subTitle_text text-xs text-base-content-40 mt-2">
                   Lorem, ipsum.
                 </p>
               </div>
@@ -145,12 +149,17 @@ const Bills = () => {
                 />
 
                 <Button
-                  onClick={() => setIsModalOpen("filter")}
+                  // onClick={() => setIsModalOpen("filter")}
                   className="text-sm !rounded-2xl !pr-14 !border !border-[#e5e7eb]"
                   isInTop
                   isOutline={true}
                 >
-                  <IconFilter width={20} hanging={20} viewBox="0 0 20 20" className="text-base-content" />
+                  <IconFilter
+                    width={20}
+                    hanging={20}
+                    viewBox="0 0 20 20"
+                    className="text-base-content"
+                  />
                   Filtrele
                 </Button>
               </div>

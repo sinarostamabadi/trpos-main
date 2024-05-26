@@ -14,10 +14,10 @@ import { BanksModal } from "./modal/banks";
 import { CardModal } from "./modal/card";
 import { InstallmentModal } from "./modal/installment";
 
-type ModalsType="edit" | "delete" | "banks" | "card" | "installment" | "";
+type ModalsType = "edit" | "delete" | "banks" | "card" | "installment" | "";
 
 const SiteDetail: React.FC = () => {
-  const [isModalOpen , setIsModalOpen] = useState<ModalsType>("");
+  const [isModalOpen, setIsModalOpen] = useState<ModalsType>("");
 
   function closeModalHandler() {
     setIsModalOpen("");
@@ -30,7 +30,7 @@ const SiteDetail: React.FC = () => {
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p>Web Site Yönetimi</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <Link to={"/dashboard/linkPayment"}>Liste</Link>
+        <Link to={"/dashboard/Institutional/webManagement"}>Liste</Link>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
         <p className="text-primary">Site Detayları</p>
       </div>
@@ -165,22 +165,22 @@ const SiteDetail: React.FC = () => {
         confirmLabel="Siteyi Sil"
         subTitle="Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth."
         onCloseModal={closeModalHandler}
-        />
+      />
       <EditModal
-      state={isModalOpen === "edit"}
-      onCloseModal={closeModalHandler}
+        state={isModalOpen === "edit"}
+        onCloseModal={closeModalHandler}
       />
       <BanksModal
-      state={isModalOpen === "banks"}
-      onCloseModal={closeModalHandler}
+        state={isModalOpen === "banks"}
+        onCloseModal={closeModalHandler}
       />
       <CardModal
-      state={isModalOpen === "card"}
-      onCloseModal={closeModalHandler}
+        state={isModalOpen === "card"}
+        onCloseModal={closeModalHandler}
       />
       <InstallmentModal
-      state={isModalOpen === "installment"}
-      onCloseModal={closeModalHandler}
+        state={isModalOpen === "installment"}
+        onCloseModal={closeModalHandler}
       />
     </>
   );

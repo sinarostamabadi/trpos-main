@@ -9,4 +9,5 @@ export type ModalProps = BaseModalProps & {
   icon?: ReactNode;
   isActionModal?: boolean;
   shouldForceSignout?: boolean;
+  stepper?: boolean;
 };

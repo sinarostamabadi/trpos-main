@@ -13,6 +13,8 @@ import { Table } from "../../../../components/table";
 import { NumberSelectInput } from "../../../../components/number-select";
 import { DetailModal } from "./modal/detail";
 import { FilterModal } from "./modal/filter";
+import { CancelModal } from "./modal/cancel";
+import { RefundModal } from "./modal/refund";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onayladnı",
@@ -20,14 +22,21 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
   error: "İade",
 };
 
-type ModalsType="detail" | "filter" | "delete" | "";
+type ModalsType = "detail" | "filter" | "";
+type ActionModalsType = "cancel" | "refund" | "";
 
 const TransactionReport = () => {
-  const [isModalOpen , setIsModalOpen] = useState<ModalsType>("");
+  const [isModalOpen, setIsModalOpen] = useState<ModalsType>("");
+  const [isActionModalOpen, setIsActionModalOpen] =
+    useState<ActionModalsType>("");
 
-  function closeModalHandler() {
+  const closeModalHandler = () => {
     setIsModalOpen("");
-  }
+  };
+  const closeActionModalHandler = () => {
+    setIsActionModalOpen("");
+  };
+
   type DataType = {
     id: number;
     transactionName: string;
@@ -69,6 +78,7 @@ const TransactionReport = () => {
       name: "İşlem Tutarı",
       selector: (row) => row.transactionAmount,
       grow: 2,
+      style: { color: "#22B789", fontWeight: "600" },
     },
     {
       name: "Durum",
@@ -81,7 +91,11 @@ const TransactionReport = () => {
       name: "",
       cell: () => (
         <div className="flex flex-col gap-1 2xl:flex-row 2xl:gap-0 items-center">
-          <Button onClick={() => setIsModalOpen("detail")} isLink={true} className="hover:no-underline !font-semibold">
+          <Button
+            onClick={() => setIsModalOpen("detail")}
+            isLink={true}
+            className="hover:no-underline !font-semibold"
+          >
             <IconEyeComplete
               width={24}
               height={24}
@@ -99,7 +113,7 @@ const TransactionReport = () => {
   const data: DataType[] = [
     {
       id: 1,
-      transactionName:"Party chicken lot pizza ranch wing.",
+      transactionName: "Party chicken lot pizza ranch wing.",
       webSite: "arçelik.com",
       transactionDate: "12.09.2024",
       salesType: "Peşin",
@@ -108,7 +122,7 @@ const TransactionReport = () => {
     },
     {
       id: 2,
-      transactionName:"Party chicken lot pizza ranch wing.",
+      transactionName: "Party chicken lot pizza ranch wing.",
       webSite: "arçelik.com",
       transactionDate: "12.09.2024",
       salesType: "Peşin",
@@ -132,9 +146,9 @@ const TransactionReport = () => {
             <div className="w-full flex justify-between items-center">
               <div>
                 <h1 className="text-[18px] text-base-content font-rubik font-medium">
-                    İşlem Raporları
+                  İşlem Raporları
                 </h1>
-                <p className="text-xs text-base-content-40 mt-2">
+                <p className="subTitle_text text-xs text-base-content-40 mt-2">
                   Lorem, ipsum.
                 </p>
               </div>
@@ -167,7 +181,12 @@ const TransactionReport = () => {
                   isInTop
                   isOutline={true}
                 >
-                  <IconFilter width={20} hanging={20} viewBox="0 0 20 20" className="text-base-content" />
+                  <IconFilter
+                    width={20}
+                    hanging={20}
+                    viewBox="0 0 20 20"
+                    className="text-base-content"
+                  />
                   Filtrele
                 </Button>
               </div>
@@ -179,13 +198,29 @@ const TransactionReport = () => {
         </div>
       </div>
       <DetailModal
-      state={isModalOpen === "detail"}
-      onCloseModal={closeModalHandler}
+        state={isModalOpen === "detail"}
+        onCloseModal={closeModalHandler}
+        cancelModalHandler={() => {
+          setIsModalOpen("");
+          setIsActionModalOpen("cancel");
+        }}
+        refundModalHandler={() => {
+          setIsModalOpen("");
+          setIsActionModalOpen("refund");
+        }}
       />
       <FilterModal
-      state={isModalOpen === "filter"}
-      onCloseModal={closeModalHandler}
-       />
+        state={isModalOpen === "filter"}
+        onCloseModal={closeModalHandler}
+      />
+      <CancelModal
+        state={isActionModalOpen == "cancel"}
+        onCloseModal={closeActionModalHandler}
+      />
+      <RefundModal
+        state={isActionModalOpen == "refund"}
+        onCloseModal={closeActionModalHandler}
+      />
     </>
   );
 };

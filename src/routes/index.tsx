@@ -25,12 +25,10 @@ const PhysicalPOS = lazy(
 const UserAuthorization = lazy(
   () => import("../pages/panel-Institutional/user-authorization")
 );
-const Settings = lazy(() => import("../pages/panel-Institutional/settings"));
-const HelpAndSupport = lazy(
-  () => import("../pages/panel-Institutional/help-and-support")
-);
+const Settings = lazy(() => import("../pages/shared/settings"));
+const HelpAndSupport = lazy(() => import("../pages/shared/help-and-support"));
 const SupportTicketDetails = lazy(
-  () => import("../pages/panel-Institutional/help-and-support/ticket-detail")
+  () => import("../pages/shared/help-and-support/ticket-detail")
 );
 const LinkDetail = lazy(
   () => import("../pages/panel-Institutional/link-payment/link-detail")

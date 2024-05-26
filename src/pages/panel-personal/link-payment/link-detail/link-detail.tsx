@@ -13,17 +13,17 @@ import { Link } from "react-router-dom";
 import { SelectInput } from "../../../../components/select";
 
 const LinkDetail: React.FC = () => {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
-    <>
+    <div>
       <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
         <p>Trpos</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p>Web Site Yönetimi</p>
+        <p>Ödeme Linkleri</p>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <Link to={"/dashboard/linkPayment"}>Liste</Link>
+        <Link to={"/dashboard/personal/linkPayment"}>Liste</Link>
         <IconArrowRight width={20} height={20} viewBox="0 0 20 20" />
-        <p className="text-primary">Site Detayları</p>
+        <p className="text-primary">Link Detaylar</p>
       </div>
       <div className="w-full h-full container p-4 pb-8">
         <div className="w-full h-full bg-actual-white rounded-2.5xl p-6">
@@ -37,7 +37,7 @@ const LinkDetail: React.FC = () => {
               </div>
               <div className="flex items-center gap-4">
                 <Button
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setIsModalOpen(true)}
                   variant="primary"
                   isLight={true}
                   className="!text-primary"
@@ -96,10 +96,10 @@ const LinkDetail: React.FC = () => {
         </div>
       </div>
       <Modal
-        state={modalIsOpen}
+        state={isModalOpen}
         title="Yeni Ödeme Linki Ekle"
         small={true}
-        onCloseModal={() => setModalIsOpen(false)}
+        onCloseModal={() => setIsModalOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
         <Divider text="Genel Bilgiler" />
@@ -137,7 +137,7 @@ const LinkDetail: React.FC = () => {
           Onaya Gönder
         </Button>
       </Modal>
-    </>
+    </div>
   );
 };
 

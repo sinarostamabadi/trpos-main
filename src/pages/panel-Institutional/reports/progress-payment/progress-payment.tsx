@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Badge } from "../../../../components/badge/badge";
 import { BadgeProps } from "../../../../components/badge/badge.type";
 import { Button } from "../../../../components/button";
@@ -11,9 +11,9 @@ import {
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../../components/table";
 import { NumberSelectInput } from "../../../../components/number-select";
-import { Divider } from "../../../../components/divider";
-import { Input } from "../../../../components/input";
-import { Modal } from "../../../../components/modal";
+// import { Divider } from "../../../../components/divider";
+// import { Input } from "../../../../components/input";
+// import { Modal } from "../../../../components/modal";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Ödenecek",
@@ -26,13 +26,13 @@ const ProgressPayment = () => {
     id: number;
     businessName: string;
     transactionDate: string;
-    valueDate:string,
-    iban:string,
-    grossAmount:string,
-    netAmount:string,
+    valueDate: string;
+    iban: string;
+    grossAmount: string;
+    netAmount: string;
     badge: BadgeProps["badgeColor"];
   };
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  // const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const columns: TableColumn<DataType>[] = [
     {
@@ -43,8 +43,7 @@ const ProgressPayment = () => {
     {
       name: "İş Yeri Adı",
       selector: (row) => row.businessName,
-      grow: 5,
-      style: { color: "black", fontWeight: "500" },
+      grow: 3,
     },
     {
       name: "İşlem Tarihi",
@@ -58,20 +57,20 @@ const ProgressPayment = () => {
     },
     {
       name: "IBAN",
-      selector: (row) => row.iban,
-      grow: 2,
+      cell: (row) => <span>{row.iban}</span>,
+      grow: 3,
     },
     {
       name: "Brüt Tutar",
       selector: (row) => row.grossAmount,
       grow: 2,
-      style:{color:"#18181C" , fontWeight:"600"}
+      style: { color: "#18181C", fontWeight: "600" },
     },
     {
       name: "Net Tutar",
       selector: (row) => row.netAmount,
       grow: 2,
-      style:{color:"#22B789" , fontWeight:"600"}
+      style: { color: "#22B789", fontWeight: "600" },
     },
     {
       name: "Durum",
@@ -84,7 +83,11 @@ const ProgressPayment = () => {
       name: "",
       cell: () => (
         <div className="flex flex-col gap-1 2xl:flex-row 2xl:gap-0 items-center">
-          <Button onClick={() => setModalIsOpen(true)} isLink={true} className="hover:no-underline !font-semibold">
+          <Button
+            // onClick={() => setModalIsOpen(true)}
+            isLink={true}
+            className="hover:no-underline !font-semibold"
+          >
             <IconEyeComplete
               width={24}
               height={24}
@@ -102,44 +105,44 @@ const ProgressPayment = () => {
   const data: DataType[] = [
     {
       id: 1,
-      businessName:"Raven Soft",
+      businessName: "Raven Soft",
       transactionDate: "29.06.2024",
-      valueDate:"29.06.2024",
-      iban:"TR90 0087 7896 6789 6363 0678 54",
-      grossAmount:"₺50.000.00",
-      netAmount:"₺50.000.00",
+      valueDate: "29.06.2024",
+      iban: "TR90 0087 7896 6789 6363 0678 54",
+      grossAmount: "₺50.000.00",
+      netAmount: "₺50.000.00",
       badge: "primary",
     },
     {
-        id: 2,
-        businessName:"Raven Soft",
-        transactionDate: "29.06.2024",
-        valueDate:"29.06.2024",
-        iban:"TR90 0087 7896 6789 6363 0678 54",
-        grossAmount:"₺50.000.00",
-        netAmount:"₺50.000.00",
-        badge: "success",
-      },
-      {
-        id: 3,
-        businessName:"Raven Soft",
-        transactionDate: "29.06.2024",
-        valueDate:"29.06.2024",
-        iban:"TR90 0087 7896 6789 6363 0678 54",
-        grossAmount:"₺50.000.00",
-        netAmount:"₺50.000.00",
-        badge: "success",
-      },
-      {
-        id: 4,
-        businessName:"Raven Soft",
-        transactionDate: "29.06.2024",
-        valueDate:"29.06.2024",
-        iban:"TR90 0087 7896 6789 6363 0678 54",
-        grossAmount:"₺50.000.00",
-        netAmount:"₺50.000.00",
-        badge: "primary",
-      },
+      id: 2,
+      businessName: "Raven Soft",
+      transactionDate: "29.06.2024",
+      valueDate: "29.06.2024",
+      iban: "TR90 0087 7896 6789 6363 0678 54",
+      grossAmount: "₺50.000.00",
+      netAmount: "₺50.000.00",
+      badge: "success",
+    },
+    {
+      id: 3,
+      businessName: "Raven Soft",
+      transactionDate: "29.06.2024",
+      valueDate: "29.06.2024",
+      iban: "TR90 0087 7896 6789 6363 0678 54",
+      grossAmount: "₺50.000.00",
+      netAmount: "₺50.000.00",
+      badge: "success",
+    },
+    {
+      id: 4,
+      businessName: "Raven Soft",
+      transactionDate: "29.06.2024",
+      valueDate: "29.06.2024",
+      iban: "TR90 0087 7896 6789 6363 0678 54",
+      grossAmount: "₺50.000.00",
+      netAmount: "₺50.000.00",
+      badge: "primary",
+    },
   ];
 
   return (
@@ -157,9 +160,9 @@ const ProgressPayment = () => {
             <div className="w-full flex justify-between items-center">
               <div>
                 <h1 className="text-[18px] text-base-content font-rubik font-medium">
-                    Hakedişler
+                  Hakedişler
                 </h1>
-                <p className="text-xs text-base-content-40 mt-2">
+                <p className="subTitle_text text-xs text-base-content-40 mt-2">
                   Lorem, ipsum.
                 </p>
               </div>
@@ -191,7 +194,12 @@ const ProgressPayment = () => {
                   isInTop
                   isOutline={true}
                 >
-                  <IconFilter width={20} hanging={20} viewBox="0 0 20 20" className="text-base-content" />
+                  <IconFilter
+                    width={20}
+                    hanging={20}
+                    viewBox="0 0 20 20"
+                    className="text-base-content"
+                  />
                   Filtrele
                 </Button>
               </div>
@@ -202,7 +210,7 @@ const ProgressPayment = () => {
           </div>
         </div>
       </div>
-      <Modal
+      {/* <Modal
         state={modalIsOpen}
         title="İşlem Detayları"
         onCloseModal={() => setModalIsOpen(false)}
@@ -221,8 +229,16 @@ const ProgressPayment = () => {
           <Input label="Valör Tarihi" />
           <div className="col-span-2 grid grid-cols-3 gap-4">
             <Input label="Brüt Tutar" value="60.078,90" />
-            <Input label="Brüt Tutar" value="40,00" inputClassName="!text-primary" />
-            <Input label="Brüt Tutar" value="60.078,90" inputClassName="!text-error" />
+            <Input
+              label="Brüt Tutar"
+              value="40,00"
+              inputClassName="!text-primary"
+            />
+            <Input
+              label="Brüt Tutar"
+              value="60.078,90"
+              inputClassName="!text-error"
+            />
           </div>
         </div>
 
@@ -235,7 +251,11 @@ const ProgressPayment = () => {
         <Divider text="Hakediş Bilgileri" />
         <div className="p-1 grid grid-cols-2 gap-4">
           <Input label="Hakediş Tutarı" />
-          <Input label="Hakediş Ödeme Durumu" value="Yapıldı" inputClassName="!text-blue" />
+          <Input
+            label="Hakediş Ödeme Durumu"
+            value="Yapıldı"
+            inputClassName="!text-blue"
+          />
         </div>
 
         <Divider text="Müşteri Bilgileri" />
@@ -245,35 +265,34 @@ const ProgressPayment = () => {
         </div>
 
         <div className="grid grid-cols-3 gap-4">
-        <Button
+          <Button
             variant="error"
             shape="full"
             size="medium"
             className="mt-6 !text-base !font-medium hover:!text-actual-white"
             isOutline={true}
-            >
-                İptal Et
-            </Button>
-            <Button
+          >
+            İptal Et
+          </Button>
+          <Button
             variant="secondary"
             shape="full"
             size="medium"
             className="mt-6 !text-base !font-medium"
             isOutline={true}
-            >
-                İade Yap
-            </Button>
-            <Button
+          >
+            İade Yap
+          </Button>
+          <Button
             variant="primary"
             shape="full"
             size="medium"
             className="mt-6 !text-base !font-medium"
-            >
-                Dekont Al
-            </Button>
+          >
+            Dekont Al
+          </Button>
         </div>
-
-      </Modal>
+      </Modal> */}
     </>
   );
 };

@@ -39,7 +39,6 @@ export const RequestLogin: React.FC = () => {
     handleSubmit,
     formState: { errors, touchedFields },
     trigger,
-    getFieldState
   } = useForm<LoginInputs>({
     defaultValues: {
       phoneOrEmail: "",

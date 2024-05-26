@@ -6,18 +6,18 @@ import {
   IconPlus,
 } from "../../../components/icons/icons";
 import { Modal } from "../../../components/modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Divider } from "../../../components/divider";
 import { Input } from "../../../components/input";
 import { SelectInput } from "../../../components/select";
 import { CheckBox } from "../../../components/checkboxes";
 import { FileUploader } from "../../../components/uploader";
-import clouds from "../../../assets/images/Clouds.svg";
 import { Table } from "../../../components/table";
 import { TableColumn } from "react-data-table-component";
 import { BadgeProps } from "../../../components/badge/badge.type";
 import { Badge } from "../../../components/badge";
 import { Link } from "react-router-dom";
+import clouds from "../../../assets/images/Clouds.svg";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -26,8 +26,12 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
 };
 
 const WebManagement: React.FC = () => {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [stateData, setStateData] = useState<boolean>(true);
+
+  useEffect(() => {
+    setStateData(true);
+  }, []);
 
   type DataType = {
     id: number;
@@ -135,13 +139,13 @@ const WebManagement: React.FC = () => {
                 <h1 className="text-[20px] text-base-content font-semibold">
                   Web Siteleriniz
                 </h1>
-                <p className="text-xs text-base-content-40 mt-2">
+                <p className="subTitle_text text-xs text-base-content-40 mt-2">
                   Lorem, ipsum.
                 </p>
               </div>
               <div>
                 <Button
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setIsModalOpen(true)}
                   variant="primary"
                   className="text-sm !rounded-2xl"
                   isInTop
@@ -172,10 +176,10 @@ const WebManagement: React.FC = () => {
         </div>
       </div>
       <Modal
-        state={modalIsOpen}
+        state={isModalOpen}
         title="Yeni Site Ekle"
         small={true}
-        onCloseModal={() => setModalIsOpen(false)}
+        onCloseModal={() => setIsModalOpen(false)}
         subTitle="Lütfen formu doldurunuz."
       >
         <Divider text="Hesap Bilgileri" />
@@ -209,7 +213,7 @@ const WebManagement: React.FC = () => {
             error={""}
             isError={false}
           />
-          <FileUploader />
+          <FileUploader id="Dekont" />
         </div>
 
         <CheckBox
