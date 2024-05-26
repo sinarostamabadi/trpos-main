@@ -103,3 +103,15 @@ input:-webkit-autofill:active {
   background-color: unset;
   color: red !important;
 }
+
+.recharts-text {
+  color: #94A3B8 !important;
+}
+
+
+
+
+
+.recharts-cartesian-axis-tick-value {
+  fill: #94A3B8 !important;
+}

@@ -38,11 +38,11 @@ export const Modal = ({
       {isActionModal && <div className="w-fit mx-auto">{icon}</div>}
       <div className={`flex justify-between w-full my-3`}>
         <span
-          className={`text-lg font-medium ${isActionModal && "text-center"}`}
+          className={`text-xl font-bold ${isActionModal && "text-center"}`}
         >
           {title}
           {subTitle && (
-            <div className="text-sm mt-2 text-base-content-60">{subTitle}</div>
+            <div className="text-sm font-normal mt-2 text-base-content-60">{subTitle}</div>
           )}
         </span>
         {!isActionModal && (
