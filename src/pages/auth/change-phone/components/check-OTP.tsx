@@ -11,10 +11,10 @@ Props) => {
   return (
     <div className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm">
       <div>
-        <h1 className="xl:text-2xl text-base-content font-bold">
+        <h1 className="xl:text-2xl text-base-content font-semibold">
           SMS Kodunu Doğrula
         </h1>
-        <p className="text-base-content-light mt-1 text-sm opacity-60">
+        <p className="xl:text-sm text-[12px] text-base-content-light mt-1 pl-1 opacity-60">
           Sonu 6707 ile biten numarana kod gönderdik. Kimliğinden emin
           olmalıyız.
         </p>

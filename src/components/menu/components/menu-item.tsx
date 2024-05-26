@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { MenuItemProps } from "./menu-item.type";
-import { IconArrowDown } from "../../icons/icons";
+import { IconArrowDown, IconArrowRight } from "../../icons/icons";
 import { useState } from "react";
 
 export const MenuItem: React.FC<MenuItemProps> = ({
@@ -48,12 +48,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         </Link>
 
         {isToggled && isParent && (
-          <IconArrowDown
+          <IconArrowRight
             width={20}
             height={20}
             viewBox="0 0 20 20"
-            className={`ml-auto rotate-180 mb-1 duration-200 ${
-              isOpen && "-rotate-0 mb-0"
+            className={`ml-auto -rotate-90 duration-200 ${
+              isOpen && "rotate-90"
             } ${pathFinder() && "text-base-content"}`}
           />
         )}

@@ -6,21 +6,20 @@ type Props = {
   // data: dataState;
 };
 
-export const CheckOtp: React.FC<Props> = ({}: // data
-Props) => {
+export const CheckOtp: React.FC<Props> = ({}: Props) => {
   return (
     <div className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm">
       <div>
-        <h1 className="xl:text-2xl text-base-content font-bold">
+        <h1 className="xl:text-2xl text-base-content font-semibold">
           SMS Kodunu Doğrula
         </h1>
-        <p className="text-base-content-light mt-1 text-sm opacity-60">
+        <p className="xl:text-sm text-[12px] text-base-content-light mt-1 pl-1 opacity-60">
           Sonu 6707 ile biten numarana kod gönderdik. Kimliğinden emin
           olmalıyız.
         </p>
       </div>
       <div className="w-full h-full flex flex-col justify-center items-center mt-6">
-        <Input label="Doğrulama Kodu" type="text" className="w-full" />
+        <Input label="Doğrulama Kodu" type="text" isCode className="w-full" />
         <div className="mt-6 w-full">
           <Button variant="primary" shape="full">
             Devam Et

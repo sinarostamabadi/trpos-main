@@ -210,7 +210,7 @@
   &:disabled {
     @apply pointer-events-none border-opacity-0 bg-neutral bg-opacity-20 text-base-content text-opacity-20;
 
-    @meida (hover : hover) {
+    @media (hover : hover) {
 
       &[disabled]:hover,
       &:disabled:hover {

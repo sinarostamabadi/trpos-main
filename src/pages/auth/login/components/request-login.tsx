@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 export const RequestLogin: React.FC = () => {
-  const phoneRegex = /^\+([1-9]{1,3})([0-9]{8,13})$/;
+  const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   const loginSchema = yup.object().shape({
@@ -25,6 +25,10 @@ export const RequestLogin: React.FC = () => {
       .min(6, "Şifre 6 rakamdan oluşmalıdır")
       .max(6, "Maksimum 6 karakter")
       .required()
+      .matches(
+        /^(?!\d*(?:012|123|234|345|456|567|678|789|890|901|210|321|432|543|654|765|876|987|098|109))/,
+        "Ardışık sayılardan oluşamaz"
+      )
       .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
     phoneNumber: yup.string(),
     lang: yup.string(),
@@ -51,7 +55,7 @@ export const RequestLogin: React.FC = () => {
       version: "",
     },
     resolver: yupResolver(loginSchema),
-    mode:"onChange"
+    mode: "onChange",
   });
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {

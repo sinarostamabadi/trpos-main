@@ -8,26 +8,28 @@ import { BASE_URL } from "../configs/global";
 const httpService = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Content-Type": "appliaction/json",
+    "Content-Type": "application/json",
   },
 });
 
-// client.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (error) => {
-//     if (error.response.data.message) {
-//     }
-//   }
-// );
+httpService.interceptors.response.use(
+  (response: any) => {
+    if (response.data?.httpStatusCode == 200) return response;
+  },
+  (error) => {
+    if (error.response) {
+      // const statusCode = error.response?.status;
+      throw error.response.data;
+    }
+  }
+);
 
 async function apiBase<T>(
   url: string,
   options?: AxiosRequestConfig
 ): Promise<T> {
   const response: AxiosResponse = await httpService(url, options);
-  return response.data as T;
+  return response?.data as T;
 }
 
 async function readData<T>(

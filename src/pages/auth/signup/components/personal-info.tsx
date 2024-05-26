@@ -7,15 +7,51 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckBoxModal } from "../../../../components/checkboxes";
 import { RuleModal } from "./modal/rules";
 import { PhoneInput } from "../../../../components/phoneInput";
-import TermsData from "../../../../data/trpos_rules.json";
+import { useGetClientIp } from "../../../../hooks/get-client-ip";
+import { parsePhoneNumber } from "../../../../helper/parse-phone";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
+import { register as registerUser } from "../../../../redux/actions/auth";
+import { getAllContractTypes } from "../../../../redux/actions/settings/contract-type";
+import {
+  ContractType,
+  NewContractType,
+} from "../../../../types/contract-type.interface";
+import { omit } from "lodash";
 import * as yup from "yup";
+import { getContract } from "../../../../redux/actions/settings/contract";
 
 export const PersonalInfo: React.FC = () => {
+  const [ip, setIp] = useState("");
+  const [contractTypes, setContractTypes] = useState<ContractType[]>();
   const [isModalOpen, setIsModalOpen] = useState({
     rule_one: false,
     rule_two: false,
     rule_three: false,
   });
+
+  const { isButtonLoading } = useAppSelector(
+    (state) => state.buttonLoadingSlice
+  );
+  const { errors: registerErrors } = useAppSelector(
+    (state) => state.errorsSlice
+  );
+  const { info: contractTypeInfo } = useAppSelector(
+    (state) => state.contractTypeSlice
+  );
+  const { info: contractContentInfo, loading: contractContentLoading } =
+    useAppSelector((state) => state.contractSlice);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    fetchIp();
+    dispatch(getAllContractTypes());
+  }, []);
+
+  const fetchIp = async () => {
+    const clientIp = await useGetClientIp();
+    setIp(clientIp);
+  };
 
   const registerSchema = yup.object().shape({
     name: yup.string().min(2).max(50).required(),
@@ -23,7 +59,10 @@ export const PersonalInfo: React.FC = () => {
     phoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
-      .matches(/^\+([1-9]{1,3})([0-9]{8,13})$/, "Biçim: +901234567..."),
+      .matches(
+        /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/,
+        "Biçim: +901234567890"
+      ),
     email: yup
       .string()
       .required()
@@ -33,16 +72,20 @@ export const PersonalInfo: React.FC = () => {
       .min(6, "Şifre 6 rakamdan oluşmalıdır")
       .max(6, "Maksimum 6 karakter")
       .required()
+      .matches(
+        /^(?!\d*(?:012|123|234|345|456|567|678|789|890|901|210|321|432|543|654|765|876|987|098|109))/,
+        "Ardışık sayılardan oluşamaz"
+      )
       .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
     passwordRepeat: yup
       .string()
       .required("Şifre tekrarı zorunlu bir alandır")
       .oneOf([yup.ref("password")], "Şifre ve tekrar şifre eşleşmiyor"),
-    ip: yup.string().required(),
+    ip: yup.string(),
     lang: yup.string().required(),
-    checkbox_role_1: yup.bool().required().oneOf([true]),
-    checkbox_role_2: yup.bool().required().oneOf([true]),
-    checkbox_role_3: yup.bool().required().oneOf([true]),
+    checkbox_rule_1: yup.bool().required().oneOf([true]),
+    checkbox_rule_2: yup.bool().required().oneOf([true]),
+    checkbox_rule_3: yup.bool().required().oneOf([true]),
   });
 
   const {
@@ -54,8 +97,8 @@ export const PersonalInfo: React.FC = () => {
     formState: { errors, touchedFields },
   } = useForm<SignupInput>({
     defaultValues: {
-      ip: "1.1.1.1",
-      lang: "tr",
+      lang: "TR",
+      ip: "",
     },
     resolver: yupResolver(registerSchema),
     mode: "all",
@@ -67,14 +110,39 @@ export const PersonalInfo: React.FC = () => {
   }, [trigger]);
 
   useEffect(() => {
-    values.checkbox_role_1 &&
-      values.checkbox_role_2 &&
-      values.checkbox_role_3 &&
+    ip && setValue("ip", ip);
+  }, [ip]);
+
+  useEffect(() => {
+    values.checkbox_rule_1 &&
+      values.checkbox_rule_2 &&
+      values.checkbox_rule_3 &&
       trigger();
   }, [isModalOpen]);
 
+  useEffect(() => {
+    if (contractTypeInfo.length > 0) {
+      const filteredContractTypes = contractTypeInfo
+        .filter((contractType: ContractType) => contractType.productId == 5)
+        .map((contractType: ContractType) => {
+          return {
+            ...contractType,
+            checkboxName: `checkbox_rule_${contractType.id}`,
+          };
+        });
+      setContractTypes(filteredContractTypes);
+    }
+  }, [contractTypeInfo]);
+
   const onSubmit: SubmitHandler<SignupInput> = (data) => {
-    console.log(data);
+    const parsedPhone = parsePhoneNumber(data.phoneNumber);
+    const clone = omit(data, [
+      "checkbox_rule_1",
+      "checkbox_rule_2",
+      "checkbox_rule_3",
+    ]);
+    const dataToSend = { ...clone, phoneNumber: parsedPhone?.number };
+    dispatch(registerUser(dataToSend));
   };
 
   return (
@@ -82,12 +150,18 @@ export const PersonalInfo: React.FC = () => {
       {/* begin:: Terms modals */}
       <RuleModal
         state={isModalOpen.rule_one}
+        title={
+          contractContentInfo.count &&
+          contractContentInfo.data[0]?.contractType?.title
+        }
         content={{
-          title: TermsData.rule_1.title,
-          text: TermsData.rule_1.content,
+          title: "Madde 1",
+          text:
+            contractContentInfo.count && contractContentInfo.data[0]?.content,
         }}
+        isLoading={contractContentLoading}
         handleRuleAccept={() => {
-          setValue("checkbox_role_1", true);
+          setValue("checkbox_rule_1", true);
           setIsModalOpen((prev) => ({ ...prev, rule_one: false }));
         }}
         handleCloseModal={() =>
@@ -96,12 +170,18 @@ export const PersonalInfo: React.FC = () => {
       />
       <RuleModal
         state={isModalOpen.rule_two}
+        title={
+          contractContentInfo.count &&
+          contractContentInfo.data[0]?.contractType?.title
+        }
         content={{
-          title: TermsData.rule_2.title,
-          text: TermsData.rule_2.content,
+          title: "Madde 1",
+          text:
+            contractContentInfo.count && contractContentInfo.data[0]?.content,
         }}
+        isLoading={contractContentLoading}
         handleRuleAccept={() => {
-          setValue("checkbox_role_2", true);
+          setValue("checkbox_rule_2", true);
           setIsModalOpen((prev) => ({ ...prev, rule_two: false }));
         }}
         handleCloseModal={() =>
@@ -110,12 +190,18 @@ export const PersonalInfo: React.FC = () => {
       />
       <RuleModal
         state={isModalOpen.rule_three}
+        title={
+          contractContentInfo.count &&
+          contractContentInfo.data[0]?.contractType?.title
+        }
         content={{
-          title: TermsData.rule_3.title,
-          text: TermsData.rule_3.content,
+          title: "Madde 1",
+          text:
+            contractContentInfo.count && contractContentInfo.data[0]?.content,
         }}
+        isLoading={contractContentLoading}
         handleRuleAccept={() => {
-          setValue("checkbox_role_3", true);
+          setValue("checkbox_rule_3", true);
           setIsModalOpen((prev) => ({ ...prev, rule_three: false }));
         }}
         handleCloseModal={() =>
@@ -136,6 +222,18 @@ export const PersonalInfo: React.FC = () => {
             Lütfen formu doldurunuz.
           </p>
         </div>
+        {registerErrors.length > 0 && (
+          <ul className="flex flex-col gap-y-1 p-4 bg-red-50 border-red-100 list-none mt-3 rounded-xl">
+            {registerErrors.map(
+              (err, index) =>
+                !+err && (
+                  <li key={index} className="text-error text-sm">
+                    {err}
+                  </li>
+                )
+            )}
+          </ul>
+        )}
         <div className="mt-6">
           <div className="lg:flex gap-x-3 justify-between">
             <Input
@@ -191,59 +289,32 @@ export const PersonalInfo: React.FC = () => {
         </div>
 
         <div className="mt-4">
-          <CheckBoxModal
-            id="checkbox_roles_1"
-            className="mt-2"
-            register={{ ...register("checkbox_role_1") }}
-            label="’ni okudum, anladım ve onaylıyorum."
-            linkLabel="KVKK Aydınlatma Metni"
-            touched={touchedFields.checkbox_role_1}
-            isChecked={values.checkbox_role_1}
-            handleClick={() => {
-              setValue("checkbox_role_1", false);
-              setIsModalOpen(() => ({
-                rule_one: true,
-                rule_two: false,
-                rule_three: false,
-              }));
-            }}
-          />
-
-          <CheckBoxModal
-            id="checkbox_roles_2"
-            className="mt-2"
-            register={{ ...register("checkbox_role_2") }}
-            label="’ni okudum, anladım ve onaylıyorum."
-            linkLabel="Açık Rıza Metni"
-            touched={touchedFields.checkbox_role_2}
-            isChecked={values.checkbox_role_2}
-            handleClick={() => {
-              setValue("checkbox_role_2", false);
-              setIsModalOpen(() => ({
-                rule_one: false,
-                rule_two: true,
-                rule_three: false,
-              }));
-            }}
-          />
-
-          <CheckBoxModal
-            id="checkbox_roles_3"
-            className="mt-2"
-            register={{ ...register("checkbox_role_3") }}
-            label="’ni okudum, anladım ve onaylıyorum."
-            linkLabel="Trpos Kullanıcı Sözleşmesi"
-            touched={touchedFields.checkbox_role_3}
-            isChecked={values.checkbox_role_3}
-            handleClick={() => {
-              setValue("checkbox_role_3", false);
-              setIsModalOpen(() => ({
-                rule_one: false,
-                rule_two: false,
-                rule_three: true,
-              }));
-            }}
-          />
+          {contractTypes &&
+            contractTypes.length > 0 &&
+            contractTypes.map((contractType: NewContractType) => (
+              <CheckBoxModal
+                key={contractType.id}
+                id={contractType.checkboxName!}
+                className="mt-2"
+                register={{ ...register(contractType.checkboxName!) }}
+                label="’ni okudum, anladım ve onaylıyorum."
+                linkLabel={contractType.title}
+                touched={touchedFields[contractType.checkboxName!]}
+                isChecked={values[contractType.checkboxName!]}
+                handleClick={() => {
+                  dispatch(getContract(`${contractType.id}`));
+                  setValue(
+                    contractType.checkboxName!,
+                    !values[contractType.checkboxName!]
+                  );
+                  setIsModalOpen(() => ({
+                    rule_one: contractType.checkboxName == "checkbox_rule_1",
+                    rule_two: contractType.checkboxName == "checkbox_rule_2",
+                    rule_three: contractType.checkboxName == "checkbox_rule_3",
+                  }));
+                }}
+              />
+            ))}
         </div>
 
         <Button
@@ -253,7 +324,7 @@ export const PersonalInfo: React.FC = () => {
           shape="full"
           className="mt-6"
           isDisabled={Object.keys(errors).length > 0 ? true : false}
-          loadingText="giriş yapmak..."
+          isLoading={isButtonLoading}
         >
           Devam Et
         </Button>

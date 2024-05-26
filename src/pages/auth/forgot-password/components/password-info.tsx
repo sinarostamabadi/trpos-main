@@ -8,7 +8,7 @@ import { ForgotPasswordInputs } from "../forgot-password.types";
 import * as yup from "yup";
 
 export const PasswordInfo = () => {
-  const phoneRegex = /^\+([1-9]{1,3})([0-9]{8,13})$/;
+  const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   const loginSchema = yup.object().shape({

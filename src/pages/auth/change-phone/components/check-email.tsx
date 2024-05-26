@@ -14,7 +14,7 @@ Props) => {
         <h1 className="xl:text-2xl text-base-content font-bold">
           E-Postanı Doğrula
         </h1>
-        <p className="text-base-content-light mt-1 text-sm opacity-60">
+        <p className="xl:text-sm text-[12px] text-base-content-light mt-1 pl-1 opacity-60">
           <span className="text-primary font-semibold">
             bestami.coban@raven.com.tr
           </span>{" "}

@@ -1,4 +1,4 @@
-import { Loading } from "../loading";
+import { PuffLoader } from "react-spinners";
 import { sizeClasses } from "../types/size-classes";
 import { ButtonProps, ButtonShape } from "./button.types";
 import classNames from "classnames";
@@ -17,8 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
   isOutline = false,
   shape = "default",
   isLoading = false,
-  loadingType = "spinner",
-  loadingText = "",
+  loadingType = "ring",
   type = "button",
   isLink = false,
   isInTop,
@@ -49,8 +48,7 @@ export const Button: React.FC<ButtonProps> = ({
       style={isInTop ? { fontFamily: "Rubik" } : { fontFamily: "inter" }}
       {...rest}
     >
-      {isLoading ? loadingText : children}
-      {isLoading && <Loading />}
+      {isLoading ? <PuffLoader color="#22B789" size={40} /> : children}
     </button>
   );
 };

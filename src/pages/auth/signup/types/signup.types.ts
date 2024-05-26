@@ -5,9 +5,9 @@ export interface SignupInput {
   email: string;
   password: string;
   passwordRepeat: string;
-  ip: string;
+  ip?: string;
   lang: string;
-  checkbox_role_1: boolean;
-  checkbox_role_2: boolean;
-  checkbox_role_3: boolean;
+  checkbox_rule_1: boolean;
+  checkbox_rule_2: boolean;
+  checkbox_rule_3: boolean;
 }

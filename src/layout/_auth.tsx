@@ -147,7 +147,7 @@ const AuthLayout = () => {
           </svg>
         </div>
         <div
-          className={`${
+          className={`outlet ${
             (pathname === "/forgot-password" || pathname === "/change-phone") &&
             "mt-[10%]"
           }`}
@@ -156,7 +156,7 @@ const AuthLayout = () => {
         </div>
 
         {/* begin:: navigation link */}
-        <p>
+        <p className="font_inter">
           {(pathname === "/login" || pathname === "/") && (
             <span className="text-sm">
               Hesabın yok mu?{" "}

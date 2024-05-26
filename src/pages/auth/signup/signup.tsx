@@ -1,7 +1,8 @@
-import { PersonalInfo } from "./components/personal-info";
+import { CheckOtp } from "./components/check-Otp";
+// import { PersonalInfo } from "./components/personal-info";
 
 const SignUp: React.FC = () => {
-  return <PersonalInfo />;
+  return <CheckOtp />;
 };
 
 export default SignUp;

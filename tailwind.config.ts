@@ -76,10 +76,10 @@ export const tailwindColors: colorObject = {
   "gradient-second": "#0fa2e9",
   "main-purple": "#9900EF",
   "base-gray": "#FAFAFA",
-  "base-blue":"#3B82F6",
-  "orange":"#FF6600",
-  "dark-green":"#00636D",
-  "blue":"#3B82F6"
+  "base-blue": "#3B82F6",
+  orange: "#FF6600",
+  "dark-green": "#00636D",
+  blue: "#3B82F6",
 };
 
 export const config: Config = {
@@ -90,12 +90,13 @@ export const config: Config = {
       borderRadius: {
         "2.5xl": "20px",
       },
-      fontSize:{
-        "xs":"12px"
+      fontSize: {
+        xs: "12px",
       },
-      fontFamily:{
-        rubik:"Rubik"
-      }
+      fontFamily: {
+        rubik: "Rubik",
+        inter: "Inter",
+      },
     },
     container: {
       center: true,

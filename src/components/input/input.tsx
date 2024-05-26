@@ -11,7 +11,7 @@ import { Popover } from "antd";
 
 export const Input: React.FC<InputType> = ({
   label,
-  isDisabled: isDisable,
+  isDisabled,
   type = "text",
   className,
   isPassword,
@@ -21,10 +21,12 @@ export const Input: React.FC<InputType> = ({
   error,
   touched,
   isSimple = false,
+  isCode = false,
   inputClassName,
   ...rest
 }: InputType) => {
   const [inputType, setInputType] = useState<typeof type>(type);
+  const [value, setValue] = useState("");
 
   const errorMessageSplitter = (message: string) => {
     return (
@@ -33,6 +35,12 @@ export const Input: React.FC<InputType> = ({
         <span className="">{message.split("...")[1]}</span>
       </div>
     );
+  };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const numbers = value.replace(/[^\d]/g, ""); // Remove non-digit characters
+    const formattedValue = numbers.replace(/(\d{3})(?=\d)/g, "$1-"); // Insert dash after every 3 digits
+    setValue(formattedValue);
   };
   if (isSimple) {
     return (
@@ -44,7 +52,7 @@ export const Input: React.FC<InputType> = ({
           type={inputType != "email" ? inputType : "text"}
           id={label}
           className={`h-14 border outline-none px-2 rounded-2.5xl ${inputClassName}`}
-          disabled={isDisable}
+          disabled={isDisabled}
           placeholder=""
           {...register}
           {...rest}
@@ -62,11 +70,13 @@ export const Input: React.FC<InputType> = ({
       >
         <input
           type={inputType != "email" ? inputType : "text"}
-          maxLength={isPassword && 6}
+          maxLength={isPassword ? 6 : isCode ? 7 : null}
           id={label}
           className={`form__field ${inputClassName}`}
-          disabled={isDisable}
+          disabled={isDisabled}
           placeholder=""
+          onChange={isCode && handleChange}
+          value={isCode ? value : null}
           {...register}
           {...rest}
         />

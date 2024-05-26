@@ -11,6 +11,7 @@ export type InputType = InputHTMLAttributes<HTMLInputElement> &
     error?: string;
     touched?: boolean;
     classes?: string;
-    isSimple?:boolean;
-    inputClassName?:string;
+    isSimple?: boolean;
+    isCode?: boolean;
+    inputClassName?: string;
   };
