@@ -1,13 +1,12 @@
 import { Router } from "./routes";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "react-hot-toast";
 import "./assets/fonts/style.css";
 
 export default function App() {
   return (
     <>
-      <ToastContainer position="top-center" />
       <Router />
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 }

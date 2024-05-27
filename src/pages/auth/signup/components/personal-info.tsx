@@ -10,15 +10,16 @@ import { PhoneInput } from "../../../../components/phoneInput";
 import { useGetClientIp } from "../../../../hooks/get-client-ip";
 import { parsePhoneNumber } from "../../../../helper/parse-phone";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
-import { register as registerUser } from "../../../../redux/actions/auth";
+import { register as registerUser } from "../../../../redux/actions/auth/signup";
 import { getAllContractTypes } from "../../../../redux/actions/settings/contract-type";
+import { getContract } from "../../../../redux/actions/settings/contract";
+import { ContentLoading } from "../../../../components/content-loading";
 import {
   ContractType,
   NewContractType,
 } from "../../../../types/contract-type.interface";
 import { omit } from "lodash";
 import * as yup from "yup";
-import { getContract } from "../../../../redux/actions/settings/contract";
 
 export const PersonalInfo: React.FC = () => {
   const [ip, setIp] = useState("");
@@ -35,17 +36,16 @@ export const PersonalInfo: React.FC = () => {
   const { errors: registerErrors } = useAppSelector(
     (state) => state.errorsSlice
   );
-  const { info: contractTypeInfo } = useAppSelector(
-    (state) => state.contractTypeSlice
-  );
+  const { info: contractTypeInfo, loading: contractTypeLoading } =
+    useAppSelector((state) => state.contractTypeSlice);
   const { info: contractContentInfo, loading: contractContentLoading } =
     useAppSelector((state) => state.contractSlice);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchIp();
     dispatch(getAllContractTypes());
+    fetchIp();
   }, []);
 
   const fetchIp = async () => {
@@ -289,32 +289,33 @@ export const PersonalInfo: React.FC = () => {
         </div>
 
         <div className="mt-4">
-          {contractTypes &&
-            contractTypes.length > 0 &&
-            contractTypes.map((contractType: NewContractType) => (
-              <CheckBoxModal
-                key={contractType.id}
-                id={contractType.checkboxName!}
-                className="mt-2"
-                register={{ ...register(contractType.checkboxName!) }}
-                label="’ni okudum, anladım ve onaylıyorum."
-                linkLabel={contractType.title}
-                touched={touchedFields[contractType.checkboxName!]}
-                isChecked={values[contractType.checkboxName!]}
-                handleClick={() => {
-                  dispatch(getContract(`${contractType.id}`));
-                  setValue(
-                    contractType.checkboxName!,
-                    !values[contractType.checkboxName!]
-                  );
-                  setIsModalOpen(() => ({
-                    rule_one: contractType.checkboxName == "checkbox_rule_1",
-                    rule_two: contractType.checkboxName == "checkbox_rule_2",
-                    rule_three: contractType.checkboxName == "checkbox_rule_3",
-                  }));
-                }}
-              />
-            ))}
+          {contractTypes && contractTypes.length > 0
+            ? contractTypes.map((contractType: NewContractType) => (
+                <CheckBoxModal
+                  key={contractType.id}
+                  id={contractType.checkboxName!}
+                  className="mt-2"
+                  register={{ ...register(contractType.checkboxName!) }}
+                  label="’ni okudum, anladım ve onaylıyorum."
+                  linkLabel={contractType.title}
+                  touched={touchedFields[contractType.checkboxName!]}
+                  isChecked={values[contractType.checkboxName!]}
+                  handleClick={() => {
+                    dispatch(getContract(`${contractType.id}`));
+                    setValue(
+                      contractType.checkboxName!,
+                      !values[contractType.checkboxName!]
+                    );
+                    setIsModalOpen(() => ({
+                      rule_one: contractType.checkboxName == "checkbox_rule_1",
+                      rule_two: contractType.checkboxName == "checkbox_rule_2",
+                      rule_three:
+                        contractType.checkboxName == "checkbox_rule_3",
+                    }));
+                  }}
+                />
+              ))
+            : contractTypeLoading && <ContentLoading />}
         </div>
 
         <Button

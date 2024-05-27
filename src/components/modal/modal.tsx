@@ -7,11 +7,13 @@ export const Modal = ({
   state,
   title,
   subTitle,
+  description,
   children,
   small,
   icon,
   shouldForceSignout,
   isActionModal,
+  isTitleGreen,
   stepper,
   onCloseModal,
 }: ModalProps) => {
@@ -44,10 +46,13 @@ export const Modal = ({
           isActionModal && "text-center !justify-center"
         }`}
       >
-        <span className={`text-lg font-semibold`}>
-          {title}
+        <span className={`text-lg font-semibold flex flex-col my-5`}>
+          <span className={`${isTitleGreen ? "text-success" : ""}`}>
+            {title}
+          </span>
+          {description && <span className="text-sm text-base-content-80">{description}</span>}
           {subTitle && (
-            <div className="text-sm mt-2 text-base-content-60 font-normal">
+            <div className="text-xs mt-2 text-base-content-60 font-normal">
               {subTitle}
             </div>
           )}

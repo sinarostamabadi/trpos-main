@@ -13,12 +13,12 @@ const contractTypeSlice = createSlice({
     setContractTypeInfo: (state, action) => {
       state.info = action.payload;
     },
-    setLoading: (state, action: { payload: boolean }) => {
+    setContractTypeLoading: (state, action: { payload: boolean }) => {
       state.loading = action.payload;
     },
   },
 });
 
 const { reducer, actions } = contractTypeSlice;
-export const { setContractTypeInfo, setLoading } = actions;
+export const { setContractTypeInfo, setContractTypeLoading } = actions;
 export default reducer;

@@ -7,22 +7,22 @@ const initialState: InitialState = {
   loading: false,
 };
 
-const loginSlice = createSlice({
+const signupSlice = createSlice({
   initialState,
-  name: "login",
+  name: "signup",
   reducers: {
-    setLoginInfo: (state, action) => {
+    setSignupInfo: (state, action) => {
       state.info = action.payload;
     },
     setLoading: (state, action: { payload: boolean }) => {
       state.loading = action.payload;
     },
-    setLoginStep: (state, action) => {
+    setSignupStep: (state, action) => {
       state.step = action.payload;
     },
   },
 });
 
-const { reducer, actions } = loginSlice;
-export const { setLoginInfo, setLoading, setLoginStep } = actions;
+const { reducer, actions } = signupSlice;
+export const { setSignupInfo, setLoading, setSignupStep } = actions;
 export default reducer;

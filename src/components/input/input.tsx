@@ -42,6 +42,15 @@ export const Input: React.FC<InputType> = ({
     const formattedValue = numbers.replace(/(\d{3})(?=\d)/g, "$1-"); // Insert dash after every 3 digits
     setValue(formattedValue);
   };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (
+      !/^\d$/.test(event.key) &&
+      event.key != "Backspace" &&
+      event.key != "Enter"
+    ) {
+      event.preventDefault();
+    }
+  };
   if (isSimple) {
     return (
       <div className={`w-full flex flex-col gap-2 ${className}`}>
@@ -75,8 +84,9 @@ export const Input: React.FC<InputType> = ({
           className={`form__field ${inputClassName}`}
           disabled={isDisabled}
           placeholder=""
-          onChange={isCode && handleChange}
-          value={isCode ? value : null}
+          onInput={isCode ? handleChange : undefined}
+          onKeyDown={isCode ? handleKeyDown : undefined}
+          value={isCode ? value : undefined}
           {...register}
           {...rest}
         />
@@ -106,23 +116,23 @@ export const Input: React.FC<InputType> = ({
               />
             )
           ) : touched ? (
-            error ? (
-              isPhoneOrEmail &&
-              error ==
-                "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com" ? (
-                <Popover
-                  content={errorMessageSplitter(error)}
-                  title="E-posta/Telefon geçersiz."
-                >
-                  <IconRemoveCircle className="w-6 mt-1 text-error" />
-                </Popover>
-              ) : (
+            error &&
+            (isPhoneOrEmail &&
+            error ==
+              "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com" ? (
+              <Popover
+                content={errorMessageSplitter(error)}
+                title="E-posta/Telefon geçersiz."
+              >
                 <IconRemoveCircle className="w-6 mt-1 text-error" />
-              )
+              </Popover>
             ) : (
-              <IconCheckCircle className="w-6 mt-1 text-success" />
-            )
+              <IconRemoveCircle className="w-6 mt-1 text-error" />
+            ))
           ) : null}
+          {!error && !isPassword && (
+            <IconCheckCircle className="w-6 mt-1 text-success" />
+          )}
         </div>
       </div>
       {isPassword && touched && <InputErrorComponent text={error} />}

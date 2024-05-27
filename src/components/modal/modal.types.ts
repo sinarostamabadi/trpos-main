@@ -6,8 +6,10 @@ export type ModalProps = BaseModalProps & {
   children?: ReactNode;
   small?: boolean;
   subTitle?: string;
+  description?: string;
   icon?: ReactNode;
   isActionModal?: boolean;
+  isTitleGreen?: boolean;
   shouldForceSignout?: boolean;
   stepper?: boolean;
 };
