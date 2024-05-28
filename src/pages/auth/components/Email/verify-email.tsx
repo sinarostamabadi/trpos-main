@@ -9,8 +9,8 @@ import {
   resendCode,
   verifyCode,
 } from "../../../../redux/actions/auth/verify-code";
-import * as yup from "yup";
 import { BeatLoader } from "react-spinners";
+import * as yup from "yup";
 
 type ActionType = {
   actionType: "signup" | "login" | "forgot-password" | "change-phone";

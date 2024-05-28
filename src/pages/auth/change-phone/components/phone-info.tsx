@@ -31,7 +31,7 @@ export const PhoneInfo = () => {
     email: yup
       .string()
       .required()
-      .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
+      .matches(/^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
     password: yup
       .string()
       .min(6, "Şifre 6 rakamdan oluşmalıdır")

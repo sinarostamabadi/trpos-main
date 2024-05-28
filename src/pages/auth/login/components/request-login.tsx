@@ -3,13 +3,24 @@ import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { LoginInputs } from "../types/login.types";
+import { LoginInput } from "../types/login.types";
 import { Link } from "react-router-dom";
+import { parsePhoneNumber } from "../../../../helper/parse-phone";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
+import { login } from "../../../../redux/actions/auth/login";
 import * as yup from "yup";
 
 export const RequestLogin: React.FC = () => {
+  const { ip } = useAppSelector((state) => state.IpSlice);
+  const { isButtonLoading } = useAppSelector(
+    (state) => state.buttonLoadingSlice
+  );
+
+  const dispatch = useAppDispatch();
+
   const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
-  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  const emailRegex =
+    /^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   const loginSchema = yup.object().shape({
     phoneOrEmail: yup
@@ -32,7 +43,7 @@ export const RequestLogin: React.FC = () => {
       .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir")
       .matches(/^(?!.*(\d)(\1))\d+$/, "Tekrarlanan sayılardan oluşamaz"),
     phoneNumber: yup.string(),
-    lang: yup.string(),
+    lang: yup.string().required(),
     phoneCountry: yup.string(),
     email: yup.string(),
     ip: yup.string(),
@@ -42,35 +53,47 @@ export const RequestLogin: React.FC = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, touchedFields },
     trigger,
-  } = useForm<LoginInputs>({
+  } = useForm<LoginInput>({
     defaultValues: {
-      phoneOrEmail: "",
-      lang: "tr",
-      phoneCountry: "",
-      phoneNumber: "",
-      password: "",
-      email: "",
-      ip: "1.1.1.1",
-      version: "",
+      lang: localStorage.trpos__lng,
+      ip: "",
+      version: "1",
     },
     resolver: yupResolver(loginSchema),
-    mode: "onChange",
+    mode: "all",
   });
-
-  const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    console.log(data);
-  };
 
   useEffect(() => {
     trigger();
   }, [trigger]);
 
+  useEffect(() => {
+    ip && setValue("ip", ip);
+  }, [ip]);
+
+  const onSubmit: SubmitHandler<LoginInput> = (data) => {
+    if (+data.phoneOrEmail) {
+      const parsedPhone = parsePhoneNumber(data.phoneOrEmail);
+      dispatch(
+        login({
+          ...data,
+          phoneCountry: parsedPhone?.country,
+          phoneOrEmail: parsedPhone?.number!,
+        })
+      );
+    } else {
+      console.log(data);
+      dispatch(login(data));
+    }
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-max sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm -mt-10"
+      className="max-w-max sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
     >
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">
@@ -106,6 +129,7 @@ export const RequestLogin: React.FC = () => {
         shape="full"
         className="mt-6"
         isDisabled={Object.keys(errors).length > 0 ? true : false}
+        isLoading={isButtonLoading}
       >
         Devam Et
       </Button>

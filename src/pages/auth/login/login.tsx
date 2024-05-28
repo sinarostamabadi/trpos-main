@@ -1,19 +1,41 @@
-// import { useState } from "react";
-// import { dataState } from "./types/login.types";
+import { ReactNode } from "react";
+import { useAppSelector } from "../../../hooks/redux-hooks";
 import { RequestLogin } from "./components/request-login";
-// import { CheckOtp } from "./components/check-Otp";
+import { VerifyPhone } from "../components/GSM";
+import { ErrorModal } from "../../../components/actionModals/error";
+import { Modal } from "../../../components/modal";
+import { Loading } from "../../../components/loading";
+
+const formRender: Record<number, ReactNode> = {
+  0: <RequestLogin />,
+  1: <VerifyPhone actionType="login" methodProviderName="verifysmspost" />,
+};
 
 const Login: React.FC = () => {
-  const data = {
-    step: 1,
-    payload: {
-      phoneNumber: "09038970963",
-      password: "",
-    },
-  };
-  // const {info , loading}=useAppSelector(state => state.loginSlice);
+  const { step } = useAppSelector((state) => state.loginSlice);
+  const { showModal } = useAppSelector((state) => state.showModalSlice);
+  const { errors } = useAppSelector((state) => state.errorsSlice);
 
-  return <>{data.step === 1 && <RequestLogin />}</>;
+  return (
+    <>
+      {formRender[step!]}
+
+      {showModal.type == "success" && (
+        <Modal
+          state={showModal.isShow}
+          title="Yönlendiriliyorsunuz..."
+          subTitle="Lütfen Bekleyiniz."
+          shouldForceSignout
+          small
+          isActionModal
+          icon={<Loading />}
+        ></Modal>
+      )}
+      {showModal.type == "error" && (
+        <ErrorModal state={showModal.isShow} title={errors[1]} />
+      )}
+    </>
+  );
 };
 
 export default Login;

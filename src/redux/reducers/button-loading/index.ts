@@ -8,7 +8,7 @@ const buttonLoadingSlice = createSlice({
   initialState,
   name: "buttonLoading",
   reducers: {
-    setButtonLoading: (state, action) => {
+    setButtonLoading: (state, action: { payload: boolean }) => {
       state.isButtonLoading = action.payload;
     },
   },

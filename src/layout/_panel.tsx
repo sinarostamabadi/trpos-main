@@ -18,14 +18,14 @@ import user from "../assets/images/user.png";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const PanelLayout = () => {
-  const [menuNumber, setMenuNumber] = useState<0 | 1 | 2>(2);
+  const [menuNumber, setMenuNumber] = useState<0 | 1 | 2>(0);
   const [isToggled, setIsToggled] = useState(true);
 
   const { pathname } = useLocation();
 
   return (
     <section
-      className={`layout w-full min-h-screen grid bg-base-gray transition-all duration-300s select-none ${
+      className={`layout w-full min-h-screen grid bg-base-gray transition-all duration-300 select-none ${
         isToggled ? "grid-cols-[280px_1fr]" : "grid-cols-[80px_1fr]"
       }`}
     >
@@ -107,7 +107,11 @@ const PanelLayout = () => {
             <div className="mb-10 ml-1">
               <MenuItem
                 title="Panel"
-                href={menuNumber === 2 ? "/dashboard/Institutional/panel" : "/dashboard/personal/panel"}
+                href={
+                  menuNumber === 2
+                    ? "/dashboard/Institutional/panel"
+                    : "/dashboard/personal/panel"
+                }
                 iconActive={
                   <IconPieChart
                     width={24}
@@ -119,7 +123,11 @@ const PanelLayout = () => {
                 iconDeactive={
                   <IconPieChart width={24} height={24} viewBox="0 0 24 24" />
                 }
-                isActive={menuNumber === 2 ? pathname==="/dashboard/Institutional/panel" : pathname==="/dashboard/personal/panel"}
+                isActive={
+                  menuNumber === 2
+                    ? pathname === "/dashboard/Institutional/panel"
+                    : pathname === "/dashboard/personal/panel"
+                }
                 isToggled={isToggled}
               />
             </div>
@@ -155,7 +163,13 @@ const PanelLayout = () => {
                   </div>
                 </div>
                 {!pathname.includes("/dashboard/helpAndSupport") && (
-                  <div className="flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px]">
+                  <div
+                    className={`flex items-center cursor-pointer gap-2 px-4 py-3 bg-base-content-2 rounded-2.5xl text-[12px] ${
+                      localStorage.trpos__user_type == 0 &&
+                      pathname.includes("/dashboard/application") &&
+                      "hidden"
+                    }`}
+                  >
                     <p>Değiştir</p>
                     <IconArrowDown width={20} height={20} viewBox="0 0 20 20" />
                   </div>

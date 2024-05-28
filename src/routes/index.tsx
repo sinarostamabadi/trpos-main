@@ -71,41 +71,39 @@ export const Router: React.FC = () => {
           <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
 
-        <Route path="/dashboard" element={<PanelLayout />}>
-          {/*  .......pages routes...... */}
-          {/* <Route index element={<Dashboard />} /> */}
-          <Route path="application" element={<Application />} />
+        <Route element={<Private />}>
+          <Route path="/dashboard" element={<PanelLayout />}>
+            <Route path="application" element={<Application />} />
 
-          <Route path="Institutional">
-            <Route path="webManagement" element={<WebManagement />} />
-            <Route path="linkPayment" element={<LinkPayment />} />
-            <Route path="siteDetail/:id" element={<SiteDetail />} />
-            <Route path="physicalPOS" element={<PhysicalPOS />} />
-            <Route path="userAuthorization" element={<UserAuthorization />} />
-            <Route path="linkDetail/:id" element={<LinkDetail />} />
-            <Route path="transactionReport" element={<TransactionReport />} />
-            <Route path="progressPayment" element={<ProgressPayment />} />
-            <Route path="bills" element={<Bills />} />
-            <Route path="panel" element={<InstitutionalPanel />} />
+            <Route path="Institutional">
+              <Route path="webManagement" element={<WebManagement />} />
+              <Route path="linkPayment" element={<LinkPayment />} />
+              <Route path="siteDetail/:id" element={<SiteDetail />} />
+              <Route path="physicalPOS" element={<PhysicalPOS />} />
+              <Route path="userAuthorization" element={<UserAuthorization />} />
+              <Route path="linkDetail/:id" element={<LinkDetail />} />
+              <Route path="transactionReport" element={<TransactionReport />} />
+              <Route path="progressPayment" element={<ProgressPayment />} />
+              <Route path="bills" element={<Bills />} />
+              <Route path="panel" element={<InstitutionalPanel />} />
+            </Route>
+
+            <Route path="personal">
+              <Route path="linkPayment" element={<LinkPaymentPersonal />} />
+              <Route path="linkDetail/:id" element={<LinkDetailPersonal />} />
+              <Route path="panel" element={<PanelPersonal />} />
+            </Route>
+
+            {/* begin:: Shared pages */}
+            <Route path="settings" element={<Settings />} />
+            <Route path="helpAndSupport" element={<HelpAndSupport />} />
+            <Route
+              path="helpAndSupport/ticketDetail/:id"
+              element={<SupportTicketDetails />}
+            />
+            {/* end:: Shared pages */}
           </Route>
-
-          <Route path="personal">
-            <Route path="linkPayment" element={<LinkPaymentPersonal />} />
-            <Route path="linkDetail/:id" element={<LinkDetailPersonal />} />
-            <Route path="panel" element={<PanelPersonal />} />
-          </Route>
-
-          {/* begin:: Shared pages */}
-          <Route path="settings" element={<Settings />} />
-          <Route path="helpAndSupport" element={<HelpAndSupport />} />
-          <Route
-            path="helpAndSupport/ticketDetail/:id"
-            element={<SupportTicketDetails />}
-          />
-          {/* end:: Shared pages */}
         </Route>
-
-        <Route element={<Private />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

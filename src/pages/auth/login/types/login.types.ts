@@ -1,8 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
-
-export interface LoginInputs {
+export interface LoginInput {
   phoneOrEmail: string;
-  lang?: string;
+  lang: string;
   phoneCountry?: string;
   phoneNumber?: string;
   password: string;
@@ -10,10 +8,3 @@ export interface LoginInputs {
   ip?: string;
   version?: string;
 }
-
-export type dataState = {
-  step: 1 | 2;
-  payload: LoginInputs;
-};
-
-export type dataStateSetter = Dispatch<SetStateAction<dataState>>;

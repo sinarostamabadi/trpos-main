@@ -7,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckBoxModal } from "../../../../components/checkboxes";
 import { RuleModal } from "./modal/rules";
 import { PhoneInput } from "../../../../components/phoneInput";
-import { useGetClientIp } from "../../../../hooks/get-client-ip";
 import { parsePhoneNumber } from "../../../../helper/parse-phone";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
 import { register as registerUser } from "../../../../redux/actions/auth/signup";
@@ -22,7 +21,6 @@ import { omit } from "lodash";
 import * as yup from "yup";
 
 export const PersonalInfo: React.FC = () => {
-  const [ip, setIp] = useState("");
   const [contractTypes, setContractTypes] = useState<ContractType[]>();
   const [isModalOpen, setIsModalOpen] = useState({
     rule_one: false,
@@ -40,18 +38,17 @@ export const PersonalInfo: React.FC = () => {
     useAppSelector((state) => state.contractTypeSlice);
   const { info: contractContentInfo, loading: contractContentLoading } =
     useAppSelector((state) => state.contractSlice);
+  const { ip } = useAppSelector((state) => state.IpSlice);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getAllContractTypes());
-    fetchIp();
   }, []);
 
-  const fetchIp = async () => {
-    const clientIp = await useGetClientIp();
-    setIp(clientIp);
-  };
+  useEffect(() => {
+    ip && setValue("ip", ip);
+  }, [ip]);
 
   const registerSchema = yup.object().shape({
     name: yup.string().min(2).max(50).required(),
@@ -66,7 +63,7 @@ export const PersonalInfo: React.FC = () => {
     email: yup
       .string()
       .required()
-      .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
+      .matches(/^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
     password: yup
       .string()
       .min(6, "Şifre 6 rakamdan oluşmalıdır")
@@ -98,7 +95,7 @@ export const PersonalInfo: React.FC = () => {
     formState: { errors, touchedFields },
   } = useForm<SignupInput>({
     defaultValues: {
-      lang: "TR",
+      lang: localStorage.trpos__lng,
       ip: "",
     },
     resolver: yupResolver(registerSchema),
@@ -109,10 +106,6 @@ export const PersonalInfo: React.FC = () => {
   useEffect(() => {
     trigger();
   }, [trigger]);
-
-  useEffect(() => {
-    ip && setValue("ip", ip);
-  }, [ip]);
 
   useEffect(() => {
     values.checkbox_rule_1 &&

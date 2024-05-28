@@ -9,7 +9,8 @@ import * as yup from "yup";
 
 export const PasswordInfo = () => {
   const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
-  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  const emailRegex =
+    /^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   const loginSchema = yup.object().shape({
     phoneOrEmail: yup
@@ -28,7 +29,7 @@ export const PasswordInfo = () => {
     email: yup
       .string()
       .required()
-      .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
+      .matches(/^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
     ip: yup.string(),
     version: yup.string(),
     customerNo: yup.string().required(),
@@ -63,7 +64,7 @@ export const PasswordInfo = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[500px] sm:min-w-96 sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm mt-[10%]"
+      className="w-full max-w-[500px] sm:min-w-96 sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
     >
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">

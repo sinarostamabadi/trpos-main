@@ -11,7 +11,9 @@ import { ErrorModal } from "../../../components/actionModals/error";
 
 const formRender: Record<number, ReactNode> = {
   0: <PersonalInfo />,
-  1: <VerifyPhone actionType="signup" />,
+  1: (
+    <VerifyPhone actionType="signup" methodProviderName="confirmphoneNumber" />
+  ),
   2: <VerifyEmail actionType="signup" />,
 };
 

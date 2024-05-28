@@ -52,7 +52,7 @@ export const SetPassword = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 mt-[10%] rounded-2.5xl sm:shadow-sm"
+      className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm"
     >
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">

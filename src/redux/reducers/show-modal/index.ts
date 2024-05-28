@@ -8,7 +8,10 @@ const showModalSlice = createSlice({
   initialState,
   name: "showModal",
   reducers: {
-    setShowModal: (state, action) => {
+    setShowModal: (
+      state,
+      action: { payload: { isShow: boolean; type: string } }
+    ) => {
       state.showModal = action.payload;
     },
   },

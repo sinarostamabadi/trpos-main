@@ -9,17 +9,22 @@ import {
   resendCode,
   verifyCode,
 } from "../../../../redux/actions/auth/verify-code";
-import * as yup from "yup";
 import { BeatLoader } from "react-spinners";
+import * as yup from "yup";
 
 type ActionType = {
   actionType: "signup" | "login" | "forgot-password" | "change-phone";
+  methodProviderName: string;
 };
 
-export const VerifyPhone: React.FC<ActionType> = ({ actionType }) => {
+export const VerifyPhone: React.FC<ActionType> = ({
+  actionType,
+  methodProviderName,
+}) => {
   const [userPhone, setUserPhone] = useState();
 
   const { info: signupInfo } = useAppSelector((state) => state.signupSlice);
+  const { info: loginInfo } = useAppSelector((state) => state.loginSlice);
   const { isButtonLoading } = useAppSelector(
     (state) => state.buttonLoadingSlice
   );
@@ -30,9 +35,14 @@ export const VerifyPhone: React.FC<ActionType> = ({ actionType }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const x = signupInfo?.phoneNumber?.slice(-4);
-    setUserPhone(x);
-  }, [signupInfo]);
+    if (actionType == "signup") {
+      const userPhone = signupInfo?.phoneNumber?.slice(-4);
+      setUserPhone(userPhone);
+    } else if (actionType == "login") {
+      const userPhone = loginInfo?.phoneNumber?.slice(-4);
+      setUserPhone(userPhone);
+    }
+  }, [signupInfo, loginInfo]);
 
   const verifyCodeSchema = yup.object().shape({
     code: yup.string().required().min(7),
@@ -46,7 +56,7 @@ export const VerifyPhone: React.FC<ActionType> = ({ actionType }) => {
     trigger,
     formState: { errors, touchedFields },
   } = useForm<VerifyCode>({
-    defaultValues: { version: "1", methodProviderName: "confirmphoneNumber" },
+    defaultValues: { version: "1", methodProviderName: methodProviderName },
     resolver: yupResolver(verifyCodeSchema),
     mode: "all",
   });

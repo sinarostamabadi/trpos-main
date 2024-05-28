@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { MenuItemProps } from "./menu-item.type";
-import { IconArrowDown, IconArrowRight } from "../../icons/icons";
+import { IconArrowRight } from "../../icons/icons";
 import { useState } from "react";
 
 export const MenuItem: React.FC<MenuItemProps> = ({

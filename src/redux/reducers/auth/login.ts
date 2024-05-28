@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialState } from "../../../types/initial-state.type";
 
-const initialState: InitialState = {
+const initialState = {
   info: {},
   step: 0,
+  expireTime: "",
   loading: false,
 };
 
@@ -20,9 +20,13 @@ const loginSlice = createSlice({
     setLoginStep: (state, action) => {
       state.step = action.payload;
     },
+    setLoginExpireTime: (state, action) => {
+      state.expireTime = action.payload;
+    },
   },
 });
 
 const { reducer, actions } = loginSlice;
-export const { setLoginInfo, setLoading, setLoginStep } = actions;
+export const { setLoginInfo, setLoading, setLoginStep, setLoginExpireTime } =
+  actions;
 export default reducer;

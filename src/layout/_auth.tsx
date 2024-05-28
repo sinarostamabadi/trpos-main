@@ -3,6 +3,7 @@ import signupHero from "../assets/images/signup-hero.png";
 import loginHero from "../assets/images/login-hero.png";
 import forgotPassHero from "../assets/images/forgot-password-hero.png";
 import changePhoneHero from "../assets/images/change-phone-hero.png";
+import { LanguageBox } from "../components/language-box";
 
 const AuthLayout = () => {
   const { pathname } = useLocation();
@@ -57,8 +58,8 @@ const AuthLayout = () => {
           </svg>
         </Link>
         {/* end:: Logo */}
-        {/* begin:: Hero section */}
 
+        {/* begin:: Hero section */}
         <div className="w-full h-full flex justify-center items-center relative">
           <img
             className="w-full max-w-[700px]"
@@ -106,13 +107,16 @@ const AuthLayout = () => {
       </div>
 
       <div
-        className={`${
+        className={`relative ${
           pathname === "/forgot-password" || pathname === "/change-phone"
-            ? ""
+            ? "justify-center"
             : "justify-between"
-        } w-full min-h-screen flex flex-col  items-center gap-y-4 bg-base-gray p-4 sm:p-10`}
+        } w-full min-h-screen flex flex-col items-center gap-y-4 bg-base-gray p-4 sm:p-10`}
       >
-        <div className="lg:invisible">
+        <div className="absolute top-14">
+          <LanguageBox />
+        </div>
+        <div className="lg:invisible lg:my-0 mt-20 mb-10">
           <svg
             width="196"
             height="40"
@@ -149,12 +153,11 @@ const AuthLayout = () => {
         <div
           className={`outlet ${
             (pathname === "/forgot-password" || pathname === "/change-phone") &&
-            "mt-[10%]"
+            ""
           }`}
         >
           <Outlet />
         </div>
-
         {/* begin:: navigation link */}
         <p className="font_inter">
           {(pathname === "/login" || pathname === "/") && (

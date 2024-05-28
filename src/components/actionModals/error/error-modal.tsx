@@ -30,7 +30,9 @@ export const ErrorModal: React.FC<ActionModalProps> = ({
           variant="primary"
           shape="full"
           isOutline
-          onClick={() => dispatch(setShowModal(false))}
+          onClick={() =>
+            dispatch(setShowModal({ isShow: false, type: "error" }))
+          }
         >
           {confirmLabel ? confirmLabel : "Tamam"}
         </Button>
