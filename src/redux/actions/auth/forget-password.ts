@@ -32,7 +32,6 @@ export const ResetPassword = (data: {}) => async (dispatch: AppDispatch) => {
     dispatch(setShowModal({isShow:true , type:"passwordChangeSuccess"}));
   } catch (error: any) {
     error.statusCode == 400 && dispatch(setErrors(error.message));
-    dispatch(setShowModal({isShow:true , type:"passwordChangeSuccess"}));
     console.log(error);
   } finally {
     dispatch(setButtonLoading(false));
