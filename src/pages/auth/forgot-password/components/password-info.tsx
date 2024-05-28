@@ -5,34 +5,34 @@ import { Input } from "../../../../components/input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ForgotPasswordInputs } from "../forgot-password.types";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
+import { ForgetPasswordRequest } from "../../../../redux/actions/auth/forget-password";
+import { parsePhoneNumber } from "../../../../helper/parse-phone";
 import * as yup from "yup";
 
 export const PasswordInfo = () => {
+  const { ip } = useAppSelector((state) => state.IpSlice);
+  const { isButtonLoading } = useAppSelector(
+    (state) => state.buttonLoadingSlice
+  );
+  
   const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
   const emailRegex =
     /^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
+  const dispatch = useAppDispatch();
+
   const loginSchema = yup.object().shape({
-    phoneOrEmail: yup
-      .string()
-      .required()
-      .test(
-        "is_phone_or_email",
-        "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com",
-        (value) => phoneRegex.test(value) || emailRegex.test(value)
-      ),
     phoneNumber: yup
       .string()
-      .required("Cep telefonu numarasını veya e-posta adresini girin"),
+      .required("Cep telefonu numarasını veya e-posta adresini girin")
+      .matches(
+        /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/,
+        "Biçim: +901234567890"
+      ),
     lang: yup.string(),
     phoneCountry: yup.string(),
-    email: yup
-      .string()
-      .required()
-      .matches(/^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
-    ip: yup.string(),
-    version: yup.string(),
-    customerNo: yup.string().required(),
+    email: yup.string().required().matches(emailRegex),
   });
 
   const {
@@ -42,19 +42,25 @@ export const PasswordInfo = () => {
     trigger,
   } = useForm<ForgotPasswordInputs>({
     defaultValues: {
-      customerNo: "100",
-      lang: "tr",
-      phoneCountry: "",
-      phoneNumber: "",
+      lang: "TR",
+      phoneCountry: "TR",
+      phoneNumber: "+90",
       email: "",
-      ip: "1.1.1.1",
     },
     resolver: yupResolver(loginSchema),
     mode: "all",
   });
 
   const onSubmit: SubmitHandler<ForgotPasswordInputs> = (data) => {
-    console.log(data);
+    const parsePhone = parsePhoneNumber(data.phoneNumber);
+
+    const dataToSend = {
+      ...data,
+      phoneNumber: parsePhone?.number,
+      phoneCountry: parsePhone?.country,
+    };
+
+    dispatch(ForgetPasswordRequest(dataToSend));
   };
 
   useEffect(() => {
@@ -76,11 +82,17 @@ export const PasswordInfo = () => {
       </div>
       <div className="mt-6">
         <Input
-          label="Cep No ya da E-Posta"
-          register={{ ...register("phoneOrEmail") }}
-          error={errors.phoneOrEmail?.message}
-          touched={touchedFields.phoneOrEmail}
-          isPhoneOrEmail
+          label="Cep No"
+          register={{ ...register("phoneNumber") }}
+          error={errors.phoneNumber?.message}
+          touched={touchedFields.phoneNumber}
+        />
+        <Input
+          label="E-Posta"
+          register={{ ...register("email") }}
+          error={errors.email?.message}
+          touched={touchedFields.email}
+          className="mt-4"
         />
       </div>
 
@@ -91,6 +103,7 @@ export const PasswordInfo = () => {
         shape="full"
         className="mt-6"
         isDisabled={Object.keys(errors).length > 0 ? true : false}
+        isLoading={isButtonLoading}
       >
         Devam Et
       </Button>

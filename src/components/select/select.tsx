@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Select } from "antd";
 import { SelectProps } from "./select.types";
+import { Controller } from "react-hook-form";
 
 export const SelectInput = ({
   className,
@@ -11,6 +12,8 @@ export const SelectInput = ({
   touched,
   size = "middle",
   isSimple=false,
+  name,
+  control,
   label,
 }: SelectProps) => {
   const [value, setValue] = useState<string | number | undefined>(undefined);
@@ -44,16 +47,22 @@ export const SelectInput = ({
           {placeholder}
         </div>
       }
-      <Select
-        className={"select"}
-        options={options}
-        placeholder={placeholder}
-        onSelect={(value) => setValue(value)}
-        size={size}
-        variant="borderless"
-        listHeight={150}
-        {...register}
-      />
+      <Controller
+          control={control}
+          name={name}
+          render={({ field }) => (
+            <Select
+              {...field}
+              className={"select"}
+              options={options}
+              placeholder={placeholder}
+              onSelect={(value) => setValue(value)}
+              size={size}
+              variant="borderless"
+              listHeight={150}
+            />
+          )}
+        />
     </div>
   );
 };

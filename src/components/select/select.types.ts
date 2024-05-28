@@ -11,4 +11,6 @@ export type SelectProps = {
   size?: "large" | "middle" | "small";
   isSimple?: boolean;
   label?: string;
+  name:string,
+  control:any;
 };
