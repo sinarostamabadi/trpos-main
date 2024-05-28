@@ -22,7 +22,7 @@ const AuthLayout = () => {
     <section className="w-full min-h-screen lg:grid lg:grid-cols-2">
       <div className="w-full h-full hidden lg:grid grid-rows-[auto_1fr_auto] p-10 2xl:p-20">
         {/* begin:: Logo */}
-        <div className="w-full flex justify-center items-center">
+        <Link to={"/"} className="w-full flex justify-center items-center">
           <svg
             width="196"
             height="40"
@@ -55,7 +55,7 @@ const AuthLayout = () => {
               fill="#22B789"
             />
           </svg>
-        </div>
+        </Link>
         {/* end:: Logo */}
         {/* begin:: Hero section */}
 

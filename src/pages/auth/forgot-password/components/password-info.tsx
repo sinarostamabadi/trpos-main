@@ -106,6 +106,12 @@ export const PasswordInfo = () => {
       >
         Cep Numaranı Değiştir
       </Link>
+      <Link
+        to={"/"}
+        className="text-primary block text-center mt-2 font-medium text-sm"
+      >
+        Giriş yap
+      </Link>
     </form>
   );
 };

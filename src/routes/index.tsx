@@ -10,6 +10,16 @@ const Login = lazy(() => import("../pages/auth/login"));
 const SignUp = lazy(() => import("../pages/auth/signup"));
 const ChangePhone = lazy(() => import("../pages/auth/change-phone"));
 const ForgotPassword = lazy(() => import("../pages/auth/forgot-password"));
+
+const NotFound = lazy(() => import("../pages/404"));
+const Settings = lazy(() => import("../pages/shared/settings"));
+const HelpAndSupport = lazy(() => import("../pages/shared/help-and-support"));
+const Application = lazy(() => import("../pages/panel/application"));
+const SupportTicketDetails = lazy(
+  () => import("../pages/shared/help-and-support/ticket-detail")
+);
+
+// Institutional panel
 const WebManagement = lazy(
   () => import("../pages/panel-Institutional/web-management")
 );
@@ -25,29 +35,28 @@ const PhysicalPOS = lazy(
 const UserAuthorization = lazy(
   () => import("../pages/panel-Institutional/user-authorization")
 );
-const Settings = lazy(() => import("../pages/shared/settings"));
-const HelpAndSupport = lazy(() => import("../pages/shared/help-and-support"));
-const SupportTicketDetails = lazy(
-  () => import("../pages/shared/help-and-support/ticket-detail")
-);
 const LinkDetail = lazy(
   () => import("../pages/panel-Institutional/link-payment/link-detail")
 );
-const Application = lazy(() => import("../pages/panel/application"));
+const InstitutionalPanel = lazy(
+  () => import("../pages/panel-Institutional/panel")
+);
+const TransactionReport = lazy(
+  () => import("../pages/panel-Institutional/reports/transaction-report")
+);
+const ProgressPayment = lazy(
+  () => import("../pages/panel-Institutional/reports/progress-payment")
+);
+const Bills = lazy(() => import("../pages/panel-Institutional/reports/bills"));
 
-// personal panel
+// Personal panel
 const LinkPaymentPersonal = lazy(
   () => import("../pages/panel-personal/link-payment")
 );
 const LinkDetailPersonal = lazy(
   () => import("../pages/panel-personal/link-payment/link-detail")
 );
-const TransactionReport = lazy(() => import("../pages/panel-Institutional/reports/transaction-report"));
-const ProgressPayment = lazy(() => import("../pages/panel-Institutional/reports/progress-payment"));
-const Bills = lazy(() => import("../pages/panel-Institutional/reports/bills"));
 const PanelPersonal = lazy(() => import("../pages/panel-personal/panel"));
-const InstitutionalPanel = lazy(() => import("../pages/panel-Institutional/panel"))
-
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
@@ -97,6 +106,7 @@ export const Router: React.FC = () => {
         </Route>
 
         <Route element={<Private />}></Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
