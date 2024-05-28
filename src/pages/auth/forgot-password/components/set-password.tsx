@@ -6,8 +6,18 @@ import { SelectInput } from "../../../../components/select/select";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SetPasswordInputs } from "../forgot-password.types";
 import * as yup from "yup";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
+import { ResetPassword } from "../../../../redux/actions/auth/forget-password";
+import { SuccessModal } from "../../../../components/actionModals/success";
+import { useNavigate } from "react-router-dom";
 
 export const SetPassword = () => {
+  const { info:forgetPasswordData } = useAppSelector(state => state.forgetPasswordSlice);
+  const { isShow , type } = useAppSelector(state => state.showModalSlice.showModal);
+
+  const dispatch=useAppDispatch();
+  const navigate=useNavigate();
+  
   const setPasswordSchema = yup.object().shape({
     password: yup
       .string()
@@ -32,6 +42,7 @@ export const SetPassword = () => {
     register,
     handleSubmit,
     formState: { errors, touchedFields },
+    control,
     trigger,
   } = useForm<SetPasswordInputs>({
     defaultValues: {
@@ -46,68 +57,81 @@ export const SetPassword = () => {
   }, [trigger]);
 
   const onSubmit: SubmitHandler<SetPasswordInputs> = (data) => {
-    console.log(data);
+    dispatch(ResetPassword(data));
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 mt-[10%] rounded-2.5xl sm:shadow-sm"
-    >
-      <div>
-        <h1 className="xl:text-2xl text-base-content font-semibold">
-          Şifreni Belirle
-        </h1>
-        <p className="xl:text-sm text-[12px] text-base-content-light mt-1 pl-1 opacity-60">
-          Sonu 6707 ile biten numarana kod gönderdik. Kimliğinden emin
-          olmalıyız.
-        </p>
-      </div>
-      <div className="mt-6">
-        <div className="">
-          <Input
-            type="password"
-            label="Yeni Şifreniz"
-            className=""
-            isPassword={true}
-            register={{ ...register("password") }}
-            error={errors.password?.message}
-            touched={touchedFields.password}
-          />
-          <Input
-            type="password"
-            label="Yeni Şifreniz (Tekrardan)"
-            className="mt-4"
-            isPassword={true}
-            register={{ ...register("confirmPassword") }}
-            error={errors.confirmPassword?.message}
-            touched={touchedFields.confirmPassword}
-          />
-          <SelectInput
-            placeholder="Şifre Değiştirme Süresi"
-            options={[
-              { value: 3, label: "3 ay" },
-              { value: 6, label: "6 ay" },
-              { value: 12, label: "1 yıl" },
-            ]}
-            className="mt-4 w-full"
-            error={errors.passwordEndDate?.message}
-            touched={touchedFields.passwordEndDate}
-            register={{ ...register("passwordEndDate") }}
-          />
-        </div>
-      </div>
-
-      <Button
-        type="submit"
-        variant="primary"
-        size="medium"
-        shape="full"
-        className="mt-6"
-        isDisabled={Object.keys(errors).length > 0 ? true : false}
+    
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 mt-[10%] rounded-2.5xl sm:shadow-sm"
       >
-        Devam Et
-      </Button>
-    </form>
+        <div>
+          <h1 className="xl:text-2xl text-base-content font-semibold">
+            Şifreni Belirle
+          </h1>
+          <p className="xl:text-sm text-[12px] text-base-content-light mt-1 pl-1 opacity-60">
+            Sonu 6707 ile biten numarana kod gönderdik. Kimliğinden emin
+            olmalıyız.
+          </p>
+        </div>
+        <div className="mt-6">
+          <div className="">
+            <Input
+              type="password"
+              label="Yeni Şifreniz"
+              className=""
+              isPassword={true}
+              register={{ ...register("password") }}
+              error={errors.password?.message}
+              touched={touchedFields.password}
+            />
+            <Input
+              type="password"
+              label="Yeni Şifreniz (Tekrardan)"
+              className="mt-4"
+              isPassword={true}
+              register={{ ...register("confirmPassword") }}
+              error={errors.confirmPassword?.message}
+              touched={touchedFields.confirmPassword}
+            />
+            <SelectInput
+              name="passwordEndDate"
+              control={control}
+              placeholder="Şifre Değiştirme Süresi"
+              options={[
+                { value: 3 * 30, label: "3 ay" },
+                { value: 6 * 30, label: "6 ay" },
+                { value: 12 * 30, label: "1 yıl" },
+              ]}
+              className="mt-4 w-full"
+              error={errors.passwordEndDate?.message}
+              touched={touchedFields.passwordEndDate}
+              register={{ ...register("passwordEndDate") }}
+            />
+          </div>
+        </div>
+
+        <Button
+          type="submit"
+          variant="primary"
+          size="medium"
+          shape="full"
+          className="mt-6"
+          isDisabled={Object.keys(errors).length > 0 ? true : false}
+        >
+          Devam Et
+        </Button>
+      </form>
+        <SuccessModal 
+        state={type==="passwordChangeSuccess"}
+        title="İşlem Başarılı"
+        subTitle="Mayo spinach lasagna NY personal. Burnt lot Hawaiian olives Hawaiian white tomato tomato anchovies. Ricotta white and pan mouth. Burnt fresh bacon parmesan sauce broccoli. Pan style Aussie chicken lot green deep NY pineapple hand. Garlic olives Bianca tomato deep crust meatball deep beef platter. Bacon ranch beef pepperoni fresh tomatoes fresh."
+        confirmLabel="Tekrar Giriş Yap"
+        isButtonOutline={false}
+        onSubmit={() => navigate("/login")}
+        />
+    </>
   );
 };

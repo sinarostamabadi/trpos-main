@@ -9,6 +9,7 @@ export const SuccessModal: React.FC<ActionModalProps> = ({
   subTitle,
   confirmLabel,
   shouldForceSignout,
+  isButtonOutline=true,
   onCloseModal,
   onSubmit,
 }) => {
@@ -24,7 +25,7 @@ export const SuccessModal: React.FC<ActionModalProps> = ({
       small
     >
       <div className="flex gap-x-6 mt-3">
-        <Button variant="primary" shape="full" isOutline onClick={onSubmit}>
+        <Button variant="primary" shape="full" isOutline={isButtonOutline} onClick={onSubmit}>
           {confirmLabel}
         </Button>
       </div>
