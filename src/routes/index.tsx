@@ -45,6 +45,8 @@ const LinkDetailPersonal = lazy(
 const TransactionReport = lazy(() => import("../pages/panel-Institutional/reports/transaction-report"));
 const ProgressPayment = lazy(() => import("../pages/panel-Institutional/reports/progress-payment"));
 const Bills = lazy(() => import("../pages/panel-Institutional/reports/bills"));
+const PanelPersonal = lazy(() => import("../pages/panel-personal/panel"));
+const InstitutionalPanel = lazy(() => import("../pages/panel-Institutional/panel"))
 
 // end:: Lazy imports
 
@@ -75,11 +77,13 @@ export const Router: React.FC = () => {
             <Route path="transactionReport" element={<TransactionReport />} />
             <Route path="progressPayment" element={<ProgressPayment />} />
             <Route path="bills" element={<Bills />} />
+            <Route path="panel" element={<InstitutionalPanel />} />
           </Route>
 
           <Route path="personal">
             <Route path="linkPayment" element={<LinkPaymentPersonal />} />
             <Route path="linkDetail/:id" element={<LinkDetailPersonal />} />
+            <Route path="panel" element={<PanelPersonal />} />
           </Route>
 
           {/* begin:: Shared pages */}

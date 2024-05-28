@@ -59,6 +59,7 @@ export const tailwindColors: colorObject = {
   "base-content": "#18181C",
   "base-content-3": "#18181C08",
   "base-content-2": "#18181C05",
+  "base-content-10":"#18181C1A",
   "base-content-20": "#18181C33",
   "base-content-40": "#18181C66",
   "base-content-60": "#18181C99",
@@ -76,10 +77,13 @@ export const tailwindColors: colorObject = {
   "gradient-second": "#0fa2e9",
   "main-purple": "#9900EF",
   "base-gray": "#FAFAFA",
-  "base-blue": "#3B82F6",
-  orange: "#FF6600",
-  "dark-green": "#00636D",
-  blue: "#3B82F6",
+  "base-blue":"#3B82F6",
+  "orange":"#FF6600",
+  "dark-green":"#00636D",
+  "blue":"#3B82F6",
+  "dark-purple":"#3730A3",
+  "light-blue":"#38BDF8",
+  "light-purple":"#6366F1"
 };
 
 export const config: Config = {

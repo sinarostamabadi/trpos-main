@@ -25,7 +25,7 @@ const PanelLayout = () => {
 
   return (
     <section
-      className={`layout w-full min-h-screen grid bg-base-gray transition-all duration-300 ${
+      className={`layout w-full min-h-screen grid bg-base-gray transition-all duration-300s select-none ${
         isToggled ? "grid-cols-[280px_1fr]" : "grid-cols-[80px_1fr]"
       }`}
     >
@@ -82,7 +82,7 @@ const PanelLayout = () => {
           </div>
         )}
 
-        <div className="w-full mt-10 h-screen no_scroll overflow-y-auto scroll-m-0">
+        <div className="w-full mt-10 no_scroll overflow-y-auto scroll-m-0">
           {menuNumber == 0 ? (
             <div className="ml-1">
               <MenuItem
@@ -107,7 +107,7 @@ const PanelLayout = () => {
             <div className="mb-10 ml-1">
               <MenuItem
                 title="Panel"
-                href="/dashboard"
+                href={menuNumber === 2 ? "/dashboard/Institutional/panel" : "/dashboard/personal/panel"}
                 iconActive={
                   <IconPieChart
                     width={24}
@@ -119,7 +119,7 @@ const PanelLayout = () => {
                 iconDeactive={
                   <IconPieChart width={24} height={24} viewBox="0 0 24 24" />
                 }
-                isActive={pathname === "/dashboard"}
+                isActive={menuNumber === 2 ? pathname==="/dashboard/Institutional/panel" : pathname==="/dashboard/personal/panel"}
                 isToggled={isToggled}
               />
             </div>
