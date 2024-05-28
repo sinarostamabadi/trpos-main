@@ -16,11 +16,17 @@ export const PhoneInfo = () => {
     phoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
-      .matches(/^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/, "Biçim: +901234567890"),
+      .matches(
+        /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/,
+        "Biçim: +901234567890"
+      ),
     currentPhoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
-      .matches(/^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/, "Biçim: +901234567890"),
+      .matches(
+        /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/,
+        "Biçim: +901234567890"
+      ),
     currentPhoneCountry: yup.string(),
     email: yup
       .string()
@@ -35,7 +41,8 @@ export const PhoneInfo = () => {
         /^(?!\d*(?:012|123|234|345|456|567|678|789|890|901|210|321|432|543|654|765|876|987|098|109))/,
         "Ardışık sayılardan oluşamaz"
       )
-      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
+      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir")
+      .matches(/^(?!.*(\d)(\1))\d+$/, "Tekrarlanan sayılardan oluşamaz"),
     ip: yup.string().required(),
   });
 

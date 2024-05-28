@@ -14,7 +14,12 @@ export const SetPassword = () => {
       .min(6, "Şifre 6 rakamdan oluşmalıdır")
       .max(6, "Maksimum 6 karakter")
       .required()
-      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
+      .matches(
+        /^(?!\d*(?:012|123|234|345|456|567|678|789|890|901|210|321|432|543|654|765|876|987|098|109))/,
+        "Ardışık sayılardan oluşamaz"
+      )
+      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir")
+      .matches(/^(?!.*(\d)(\1))\d+$/, "Tekrarlanan sayılardan oluşamaz"),
     confirmPassword: yup
       .string()
       .required("Şifre tekrarı zorunlu bir alandır")

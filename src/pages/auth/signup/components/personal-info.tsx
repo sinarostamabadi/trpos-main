@@ -76,7 +76,8 @@ export const PersonalInfo: React.FC = () => {
         /^(?!\d*(?:012|123|234|345|456|567|678|789|890|901|210|321|432|543|654|765|876|987|098|109))/,
         "Ardışık sayılardan oluşamaz"
       )
-      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir"),
+      .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir")
+      .matches(/^(?!.*(\d)(\1))\d+$/, "Tekrarlanan sayılardan oluşamaz"),
     passwordRepeat: yup
       .string()
       .required("Şifre tekrarı zorunlu bir alandır")

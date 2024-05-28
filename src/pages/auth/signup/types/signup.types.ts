@@ -11,3 +11,8 @@ export interface SignupInput {
   checkbox_rule_2: boolean;
   checkbox_rule_3: boolean;
 }
+
+export type RuleAccepted = {
+  id: number;
+  isAccepted: boolean;
+};
