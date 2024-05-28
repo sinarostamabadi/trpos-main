@@ -90,16 +90,15 @@ export const PasswordInfo = () => {
         shape="full"
         className="mt-6"
         isDisabled={Object.keys(errors).length > 0 ? true : false}
-        loadingText="giriş yapmak..."
       >
         Devam Et
       </Button>
 
-      <p className="opacity-40 text-sm my-6 w-full text-center flex">
+      <span className="opacity-40 text-sm my-6 w-full text-center flex">
         <div className="w-full border-b-2 -translate-y-2"></div>
         <span className="text-nowrap px-5">ya da</span>
         <div className="w-full border-b-2 -translate-y-2"></div>
-      </p>
+      </span>
 
       <Link
         to={"/change-phone"}

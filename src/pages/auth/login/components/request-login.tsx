@@ -105,7 +105,6 @@ export const RequestLogin: React.FC = () => {
         size="medium"
         shape="full"
         className="mt-6"
-        loadingText="giriş yapmak..."
         isDisabled={Object.keys(errors).length > 0 ? true : false}
       >
         Devam Et

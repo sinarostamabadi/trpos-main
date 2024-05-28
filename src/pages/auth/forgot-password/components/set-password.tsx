@@ -105,7 +105,6 @@ export const SetPassword = () => {
         shape="full"
         className="mt-6"
         isDisabled={Object.keys(errors).length > 0 ? true : false}
-        loadingText="giriş yapmak..."
       >
         Devam Et
       </Button>
