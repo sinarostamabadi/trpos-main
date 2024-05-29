@@ -4,15 +4,18 @@ import { ActionModalProps } from "../action-modal.types";
 import { useAppDispatch } from "../../../hooks/redux-hooks";
 import { setShowModal } from "../../../redux/reducers/show-modal";
 import DeleteIcon from "../../../assets/images/RemoveCircleLight.svg";
+import { useNavigate } from "react-router-dom";
 
 export const ErrorModal: React.FC<ActionModalProps> = ({
   state,
   title,
   subTitle,
   confirmLabel,
+  navigatePath,
   onCloseModal,
 }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
     <Modal
@@ -30,9 +33,10 @@ export const ErrorModal: React.FC<ActionModalProps> = ({
           variant="primary"
           shape="full"
           isOutline
-          onClick={() =>
-            dispatch(setShowModal({ isShow: false, type: "error" }))
-          }
+          onClick={() => {
+            dispatch(setShowModal({ isShow: false, type: "error" }));
+            navigatePath && navigate(navigatePath);
+          }}
         >
           {confirmLabel ? confirmLabel : "Tamam"}
         </Button>

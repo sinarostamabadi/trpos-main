@@ -10,8 +10,8 @@ import {
   verifyCode,
 } from "../../../../redux/actions/auth/verify-code";
 import { BeatLoader } from "react-spinners";
-import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 
 type ActionType = {
   actionType: "signup" | "login" | "forgot-password" | "change-phone";

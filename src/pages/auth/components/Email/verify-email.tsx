@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
@@ -10,14 +10,24 @@ import {
   verifyCode,
 } from "../../../../redux/actions/auth/verify-code";
 import { BeatLoader } from "react-spinners";
+import { VerifyCodeActionTypes } from "../../../../types/verify-code-action-type.types";
 import * as yup from "yup";
 
 type ActionType = {
-  actionType: "signup" | "login" | "forgot-password" | "change-phone";
+  actionType: VerifyCodeActionTypes;
+  methodProviderName?: string;
 };
 
-export const VerifyEmail: React.FC<ActionType> = ({ actionType }) => {
+export const VerifyEmail: React.FC<ActionType> = ({
+  actionType,
+  methodProviderName,
+}) => {
+  const [userEmail, setUserEmail] = useState();
+
   const { info: signupInfo } = useAppSelector((state) => state.signupSlice);
+  const { info: forgetPassInfo } = useAppSelector(
+    (state) => state.forgetPasswordSlice
+  );
   const { isButtonLoading } = useAppSelector(
     (state) => state.buttonLoadingSlice
   );
@@ -41,7 +51,7 @@ export const VerifyEmail: React.FC<ActionType> = ({ actionType }) => {
   } = useForm<VerifyCode>({
     defaultValues: {
       version: "1",
-      methodProviderName: "confirmemailforregister",
+      methodProviderName: methodProviderName,
     },
     resolver: yupResolver(verifyCodeSchema),
     mode: "all",
@@ -50,6 +60,15 @@ export const VerifyEmail: React.FC<ActionType> = ({ actionType }) => {
   useEffect(() => {
     trigger();
   }, [trigger]);
+  useEffect(() => {
+    if (actionType == "signup") {
+      const userEmail = signupInfo?.email;
+      setUserEmail(userEmail);
+    } else if (actionType == "forgot-password") {
+      const userEmail = forgetPassInfo?.email;
+      setUserEmail(userEmail);
+    }
+  }, [signupInfo, forgetPassInfo]);
 
   const onSubmit = (values: VerifyCode) => {
     const numericCode = values.code.replace(/[^\d]/g, "");
@@ -65,9 +84,7 @@ export const VerifyEmail: React.FC<ActionType> = ({ actionType }) => {
             E-Postanı Doğrula
           </h1>
           <p className="text-base-content-light mt-1 text-sm opacity-60">
-            <span className="text-primary font-semibold">
-              {signupInfo.email}
-            </span>{" "}
+            <span className="text-primary font-semibold">{userEmail}</span>{" "}
             e-posta adresine kod gönderdik. Kimliğinden emin olmalıyız.
           </p>
         </div>

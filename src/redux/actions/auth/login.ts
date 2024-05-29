@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { api } from "../../../api";
 import { createData } from "../../../core/http-service";
 import { LoginInput } from "../../../pages/auth/login/types/login.types";
@@ -10,7 +11,7 @@ import { AppDispatch } from "../../store/store";
 export const login = (data: LoginInput) => async (dispatch: AppDispatch) => {
   dispatch(setButtonLoading(true));
   try {
-    const response: any = await createData(api.AuthApi.login, data);
+    const response: AxiosResponse = await createData(api.AuthApi.login, data);
     localStorage.trpos__token = response.data.token;
     localStorage.trpos__user_info = JSON.stringify(response.data?.userInfo);
     localStorage.trpos__user_type = response.data?.userInfo?.userType;

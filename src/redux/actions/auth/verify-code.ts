@@ -6,17 +6,18 @@ import { setSignupStep } from "../../reducers/auth/signup";
 import { AppDispatch } from "../../store/store";
 import { setButtonLoading } from "../../reducers/button-loading";
 import { setShowModal } from "../../reducers/show-modal";
-import { setErrors } from "../../reducers/errors";
+import { setErrorCode, setErrors } from "../../reducers/errors";
 import { setResendCodeLoading } from "../../reducers/settings/resend-code";
 import { setLoginStep } from "../../reducers/auth/login";
+import { VerifyCodeActionTypes } from "../../../types/verify-code-action-type.types";
+import { setForgetPasswordStep } from "../../reducers/auth/forget-password";
 
-type ActionType = "signup" | "login" | "forgot-password" | "change-phone";
 type VerifyType = "GSM" | "email";
 
 export const verifyCode =
   (
     data: VerifyCode,
-    actionType: ActionType,
+    actionType: VerifyCodeActionTypes,
     verifyType: VerifyType,
     navigate?: any
   ) =>
@@ -50,6 +51,11 @@ export const verifyCode =
             response.data?.accessTokenDto?.expiration;
           dispatch(setLoginStep(0));
         }
+
+        if (actionType == "forgot-password") {
+          dispatch(setForgetPasswordStep(2));
+          localStorage.trpos__token = response.data?.accessTokenDto?.token;
+        }
       }
     } catch (error: any) {
       dispatch(setErrors(error?.message));
@@ -79,6 +85,7 @@ export const resendCode = () => async (dispatch: AppDispatch) => {
   } catch (error: any) {
     dispatch(setErrors(error?.message));
     dispatch(setShowModal({ isShow: true, type: "error" }));
+    error.statusCode == 419 && dispatch(setErrorCode(error.statusCode));
     console.log(error);
   } finally {
     dispatch(setResendCodeLoading(false));

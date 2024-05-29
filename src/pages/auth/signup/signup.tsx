@@ -14,7 +14,12 @@ const formRender: Record<number, ReactNode> = {
   1: (
     <VerifyPhone actionType="signup" methodProviderName="confirmphoneNumber" />
   ),
-  2: <VerifyEmail actionType="signup" />,
+  2: (
+    <VerifyEmail
+      actionType="signup"
+      methodProviderName="confirmemailforregister"
+    />
+  ),
 };
 
 const SignUp: React.FC = () => {

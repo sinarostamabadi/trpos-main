@@ -8,6 +8,7 @@ export type ActionModalProps = BaseModalProps & {
   isButtonOutlined?: boolean;
   confirmLabel?: string;
   shouldForceSignout?: boolean;
+  isButtonOutline?: boolean;
+  navigatePath?: string;
   onSubmit?: () => void;
-  isButtonOutline?:boolean;
 };

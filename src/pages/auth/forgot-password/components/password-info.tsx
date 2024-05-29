@@ -8,6 +8,7 @@ import { ForgotPasswordInputs } from "../forgot-password.types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
 import { ForgetPasswordRequest } from "../../../../redux/actions/auth/forget-password";
 import { parsePhoneNumber } from "../../../../helper/parse-phone";
+import { PhoneInput } from "../../../../components/phoneInput";
 import * as yup from "yup";
 
 export const PasswordInfo = () => {
@@ -15,23 +16,22 @@ export const PasswordInfo = () => {
     (state) => state.buttonLoadingSlice
   );
 
-  const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
-  const emailRegex =
-    /^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
   const dispatch = useAppDispatch();
 
   const passwordInfoSchema = yup.object().shape({
     phoneNumber: yup
       .string()
-      .required("Cep telefonu numarasını veya e-posta adresini girin")
+      .required("Telefon numarası gerekli")
       .matches(
         /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/,
         "Biçim: +901234567890"
       ),
+    email: yup
+      .string()
+      .required()
+      .matches(/^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
     lang: yup.string(),
     phoneCountry: yup.string(),
-    email: yup.string().required().matches(emailRegex),
   });
 
   const {
@@ -80,7 +80,7 @@ export const PasswordInfo = () => {
         </p>
       </div>
       <div className="mt-6">
-        <Input
+        <PhoneInput
           label="Cep No"
           register={{ ...register("phoneNumber") }}
           error={errors.phoneNumber?.message}
@@ -117,7 +117,7 @@ export const PasswordInfo = () => {
         to={"/change-phone"}
         className="text-success block text-center font-medium text-sm"
       >
-        Cep Numaranı Değiştir
+        Cep telefonu numaramı değiştir
       </Link>
       <Link
         to={"/"}

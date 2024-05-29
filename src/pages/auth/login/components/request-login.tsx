@@ -133,7 +133,7 @@ export const RequestLogin: React.FC = () => {
         Devam Et
       </Button>
       <div className="w-full flex justify-center items-center gap-6 text-sm text-base-content-80 mt-6">
-        <Link to={"/change-phone"}>Telefon Numaram Değişti</Link>
+        <Link to={"/change-phone"}>Telefon numaram değişti</Link>
         <div className="w-2 h-2 rounded-full bg-base-content/20"></div>
         <Link to={"/forgot-password"}>Şifremi Unuttum</Link>
       </div>

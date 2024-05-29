@@ -8,6 +8,6 @@ export interface ForgotPasswordInputs {
 export interface SetPasswordInputs {
   password: string;
   confirmPassword: string;
-  passwordEndDate?: number;
+  passwordEndDate: number;
   ip?: string;
 }

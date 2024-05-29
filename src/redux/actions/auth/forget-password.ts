@@ -13,6 +13,7 @@ import {
   ForgotPasswordInputs,
   SetPasswordInputs,
 } from "../../../pages/auth/forgot-password/forgot-password.types";
+import { setSuccessMessage } from "../../reducers/success-response";
 
 export const ForgetPasswordRequest =
   (data: ForgotPasswordInputs) => async (dispatch: AppDispatch) => {
@@ -27,6 +28,7 @@ export const ForgetPasswordRequest =
       dispatch(setForgetPasswordStep(1));
     } catch (error: any) {
       error.statusCode == 400 && dispatch(setErrors(error.message));
+      dispatch(setShowModal({ isShow: true, type: "error" }));
       console.log(error);
     } finally {
       dispatch(setButtonLoading(false));
@@ -37,17 +39,17 @@ export const ResetPassword =
   (data: SetPasswordInputs) => async (dispatch: AppDispatch) => {
     dispatch(setButtonLoading(true));
     try {
-      const response: AxiosResponse = await createData(
-        api.AuthApi.resetPassword,
-        data,
-        {
-          Authorization: `Bearer ${localStorage.trpos__token}`,
-        } as AxiosRequestHeaders
-      );
-      dispatch(setForgetPasswordInfo(response.data?.userInfo));
-      dispatch(setShowModal({ isShow: true, type: "passwordChangeSuccess" }));
+      const response: any = await createData(api.AuthApi.resetPassword, data, {
+        Authorization: `Bearer ${localStorage.trpos__token}`,
+      } as AxiosRequestHeaders);
+
+      dispatch(setSuccessMessage(response.message[1]));
+      dispatch(setShowModal({ isShow: true, type: "success" }));
+      dispatch(setForgetPasswordStep(0));
+      localStorage.removeItem("trpos__token");
     } catch (error: any) {
       error.statusCode == 400 && dispatch(setErrors(error.message));
+      dispatch(setShowModal({ isShow: true, type: "error" }));
       console.log(error);
     } finally {
       dispatch(setButtonLoading(false));
