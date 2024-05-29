@@ -8,14 +8,18 @@ import { setButtonLoading } from "../../reducers/button-loading";
 import { setShowModal } from "../../reducers/show-modal";
 import { setErrors } from "../../reducers/errors";
 import { setResendCodeLoading } from "../../reducers/settings/resend-code";
-import { setLoginExpireTime, setLoginStep } from "../../reducers/auth/login";
-import { Navigate } from "react-router-dom";
+import { setLoginStep } from "../../reducers/auth/login";
 
 type ActionType = "signup" | "login" | "forgot-password" | "change-phone";
 type VerifyType = "GSM" | "email";
 
 export const verifyCode =
-  (data: VerifyCode, actionType: ActionType, verifyType: VerifyType) =>
+  (
+    data: VerifyCode,
+    actionType: ActionType,
+    verifyType: VerifyType,
+    navigate?: any
+  ) =>
   async (dispatch: AppDispatch) => {
     if (actionType == "login") {
       dispatch(setShowModal({ isShow: true, type: "success" }));
@@ -38,17 +42,12 @@ export const verifyCode =
         }
 
         if (actionType == "login") {
-          Navigate({ to: "/dashboard" });
+          navigate("/dashboard/application");
           localStorage.removeItem("trpos__token");
           localStorage.trpos__access_token =
             response.data?.accessTokenDto?.token;
-          localStorage.trpos__user_info = JSON.stringify(
-            response.data?.userInfo
-          );
-          localStorage.trpos__user_type = response.data?.userInfo.userType;
-          dispatch(
-            setLoginExpireTime(response.data?.accessTokenDto?.expiration)
-          );
+          localStorage.trpos__token_expire =
+            response.data?.accessTokenDto?.expiration;
           dispatch(setLoginStep(0));
         }
       }
@@ -60,7 +59,7 @@ export const verifyCode =
       if (actionType == "login") {
         dispatch(setShowModal({ isShow: false, type: "success" }));
       } else {
-        dispatch(setButtonLoading(true));
+        dispatch(setButtonLoading(false));
       }
     }
   };

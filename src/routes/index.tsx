@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { Private } from "./private/private";
 import { Suspense, lazy } from "react";
 import { SplashScreen } from "../components/splashScreen";
+import Private from "./private/private";
 
 // begin:: Lazy imports
 const AuthLayout = lazy(() => import("../layout/_auth"));
@@ -60,6 +60,8 @@ const PanelPersonal = lazy(() => import("../pages/panel-personal/panel"));
 // end:: Lazy imports
 
 export const Router: React.FC = () => {
+  const userType = localStorage.trpos__user_type;
+
   return (
     <Suspense fallback={<SplashScreen />}>
       <Routes>
@@ -73,26 +75,38 @@ export const Router: React.FC = () => {
 
         <Route element={<Private />}>
           <Route path="/dashboard" element={<PanelLayout />}>
-            <Route path="application" element={<Application />} />
+            {(userType == undefined || userType == 0) && (
+              <Route path="application" element={<Application />} />
+            )}
 
-            <Route path="Institutional">
-              <Route path="webManagement" element={<WebManagement />} />
-              <Route path="linkPayment" element={<LinkPayment />} />
-              <Route path="siteDetail/:id" element={<SiteDetail />} />
-              <Route path="physicalPOS" element={<PhysicalPOS />} />
-              <Route path="userAuthorization" element={<UserAuthorization />} />
-              <Route path="linkDetail/:id" element={<LinkDetail />} />
-              <Route path="transactionReport" element={<TransactionReport />} />
-              <Route path="progressPayment" element={<ProgressPayment />} />
-              <Route path="bills" element={<Bills />} />
-              <Route path="panel" element={<InstitutionalPanel />} />
-            </Route>
+            {userType == 2 && (
+              <Route path="Institutional">
+                <Route path="panel" element={<InstitutionalPanel />} />
+                <Route path="webManagement" element={<WebManagement />} />
+                <Route path="linkPayment" element={<LinkPayment />} />
+                <Route path="siteDetail/:id" element={<SiteDetail />} />
+                <Route path="physicalPOS" element={<PhysicalPOS />} />
+                <Route
+                  path="userAuthorization"
+                  element={<UserAuthorization />}
+                />
+                <Route path="linkDetail/:id" element={<LinkDetail />} />
+                <Route
+                  path="transactionReport"
+                  element={<TransactionReport />}
+                />
+                <Route path="progressPayment" element={<ProgressPayment />} />
+                <Route path="bills" element={<Bills />} />
+              </Route>
+            )}
 
-            <Route path="personal">
-              <Route path="linkPayment" element={<LinkPaymentPersonal />} />
-              <Route path="linkDetail/:id" element={<LinkDetailPersonal />} />
-              <Route path="panel" element={<PanelPersonal />} />
-            </Route>
+            {userType == 1 && (
+              <Route path="personal">
+                <Route path="panel" element={<PanelPersonal />} />
+                <Route path="linkPayment" element={<LinkPaymentPersonal />} />
+                <Route path="linkDetail/:id" element={<LinkDetailPersonal />} />
+              </Route>
+            )}
 
             {/* begin:: Shared pages */}
             <Route path="settings" element={<Settings />} />

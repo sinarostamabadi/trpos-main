@@ -1,7 +1,7 @@
 import PlusFillBlue from "../../../../assets/images/PlusFillBlue.svg";
-import { Button } from "../../../../components/button";
-import { IconArrowDown } from "../../../../components/icons/icons";
-import UserAvatar from "../../../../assets/images/user.png";
+// import { Button } from "../../../../components/button";
+// import { IconArrowDown } from "../../../../components/icons/icons";
+// import UserAvatar from "../../../../assets/images/user.png";
 
 export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
   return (
@@ -9,7 +9,7 @@ export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
       <div className="mb-16">
         <p className="font-semibold text-lg mb-5">Kurumsal</p>
         <div className="grid lg:grid-cols-3 gap-5">
-          <p className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl">
+          {/* <p className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl">
             <div className="flex justify-between border-b w-full pb-8">
               <div className="flex">
                 <span className="rounded-full mt-3 bg-primary/5 w-10 h-10 text-primary pl-2.5 pt-2">
@@ -180,21 +180,21 @@ export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
                 <span className="text-primary">Yönetici</span>
               </div>
             </div>
-          </p>
+          </p> */}
 
-          <p
-            className="flex gap-x-5 items-center justify-center p-8 bg-actual-white rounded-3xl cursor-pointer"
+          <span
+            className="flex gap-x-5 items-center justify-center p-8 h-[220px] w-[450px] bg-actual-white rounded-3xl cursor-pointer"
             onClick={setShow}
           >
             <img src={PlusFillBlue} width={50} />
             <div className="font-semibold">Yeni Kurumsal Başvuru</div>
-          </p>
+          </span>
         </div>
       </div>
       <div className="mb-10">
         <p className="font-semibold text-lg mb-5">Bireysel</p>
         <div className="grid lg:grid-cols-3 gap-5">
-          <p className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl">
+          {/* <p className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl">
             <div className="flex border-b w-full pb-8">
               <img src={UserAvatar} className="rounded-full w-10 h-10 mt-3" />
               <div className="flex flex-col gap-y-3 ml-6">
@@ -209,14 +209,14 @@ export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
                 <span className="text-primary">1234567890</span>
               </div>
             </div>
-          </p>
-          <p
-            className="flex gap-x-5 items-center justify-center bg-actual-white rounded-3xl cursor-pointer"
+          </p> */}
+          <span
+            className="flex gap-x-5 items-center justify-center h-[220px] w-[450px] bg-actual-white rounded-3xl cursor-pointer"
             onClick={setShow}
           >
             <img src={PlusFillBlue} width={50} />
             <div className="font-semibold">Yeni Bireysel Başvuru</div>
-          </p>
+          </span>
         </div>
       </div>
     </div>

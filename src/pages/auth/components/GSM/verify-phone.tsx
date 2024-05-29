@@ -11,6 +11,7 @@ import {
 } from "../../../../redux/actions/auth/verify-code";
 import { BeatLoader } from "react-spinners";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 type ActionType = {
   actionType: "signup" | "login" | "forgot-password" | "change-phone";
@@ -33,6 +34,7 @@ export const VerifyPhone: React.FC<ActionType> = ({
   );
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (actionType == "signup") {
@@ -68,7 +70,7 @@ export const VerifyPhone: React.FC<ActionType> = ({
   const onSubmit = (values: VerifyCode) => {
     const numericCode = values.code.replace(/[^\d]/g, "");
     const dataToSend = { ...values, code: numericCode };
-    dispatch(verifyCode(dataToSend, actionType, "GSM"));
+    dispatch(verifyCode(dataToSend, actionType, "GSM", navigate));
   };
   return (
     <div className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm">

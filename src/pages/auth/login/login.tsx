@@ -32,7 +32,10 @@ const Login: React.FC = () => {
         ></Modal>
       )}
       {showModal.type == "error" && (
-        <ErrorModal state={showModal.isShow} title={errors[1]} />
+        <ErrorModal
+          state={showModal.isShow}
+          subTitle={+errors[0] ? errors[1] : errors[0]}
+        />
       )}
     </>
   );

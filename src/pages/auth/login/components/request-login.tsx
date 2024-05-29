@@ -85,7 +85,6 @@ export const RequestLogin: React.FC = () => {
         })
       );
     } else {
-      console.log(data);
       dispatch(login(data));
     }
   };

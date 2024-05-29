@@ -11,18 +11,17 @@ import { parsePhoneNumber } from "../../../../helper/parse-phone";
 import * as yup from "yup";
 
 export const PasswordInfo = () => {
-  const { ip } = useAppSelector((state) => state.IpSlice);
   const { isButtonLoading } = useAppSelector(
     (state) => state.buttonLoadingSlice
   );
-  
+
   const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
   const emailRegex =
     /^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
   const dispatch = useAppDispatch();
 
-  const loginSchema = yup.object().shape({
+  const passwordInfoSchema = yup.object().shape({
     phoneNumber: yup
       .string()
       .required("Cep telefonu numarasını veya e-posta adresini girin")
@@ -42,12 +41,12 @@ export const PasswordInfo = () => {
     trigger,
   } = useForm<ForgotPasswordInputs>({
     defaultValues: {
-      lang: "TR",
-      phoneCountry: "TR",
-      phoneNumber: "+90",
+      lang: localStorage.trpos__lng,
+      phoneCountry: "",
+      phoneNumber: "",
       email: "",
     },
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(passwordInfoSchema),
     mode: "all",
   });
 
@@ -56,7 +55,7 @@ export const PasswordInfo = () => {
 
     const dataToSend = {
       ...data,
-      phoneNumber: parsePhone?.number,
+      phoneNumber: parsePhone?.number!,
       phoneCountry: parsePhone?.country,
     };
 

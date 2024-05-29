@@ -12,6 +12,8 @@ export const login = (data: LoginInput) => async (dispatch: AppDispatch) => {
   try {
     const response: any = await createData(api.AuthApi.login, data);
     localStorage.trpos__token = response.data.token;
+    localStorage.trpos__user_info = JSON.stringify(response.data?.userInfo);
+    localStorage.trpos__user_type = response.data?.userInfo?.userType;
     dispatch(setLoginInfo(response.data?.userInfo));
     dispatch(setLoginStep(1));
   } catch (error: any) {

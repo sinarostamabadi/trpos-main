@@ -4,8 +4,23 @@ import { Divider } from "../../../../../../components/divider";
 import { Input } from "../../../../../../components/input";
 import { SelectInput } from "../../../../../../components/select";
 import InstaLogo from "../../../../../../assets/images/image 8.png";
+import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
 
 export const StepOneIndividual = () => {
+  const {
+    // register,
+    // handleSubmit,
+    // formState: { errors, touchedFields },
+    control,
+    // trigger,
+  } = useForm<any>({
+    defaultValues: {
+      ip: "",
+    },
+    // resolver: yupResolver(setPasswordSchema),
+    // mode: "all",
+  });
   return (
     <form className="pe-2">
       <Divider text="Genel Bilgiler" />
@@ -20,6 +35,8 @@ export const StepOneIndividual = () => {
       <Divider text="Diğer Bilgiler" />
       <div className="flex flex-col gap-y-3">
         <SelectInput
+          name=""
+          control={control}
           placeholder="Satış Yaptığınız Platform"
           options={[
             {

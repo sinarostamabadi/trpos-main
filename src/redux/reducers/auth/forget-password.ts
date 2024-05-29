@@ -3,7 +3,7 @@ import { InitialState } from "../../../types/initial-state.type";
 
 const initialState: InitialState = {
   info: {},
-  step:1,
+  step: 0,
   loading: false,
 };
 
@@ -17,12 +17,13 @@ const forgetPasswordSlice = createSlice({
     setLoading: (state, action: { payload: boolean }) => {
       state.loading = action.payload;
     },
-    setForgetPasswordStep : (state , action:{ payload : number }) => {
-        state.step=action.payload;
-    }
+    setForgetPasswordStep: (state, action: { payload: number }) => {
+      state.step = action.payload;
+    },
   },
 });
 
 const { reducer, actions } = forgetPasswordSlice;
-export const {setForgetPasswordInfo , setForgetPasswordStep , setLoading } = actions;
+export const { setForgetPasswordInfo, setForgetPasswordStep, setLoading } =
+  actions;
 export default reducer;

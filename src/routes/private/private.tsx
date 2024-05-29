@@ -1,22 +1,32 @@
+import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppSelector } from "../../hooks/redux-hooks";
 
-export const Private: React.FC = () => {
-  const { expireTime } = useAppSelector((state) => state.loginSlice);
+const Private = () => {
+  const [shouldRender, setShouldRender] = useState(false);
 
   // -------- variables --------
   const token = localStorage.trpos__access_token;
-  const tokenExpireTime = new Date(+expireTime * 1000);
+  const expireTime = localStorage.trpos__token_expire;
+  const tokenExpireTime = new Date(expireTime!);
 
-  // -------- code to be executed ---------
-  if (tokenExpireTime < new Date()) {
-    localStorage.trpos__access_token = "";
-    localStorage.trpos__user_info = "";
-    <Navigate to="/login" />;
-  }
+  useEffect(() => {
+    const checkExpireTimeInterval = setInterval(() => {
+      if (tokenExpireTime < new Date()) {
+        localStorage.removeItem("trpos__access_token");
+        localStorage.removeItem("trpos__user_info");
+        localStorage.removeItem("trpos__user_type");
+        localStorage.removeItem("trpos__token_expire");
+        setShouldRender(true);
+      }
+    }, 60 * 1000);
+    return () => clearInterval(checkExpireTimeInterval);
+  }, []);
 
-  // console.log(expireTime);
-  // console.log(tokenExpireTime);
+  useEffect(() => {
+    shouldRender && <Navigate to={"/login"} />;
+  }, [shouldRender]);
 
-  return token ? <Outlet /> : <Navigate to="/login" />;
+  return token ? <Outlet /> : <Navigate to={"/login"} />;
 };
+
+export default Private;

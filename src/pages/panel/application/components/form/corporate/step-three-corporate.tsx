@@ -21,7 +21,7 @@ export const StepThreeCorporate = () => {
         <PhoneInput label="Yetkili Cep Numarası" />
         <Input label="Yetkili Kimlik Numarası" />
         <Input label="Yetkili Doğum Tarihi" type="date" />
-        <SelectInput placeholder="Meslek" />
+        <SelectInput name="" placeholder="Meslek" />
       </div>
 
       <Button variant="primary" shape="full" className="my-3">

@@ -12,5 +12,5 @@ export type SelectProps = {
   isSimple?: boolean;
   label?: string;
   name:string,
-  control:any;
+  control?:any;
 };

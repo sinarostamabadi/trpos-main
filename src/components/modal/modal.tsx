@@ -52,7 +52,7 @@ export const Modal = ({
           </span>
           {description && <span className="text-sm text-base-content-80">{description}</span>}
           {subTitle && (
-            <div className="text-xs mt-2 text-base-content-60 font-normal">
+            <div className="text-sm mt-2 text-base-content-60 font-normal">
               {subTitle}
             </div>
           )}

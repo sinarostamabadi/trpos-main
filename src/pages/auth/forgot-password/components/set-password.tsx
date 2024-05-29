@@ -1,23 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
 import { SelectInput } from "../../../../components/select/select";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SetPasswordInputs } from "../forgot-password.types";
-import * as yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
 import { ResetPassword } from "../../../../redux/actions/auth/forget-password";
 import { SuccessModal } from "../../../../components/actionModals/success";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 
 export const SetPassword = () => {
-  const { info: forgetPasswordData } = useAppSelector(
+  const [userPhone, setUserPhone] = useState();
+
+  const { info: forgetPasswordInfo } = useAppSelector(
     (state) => state.forgetPasswordSlice
   );
-  const { isShow, type } = useAppSelector(
-    (state) => state.showModalSlice.showModal
-  );
+  const { type } = useAppSelector((state) => state.showModalSlice.showModal);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export const SetPassword = () => {
       .required("Şifre tekrarı zorunlu bir alandır")
       .oneOf([yup.ref("password")], "Şifre ve tekrar şifre eşleşmiyor"),
     passwordEndDate: yup.number(),
-    ip: yup.string().required(),
+    ip: yup.string(),
   });
 
   const {
@@ -50,7 +50,7 @@ export const SetPassword = () => {
     trigger,
   } = useForm<SetPasswordInputs>({
     defaultValues: {
-      ip: "1.1.1.1",
+      ip: "",
     },
     resolver: yupResolver(setPasswordSchema),
     mode: "all",
@@ -59,6 +59,10 @@ export const SetPassword = () => {
   useEffect(() => {
     trigger();
   }, [trigger]);
+  useEffect(() => {
+    const userPhone = forgetPasswordInfo?.phoneNumber?.slice(-4);
+    setUserPhone(userPhone);
+  }, [forgetPasswordInfo]);
 
   const onSubmit: SubmitHandler<SetPasswordInputs> = (data) => {
     dispatch(ResetPassword(data));
@@ -75,8 +79,8 @@ export const SetPassword = () => {
             Şifreni Belirle
           </h1>
           <p className="xl:text-sm text-[12px] text-base-content-light mt-1 pl-1 opacity-60">
-            Sonu 6707 ile biten numarana kod gönderdik. Kimliğinden emin
-            olmalıyız.
+            Sonu <span>{userPhone}</span> ile biten numarana kod gönderdik.
+            Kimliğinden emin olmalıyız.
           </p>
         </div>
         <div className="mt-6">

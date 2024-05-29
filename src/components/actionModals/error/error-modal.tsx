@@ -17,7 +17,7 @@ export const ErrorModal: React.FC<ActionModalProps> = ({
   return (
     <Modal
       state={state}
-      title={title ? title : "Başvurunuzu alamıyoruz."}
+      title={title ? title : "Bir hata oluştu."}
       subTitle={subTitle}
       icon={<img src={DeleteIcon} width={50} />}
       onCloseModal={onCloseModal}

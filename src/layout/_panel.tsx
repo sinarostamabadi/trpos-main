@@ -14,6 +14,7 @@ import { MenuItem } from "../components/menu/components/menu-item";
 import logo from "../assets/images/logo.svg";
 import logoIcon from "../assets/images/logo-icon.png";
 import user from "../assets/images/user.png";
+import { getUserDataFromLocalstorage } from "../helper/get-user-data-from-local";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -191,7 +192,7 @@ const PanelLayout = () => {
                     <div className="flex flex-col gap-[1px]">
                       <p className="text-xs text-base-content-40">Üye</p>
                       <p className="text-xs text-base-content font-medium">
-                        Bestami Çoban
+                        {getUserDataFromLocalstorage("userTitle")}
                       </p>
                     </div>
                   </div>

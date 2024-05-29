@@ -3,9 +3,9 @@ import { PasswordInfo } from "./components/password-info";
 import { SetPassword } from "./components/set-password";
 
 const ForgotPassword = () => {
-  const { step } = useAppSelector(state => state.forgetPasswordSlice);
+  const { step } = useAppSelector((state) => state.forgetPasswordSlice);
 
-  return step===1 ? <PasswordInfo /> : <SetPassword />
+  return step === 0 ? <PasswordInfo /> : <SetPassword />;
 };
 
 export default ForgotPassword;

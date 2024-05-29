@@ -9,5 +9,5 @@ export interface SetPasswordInputs {
   password: string;
   confirmPassword: string;
   passwordEndDate?: number;
-  ip: string;
+  ip?: string;
 }

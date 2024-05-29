@@ -47,7 +47,7 @@ const SignUp: React.FC = () => {
         />
       )}
       {showModal.type == "error" && (
-        <ErrorModal state={showModal.isShow} title={errors[0]} />
+        <ErrorModal state={showModal.isShow} subTitle={errors[0]} />
       )}
     </>
   );
