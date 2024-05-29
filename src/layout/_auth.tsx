@@ -110,7 +110,7 @@ const AuthLayout = () => {
           pathname === "/forgot-password" || pathname === "/change-phone"
             ? ""
             : "justify-between"
-        } w-full h-full flex flex-col  items-center gap-y-4 bg-base-gray p-4 sm:p-10 z-50`}
+        } w-full h-full flex flex-col  items-center gap-y-4 bg-base-gray p-4 sm:p-10 lg:px-20 z-50`}
       >
         <div className="lg:invisible">
           <svg
