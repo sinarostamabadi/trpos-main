@@ -18,6 +18,8 @@ export const PhoneInfo = () => {
   const { ip } = useAppSelector(state => state.IpSlice);
   const { isButtonLoading } = useAppSelector(state => state.buttonLoadingSlice);
 
+  console.log(ip);
+
   const dispatch=useAppDispatch();
   
   const fetchIp = async () => {
@@ -63,21 +65,21 @@ export const PhoneInfo = () => {
       )
       .matches(/^\d{6}$/, "Yalnızca sayılara izin verilir")
       .matches(/^(?!.*(\d)(\1))\d+$/, "Tekrarlanan sayılardan oluşamaz"),
-    ip: yup.string().required(),
+    ip: yup.string(),
   });
 
   const {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, touchedFields },
+    formState: { errors , touchedFields },
     trigger,
   } = useForm<changePhoneInputs>({
     defaultValues: {
       lang: "Tr",
       phoneCountry: "",
       phoneNumber: "",
-      ip:" ",
+      ip:"",
       currentPhoneNumber: "",
       currentPhoneCountry: "",
       email: "",
@@ -88,7 +90,7 @@ export const PhoneInfo = () => {
   });
 
   useEffect(() => {
-    ip && setValue("ip", ip);
+    ip && setValue("ip", ip );
   }, [ip]);
 
   const onSubmit: SubmitHandler<changePhoneInputs> = (data) => {
