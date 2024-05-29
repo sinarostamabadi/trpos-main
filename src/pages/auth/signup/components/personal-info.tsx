@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
@@ -22,11 +22,9 @@ import * as yup from "yup";
 
 export const PersonalInfo: React.FC = () => {
   const [contractTypes, setContractTypes] = useState<ContractType[]>();
-  const [isModalOpen, setIsModalOpen] = useState({
-    rule_one: false,
-    rule_two: false,
-    rule_three: false,
-  });
+  const [isModalOpen, setIsModalOpen] = useState("");
+
+  console.log(contractTypes);
 
   const { isButtonLoading } = useAppSelector(
     (state) => state.buttonLoadingSlice
@@ -50,7 +48,9 @@ export const PersonalInfo: React.FC = () => {
     ip && setValue("ip", ip);
   }, [ip]);
 
-  const registerSchema = yup.object().shape({
+  console.log(contractTypes);
+
+  const validate={
     name: yup.string().min(2).max(50).required(),
     surname: yup.string().min(2).max(50).required(),
     phoneNumber: yup
@@ -81,10 +81,31 @@ export const PersonalInfo: React.FC = () => {
       .oneOf([yup.ref("password")], "Şifre ve tekrar şifre eşleşmiyor"),
     ip: yup.string(),
     lang: yup.string().required(),
-    checkbox_rule_1: yup.bool().required().oneOf([true]),
-    checkbox_rule_2: yup.bool().required().oneOf([true]),
-    checkbox_rule_3: yup.bool().required().oneOf([true]),
-  });
+  }
+
+  const registerSchema = useMemo(() => {
+    let checkBoxValidationObject={};
+
+      const checkBoxValidation=contractTypes?.map((contractType) => {
+        return {
+          [`check-box-${contractType.id}`] : yup.boolean().required().oneOf([true])
+        }
+      })
+
+      checkBoxValidation?.forEach((item , index) => {
+        checkBoxValidationObject={
+          ...checkBoxValidationObject,
+          ...item
+        }
+      })
+      
+      return yup.object().shape(
+        {
+          ...validate,
+          ...checkBoxValidationObject
+        }
+      )
+  } , [contractTypes])
 
   const {
     register,
@@ -93,26 +114,27 @@ export const PersonalInfo: React.FC = () => {
     getValues,
     trigger,
     formState: { errors, touchedFields },
-  } = useForm<SignupInput>({
+  } = useForm({
     defaultValues: {
       lang: localStorage.trpos__lng,
       ip: "",
     },
     resolver: yupResolver(registerSchema),
     mode: "all",
+    reValidateMode:"onChange",
   });
   const values = getValues();
 
-  useEffect(() => {
-    trigger();
-  }, [trigger]);
+  console.log(values);
+  console.log(errors);
 
   useEffect(() => {
-    values.checkbox_rule_1 &&
-      values.checkbox_rule_2 &&
-      values.checkbox_rule_3 &&
-      trigger();
-  }, [isModalOpen]);
+    trigger();
+  }, [trigger , registerSchema]);
+
+  useEffect(() => {
+    ip && setValue("ip", ip);
+  }, [ip]);
 
   useEffect(() => {
     if (contractTypeInfo.length > 0) {
@@ -130,11 +152,13 @@ export const PersonalInfo: React.FC = () => {
 
   const onSubmit: SubmitHandler<SignupInput> = (data) => {
     const parsedPhone = parsePhoneNumber(data.phoneNumber);
-    const clone = omit(data, [
-      "checkbox_rule_1",
-      "checkbox_rule_2",
-      "checkbox_rule_3",
-    ]);
+
+    const omitData=Object.keys(data).filter((item) => {
+      return item.includes("check-box")
+    });
+
+    const clone = omit(data , omitData);
+
     const dataToSend = { ...clone, phoneNumber: parsedPhone?.number };
     dispatch(registerUser(dataToSend));
   };
@@ -142,66 +166,34 @@ export const PersonalInfo: React.FC = () => {
   return (
     <>
       {/* begin:: Terms modals */}
-      <RuleModal
-        state={isModalOpen.rule_one}
-        title={
-          contractContentInfo.count &&
-          contractContentInfo.data[0]?.contractType?.title
-        }
-        content={{
-          title: "Madde 1",
-          text:
-            contractContentInfo.count && contractContentInfo.data[0]?.content,
-        }}
-        isLoading={contractContentLoading}
-        handleRuleAccept={() => {
-          setValue("checkbox_rule_1", true);
-          setIsModalOpen((prev) => ({ ...prev, rule_one: false }));
-        }}
-        handleCloseModal={() =>
-          setIsModalOpen((prev) => ({ ...prev, rule_one: false }))
-        }
-      />
-      <RuleModal
-        state={isModalOpen.rule_two}
-        title={
-          contractContentInfo.count &&
-          contractContentInfo.data[0]?.contractType?.title
-        }
-        content={{
-          title: "Madde 1",
-          text:
-            contractContentInfo.count && contractContentInfo.data[0]?.content,
-        }}
-        isLoading={contractContentLoading}
-        handleRuleAccept={() => {
-          setValue("checkbox_rule_2", true);
-          setIsModalOpen((prev) => ({ ...prev, rule_two: false }));
-        }}
-        handleCloseModal={() =>
-          setIsModalOpen((prev) => ({ ...prev, rule_two: false }))
-        }
-      />
-      <RuleModal
-        state={isModalOpen.rule_three}
-        title={
-          contractContentInfo.count &&
-          contractContentInfo.data[0]?.contractType?.title
-        }
-        content={{
-          title: "Madde 1",
-          text:
-            contractContentInfo.count && contractContentInfo.data[0]?.content,
-        }}
-        isLoading={contractContentLoading}
-        handleRuleAccept={() => {
-          setValue("checkbox_rule_3", true);
-          setIsModalOpen((prev) => ({ ...prev, rule_three: false }));
-        }}
-        handleCloseModal={() =>
-          setIsModalOpen((prev) => ({ ...prev, rule_three: false }))
-        }
-      />
+      {
+        contractTypes && contractTypes.map((contractType , index) => {
+          return (
+            <RuleModal
+              state={isModalOpen === `rule_${contractType.id}`}
+              title={
+                contractContentInfo.count &&
+                contractContentInfo.data[0]?.contractType?.title
+              }
+              content={{
+                title: `Madde ${index+1}`,
+                text:
+                  contractContentInfo.count && contractContentInfo.data[0]?.content,
+              }}
+              isLoading={contractContentLoading}
+              handleRuleAccept={() => {
+                setValue(`check-box-${contractType.id}`, true);
+                setIsModalOpen("");
+
+                trigger();
+              }}
+              handleCloseModal={() =>
+                setIsModalOpen("")
+              }
+            />
+          )
+        })
+      }
       {/* end:: Terms modals */}
 
       <form
@@ -289,23 +281,18 @@ export const PersonalInfo: React.FC = () => {
                   key={contractType.id}
                   id={contractType.checkboxName!}
                   className="mt-2"
-                  register={{ ...register(contractType.checkboxName!) }}
+                  register={{ ...register(`check-box-${contractType.id}`) }}
                   label="’ni okudum, anladım ve onaylıyorum."
                   linkLabel={contractType.title}
-                  touched={touchedFields[contractType.checkboxName!]}
-                  isChecked={values[contractType.checkboxName!]}
+                  touched={touchedFields[`check-box-${contractType.id}`]}
+                  isChecked={values[`check-box-${contractType.id}`]}
                   handleClick={() => {
                     dispatch(getContract(`${contractType.id}`));
                     setValue(
-                      contractType.checkboxName!,
-                      !values[contractType.checkboxName!]
+                      `check-box-${contractType.id}`,
+                      !values[`check-box-${contractType.id}`]
                     );
-                    setIsModalOpen(() => ({
-                      rule_one: contractType.checkboxName == "checkbox_rule_1",
-                      rule_two: contractType.checkboxName == "checkbox_rule_2",
-                      rule_three:
-                        contractType.checkboxName == "checkbox_rule_3",
-                    }));
+                    setIsModalOpen(`rule_${contractType.id}`);
                   }}
                 />
               ))
