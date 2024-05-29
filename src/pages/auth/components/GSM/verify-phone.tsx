@@ -73,7 +73,7 @@ export const VerifyPhone: React.FC<ActionType> = ({
     dispatch(verifyCode(dataToSend, actionType, "GSM", navigate));
   };
   return (
-    <div className="w-full max-w-[500px] sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm">
+    <div className="w-full sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <h1 className="xl:text-2xl text-base-content font-semibold">
