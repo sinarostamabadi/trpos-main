@@ -14,7 +14,7 @@ const formRender: Record<number, ReactNode> = {
 const Login: React.FC = () => {
   const { step } = useAppSelector((state) => state.loginSlice);
   const { showModal } = useAppSelector((state) => state.showModalSlice);
-  const { errors } = useAppSelector((state) => state.errorsSlice);
+  const { errors, errorCode } = useAppSelector((state) => state.errorsSlice);
 
   return (
     <>
@@ -35,6 +35,7 @@ const Login: React.FC = () => {
         <ErrorModal
           state={showModal.isShow}
           subTitle={+errors[0] ? errors[1] : errors[0]}
+          navigatePath={errorCode == 419 ? "/login" : ""}
         />
       )}
     </>

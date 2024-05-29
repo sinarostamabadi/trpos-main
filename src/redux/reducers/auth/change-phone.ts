@@ -3,7 +3,7 @@ import { InitialState } from "../../../types/initial-state.type";
 
 const initialState: InitialState = {
   info: {},
-  step:1,
+  step: 0,
   loading: false,
 };
 
@@ -14,6 +14,9 @@ const changePhoneSlice = createSlice({
     setChangePhoneInfo: (state, action) => {
       state.info = action.payload;
     },
+    setChangePhoneStep: (state, action: { payload: number }) => {
+      state.step = action.payload;
+    },
     setLoading: (state, action: { payload: boolean }) => {
       state.loading = action.payload;
     },
@@ -21,5 +24,5 @@ const changePhoneSlice = createSlice({
 });
 
 const { reducer, actions } = changePhoneSlice;
-export const { setChangePhoneInfo , setLoading } = actions;
+export const { setChangePhoneInfo, setChangePhoneStep, setLoading } = actions;
 export default reducer;

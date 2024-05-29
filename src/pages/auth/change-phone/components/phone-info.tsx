@@ -6,31 +6,19 @@ import { PhoneInput } from "../../../../components/phoneInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { changePhoneInputs } from "../change-phone.types";
-import * as yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
-import { setIP } from "../../../../redux/reducers/_ip";
-import { useGetClientIp } from "../../../../hooks/get-client-ip";
 import { ChangePhoneRequest } from "../../../../redux/actions/auth/change-phone";
 import { parsePhoneNumber } from "../../../../helper/parse-phone";
 import { InputErrorComponent } from "../../../../components/inputError";
+import * as yup from "yup";
 
 export const PhoneInfo = () => {
-  const { ip } = useAppSelector(state => state.IpSlice);
-  const { isButtonLoading } = useAppSelector(state => state.buttonLoadingSlice);
+  const { ip } = useAppSelector((state) => state.IpSlice);
+  const { isButtonLoading } = useAppSelector(
+    (state) => state.buttonLoadingSlice
+  );
 
-  console.log(ip);
-
-  const dispatch=useAppDispatch();
-  
-  const fetchIp = async () => {
-    const clientIp = await useGetClientIp();
-    dispatch(setIP(clientIp));
-  };
-
-  useEffect(() => {
-    fetchIp();
-  }, []);
-
+  const dispatch = useAppDispatch();
 
   const registerSchema = yup.object().shape({
     lang: yup.string().required(),
@@ -38,10 +26,8 @@ export const PhoneInfo = () => {
     phoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
-      .matches(
-        /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/,
-        "Biçim: +901234567890"
-      ).notOneOf([yup.ref('currentPhoneNumber')], 'Aynı numarayı giremezsiniz'),
+      .matches(/^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/, "Biçim: +901234567890")
+      .notOneOf([yup.ref("currentPhoneNumber")], "Aynı numarayı giremezsiniz"),
     currentPhoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
@@ -72,14 +58,14 @@ export const PhoneInfo = () => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors , touchedFields },
+    formState: { errors, touchedFields },
     trigger,
   } = useForm<changePhoneInputs>({
     defaultValues: {
-      lang: "Tr",
+      lang: localStorage.trpos__lng,
       phoneCountry: "",
       phoneNumber: "",
-      ip:"",
+      ip: "",
       currentPhoneNumber: "",
       currentPhoneCountry: "",
       email: "",
@@ -90,27 +76,26 @@ export const PhoneInfo = () => {
   });
 
   useEffect(() => {
-    ip && setValue("ip", ip );
+    trigger();
+  }, [trigger]);
+  useEffect(() => {
+    ip && setValue("ip", ip);
   }, [ip]);
 
   const onSubmit: SubmitHandler<changePhoneInputs> = (data) => {
-    const parsePhone=parsePhoneNumber(data.phoneNumber);
-    const parseCurrentPhone=parsePhoneNumber(data.currentPhoneNumber);
+    const parsePhone = parsePhoneNumber(data.phoneNumber);
+    const parseCurrentPhone = parsePhoneNumber(data.currentPhoneNumber);
 
-    const dataToSend={
+    const dataToSend = {
       ...data,
-      phoneNumber:parsePhone?.number,
-      phoneCountry:parsePhone?.country,
-      currentPhoneNumber:parseCurrentPhone?.number,
-      currentPhoneCountry:parseCurrentPhone?.country,
-    }
+      phoneNumber: parsePhone?.number,
+      phoneCountry: parsePhone?.country,
+      currentPhoneNumber: parseCurrentPhone?.number,
+      currentPhoneCountry: parseCurrentPhone?.country,
+    };
 
     dispatch(ChangePhoneRequest(dataToSend));
   };
-
-  useEffect(() => {
-    trigger();
-  }, [trigger]);
 
   return (
     <form
@@ -140,10 +125,12 @@ export const PhoneInfo = () => {
             touched={touchedFields.phoneNumber}
             error={errors.phoneNumber?.message}
           />
-          {
-            touchedFields.phoneNumber &&
-            <InputErrorComponent text={errors.phoneNumber?.message} className="col-start-2" />
-          }
+          {touchedFields.phoneNumber && (
+            <InputErrorComponent
+              text={errors.phoneNumber?.message}
+              className="col-start-2"
+            />
+          )}
         </div>
         <Input
           type="email"

@@ -11,6 +11,7 @@ import { setResendCodeLoading } from "../../reducers/settings/resend-code";
 import { setLoginStep } from "../../reducers/auth/login";
 import { VerifyCodeActionTypes } from "../../../types/verify-code-action-type.types";
 import { setForgetPasswordStep } from "../../reducers/auth/forget-password";
+import { setChangePhoneStep } from "../../reducers/auth/change-phone";
 
 type VerifyType = "GSM" | "email";
 
@@ -55,6 +56,17 @@ export const verifyCode =
         if (actionType == "forgot-password") {
           dispatch(setForgetPasswordStep(2));
           localStorage.trpos__token = response.data?.accessTokenDto?.token;
+        }
+
+        if (actionType == "change-phone") {
+          if (verifyType == "GSM") {
+            localStorage.trpos__token = response.data?.accessTokenDto?.token;
+            dispatch(setChangePhoneStep(2));
+          }
+          if (verifyType == "email") {
+            dispatch(setShowModal({ isShow: true, type: "success" }));
+            localStorage.removeItem("trpos__token");
+          }
         }
       }
     } catch (error: any) {

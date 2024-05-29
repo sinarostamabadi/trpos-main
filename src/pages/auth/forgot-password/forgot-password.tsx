@@ -7,6 +7,7 @@ import { SuccessModal } from "../../../components/actionModals/success";
 import { useNavigate } from "react-router-dom";
 import { ErrorModal } from "../../../components/actionModals/error";
 import { setShowModal } from "../../../redux/reducers/show-modal";
+import { setForgetPasswordStep } from "../../../redux/reducers/auth/forget-password";
 
 const formRender: Record<number, ReactNode> = {
   0: <PasswordInfo />,
@@ -44,6 +45,7 @@ const ForgotPassword = () => {
           onSubmit={() => {
             navigate("/login");
             dispatch(setShowModal({ isShow: false, type: "" }));
+            dispatch(setForgetPasswordStep(0));
           }}
           shouldForceSignout
         />

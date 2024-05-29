@@ -45,7 +45,6 @@ export const ResetPassword =
 
       dispatch(setSuccessMessage(response.message[1]));
       dispatch(setShowModal({ isShow: true, type: "success" }));
-      dispatch(setForgetPasswordStep(0));
       localStorage.removeItem("trpos__token");
     } catch (error: any) {
       error.statusCode == 400 && dispatch(setErrors(error.message));

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useMemo, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../../../../components/button";
@@ -24,8 +25,6 @@ export const PersonalInfo: React.FC = () => {
   const [contractTypes, setContractTypes] = useState<ContractType[]>();
   const [isModalOpen, setIsModalOpen] = useState("");
 
-  console.log(contractTypes);
-
   const { isButtonLoading } = useAppSelector(
     (state) => state.buttonLoadingSlice
   );
@@ -48,9 +47,7 @@ export const PersonalInfo: React.FC = () => {
     ip && setValue("ip", ip);
   }, [ip]);
 
-  console.log(contractTypes);
-
-  const validate={
+  const validate = {
     name: yup.string().min(2).max(50).required(),
     surname: yup.string().min(2).max(50).required(),
     phoneNumber: yup
@@ -81,31 +78,32 @@ export const PersonalInfo: React.FC = () => {
       .oneOf([yup.ref("password")], "Şifre ve tekrar şifre eşleşmiyor"),
     ip: yup.string(),
     lang: yup.string().required(),
-  }
+  };
 
   const registerSchema = useMemo(() => {
-    let checkBoxValidationObject={};
+    let checkBoxValidationObject = {};
 
-      const checkBoxValidation=contractTypes?.map((contractType) => {
-        return {
-          [`check-box-${contractType.id}`] : yup.boolean().required().oneOf([true])
-        }
-      })
+    const checkBoxValidation = contractTypes?.map((contractType) => {
+      return {
+        [`check-box-${contractType.id}`]: yup
+          .boolean()
+          .required()
+          .oneOf([true]),
+      };
+    });
 
-      checkBoxValidation?.forEach((item , index) => {
-        checkBoxValidationObject={
-          ...checkBoxValidationObject,
-          ...item
-        }
-      })
-      
-      return yup.object().shape(
-        {
-          ...validate,
-          ...checkBoxValidationObject
-        }
-      )
-  } , [contractTypes])
+    checkBoxValidation?.forEach((item) => {
+      checkBoxValidationObject = {
+        ...checkBoxValidationObject,
+        ...item,
+      };
+    });
+
+    return yup.object().shape({
+      ...validate,
+      ...checkBoxValidationObject,
+    });
+  }, [contractTypes]);
 
   const {
     register,
@@ -121,20 +119,13 @@ export const PersonalInfo: React.FC = () => {
     },
     resolver: yupResolver(registerSchema),
     mode: "all",
-    reValidateMode:"onChange",
+    reValidateMode: "onChange",
   });
   const values = getValues();
 
-  console.log(values);
-  console.log(errors);
-
   useEffect(() => {
     trigger();
-  }, [trigger , registerSchema]);
-
-  useEffect(() => {
-    ip && setValue("ip", ip);
-  }, [ip]);
+  }, [trigger, registerSchema]);
 
   useEffect(() => {
     if (contractTypeInfo.length > 0) {
@@ -153,11 +144,11 @@ export const PersonalInfo: React.FC = () => {
   const onSubmit: SubmitHandler<SignupInput> = (data) => {
     const parsedPhone = parsePhoneNumber(data.phoneNumber);
 
-    const omitData=Object.keys(data).filter((item) => {
-      return item.includes("check-box")
+    const omitData = Object.keys(data).filter((item) => {
+      return item.includes("check-box");
     });
 
-    const clone = omit(data , omitData);
+    const clone = omit(data, omitData);
 
     const dataToSend = { ...clone, phoneNumber: parsedPhone?.number };
     dispatch(registerUser(dataToSend));
@@ -165,36 +156,34 @@ export const PersonalInfo: React.FC = () => {
 
   return (
     <>
-      {/* begin:: Terms modals */}
-      {
-        contractTypes && contractTypes.map((contractType , index) => {
+      {/* begin:: Terms modal */}
+      {contractTypes &&
+        contractTypes.map((contractType, index) => {
           return (
             <RuleModal
+              key={contractType.id}
               state={isModalOpen === `rule_${contractType.id}`}
               title={
                 contractContentInfo.count &&
                 contractContentInfo.data[0]?.contractType?.title
               }
               content={{
-                title: `Madde ${index+1}`,
+                title: `Madde ${index + 1}`,
                 text:
-                  contractContentInfo.count && contractContentInfo.data[0]?.content,
+                  contractContentInfo.count &&
+                  contractContentInfo.data[0]?.content,
               }}
               isLoading={contractContentLoading}
               handleRuleAccept={() => {
                 setValue(`check-box-${contractType.id}`, true);
                 setIsModalOpen("");
-
                 trigger();
               }}
-              handleCloseModal={() =>
-                setIsModalOpen("")
-              }
+              handleCloseModal={() => setIsModalOpen("")}
             />
-          )
-        })
-      }
-      {/* end:: Terms modals */}
+          );
+        })}
+      {/* end:: Terms modal */}
 
       <form
         onSubmit={handleSubmit(onSubmit)}

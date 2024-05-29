@@ -25,7 +25,7 @@ const formRender: Record<number, ReactNode> = {
 const SignUp: React.FC = () => {
   const { step } = useAppSelector((state) => state.signupSlice);
   const { showModal } = useAppSelector((state) => state.showModalSlice);
-  const { errors } = useAppSelector((state) => state.errorsSlice);
+  const { errors, errorCode } = useAppSelector((state) => state.errorsSlice);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -52,7 +52,11 @@ const SignUp: React.FC = () => {
         />
       )}
       {showModal.type == "error" && (
-        <ErrorModal state={showModal.isShow} subTitle={errors[0]} />
+        <ErrorModal
+          state={showModal.isShow}
+          subTitle={+errors[0] ? errors[1] : errors[0]}
+          navigatePath={errorCode == 419 ? "/login" : ""}
+        />
       )}
     </>
   );
