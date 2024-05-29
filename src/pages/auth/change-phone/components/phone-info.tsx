@@ -7,10 +7,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { changePhoneInputs } from "../change-phone.types";
 import * as yup from "yup";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
+import { setIP } from "../../../../redux/reducers/_ip";
+import { useGetClientIp } from "../../../../hooks/get-client-ip";
+import { ChangePhoneRequest } from "../../../../redux/actions/auth/change-phone";
+import { parsePhoneNumber } from "../../../../helper/parse-phone";
+import { InputErrorComponent } from "../../../../components/inputError";
 
 export const PhoneInfo = () => {
+  const { ip } = useAppSelector(state => state.IpSlice);
+  const { isButtonLoading } = useAppSelector(state => state.buttonLoadingSlice);
+
+  const dispatch=useAppDispatch();
+  
+  const fetchIp = async () => {
+    const clientIp = await useGetClientIp();
+    dispatch(setIP(clientIp));
+  };
+
+  useEffect(() => {
+    fetchIp();
+  }, []);
+
+
   const registerSchema = yup.object().shape({
-    customerNo: yup.string().required(),
     lang: yup.string().required(),
     phoneCountry: yup.string(),
     phoneNumber: yup
@@ -19,7 +39,7 @@ export const PhoneInfo = () => {
       .matches(
         /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/,
         "Biçim: +901234567890"
-      ),
+      ).notOneOf([yup.ref('currentPhoneNumber')], 'Aynı numarayı giremezsiniz'),
     currentPhoneNumber: yup
       .string()
       .required("Telefon numarası gerekli")
@@ -49,16 +69,16 @@ export const PhoneInfo = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, touchedFields },
     trigger,
   } = useForm<changePhoneInputs>({
     defaultValues: {
-      customerNo: "100",
-      lang: "tr",
+      lang: "Tr",
       phoneCountry: "",
-      // phoneNumber: "",
-      ip: "1.1.1.1",
-      // currentPhoneNumber: "",
+      phoneNumber: "",
+      ip:" ",
+      currentPhoneNumber: "",
       currentPhoneCountry: "",
       email: "",
       password: "",
@@ -67,8 +87,23 @@ export const PhoneInfo = () => {
     mode: "all",
   });
 
+  useEffect(() => {
+    ip && setValue("ip", ip);
+  }, [ip]);
+
   const onSubmit: SubmitHandler<changePhoneInputs> = (data) => {
-    console.log(data);
+    const parsePhone=parsePhoneNumber(data.phoneNumber);
+    const parseCurrentPhone=parsePhoneNumber(data.currentPhoneNumber);
+
+    const dataToSend={
+      ...data,
+      phoneNumber:parsePhone?.number,
+      phoneCountry:parsePhone?.country,
+      currentPhoneNumber:parseCurrentPhone?.number,
+      currentPhoneCountry:parseCurrentPhone?.country,
+    }
+
+    dispatch(ChangePhoneRequest(dataToSend));
   };
 
   useEffect(() => {
@@ -89,7 +124,7 @@ export const PhoneInfo = () => {
         </p>
       </div>
       <div className="mt-6">
-        <div className="lg:flex gap-x-3 justify-between">
+        <div className="lg:grid grid-cols-2 gap-x-3 justify-between">
           <PhoneInput
             label="Mevcut Telefon Numaranız"
             register={{ ...register("currentPhoneNumber") }}
@@ -103,6 +138,10 @@ export const PhoneInfo = () => {
             touched={touchedFields.phoneNumber}
             error={errors.phoneNumber?.message}
           />
+          {
+            touchedFields.phoneNumber &&
+            <InputErrorComponent text={errors.phoneNumber?.message} className="col-start-2" />
+          }
         </div>
         <Input
           type="email"
@@ -130,6 +169,7 @@ export const PhoneInfo = () => {
         size="medium"
         shape="full"
         className="mt-6"
+        isLoading={isButtonLoading}
         isDisabled={Object.keys(errors).length > 0 ? true : false}
       >
         Devam Et

@@ -1,5 +1,4 @@
 export interface changePhoneInputs {
-  customerNo: string;
   lang: string;
   phoneCountry?: string;
   phoneNumber: string;

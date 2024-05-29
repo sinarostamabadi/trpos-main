@@ -19,10 +19,10 @@ const AuthLayout = () => {
   };
 
   return (
-    <section className="w-full min-h-screen lg:grid lg:grid-cols-2">
-      <div className="w-full h-full hidden lg:grid grid-rows-[auto_1fr_auto] p-10 2xl:p-20">
+    <section className="w-full h-screen lg:grid lg:grid-cols-2">
+      <div className="w-full h-full relative hidden lg:flex lg:flex-col">
         {/* begin:: Logo */}
-        <div className="w-full flex justify-center items-center">
+        <div className="w-full flex justify-center items-center p-10 z-50">
           <svg
             width="196"
             height="40"
@@ -59,16 +59,16 @@ const AuthLayout = () => {
         {/* end:: Logo */}
         {/* begin:: Hero section */}
 
-        <div className="w-full h-full flex justify-center items-center relative">
+        <div className="w-full h-full flex justify-center items-center">
           <img
-            className="w-full max-w-[700px]"
+            className="max-w-[900px] h-full absolute top-0 xl:left-[50%] xl:-translate-x-[50%] z-0"
             src={imageSelector(pathname)}
             alt=""
           />
           {(pathname === "/" ||
             pathname === "/login" ||
             pathname === "/signup") && (
-            <div className="bg-gray-100 w-2/3 lg:text-sm bg-opacity-50 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[70%]">
+            <div className="bg-gray-100 w-2/3 lg:text-sm bg-opacity-20 backdrop-blur-sm p-6 rounded-2.5xl absolute top-[70%]">
               <span className="flex gap-x-3">
                 <svg
                   width="24"
@@ -110,7 +110,7 @@ const AuthLayout = () => {
           pathname === "/forgot-password" || pathname === "/change-phone"
             ? ""
             : "justify-between"
-        } w-full min-h-screen flex flex-col  items-center gap-y-4 bg-base-gray p-4 sm:p-10`}
+        } w-full h-full flex flex-col  items-center gap-y-4 bg-base-gray p-4 sm:p-10 z-50`}
       >
         <div className="lg:invisible">
           <svg
@@ -147,7 +147,7 @@ const AuthLayout = () => {
           </svg>
         </div>
         <div
-          className={`outlet ${
+          className={`Outlet w-full max-w-[520px] ${
             (pathname === "/forgot-password" || pathname === "/change-phone") &&
             "mt-[10%]"
           }`}

@@ -70,7 +70,7 @@ export const RequestLogin: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-max sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm -mt-10"
+      className="w-full sm:bg-actual-white sm:p-8 rounded-2.5xl sm:shadow-sm -mt-10"
     >
       <div>
         <h1 className="xl:text-2xl text-base-content font-semibold">
