@@ -19,7 +19,7 @@ export const CreateApplication: React.FC<CreateApplicationProps> = ({
   createTypeHandler,
 }) => {
   return (
-    <div className="outlet p-8 grid gap-8 xl:grid-cols-2">
+    <div className="outlet container p-8 grid gap-8 xl:grid-cols-2">
       <div className="bg-actual-white rounded-3xl p-10">
         <img src={BagFillGreen} width={50} />
         <div className="font-semibold my-4">İşim İçin POS</div>

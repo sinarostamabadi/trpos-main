@@ -2,7 +2,6 @@ import { IconArrowDown } from "../../../../components/icons/icons"
 import { SelectProps } from "../../../../components/select/select.types"
 
 export const CustomSelect : React.FC<SelectProps> = ({
-    options,
     className,
 } : SelectProps) => {
     return (

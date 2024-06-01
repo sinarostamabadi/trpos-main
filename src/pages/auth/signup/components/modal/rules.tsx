@@ -19,15 +19,22 @@ export const RuleModal: React.FC<RuleModalProps> = ({
     <Modal
       state={state}
       onCloseModal={handleCloseModal}
-      title={title}
-      subTitle="Son Düzenleme Tarihi: 28 Nisan 2024, Pazar"
+      title={isLoading ? "" : title}
+      subTitle={isLoading ? "" : "Son Düzenleme Tarihi: 28 Nisan 2024, Pazar"}
     >
-      <div className="lg:h-[400px] h-[300px] overflow-y-scroll">
-        <p className="rule__title">
-          {isLoading ? <ClockLoader color="#36d7b7" size={40} /> : content?.title}
-        </p>
-        <span className="rule__text">{content?.text}</span>
-      </div>
+      {
+        isLoading ? (
+          <div className="lg:h-[400px] h-[300px] flex justify-center items-center">
+            <ClockLoader color="#36d7b7" size={40} />
+          </div>
+        ) :
+        <div className="lg:h-[400px] h-[300px] overflow-y-scroll">
+          <p className="rule__title">
+            {content?.title}
+          </p>
+          <span className="rule__text">{content?.text}</span>
+        </div>
+      }
       <Button
         onClick={handleClick}
         variant="primary"

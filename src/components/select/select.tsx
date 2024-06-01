@@ -49,7 +49,7 @@ export const SelectInput = ({
       }
       <Controller
           control={control}
-          name={name}
+          name={name!}
           render={({ field }) => (
             <Select
               {...field}

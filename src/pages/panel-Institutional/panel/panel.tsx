@@ -1,8 +1,8 @@
 import user from "../../../assets/images/user.png"
 import { IconArrowDown, IconArrowRight, IconArrowRight2, IconClipboard, IconLink, IconPlus, IconSupport, IconUser, IconWebPage } from "../../../components/icons/icons";
 import { CustomSelect } from "../../panel-personal/panel/components/custom-select";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { AreaChart, Area} from 'recharts';
 import { PosTransaction } from "../../panel-personal/panel/components/pos-transaction";import bo from "../../../assets/images/bo.png"
 import spotify from "../../../assets/images/spotify.png"

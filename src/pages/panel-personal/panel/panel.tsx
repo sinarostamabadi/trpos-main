@@ -1,6 +1,6 @@
 import user from "../../../assets/images/user.png";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { PieChart, Pie , Cell, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { AreaChart, Area} from 'recharts';
 import { IconArrowRight } from "../../../components/icons/icons";
 import bo from "../../../assets/images/bo.png"
@@ -128,7 +128,7 @@ const PanelPersonal : React.FC = () => {
                             dataKey="value"
                             >
                             {data.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                <Cell key={`cell-${entry}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                             </Pie>
                         </PieChart>
