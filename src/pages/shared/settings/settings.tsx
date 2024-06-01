@@ -105,7 +105,7 @@ const Settings = () => {
       />
       {/* end:: Modals */}
 
-      <div className="outlet container grid lg:grid-cols-2 grid-rows-2 gap-8 my-8 grid-cols-1">
+      <div className="outlet grid lg:grid-cols-2 grid-rows-2 gap-8 my-8 pe-8 grid-cols-1">
         {/* begin:: First row */}
         <div className="bg-actual-white rounded-2xl p-8">
           <p className="flex flex-col">

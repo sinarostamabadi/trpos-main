@@ -119,7 +119,7 @@ export const Input: React.FC<InputType> = ({
             error &&
             (isPhoneOrEmail &&
             error ==
-              "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com" ? (
+              "Telefon formatı: (+90)1234567... E-posta Formatı: kullanıcı@example.com" ? (
               <Popover
                 content={errorMessageSplitter(error)}
                 title="E-posta/Telefon geçersiz."

@@ -70,7 +70,7 @@ export const LanguageBox = () => {
         color="gray"
         className={`opacity-40 duration-200 ease-in-out translate-y-1.5 ${
           isShowLanguages
-            ? "rotate-180 -translate-y-1 -translate-x-2"
+            ? "rotate-180 -translate-y-[5px] -translate-x-2"
             : "rotate-0"
         }`}
       />

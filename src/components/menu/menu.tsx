@@ -7,11 +7,11 @@ export const Menu: React.FC<MenuProps> = ({
   menuNumber,
   isToggled,
 }: MenuProps) => {
-  const pathName = useLocation().pathname;
+  const { pathname } = useLocation();
 
   if (menuNumber === 1) {
     return (
-      <nav>
+      <>
         <div>
           {isToggled && (
             <p className="text-sm text-base-content-40">İŞLEMLER</p>
@@ -25,7 +25,7 @@ export const Menu: React.FC<MenuProps> = ({
                   href={item.href}
                   iconActive={item.iconActive}
                   iconDeactive={item.iconDeactive}
-                  isActive={pathName === item.href}
+                  isActive={pathname === item.href}
                   isParent={item.isParent}
                   isToggled={isToggled}
                   children={item.children}
@@ -48,7 +48,7 @@ export const Menu: React.FC<MenuProps> = ({
                   href={item.href}
                   iconActive={item.iconActive}
                   iconDeactive={item.iconDeactive}
-                  isActive={pathName === item.href}
+                  isActive={pathname === item.href}
                   isParent={item.isParent}
                   isToggled={isToggled}
                 />
@@ -56,13 +56,13 @@ export const Menu: React.FC<MenuProps> = ({
             })}
           </ul>
         </div>
-      </nav>
+      </>
     );
   }
 
   if (menuNumber === 2) {
     return (
-      <nav>
+      <>
         <div>
           {isToggled && (
             <p className="text-sm text-base-content-40">SANAL POS</p>
@@ -76,7 +76,7 @@ export const Menu: React.FC<MenuProps> = ({
                   href={item.href}
                   iconActive={item.iconActive}
                   iconDeactive={item.iconDeactive}
-                  isActive={pathName === item.href}
+                  isActive={pathname === item.href}
                   isParent={item.isParent}
                   isToggled={isToggled}
                   children={item.children}
@@ -99,7 +99,7 @@ export const Menu: React.FC<MenuProps> = ({
                   href={item.href}
                   iconActive={item.iconActive}
                   iconDeactive={item.iconDeactive}
-                  isActive={pathName === item.href}
+                  isActive={pathname === item.href}
                   isParent={item.isParent}
                   isToggled={isToggled}
                 />
@@ -121,7 +121,7 @@ export const Menu: React.FC<MenuProps> = ({
                   href={item.href}
                   iconActive={item.iconActive}
                   iconDeactive={item.iconDeactive}
-                  isActive={pathName === item.href}
+                  isActive={pathname === item.href}
                   isParent={item.isParent}
                   isToggled={isToggled}
                 />
@@ -129,12 +129,12 @@ export const Menu: React.FC<MenuProps> = ({
             })}
           </ul>
         </div>
-      </nav>
+      </>
     );
   }
 
   return (
-    <nav>
+    <>
       <div className="mt-6">
         {isToggled && (
           <p className="text-sm text-base-content-40">Daha Fazlası</p>
@@ -148,7 +148,7 @@ export const Menu: React.FC<MenuProps> = ({
                 href={item.href}
                 iconActive={item.iconActive}
                 iconDeactive={item.iconDeactive}
-                isActive={pathName === item.href}
+                isActive={pathname === item.href}
                 isParent={item.isParent}
                 isToggled={isToggled}
               />
@@ -156,6 +156,6 @@ export const Menu: React.FC<MenuProps> = ({
           })}
         </ul>
       </div>
-    </nav>
+    </>
   );
 };

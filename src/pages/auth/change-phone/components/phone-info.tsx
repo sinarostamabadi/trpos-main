@@ -9,7 +9,6 @@ import { changePhoneInputs } from "../change-phone.types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
 import { ChangePhoneRequest } from "../../../../redux/actions/auth/change-phone";
 import { parsePhoneNumber } from "../../../../helper/parse-phone";
-import { InputErrorComponent } from "../../../../components/inputError";
 import * as yup from "yup";
 
 export const PhoneInfo = () => {
@@ -125,12 +124,6 @@ export const PhoneInfo = () => {
             touched={touchedFields.phoneNumber}
             error={errors.phoneNumber?.message}
           />
-          {touchedFields.phoneNumber && (
-            <InputErrorComponent
-              text={errors.phoneNumber?.message}
-              className="col-start-2"
-            />
-          )}
         </div>
         <Input
           type="email"

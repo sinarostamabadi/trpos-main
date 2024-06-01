@@ -1,9 +1,9 @@
 import { Router } from "./routes";
-import "./assets/fonts/style.css";
 import { useEffect } from "react";
 import { useGetClientIp } from "./hooks/get-client-ip";
 import { useAppDispatch } from "./hooks/redux-hooks";
 import { setIP } from "./redux/reducers/_ip";
+import "./assets/fonts/style.css";
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ export default function App() {
     const clientIp = await useGetClientIp();
     dispatch(setIP(clientIp));
   };
-  
+
   return (
     <>
       <Router />

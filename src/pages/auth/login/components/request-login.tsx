@@ -18,7 +18,7 @@ export const RequestLogin: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const phoneRegex = /^\+([1-9]{1})([0-9]{1,2})?([0-9]{10})$/;
+  const phoneRegex = /^\+?([1-9]{1})?([0-9]{1,2})?([0-9]{10})$/;
   const emailRegex =
     /^(?=.{8,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
@@ -28,7 +28,7 @@ export const RequestLogin: React.FC = () => {
       .required()
       .test(
         "is_phone_or_email",
-        "Telefon formatı: +901234567... E-posta Formatı: kullanıcı@example.com",
+        "Telefon formatı: (+90)1234567... E-posta Formatı: kullanıcı@example.com",
         (value) => phoneRegex.test(value) || emailRegex.test(value)
       ),
     password: yup
@@ -75,13 +75,20 @@ export const RequestLogin: React.FC = () => {
   }, [ip]);
 
   const onSubmit: SubmitHandler<LoginInput> = (data) => {
-    if (+data.phoneOrEmail) {
+    if (+data.phoneOrEmail && data.phoneOrEmail.length > 11) {
       const parsedPhone = parsePhoneNumber(data.phoneOrEmail);
       dispatch(
         login({
           ...data,
           phoneCountry: parsedPhone?.country,
           phoneOrEmail: parsedPhone?.number!,
+        })
+      );
+    } else if (+data.phoneOrEmail) {
+      dispatch(
+        login({
+          ...data,
+          phoneCountry: localStorage.trpos__lng,
         })
       );
     } else {

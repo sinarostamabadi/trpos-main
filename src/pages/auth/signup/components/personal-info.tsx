@@ -101,7 +101,7 @@ export const PersonalInfo: React.FC = () => {
 
     return yup.object().shape({
       ...validate,
-      ...checkBoxValidationObject,
+      // ...checkBoxValidationObject,
     });
   }, [contractTypes]);
 
@@ -263,7 +263,7 @@ export const PersonalInfo: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-4">
+        {/* <div className="mt-4">
           {contractTypes && contractTypes.length > 0
             ? contractTypes.map((contractType: NewContractType) => (
                 <CheckBoxModal
@@ -286,7 +286,7 @@ export const PersonalInfo: React.FC = () => {
                 />
               ))
             : contractTypeLoading && <ContentLoading />}
-        </div>
+        </div> */}
 
         <Button
           type="submit"

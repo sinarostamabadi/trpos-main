@@ -32,6 +32,7 @@ export { default as IconLink } from './src/Link';
 export { default as IconLockCheck } from './src/Lock-check';
 export { default as IconLogo } from './src/Logo';
 export { default as IconMessages } from './src/Messages';
+export { default as IconNotificationEmpty } from './src/Notification-empty';
 export { default as IconNotification } from './src/Notification';
 export { default as IconPasswordReload } from './src/PasswordReload';
 export { default as IconPen } from './src/Pen';
