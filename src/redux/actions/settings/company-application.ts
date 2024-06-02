@@ -2,18 +2,26 @@ import { api } from "../../../api";
 import { createData } from "../../../core/http-service";
 import { setErrors } from "../../reducers/errors";
 import { setButtonLoading } from "../../reducers/button-loading";
-import { setCompanyApplicationInfo , setCompanyInformationInfo , setAuthorizeInformation , setCompanyApplicationStep , setLoading } from "../../reducers/settings/company-application";
+import {
+  setCompanyInformationInfo,
+  setAuthorizeInformation,
+  setCompanyApplicationStep,
+} from "../../reducers/settings/company-application";
 import { AppDispatch, RootState } from "../../store/store";
 import { AxiosRequestHeaders, AxiosResponse } from "axios";
 import { getUserInfo } from "./user-info";
 
 export const controlBeforeRegistration =
-  (data : {}) => async (dispatch: AppDispatch) => {
+  () => async (dispatch: AppDispatch) => {
     dispatch(setButtonLoading(true));
     try {
-      const response: AxiosResponse = await createData(api.settingsApi.controlBeforeRegistration , data , {
-        Authorization:`Bearer ${localStorage.trpos__access_token}`
-      } as AxiosRequestHeaders);
+      const response: AxiosResponse = await createData(
+        api.settingsApi.controlBeforeRegistration,
+        {},
+        {
+          Authorization: `Bearer ${localStorage.trpos__access_token}`,
+        } as AxiosRequestHeaders
+      );
       dispatch(setCompanyInformationInfo(response.data));
       dispatch(setCompanyApplicationStep(2));
     } catch (error: any) {
@@ -25,8 +33,8 @@ export const controlBeforeRegistration =
     }
   };
 
-  export const setAuthorizationInformation =
-  () => async (dispatch: AppDispatch , getState:() => RootState) => {
+export const setAuthorizationInformation =
+  () => async (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(setButtonLoading(true));
     try {
       await dispatch(getUserInfo());

@@ -5,12 +5,9 @@ import axios, {
 } from "axios";
 import { BASE_URL } from "../configs/global";
 
-const httpService = axios.create({
+export const httpService = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-    Authorization:localStorage.trpos__access_toke ? `Bearer ${localStorage.trpos__access_token}` : ""
-  },
+  headers: { "Content-Type": "application/json" },
 });
 
 httpService.interceptors.response.use(

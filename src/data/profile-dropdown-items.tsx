@@ -5,7 +5,6 @@ import { MdOutlineSettings } from "react-icons/md";
 import { RiNotification2Line } from "react-icons/ri";
 import { createData } from "../core/http-service";
 import { api } from "../api";
-import { AxiosRequestHeaders } from "axios";
 
 export const items: MenuProps["items"] = [
   {
@@ -35,9 +34,7 @@ export const items: MenuProps["items"] = [
     icon: <MdLogout size={18} />,
     onClick: async () => {
       try {
-        const response = await createData(api.AuthApi.logout, null, {
-          Authorization: `Bearer ${localStorage.trpos__access_token}`,
-        } as AxiosRequestHeaders);
+        const response = await createData(api.AuthApi.logout,{});
         if (response) {
           window.location.href = "/";
           localStorage.removeItem("trpos__access_token");
