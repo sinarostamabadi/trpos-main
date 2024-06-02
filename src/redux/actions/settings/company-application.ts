@@ -11,9 +11,13 @@ export const controlBeforeRegistration =
   (data : {}) => async (dispatch: AppDispatch) => {
     dispatch(setButtonLoading(true));
     try {
-      const response: AxiosResponse = await createData(api.settingsApi.controlBeforeRegistration , data , {
-        Authorization:`Bearer ${localStorage.trpos__access_token}`
-      } as AxiosRequestHeaders);
+      const response: AxiosResponse = await createData(
+        api.settingsApi.controlBeforeRegistration,
+        {},
+        {
+          Authorization: `Bearer ${localStorage.trpos__access_token}`,
+        } as AxiosRequestHeaders
+      );
       dispatch(setCompanyInformationInfo(response.data));
       dispatch(setCompanyApplicationStep(2));
     } catch (error: any) {
@@ -24,8 +28,8 @@ export const controlBeforeRegistration =
     }
   };
 
-  export const setAuthorizationInformation =
-  () => async (dispatch: AppDispatch , getState:() => RootState) => {
+export const setAuthorizationInformation =
+  () => async (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(setButtonLoading(true));
     try {
       await dispatch(getUserInfo());

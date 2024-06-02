@@ -14,6 +14,7 @@ import changePhoneSlice from "./auth/change-phone";
 import userCustomerSlice from "./settings/user-customer";
 import companyApplicationSlice from "./settings/company-application";
 import userInfoSlice from "./settings/user-info";
+import requestSlice from "./settings/request";
 
 export const reducers = combineReducers({
   IpSlice,
@@ -31,6 +32,7 @@ export const reducers = combineReducers({
   userCustomerSlice,
   companyApplicationSlice,
   userInfoSlice,
+  requestSlice,
 });
 
 export type RootReducer = ReturnType<typeof reducers>;

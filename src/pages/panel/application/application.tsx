@@ -13,14 +13,18 @@ import { StepFiveCorporate } from "./components/form/corporate/step-five-corpora
 import { ApplicationGrid } from "./components/grid";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks";
 import { getAllUserCustomer } from "../../../redux/actions/settings/user-customer";
-
+import { getFilter } from "../../../redux/actions/settings/request";
 
 const Application = () => {
-  const { info:userCustomerData }=useAppSelector(state => state.userCustomerSlice);
-  const { step : companyApplicationStep } = useAppSelector(state => state.companyApplicationSlice);
+  const { info: userCustomerData } = useAppSelector(
+    (state) => state.userCustomerSlice
+  );
+  const { step: companyApplicationStep } = useAppSelector(
+    (state) => state.companyApplicationSlice
+  );
+  const { info: requestInfo } = useAppSelector((state) => state.requestSlice);
 
   console.log(companyApplicationStep);
-
 
   const [individualStep, setIndividualStep] = useState(1);
   const [isShowCreatePage, setIsShowCreatePage] = useState(false);
@@ -28,7 +32,7 @@ const Application = () => {
     "individual" | "corporate" | ""
   >("");
 
-  const dispatch=useAppDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setIndividualStep(1);
@@ -36,13 +40,14 @@ const Application = () => {
 
   useEffect(() => {
     dispatch(getAllUserCustomer());
-  } , []);
+    dispatch(getFilter());
+  }, []);
 
   useEffect(() => {
-    if(userCustomerData.length) {
+    if (userCustomerData.length > 0) {
       setIsShowCreatePage(false);
     }
-  } , [userCustomerData]);
+  }, [userCustomerData]);
 
   const individual: Record<number, ReactNode> = {
     1: <StepOneIndividual />,
@@ -82,16 +87,22 @@ const Application = () => {
       </CreateIndividual>
       <CreateCorporate
         state={isModalOpen == "corporate"}
-        current={companyApplicationStep !}
-        title={corporateModalTitles[companyApplicationStep !]}
-        subTitle={companyApplicationStep ! != 5 ? "Lütfen formu doldurunuz." : ""}
-        hasCloseButton={companyApplicationStep ! != 5}
+        current={companyApplicationStep!}
+        title={corporateModalTitles[companyApplicationStep!]}
+        subTitle={
+          companyApplicationStep! != 5 ? "Lütfen formu doldurunuz." : ""
+        }
+        hasCloseButton={companyApplicationStep! != 5}
         onCloseModal={() => setIsModalOpen("")}
       >
-        {corporate[companyApplicationStep !]}
+        {corporate[companyApplicationStep!]}
       </CreateCorporate>
       {!isShowCreatePage && (
-        <ApplicationGrid setShow={(type : typeof isModalOpen) =>setIsModalOpen(type)} />
+        <ApplicationGrid
+          setShow={(type: typeof isModalOpen) => setIsModalOpen(type)}
+          userCustomerData={userCustomerData}
+          requestData={requestInfo}
+        />
       )}
       {isShowCreatePage && (
         <CreateApplication createTypeHandler={(type) => setIsModalOpen(type)} />
