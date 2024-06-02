@@ -114,7 +114,7 @@ export const PasswordInfo = () => {
       </span>
 
       <Link
-        state={{token:"isValid"}}
+        state={{ token: "isValid" }}
         to={"/change-phone"}
         className="text-success block text-center font-medium text-sm"
       >

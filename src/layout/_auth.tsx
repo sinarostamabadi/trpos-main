@@ -170,7 +170,11 @@ const AuthLayout = () => {
           {(pathname === "/login" || pathname === "/") && (
             <span className="text-sm">
               Hesabın yok mu?{" "}
-              <Link state={{token:"isValid"}} to={"signup"} className="text-primary">
+              <Link
+                state={{ token: "isValid" }}
+                to={"signup"}
+                className="text-primary"
+              >
                 Kayıt Ol
               </Link>
             </span>
@@ -178,7 +182,8 @@ const AuthLayout = () => {
           {pathname === "/signup" && (
             <span className="text-sm">
               Hesabın var mı?{" "}
-              <Link to={"login"} className="text-primary">
+              <Link to={"login"}
+                className="text-primary">
                 Giriş Yap
               </Link>
             </span>

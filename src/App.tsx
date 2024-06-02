@@ -17,7 +17,6 @@ export default function App() {
 
   const navigate = useNavigate();
   const { pathname, state } = useLocation();
-  console.log(state);
 
   useEffect(() => {
     if (!state?.token) {
