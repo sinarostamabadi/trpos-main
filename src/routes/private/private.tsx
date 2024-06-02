@@ -18,7 +18,7 @@ const Private = () => {
         localStorage.removeItem("trpos__token_expire");
         setShouldRender(true);
       }
-    }, 60 * 1000);
+    }, 30 * 1000);
     return () => clearInterval(checkExpireTimeInterval);
   }, []);
 

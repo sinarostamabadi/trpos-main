@@ -101,7 +101,7 @@ export const GridSupport = () => {
         state={isOpenModal}
         onCloseModal={closeModalHandler}
       />
-      <div className="outlet w-full h-full container p-4 mt-4 pb-8">
+      <div className="outlet w-full h-full mt-4 pb-8 pt-4 pe-8">
         <div className="w-full h-auto bg-actual-white rounded-2.5xl p-6">
           <div className="w-full h-full flex flex-col mb-10">
             <div className="w-full flex justify-between items-center">

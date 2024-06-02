@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { IconArrowDown, IconArrowRight } from "../icons/icons";
 import TrFlag from "../../assets/images/flags/TrFlag.png";
-import { IconArrowDown } from "../icons/icons";
 
 export const LanguageBox = () => {
   // ---------- variables ----------
@@ -41,7 +41,7 @@ export const LanguageBox = () => {
   // ---------- render jsx ----------
   return (
     <div
-      className={`relative text-base flex items-center gap-x-2 px-3 cursor-pointer`}
+      className="relative text-base flex items-center gap-x-2 px-3 cursor-pointer"
       onClick={toggleLanguages}
     >
       {isShowLanguages && (
@@ -66,14 +66,12 @@ export const LanguageBox = () => {
       <p className="text-base-content-40 select-none">
         {currentLanguage === "en" ? "English" : "Türkçe"}
       </p>
-      <IconArrowDown
-        color="gray"
-        className={`opacity-40 duration-200 ease-in-out translate-y-1.5 ${
-          isShowLanguages
-            ? "rotate-180 -translate-y-1 -translate-x-2"
-            : "rotate-0"
-        }`}
-      />
+
+      {isShowLanguages ? (
+        <IconArrowRight color="gray" className="-rotate-90 -translate-y-1" />
+      ) : (
+        <IconArrowDown color="gray" className="opacity-40 translate-y-1.5" />
+      )}
     </div>
   );
 };

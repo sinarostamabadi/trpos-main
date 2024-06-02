@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MenuItemProps } from "./menu-item.type";
 import { IconArrowRight } from "../../icons/icons";
 import { useState } from "react";
+import { Popover } from "antd";
 
 export const MenuItem: React.FC<MenuItemProps> = ({
   title,
@@ -29,7 +30,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   };
 
   return (
-    <>
+    <Popover content={isToggled ? "" : title} placement="right">
       <li
         onClick={() => {
           if (children) {
@@ -46,10 +47,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 
         <Link to={href!} state={{token:token1 || token2 || "isValid"}}
           className={`flex gap-x-2 ${children && "pointer-events-none"} ${
-            children && pathFinder() && " text-base-content"
+            children && pathFinder() && "text-base-content"
           }`}
         >
-          {iconActive && isActive ? iconActive : iconDeactive}
+          {isActive && iconActive ? iconActive : iconDeactive}
           {isToggled && title}
         </Link>
 
@@ -92,6 +93,6 @@ export const MenuItem: React.FC<MenuItemProps> = ({
             );
           })}
       </div>
-    </>
+    </Popover>
   );
 };

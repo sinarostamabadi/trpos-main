@@ -12,5 +12,5 @@ export const AuthApi = {
   changeEmail: "/Auth/ChangeEmail",
   changeToken: "/Auth/ChangeToken",
   rechangeToken: "/Auth/ReChangeToken",
-  layout: "/Auth/Logout",
+  logout: "/Auth/Logout",
 };

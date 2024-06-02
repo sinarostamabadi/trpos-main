@@ -1,10 +1,10 @@
 import { Router } from "./routes";
-import "./assets/fonts/style.css";
 import { useEffect } from "react";
 import { useGetClientIp } from "./hooks/get-client-ip";
 import { useAppDispatch } from "./hooks/redux-hooks";
-import { setIP } from "./redux/reducers/_ip";
 import { useLocation, useNavigate } from "react-router-dom";
+import { setIP } from "./redux/reducers/_ip";
+import "./assets/fonts/style.css";
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -15,23 +15,22 @@ export default function App() {
     fetchIp();
   }, []);
 
-  const navigate=useNavigate();
-  const pathName=useLocation().pathname;
-  const state=useLocation().state;
+  const navigate = useNavigate();
+  const { pathname, state } = useLocation();
 
   useEffect(() => {
-    if(!state?.token) {
+    if (!state?.token) {
       localStorage.removeItem("trpos__token");
       localStorage.removeItem("trpos__access_token");
-      navigate("/login")
+      navigate("/login");
     }
-  } , [pathName]);
+  }, [pathname]);
 
   const fetchIp = async () => {
     const clientIp = await useGetClientIp();
     dispatch(setIP(clientIp));
   };
-  
+
   return (
     <>
       <Router />

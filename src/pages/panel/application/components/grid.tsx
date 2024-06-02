@@ -5,7 +5,7 @@ import PlusFillBlue from "../../../../assets/images/PlusFillBlue.svg";
 
 export const ApplicationGrid = ({ setShow }: { setShow: (type : "individual" | "corporate" | "") => void }) => {
   return (
-    <div className="container p-8">
+    <div className="mt-8">
       <div className="mb-16">
         <p className="font-semibold text-lg mb-5">Kurumsal</p>
         <div className="grid lg:grid-cols-3 gap-5">

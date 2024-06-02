@@ -44,12 +44,23 @@ export const verifyCode =
         }
 
         if (actionType == "login") {
-          navigate("/dashboard/application" , {state:{token:response.data?.accessTokenDto?.token}});
-          localStorage.removeItem("trpos__token");
-          localStorage.trpos__access_token =
-            response.data?.accessTokenDto?.token;
-          localStorage.trpos__token_expire =
-            response.data?.accessTokenDto?.expiration;
+          if (
+            response.data?.returnPath == "PasswordRenew" &&
+            response.message ==
+              "Şifre süreniz doldu. Lütfen şifrenizi sıfırlayınız."
+          ) {
+            navigate("/forgot-password");
+          } else {
+            dispatch(setShowModal({ isShow: false, type: "" }));
+            navigate("/dashboard/application", {
+              state: { token: response.data?.accessTokenDto?.token },
+            });
+            localStorage.removeItem("trpos__token");
+            localStorage.trpos__access_token =
+              response.data?.accessTokenDto?.token;
+            localStorage.trpos__token_expire =
+              response.data?.accessTokenDto?.expiration;
+          }
           dispatch(setLoginStep(0));
         }
 
@@ -74,9 +85,7 @@ export const verifyCode =
       dispatch(setShowModal({ isShow: true, type: "error" }));
       console.log(error);
     } finally {
-      if (actionType == "login") {
-        dispatch(setShowModal({ isShow: false, type: "success" }));
-      } else {
+      if (actionType != "login") {
         dispatch(setButtonLoading(false));
       }
     }
