@@ -2,7 +2,7 @@ import { api } from "../../../api";
 import { createData } from "../../../core/http-service";
 import { setErrors } from "../../reducers/errors";
 import { setButtonLoading } from "../../reducers/button-loading";
-import { setCompanyApplicationInfo , setCompanyInformationInfo , setAuthorizeInformation , setCompanyApplicationStep , setLoading } from "../../reducers/settings/company-application";
+import { setCompanyApplicationInfo , setCompanyInformationInfo , setAuthorizeInformation , setCompanyApplicationStep , setCompanyApplicationError , setLoading } from "../../reducers/settings/company-application";
 import { AppDispatch, RootState } from "../../store/store";
 import { AxiosRequestHeaders, AxiosResponse } from "axios";
 import { getUserInfo } from "./user-info";
@@ -17,8 +17,7 @@ export const controlBeforeRegistration =
       dispatch(setCompanyInformationInfo(response.data));
       dispatch(setCompanyApplicationStep(2));
     } catch (error: any) {
-      error.statusCode == 400 && dispatch(setErrors(error.message));
-      dispatch(setCompanyApplicationStep(2));
+      error.statusCode == 400 && dispatch(setCompanyApplicationError(error.message));
       console.log(error);
     } finally {
       dispatch(setButtonLoading(false));

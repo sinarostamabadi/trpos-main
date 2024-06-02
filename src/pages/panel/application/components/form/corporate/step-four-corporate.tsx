@@ -6,12 +6,10 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type StepTwoInputType = {
-  title:string,
-  province:string,
-  district:string,
-  address:string,
-  buildingNumber:string,
-  doorNumber:string
+  identityCardFile?:any,
+  Tax_Plate?:any,
+  Circular_of_Signuture?:any,
+  Recepit_lban?:any,
 }
 
 export const StepFourCorporate = () => {
@@ -22,15 +20,10 @@ export const StepFourCorporate = () => {
   const dispatch=useAppDispatch();
 
   const validate=yup.object().shape({
-    title:yup.string().required(),
-    province:yup.string().required(),
-    district:yup.string().required(),
-    address:yup.string().required(),
-    buildingNumber:yup.string().required(),
-    doorNumber:yup.string().required()
+    
   });
 
-  const {register , handleSubmit , formState:{errors}}=useForm<StepTwoInputType>({
+  const {register , handleSubmit , watch , formState:{ errors } , getValues}=useForm<StepTwoInputType>({
     resolver:yupResolver(validate),
   });
 
@@ -41,16 +34,13 @@ export const StepFourCorporate = () => {
   return (
     <form className="pe-2 mt-3" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-y-3 mb-3">
-        <FileUploader id="Kartı" title="Kimlik Kartı Ön Yüz" />
-        <FileUploader id="Levhası" title="Vergi Levhası" />
-        <FileUploader id="İmza" title="İmza Sirküsü" />
-        <FileUploader
-          id="Mobil"
-          title="Hesap Dekontu - Mobil Bankacılık Ekran Görüntüsü"
-        />
+        <FileUploader id="Kartı" title="Kimlik Kartı Ön Yüz" register={{...register("identityCardFile")}} fileName={watch("identityCardFile") && watch("identityCardFile")[0].name} />
+        <FileUploader id="Levhası" title="Vergi Levhası" register={{...register("Tax_Plate")}} fileName="" />
+        <FileUploader id="İmza" title="İmza Sirküsü" register={{...register("Circular_of_Signuture")}} fileName="" />
+        <FileUploader id="Mobil" title="Hesap Dekontu - Mobil Bankacılık Ekran Görüntüsü" register={{...register("Recepit_lban")}} fileName="" />
       </div>
 
-      <Button variant="primary" shape="full" className="my-3">
+      <Button type="submit" variant="primary" shape="full" className="my-3">
         Devam Et
       </Button>
     </form>

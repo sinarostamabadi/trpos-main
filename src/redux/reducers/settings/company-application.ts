@@ -3,13 +3,17 @@ import { InitialState } from "../../../types/initial-state.type";
 
 const initialState: InitialState & {
   companyInformationInfo:any,
-  authorizeInformation:any
+  authorizeInformation:any,
+  RegistrationFile:any,
+  error:string | string[]
 } = {
   info: {},
   companyInformationInfo:{},
   authorizeInformation:{},
-  step: 1,
+  RegistrationFile:{},
+  step: 4,
   loading: false,
+  error:"",
 };
 
 const companyApplicationSlice = createSlice({
@@ -28,6 +32,12 @@ const companyApplicationSlice = createSlice({
     setAuthorizeInformation:(state , action) => {
       state.authorizeInformation=action.payload;
     },
+    setCompanyApplicationError:(state , action) => {
+      state.error=action.payload;
+    },
+    setRegistrationFile:(state , action) => {
+      state.RegistrationFile=action.payload;
+    },
     setLoading: (state, action: { payload: boolean }) => {
       state.loading = action.payload;
     },
@@ -35,5 +45,5 @@ const companyApplicationSlice = createSlice({
 });
 
 const { reducer, actions } = companyApplicationSlice;
-export const { setCompanyApplicationInfo , setCompanyInformationInfo , setAuthorizeInformation , setCompanyApplicationStep , setLoading } = actions;
+export const { setCompanyApplicationInfo , setCompanyInformationInfo , setAuthorizeInformation , setCompanyApplicationStep , setRegistrationFile , setCompanyApplicationError , setLoading } = actions;
 export default reducer;

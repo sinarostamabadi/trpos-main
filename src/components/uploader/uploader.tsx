@@ -5,6 +5,8 @@ export const FileUploader: React.FC<UploaderProps> = ({
   id,
   title,
   warning,
+  register,
+  fileName,
 }) => {
   return (
     <div className="w-full px-4 py-7 flex justify-center items-center border-2 border-dashed to-base-content-20 rounded-2xl">
@@ -19,7 +21,7 @@ export const FileUploader: React.FC<UploaderProps> = ({
         )}
         <p className="text-xs text-base-content-40">Sürükle bırak ya da Seç</p>
       </label>
-      <input type="file" name="" id={id} className="hidden" />
+      <input type="file" name="" id={id} className="hidden" {...register} />
     </div>
   );
 };

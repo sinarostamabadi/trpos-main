@@ -14,7 +14,7 @@ type stepOneInputs = {
 }
 
 export const StepOneCorporate = () => {
-  const { errors : error } = useAppSelector(state => state.errorsSlice);
+  const { error }=useAppSelector(state => state.companyApplicationSlice);
   const { isButtonLoading } = useAppSelector(state => state.buttonLoadingSlice);
 
   console.log(error);
