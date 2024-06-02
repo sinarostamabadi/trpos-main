@@ -75,7 +75,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
             />
           </svg>
         )}
-        <span>{label}</span>
+        <span className={`${error ? "text-error" : "text-base-content"}`}>{label}</span>
       </label>
     </div>
   );

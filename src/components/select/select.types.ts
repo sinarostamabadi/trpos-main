@@ -13,4 +13,5 @@ export type SelectProps = {
   label?: string;
   name?:string,
   control?:any;
+  disable?:boolean;
 };

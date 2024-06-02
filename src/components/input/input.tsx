@@ -78,6 +78,7 @@ export const Input: React.FC<InputType> = ({
         }`}
       >
         <input
+          style={{appearance:type==="number" && "textfield"}}
           type={inputType != "email" ? inputType : "text"}
           maxLength={isPassword ? 6 : isCode ? 7 : null}
           id={label}

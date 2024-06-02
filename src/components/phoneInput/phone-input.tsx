@@ -13,18 +13,6 @@ export const PhoneInput: React.FC<PhoneInputType> = ({
   touched,
   ...rest
 }: PhoneInputType) => {
-  const [value, setValue] = useState("+90");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-
-    // Ensure the input always starts with '+' and '+' cannot be deleted
-    if (!inputValue.startsWith("+")) {
-      setValue("+" + inputValue.replace(/\+/g, ""));
-    } else {
-      setValue(inputValue);
-    }
-  };
 
   return (
     <div className="w-full">
@@ -35,8 +23,6 @@ export const PhoneInput: React.FC<PhoneInputType> = ({
           className={`form__field`}
           disabled={isDisabled}
           placeholder=""
-          value={value}
-          onInput={handleChange}
           {...register}
           {...rest}
         />

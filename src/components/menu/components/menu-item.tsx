@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MenuItemProps } from "./menu-item.type";
 import { IconArrowRight } from "../../icons/icons";
 import { useState } from "react";
@@ -15,6 +15,13 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { pathname } = useLocation();
+
+  const navigate=useNavigate();
+
+  const token1=localStorage.getItem("trpos__token");
+  const token2=localStorage.getItem("trpos__access_token");
+
+  console.log(useLocation().state);
 
   const pathFinder = () => {
     const result = children?.filter((ch) => ch.href === pathname);
@@ -37,8 +44,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           <div className="h-9 w-[6px] absolute left-0 rounded-r-3xl bg-base-content"></div>
         )}
 
-        <Link
-          to={href!}
+        <Link to={href!} state={{token:token1 || token2 || "isValid"}}
           className={`flex gap-x-2 ${children && "pointer-events-none"} ${
             children && pathFinder() && " text-base-content"
           }`}
@@ -69,8 +75,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           children?.map((item, index) => {
             return (
               <Link
-                key={item.title + index}
                 to={item.href!}
+                state={{token:token1 || token2 || "isValid"}}
+                key={item.title + index}
                 className={`${
                   pathname === item.href
                     ? "text-base-content flex gap-4 items-center"

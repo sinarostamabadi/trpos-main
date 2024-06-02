@@ -44,7 +44,7 @@ export const verifyCode =
         }
 
         if (actionType == "login") {
-          navigate("/dashboard/application");
+          navigate("/dashboard/application" , {state:{token:response.data?.accessTokenDto?.token}});
           localStorage.removeItem("trpos__token");
           localStorage.trpos__access_token =
             response.data?.accessTokenDto?.token;

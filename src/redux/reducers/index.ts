@@ -11,6 +11,9 @@ import resendCodeSlice from "./settings/resend-code";
 import forgetPasswordSlice from "./auth/forget-password";
 import successMessageSlice from "./success-response";
 import changePhoneSlice from "./auth/change-phone";
+import userCustomerSlice from "./settings/user-customer";
+import companyApplicationSlice from "./settings/company-application";
+import userInfoSlice from "./settings/user-info";
 
 export const reducers = combineReducers({
   IpSlice,
@@ -25,6 +28,9 @@ export const reducers = combineReducers({
   forgetPasswordSlice,
   successMessageSlice,
   changePhoneSlice,
+  userCustomerSlice,
+  companyApplicationSlice,
+  userInfoSlice,
 });
 
 export type RootReducer = ReturnType<typeof reducers>;
