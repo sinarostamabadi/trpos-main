@@ -11,19 +11,38 @@ import { StepThreeCorporate } from "./components/form/corporate/step-three-corpo
 import { StepFourCorporate } from "./components/form/corporate/step-four-corporate";
 import { StepFiveCorporate } from "./components/form/corporate/step-five-corporate";
 import { ApplicationGrid } from "./components/grid";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks";
+import { getAllUserCustomer } from "../../../redux/actions/settings/user-customer";
+
 
 const Application = () => {
+  const { info:userCustomerData }=useAppSelector(state => state.userCustomerSlice);
+  const { step : companyApplicationStep } = useAppSelector(state => state.companyApplicationSlice);
+
+  console.log(companyApplicationStep);
+
+
   const [individualStep, setIndividualStep] = useState(1);
-  const [corporateStep, setCorporateStep] = useState(1);
   const [isShowCreatePage, setIsShowCreatePage] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState<
     "individual" | "corporate" | ""
   >("");
 
+  const dispatch=useAppDispatch();
+
   useEffect(() => {
     setIndividualStep(1);
-    setCorporateStep(1);
   }, []);
+
+  useEffect(() => {
+    dispatch(getAllUserCustomer());
+  } , []);
+
+  useEffect(() => {
+    if(userCustomerData.length) {
+      setIsShowCreatePage(false);
+    }
+  } , [userCustomerData]);
 
   const individual: Record<number, ReactNode> = {
     1: <StepOneIndividual />,
@@ -63,16 +82,16 @@ const Application = () => {
       </CreateIndividual>
       <CreateCorporate
         state={isModalOpen == "corporate"}
-        current={corporateStep}
-        title={corporateModalTitles[corporateStep]}
-        subTitle={corporateStep != 5 ? "Lütfen formu doldurunuz." : ""}
-        hasCloseButton={corporateStep != 5}
+        current={companyApplicationStep !}
+        title={corporateModalTitles[companyApplicationStep !]}
+        subTitle={companyApplicationStep ! != 5 ? "Lütfen formu doldurunuz." : ""}
+        hasCloseButton={companyApplicationStep ! != 5}
         onCloseModal={() => setIsModalOpen("")}
       >
-        {corporate[corporateStep]}
+        {corporate[companyApplicationStep !]}
       </CreateCorporate>
       {!isShowCreatePage && (
-        <ApplicationGrid setShow={() => setIsShowCreatePage(true)} />
+        <ApplicationGrid setShow={(type : typeof isModalOpen) =>setIsModalOpen(type)} />
       )}
       {isShowCreatePage && (
         <CreateApplication createTypeHandler={(type) => setIsModalOpen(type)} />

@@ -9,6 +9,7 @@ const httpService = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
+    Authorization:localStorage.trpos__access_toke ? `Bearer ${localStorage.trpos__access_token}` : ""
   },
 });
 

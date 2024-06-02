@@ -15,6 +15,7 @@ export const SelectInput = ({
   name,
   control,
   label,
+  disable=false,
 }: SelectProps) => {
   const [value, setValue] = useState<string | number | undefined>(undefined);
 
@@ -31,6 +32,7 @@ export const SelectInput = ({
         className="h-full border !outline-none !rounded-2.5xl"
         variant="borderless"
         listHeight={150}
+        disabled={disable}
         {...register}
       />
       </div>

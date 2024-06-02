@@ -3,7 +3,7 @@ import PlusFillBlue from "../../../../assets/images/PlusFillBlue.svg";
 // import { IconArrowDown } from "../../../../components/icons/icons";
 // import UserAvatar from "../../../../assets/images/user.png";
 
-export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
+export const ApplicationGrid = ({ setShow }: { setShow: (type : "individual" | "corporate" | "") => void }) => {
   return (
     <div className="mt-8">
       <div className="mb-16">
@@ -184,7 +184,7 @@ export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
 
           <span
             className="flex gap-x-5 items-center justify-center p-8 h-[220px] w-[450px] bg-actual-white rounded-3xl cursor-pointer"
-            onClick={setShow}
+            onClick={() => setShow("corporate")}
           >
             <img src={PlusFillBlue} width={50} />
             <div className="font-semibold">Yeni Kurumsal Başvuru</div>
@@ -212,7 +212,7 @@ export const ApplicationGrid = ({ setShow }: { setShow: () => void }) => {
           </p> */}
           <span
             className="flex gap-x-5 items-center justify-center h-[220px] w-[450px] bg-actual-white rounded-3xl cursor-pointer"
-            onClick={setShow}
+            onClick={() => setShow("individual")}
           >
             <img src={PlusFillBlue} width={50} />
             <div className="font-semibold">Yeni Bireysel Başvuru</div>

@@ -165,6 +165,7 @@ export const PhoneInfo = () => {
 
       <Link
         to={"/forgot-password"}
+        state={{token:"isValid"}}
         className="text-success block text-center font-medium text-sm"
       >
         Şifremi Unuttum

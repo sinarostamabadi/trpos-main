@@ -52,7 +52,9 @@ export const verifyCode =
             navigate("/forgot-password");
           } else {
             dispatch(setShowModal({ isShow: false, type: "" }));
-            navigate("/dashboard/application");
+            navigate("/dashboard/application", {
+              state: { token: response.data?.accessTokenDto?.token },
+            });
             localStorage.removeItem("trpos__token");
             localStorage.trpos__access_token =
               response.data?.accessTokenDto?.token;
