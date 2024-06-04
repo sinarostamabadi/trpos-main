@@ -95,6 +95,7 @@ export const VerifyEmail: React.FC<ActionType> = ({
             touched={touchedFields.code}
             error={errors.code?.message}
             isCode
+            autoFocus
           />
           <div className="mt-6 w-full">
             <Button
