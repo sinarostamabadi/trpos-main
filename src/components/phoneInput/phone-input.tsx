@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { PhoneInputType } from "./phone-input.types";
 import { IconCheckCircle, IconRemoveCircle } from "../icons/icons";
 import { Popover } from "antd";
@@ -11,6 +10,7 @@ export const PhoneInput: React.FC<PhoneInputType> = ({
   register,
   error,
   touched,
+  inputClassName,
   ...rest
 }: PhoneInputType) => {
 
@@ -20,7 +20,7 @@ export const PhoneInput: React.FC<PhoneInputType> = ({
         <input
           type="text"
           id={label}
-          className={`form__field`}
+          className={`form__field ${inputClassName}`}
           disabled={isDisabled}
           placeholder=""
           {...register}

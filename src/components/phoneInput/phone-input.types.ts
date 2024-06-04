@@ -9,4 +9,5 @@ export type PhoneInputType = InputHTMLAttributes<HTMLInputElement> &
     error?: string;
     touched?: boolean;
     classes?: string;
+    inputClassName?:string;
   };

@@ -2,16 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 import { InitialState } from "../../../types/initial-state.type";
 
 const initialState: InitialState & {
+  identityTax:{},
   companyInformationInfo:any,
   authorizeInformation:any,
   RegistrationFile:any,
   error:string | string[]
 } = {
   info: {},
+  identityTax:{},
   companyInformationInfo:{},
   authorizeInformation:{},
   RegistrationFile:{},
-  step: 4,
+  step: 1,
   loading: false,
   error:"",
 };
@@ -29,6 +31,9 @@ const companyApplicationSlice = createSlice({
     setCompanyApplicationStep: (state, action: { payload: number }) => {
       state.step = action.payload;
     },
+    setIdentityTax:(state , action) => {
+      state.identityTax=action.payload;
+    },
     setAuthorizeInformation:(state , action) => {
       state.authorizeInformation=action.payload;
     },
@@ -45,5 +50,5 @@ const companyApplicationSlice = createSlice({
 });
 
 const { reducer, actions } = companyApplicationSlice;
-export const { setCompanyApplicationInfo , setCompanyInformationInfo , setAuthorizeInformation , setCompanyApplicationStep , setRegistrationFile , setCompanyApplicationError , setLoading } = actions;
+export const { setCompanyApplicationInfo , setCompanyInformationInfo , setIdentityTax , setAuthorizeInformation , setCompanyApplicationStep , setRegistrationFile , setCompanyApplicationError , setLoading } = actions;
 export default reducer;

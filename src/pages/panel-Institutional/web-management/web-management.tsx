@@ -213,7 +213,7 @@ const WebManagement: React.FC = () => {
             error={""}
             isError={false}
           />
-          <FileUploader id="Dekont" />
+          <FileUploader id="Dekont" register={""} />
         </div>
 
         <CheckBox

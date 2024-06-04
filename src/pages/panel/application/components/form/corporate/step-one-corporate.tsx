@@ -1,9 +1,8 @@
-import { Dispatch , SetStateAction } from "react";
 import { Button } from "../../../../../../components/button";
 import { Input } from "../../../../../../components/input";
 import { useForm , SubmitHandler } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../../../../../hooks/redux-hooks";
-import { controlBeforeRegistration } from "../../../../../../redux/actions/settings/company-application";
+import { controlBeforeRegistration } from "../../../../../../redux/actions/settings/request";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputErrorComponent } from "../../../../../../components/inputError";
