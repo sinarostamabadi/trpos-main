@@ -8,6 +8,9 @@ export const FileUploader: React.FC<UploaderProps> = ({
   register,
   fileName,
 }) => {
+
+  console.log(fileName);
+
   return (
     <div className="w-full px-4 py-7 flex justify-center items-center border-2 border-dashed to-base-content-20 rounded-2xl">
       <label
@@ -19,7 +22,11 @@ export const FileUploader: React.FC<UploaderProps> = ({
         {warning && (
           <span className="text-error font-medium text-sm">{warning}</span>
         )}
-        <p className="text-xs text-base-content-40">Sürükle bırak ya da Seç</p>
+        {
+          fileName ?
+          <p className="text-primary">{fileName}</p> :
+          <p className="text-xs text-base-content-40">Sürükle bırak ya da Seç</p>
+        }
       </label>
       <input type="file" name="" id={id} className="hidden" {...register} />
     </div>

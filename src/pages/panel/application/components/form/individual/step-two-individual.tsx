@@ -5,11 +5,11 @@ export const StepTwoIndividual = () => {
   return (
     <form className="pe-2 mt-3">
       <div className="flex flex-col gap-y-3 mb-3">
-        <FileUploader id="Kartı" title="Kimlik Kartı Ön Yüz" />
+        <FileUploader id="Kartı" title="Kimlik Kartı Ön Yüz" register={""} />
         <FileUploader
           id="Mobil"
           title="Hesap Dekontu - Mobil Bankacılık Ekran Görüntüsü"
-          warning="Girdiğiniz IBAN’a ait olmalı."
+          warning="Girdiğiniz IBAN’a ait olmalı." register={""}
         />
       </div>
 

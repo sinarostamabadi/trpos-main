@@ -14,11 +14,18 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
   userCustomerData,
   requestData,
 }) => {
+
+  console.log(requestData);
+
+  const personalCustomer=userCustomerData.length ? userCustomerData.filter((customer : {customerNo:string}) => {
+    return customer.customerNo.startsWith("1");
+  }) : [];
+
   return (
     <div className="mt-8 me-6">
       <div className="mb-16">
         <p className="font-semibold text-lg mb-5">Kurumsal</p>
-        <div className="grid lg:grid-cols-3 gap-5">
+        <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-5">
           {userCustomerData.length > 0 &&
             userCustomerData.map(
               (customer: any) =>
@@ -31,11 +38,11 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                         className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl"
                       >
                         <div className="flex justify-between border-b w-full pb-8">
-                          <div className="flex">
-                            <span className="rounded-full mt-3 bg-primary/5 w-10 h-10 text-primary pl-2.5 pt-2">
+                          <div className="flex items-center">
+                            <span className="w-12 h-12 flex justify-center items-center bg-primary/5 text-primary rounded-full">
                               RS
                             </span>
-                            <div className="flex flex-col gap-y-3 ml-6">
+                            <div className="flex flex-col gap-y-1 ml-6">
                               <span className="text-base-content-40">
                                 Firma
                               </span>
@@ -54,6 +61,7 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                             <Button
                               variant={request.status == 2 ? "info" : "error"}
                               className="!text-actual-white !text-base !rounded-full mt-2"
+                              size="small"
                             >
                               {request.status == 2
                                 ? "Beklemede"
@@ -69,10 +77,11 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                             <Button
                               isLight
                               variant="primary"
-                              className="!text-primary !rounded-full mt-2"
+                              className="!text-primary !rounded-full"
+                              size="small"
                             >
                               <span>Devam Et</span>
-                              <IconArrowDown className="-rotate-90 -mt-2.5" />
+                              <IconArrowDown width={18} height={18} viewBox="0 0 20 20" className="-rotate-90" />
                             </Button>
                           )}
                         </div>
@@ -109,7 +118,7 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
 
       <div className="mb-10">
         <p className="font-semibold text-lg mb-5">Bireysel</p>
-        <div className="grid lg:grid-cols-3 gap-5">
+        <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-5">
           {userCustomerData.length > 0 &&
             userCustomerData.map(
               (customer: any) =>
@@ -118,12 +127,12 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                   (request: any) =>
                     customer.customerNo.startsWith(1) && (
                       <p className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl">
-                        <div className="flex border-b w-full justify-between pb-8">
+                        <div className="flex border-b w-full items-center pb-8">
                           <img
                             src={UserAvatar}
-                            className="rounded-full w-10 h-10 mt-3"
+                            className="rounded-full w-10 h-10"
                           />
-                          <div className="flex flex-col gap-y-3 ml-6">
+                          <div className="flex flex-col gap-y-1 ml-6">
                             <span className="text-base-content-40">
                               İyi günler,
                             </span>
@@ -134,7 +143,8 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                           {customer.customerId == request.id && (
                             <Button
                               variant={request.status == 1 ? "info" : "error"}
-                              className="!text-actual-white !text-base !rounded-full mt-2"
+                              className="!text-actual-white !rounded-full ml-auto !font-semibold"
+                              size="small"
                             >
                               {request.status == 1
                                 ? "Onay Bekliyor"
@@ -154,13 +164,17 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                 )
             )}
 
-          <span
-            className="flex gap-x-5 items-center justify-center h-[220px] p-8 bg-actual-white rounded-3xl cursor-pointer"
-            onClick={() => setShow("individual")}
-          >
-            <img src={PlusFillBlue} width={50} />
-            <div className="font-semibold">Yeni Bireysel Başvuru</div>
-          </span>
+          {
+            !personalCustomer.length && (
+              <span
+                  className="flex gap-x-5 items-center justify-center h-[220px] p-8 bg-actual-white rounded-3xl cursor-pointer"
+                  onClick={() => setShow("individual")}
+                >
+                  <img src={PlusFillBlue} width={50} />
+                  <div className="font-semibold">Yeni Bireysel Başvuru</div>
+                </span>
+            )
+          }
         </div>
       </div>
     </div>

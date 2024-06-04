@@ -5,7 +5,6 @@ import { setButtonLoading } from "../../reducers/button-loading";
 import { setUserInfo } from "../../reducers/settings/user-info";
 import { AppDispatch } from "../../store/store";
 import { AxiosRequestHeaders, AxiosResponse } from "axios";
-import { setCompanyApplicationStep } from "../../reducers/settings/company-application";
 
 export const getUserInfo =
   () => async (dispatch: AppDispatch) => {

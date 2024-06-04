@@ -5,8 +5,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch, useAppSelector } from "../../../../../../hooks/redux-hooks";
 import { useMemo } from "react";
-import { setCompanyApplicationStep } from "../../../../../../redux/reducers/settings/company-application";
-import { getUserInfo } from "../../../../../../redux/actions/settings/user-info";
 import { setAuthorizationInformation } from "../../../../../../redux/actions/settings/company-application";
 
 type StepTwoInputType = {
@@ -45,12 +43,12 @@ export const StepTwoCorporate = () => {
         district:companyInformation.district,
         address:companyInformation.street,
         buildingNumber:companyInformation.doorNumber,
-        doorNumber:companyInformation.doorNumber,
+        doorNumber:companyInformation.flatNumber,
       }
     } , [companyInformation])
   });
 
-  const onSubmit : SubmitHandler<StepTwoInputType> = async (data) => {
+  const onSubmit : SubmitHandler<StepTwoInputType> = async () => {
     dispatch(setAuthorizationInformation());
   };
 
