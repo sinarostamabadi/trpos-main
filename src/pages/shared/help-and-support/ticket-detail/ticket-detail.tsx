@@ -7,11 +7,12 @@ import {
 } from "../../../../components/icons/icons";
 import { Messenger } from "../../../../components/messenger";
 import { useEffect } from "react";
-import { useAppDispatch } from "../../../../hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
 import { getTaskDetail } from "../../../../redux/actions/helpAndSupport/task-detail";
 import messages from "../../../../data/support-ticket-chat.json";
 
 const TicketDetails = () => {
+
   const { id } = useParams();
   const dispatch = useAppDispatch();
 

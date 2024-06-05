@@ -27,7 +27,6 @@ export const getFilter = () => async (dispatch: AppDispatch) => {
       dispatch(setShowModal({ isShow: true, type: "error" }));
     }
     console.log(error);
-  } finally {
   }
 };
 
