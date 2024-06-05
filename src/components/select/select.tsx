@@ -17,6 +17,7 @@ export const SelectInput = ({
   label,
   disabled = false,
   searchable,
+  isLoading = false,
 }: SelectProps) => {
   const [value, setValue] = useState<string | number | undefined>(undefined);
   const [searchValue, setSearchValue] = useState("");
@@ -35,6 +36,7 @@ export const SelectInput = ({
           variant="borderless"
           listHeight={150}
           disabled={disabled}
+          loading={isLoading}
           {...register}
         />
       </div>
@@ -67,6 +69,8 @@ export const SelectInput = ({
                 (option?.label?.toLowerCase() ?? "").includes(input)
               }
               onSearch={(value) => setSearchValue(value)}
+              loading={isLoading}
+              disabled={isLoading || disabled}
             />
           </>
         )}

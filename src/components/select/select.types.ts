@@ -15,4 +15,5 @@ export type SelectProps = {
   control?: any;
   disabled?: boolean;
   searchable?: boolean;
+  isLoading?: boolean;
 };

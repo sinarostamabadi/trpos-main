@@ -18,6 +18,8 @@ import userInfoSlice from "./settings/user-info";
 import requestSlice from "./settings/request";
 import customerApplicationSlice from "./settings/customer-application";
 import professionSlice from "./settings/profession";
+import taskSlice from "./helpAndSupport/task";
+import selectSlice from "./select-loading/index";
 
 export const reducers = combineReducers({
   IpSlice,
@@ -39,6 +41,8 @@ export const reducers = combineReducers({
   requestSlice,
   customerApplicationSlice,
   professionSlice,
+  taskSlice,
+  selectSlice,
 });
 
 export type RootReducer = ReturnType<typeof reducers>;
