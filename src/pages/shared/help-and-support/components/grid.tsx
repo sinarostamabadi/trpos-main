@@ -96,7 +96,7 @@ export const GridSupport = () => {
 
   useEffect(() => {
     if(tasks.length) {
-      const tableData : DataType[]=tasks.map((task , index) => {
+      const tableData : DataType[]=tasks.map((task : any , index : number) => {
         return {
           id: index + 1,
           title: "Arçelik Televizyon QHD",

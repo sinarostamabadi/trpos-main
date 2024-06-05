@@ -43,7 +43,7 @@ export const CreateSupportRequest: React.FC<BaseModalProps> = ({
 
   useEffect(() => {
     if(taskTypes.length) {
-      const taskTypesSelectOptions : SelectOptionType[] = taskTypes.map((taskType) => {
+      const taskTypesSelectOptions : SelectOptionType[] = taskTypes.map((taskType : {id:number , title:string}) => {
         return {
           value:taskType.id,
           label:<span>{taskType.title}</span>
