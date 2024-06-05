@@ -14,12 +14,11 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
   userCustomerData,
   requestData,
 }) => {
-
-  console.log(requestData);
-
-  const personalCustomer=userCustomerData.length ? userCustomerData.filter((customer : {customerNo:string}) => {
-    return customer.customerNo.startsWith("1");
-  }) : [];
+  const personalCustomer = userCustomerData.length
+    ? userCustomerData.filter((customer: { customerNo: string }) => {
+        return customer.customerNo.startsWith("1");
+      })
+    : [];
 
   return (
     <div className="mt-8 me-6">
@@ -81,7 +80,12 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                               size="small"
                             >
                               <span>Devam Et</span>
-                              <IconArrowDown width={18} height={18} viewBox="0 0 20 20" className="-rotate-90" />
+                              <IconArrowDown
+                                width={18}
+                                height={18}
+                                viewBox="0 0 20 20"
+                                className="-rotate-90 -mt-1"
+                              />
                             </Button>
                           )}
                         </div>
@@ -126,8 +130,11 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                 requestData.map(
                   (request: any) =>
                     customer.customerNo.startsWith(1) && (
-                      <p className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl">
-                        <div className="flex border-b w-full items-center pb-8">
+                      <p
+                        key={customer.customerId}
+                        className="flex flex-col gap-x-5 p-8 justify-center bg-actual-white rounded-3xl"
+                      >
+                        <span className="flex border-b w-full items-center pb-8">
                           <img
                             src={UserAvatar}
                             className="rounded-full w-10 h-10"
@@ -141,17 +148,17 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                             </span>
                           </div>
                           {customer.customerId == request.id && (
-                            <Button
-                              variant={request.status == 1 ? "info" : "error"}
-                              className="!text-actual-white !rounded-full ml-auto !font-semibold"
-                              size="small"
+                            <div
+                              className={`text-actual-white text-nowrap rounded-full ml-auto p-2 text-xs ${
+                                request.status == 1 ? "bg-info" : "bg-error"
+                              }`}
                             >
                               {request.status == 1
                                 ? "Onay Bekliyor"
                                 : "Başvuru reddedildi"}
-                            </Button>
+                            </div>
                           )}
-                        </div>
+                        </span>
 
                         <div className="flex gap-x-5 pt-8">
                           <div>
@@ -164,17 +171,15 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                 )
             )}
 
-          {
-            !personalCustomer.length && (
-              <span
-                  className="flex gap-x-5 items-center justify-center h-[220px] p-8 bg-actual-white rounded-3xl cursor-pointer"
-                  onClick={() => setShow("individual")}
-                >
-                  <img src={PlusFillBlue} width={50} />
-                  <div className="font-semibold">Yeni Bireysel Başvuru</div>
-                </span>
-            )
-          }
+          {!personalCustomer.length && (
+            <span
+              className="flex gap-x-5 items-center justify-center h-[220px] p-8 bg-actual-white rounded-3xl cursor-pointer"
+              onClick={() => setShow("individual")}
+            >
+              <img src={PlusFillBlue} width={50} />
+              <div className="font-semibold">Yeni Bireysel Başvuru</div>
+            </span>
+          )}
         </div>
       </div>
     </div>

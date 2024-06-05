@@ -1,7 +1,14 @@
 import { Button } from "../../../../../../components/button";
+import { setCompanyApplicationStep } from "../../../../../../redux/reducers/settings/company-application";
+import { useAppDispatch } from "../../../../../../hooks/redux-hooks";
+import { BaseModalProps } from "../../../../../../types/modal.types";
 import CheckCircleLight from "../../../../../../assets/images/CheckCircleLight.svg";
 
-export const StepFiveCorporate = () => {
+export const StepFiveCorporate: React.FC<Omit<BaseModalProps, "state">> = ({
+  onCloseModal,
+}) => {
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <div className="flex flex-col gap-y-3 items-center text-center mb-3">
@@ -16,7 +23,15 @@ export const StepFiveCorporate = () => {
         </p>
       </div>
 
-      <Button variant="primary" shape="full" className="my-3">
+      <Button
+        variant="primary"
+        shape="full"
+        className="my-3"
+        onClick={() => {
+          onCloseModal && onCloseModal();
+          dispatch(setCompanyApplicationStep(1));
+        }}
+      >
         Tamam
       </Button>
     </>

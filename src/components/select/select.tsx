@@ -11,60 +11,66 @@ export const SelectInput = ({
   error,
   touched,
   size = "middle",
-  isSimple=false,
+  isSimple = false,
   name,
   control,
   label,
-  disable=false,
+  disabled = false,
+  searchable,
 }: SelectProps) => {
   const [value, setValue] = useState<string | number | undefined>(undefined);
+  const [searchValue, setSearchValue] = useState("");
 
-  if(isSimple) {
+  if (isSimple) {
     return (
       <div className={`w-full flex flex-col gap-2 ${className}`}>
         <label className="text-sm text-base-content-40" htmlFor={label}>
           {label}
         </label>
         <Select
-        options={options}
-        onSelect={(value) => setValue(value)}
-        size={size}
-        className="h-full border !outline-none !rounded-2.5xl"
-        variant="borderless"
-        listHeight={150}
-        disabled={disable}
-        {...register}
-      />
+          options={options}
+          onSelect={(value) => setValue(value)}
+          size={size}
+          className="h-full border !outline-none !rounded-2.5xl"
+          variant="borderless"
+          listHeight={150}
+          disabled={disabled}
+          {...register}
+        />
       </div>
-    )
+    );
   }
   return (
     <div
       className={`select_field ${value ? "value_selected" : ""} ${
-        touched && error && "error"
-      } ${className}`}
+        searchValue ? "is_searching" : ""
+      } ${touched && error && "error"} ${className}`}
     >
-      {
-        <div className={`placeholder_top ${touched && error && "error"}`}>
-          {placeholder}
-        </div>
-      }
       <Controller
-          control={control}
-          name={name!}
-          render={({ field }) => (
+        control={control}
+        name={name!}
+        render={({ field }) => (
+          <>
+            <div className={`placeholder_top ${touched && error && "error"}`}>
+              {placeholder}
+            </div>
             <Select
               {...field}
               className={"select"}
               options={options}
-              placeholder={placeholder}
               onSelect={(value) => setValue(value)}
               size={size}
               variant="borderless"
               listHeight={150}
+              showSearch={searchable}
+              filterOption={(input, option: any) =>
+                (option?.label?.toLowerCase() ?? "").includes(input)
+              }
+              onSearch={(value) => setSearchValue(value)}
             />
-          )}
-        />
+          </>
+        )}
+      />
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { SelectOption } from "../../types/select-option.types";
 
 export type SelectProps = {
   className?: string;
-  options?: { [key: string]: string | number | ReactNode }[];
+  options?: SelectOption[];
   placeholder?: string;
   isError?: boolean;
   register?: any;
@@ -11,7 +11,8 @@ export type SelectProps = {
   size?: "large" | "middle" | "small";
   isSimple?: boolean;
   label?: string;
-  name?:string,
-  control?:any;
-  disable?:boolean;
+  name?: string;
+  control?: any;
+  disabled?: boolean;
+  searchable?: boolean;
 };

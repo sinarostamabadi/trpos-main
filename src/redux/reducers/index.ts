@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import IpSlice from "./_ip";
 import buttonLoadingSlice from "./button-loading";
+import contentLoadingSlice from "./content-loading";
 import errorsSlice from "./errors";
 import showModalSlice from "./show-modal";
 import signupSlice from "./auth/signup";
@@ -15,10 +16,13 @@ import userCustomerSlice from "./settings/user-customer";
 import companyApplicationSlice from "./settings/company-application";
 import userInfoSlice from "./settings/user-info";
 import requestSlice from "./settings/request";
+import customerApplicationSlice from "./settings/customer-application";
+import professionSlice from "./settings/profession";
 
 export const reducers = combineReducers({
   IpSlice,
   buttonLoadingSlice,
+  contentLoadingSlice,
   errorsSlice,
   showModalSlice,
   signupSlice,
@@ -33,6 +37,8 @@ export const reducers = combineReducers({
   companyApplicationSlice,
   userInfoSlice,
   requestSlice,
+  customerApplicationSlice,
+  professionSlice,
 });
 
 export type RootReducer = ReturnType<typeof reducers>;

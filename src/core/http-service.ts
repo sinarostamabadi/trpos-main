@@ -7,7 +7,14 @@ import { BASE_URL } from "../configs/global";
 
 export const httpService = axios.create({
   baseURL: BASE_URL,
-  headers: { "Content-Type": "application/json" },
+});
+
+httpService.interceptors.request.use((config) => {
+  const token = localStorage.trpos__access_token;
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
+  return config;
 });
 
 httpService.interceptors.response.use(
@@ -45,12 +52,17 @@ async function readData<T>(
 async function createData<TModel, TResult>(
   url: string,
   data: TModel,
-  headers?: AxiosRequestHeaders
+  headers?: AxiosRequestHeaders,
+  isMultipart?: boolean
 ): Promise<TResult> {
+  const contentType = isMultipart ? "multipart/form-data" : "application/json";
   const options: AxiosRequestConfig = {
     method: "POST",
-    headers: headers,
-    data: JSON.stringify(data),
+    headers: {
+      ...headers,
+      "Content-Type": contentType,
+    },
+    data: isMultipart ? data : JSON.stringify(data),
   };
 
   return await apiBase<TResult>(url, options);
