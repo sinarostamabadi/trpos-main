@@ -1,12 +1,15 @@
 import { Button } from "../../../../components/button";
 import { IconEyeComplete, IconPlus } from "../../../../components/icons/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateSupportRequest } from "../modal/create";
 import { Badge } from "../../../../components/badge";
 import { BadgeProps } from "../../../../components/badge/badge.type";
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../../components/table";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
+import { getAllTask } from "../../../../redux/actions/helpAndSupport/task";
+import { PuffLoader } from "react-spinners";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -20,11 +23,23 @@ type DataType = {
   explanation: string;
   ticketNo: string;
   reqDate: string;
+  taskId:number;
   badge: BadgeProps["badgeColor"];
 };
 
 export const GridSupport = () => {
+  const { info:tasks , loading }=useAppSelector(state => state.taskSlice);
+
+  console.log(tasks);
+
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [tableData , setTableData]=useState<DataType[] | "">("");
+
+  const dispatch=useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAllTask());
+  } , []);
 
   const columns: TableColumn<DataType>[] = [
     {
@@ -62,7 +77,7 @@ export const GridSupport = () => {
     },
     {
       name: "",
-      cell: () => (
+      cell: (row) => (
         <div className="flex flex-col gap-1 2xl:flex-row 2xl:gap-0 items-center">
           <Button isLink={true} className="hover:no-underline">
             <IconEyeComplete
@@ -71,7 +86,7 @@ export const GridSupport = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to={"ticketDetail/1"}>Görüntüle</Link>
+            <Link to={`ticketDetail/${row.taskId}`} state={{token:localStorage.trpos__access_token}}>Görüntüle</Link>
           </Button>
         </div>
       ),
@@ -79,17 +94,23 @@ export const GridSupport = () => {
     },
   ];
 
-  const data: DataType[] = [
-    {
-      id: 1,
-      title: "Arçelik Televizyon QHD",
-      explanation:
-        "Anchovies sauce style bacon dolor melted sauce. Thin thin marinara sauce sausage. Wing dolor chicken ham cheese garlic. Pork garlic buffalo ham sausage garlic and. White extra green broccoli bacon pepperoni thin ipsum.",
-      ticketNo: "1234567890",
-      reqDate: "01.02.2024",
-      badge: "primary",
-    },
-  ];
+  useEffect(() => {
+    if(tasks.length) {
+      const tableData : DataType[]=tasks.map((task , index) => {
+        return {
+          id: index + 1,
+          title: "Arçelik Televizyon QHD",
+          explanation:task.taskItems[0].description,
+          ticketNo:task.referenceNo,
+          reqDate:new Date(task.creationDate).toLocaleDateString(),
+          taskId:task.id,
+          badge: "primary",
+        }
+      })
+
+      setTableData(tableData);
+    }
+  } , [tasks]);
 
   const closeModalHandler = () => {
     isOpenModal && setIsOpenModal(false);
@@ -126,7 +147,13 @@ export const GridSupport = () => {
               </div>
             </div>
           </div>
-          <Table columns={columns} data={data} />
+          {
+            loading ?
+            <div className="w-full h-full flex justify-center items-center">
+              <PuffLoader color="#22B789" size={40} />
+            </div> :
+            <Table columns={columns} data={tableData} />
+          }
         </div>
       </div>
     </>

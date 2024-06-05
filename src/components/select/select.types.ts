@@ -14,4 +14,5 @@ export type SelectProps = {
   name?:string,
   control?:any;
   disable?:boolean;
+  isLoading?:boolean;
 };

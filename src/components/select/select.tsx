@@ -16,6 +16,7 @@ export const SelectInput = ({
   control,
   label,
   disable=false,
+  isLoading=false,
 }: SelectProps) => {
   const [value, setValue] = useState<string | number | undefined>(undefined);
 
@@ -34,6 +35,7 @@ export const SelectInput = ({
         listHeight={150}
         disabled={disable}
         {...register}
+        loading={isLoading}
       />
       </div>
     )
@@ -62,6 +64,8 @@ export const SelectInput = ({
               size={size}
               variant="borderless"
               listHeight={150}
+              loading={isLoading}
+              disabled={isLoading || disable}
             />
           )}
         />
