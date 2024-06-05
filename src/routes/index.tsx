@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import { SplashScreen } from "../components/splashScreen";
+import { SplashScreen } from "../components/splash-screen";
 import Private from "./private/private";
 
 // begin:: Lazy imports

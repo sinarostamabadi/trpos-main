@@ -26,6 +26,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
       data={data}
       customStyles={customStyles}
       responsive={true}
+      noDataComponent="Görüntülenecek kayıt yok"
     />
   );
 };

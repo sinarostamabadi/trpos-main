@@ -1,8 +1,8 @@
 import { setErrors } from "../../reducers/errors";
 import { setButtonLoading } from "../../reducers/button-loading";
-import { setCompanyApplicationStep } from "../../reducers/settings/company-application";
+import { setCompanyApplicationStep } from "../../reducers/application/company-application";
 import { AppDispatch } from "../../store/store";
-import { getUserInfo } from "./user-info";
+import { getUserInfo } from "../settings/user-info";
 
 export const setAuthorizationInformation =
   () => async (dispatch: AppDispatch) => {

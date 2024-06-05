@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../../components/button";
 import { Input } from "../../../../components/input";
-import { PhoneInput } from "../../../../components/phoneInput";
+import { PhoneInput } from "../../../../components/phone-input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { changePhoneInputs } from "../change-phone.types";

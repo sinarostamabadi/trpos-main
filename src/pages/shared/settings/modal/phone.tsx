@@ -1,6 +1,6 @@
 import { Button } from "../../../../components/button";
 import { Modal } from "../../../../components/modal";
-import { PhoneInput } from "../../../../components/phoneInput";
+import { PhoneInput } from "../../../../components/phone-input";
 import { SettingModalsProps } from "./setting-modals.types";
 
 export const EditPhone: React.FC<SettingModalsProps> = ({

@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { Button } from "../../../../components/button";
 import {
   IconCheckCircleRed,
@@ -5,9 +6,26 @@ import {
   IconSendMessage,
 } from "../../../../components/icons/icons";
 import { Messenger } from "../../../../components/messenger";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../../../hooks/redux-hooks";
+import { getTaskDetail } from "../../../../redux/actions/helpAndSupport/task-detail";
 import messages from "../../../../data/support-ticket-chat.json";
 
 const TicketDetails = () => {
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      getTaskDetail({
+        pageNumber: 0,
+        pageSize: 0,
+        id: id,
+        referanceToken: "b552c6d4-511c-4579-9bb4-2b53ab3fd66d",
+      })
+    );
+  }, []);
+
   return (
     <div className="outlet w-full h-full container p-4 mt-4 pb-8">
       <div className="w-full h-auto bg-actual-white rounded-2.5xl p-6">

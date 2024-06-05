@@ -7,7 +7,7 @@ import { SignupInput } from "../types/signup.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckBoxModal } from "../../../../components/checkboxes";
 import { RuleModal } from "./modal/rules";
-import { PhoneInput } from "../../../../components/phoneInput";
+import { PhoneInput } from "../../../../components/phone-input";
 import { parsePhoneNumber } from "../../../../helper/parse-phone";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
 import { register as registerUser } from "../../../../redux/actions/auth/signup";

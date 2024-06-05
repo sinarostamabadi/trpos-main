@@ -7,7 +7,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../../../hooks/redux-hooks";
-import { setAuthorizationInformation } from "../../../../../../redux/actions/settings/company-application";
+import { setAuthorizationInformation } from "../../../../../../redux/actions/application/company-application";
 import * as yup from "yup";
 
 interface StepTwoInputType {

@@ -2,29 +2,29 @@ import { createSlice } from "@reduxjs/toolkit";
 import { InitialState } from "../../../types/initial-state.type";
 
 const initialState: InitialState & {
-    taskTypes:any
+  taskTypes: any;
 } = {
   info: {},
-  taskTypes:{},
+  taskTypes: {},
   loading: false,
 };
 
 const taskSlice = createSlice({
   initialState,
-  name: "task",   
+  name: "task",
   reducers: {
     setTasks: (state, action) => {
       state.info = action.payload;
     },
-    setTaskTypes:(state , action) => {
-        state.taskTypes=action.payload;
+    setTaskTypes: (state, action) => {
+      state.taskTypes = action.payload;
     },
-    setLoading: (state, action: { payload: boolean }) => {
+    setTaskLoading: (state, action: { payload: boolean }) => {
       state.loading = action.payload;
     },
   },
 });
 
 const { reducer, actions } = taskSlice;
-export const { setTasks , setTaskTypes , setLoading } = actions;
+export const { setTasks, setTaskTypes, setTaskLoading } = actions;
 export default reducer;

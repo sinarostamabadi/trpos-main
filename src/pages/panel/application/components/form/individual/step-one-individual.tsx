@@ -10,7 +10,7 @@ import { omit } from "lodash";
 import {
   setCustomerApplicationInfo,
   setCustomerApplicationStep,
-} from "../../../../../../redux/reducers/settings/customer-application";
+} from "../../../../../../redux/reducers/application/customer-application";
 import * as yup from "yup";
 
 interface StepOneInputs {

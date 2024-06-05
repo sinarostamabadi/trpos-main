@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "../../../../../../components/button";
 import { CheckBox } from "../../../../../../components/checkboxes";
 import { Input } from "../../../../../../components/input";
-import { PhoneInput } from "../../../../../../components/phoneInput";
+import { PhoneInput } from "../../../../../../components/phone-input";
 import { SelectInput } from "../../../../../../components/select";
 import {
   useAppDispatch,
@@ -13,7 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   setAuthorizeInformation,
   setCompanyApplicationStep,
-} from "../../../../../../redux/reducers/settings/company-application";
+} from "../../../../../../redux/reducers/application/company-application";
 import { InputErrorComponent } from "../../../../../../components/inputError";
 import { parsePhoneNumber } from "../../../../../../helper/parse-phone";
 import { getAllProfessions } from "../../../../../../redux/actions/settings/profession";
@@ -33,7 +33,7 @@ interface StepThreeInputsType {
 
 export const StepThreeCorporate = () => {
   const { info: userInfo } = useAppSelector((state) => state.userInfoSlice);
-  const { info: professionInfo } = useAppSelector(
+  const { info: professionInfo, loading: professionLoading } = useAppSelector(
     (state) => state.professionSlice
   );
 
@@ -229,6 +229,7 @@ export const StepThreeCorporate = () => {
             name="AuthProfessionId"
             placeholder="Meslek"
             searchable
+            isLoading={professionLoading}
             register={{ ...register("AuthProfessionId") }}
             disabled={checkBoxValue ? false : false}
             error={errors.AuthProfessionId?.message}

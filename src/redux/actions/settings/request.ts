@@ -10,7 +10,7 @@ import {
   setCompanyApplicationStep,
   setIdentityTax,
   setCompanyInformationInfo,
-} from "../../reducers/settings/company-application";
+} from "../../reducers/application/company-application";
 import { setShowModal } from "../../reducers/show-modal";
 
 export const getFilter = () => async (dispatch: AppDispatch) => {

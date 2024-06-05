@@ -7,7 +7,7 @@ import {
 } from "../../../../../../hooks/redux-hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { customerVerify } from "../../../../../../redux/actions/settings/customer-verify";
+import { customerVerify } from "../../../../../../redux/actions/application/customer-verify";
 import * as yup from "yup";
 
 interface StepTwoInputs {

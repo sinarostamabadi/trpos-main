@@ -1,9 +1,9 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { LanguageBox } from "../components/language-box";
 import signupHero from "../assets/images/signup-hero.png";
 import loginHero from "../assets/images/login-hero.png";
 import forgotPassHero from "../assets/images/forgot-password-hero.png";
 import changePhoneHero from "../assets/images/change-phone-hero.png";
-import { LanguageBox } from "../components/language-box";
 
 const AuthLayout = () => {
   const { pathname } = useLocation();

@@ -7,9 +7,6 @@ import { BadgeProps } from "../../../../components/badge/badge.type";
 import { TableColumn } from "react-data-table-component";
 import { Table } from "../../../../components/table";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
-import { getAllTask } from "../../../../redux/actions/helpAndSupport/task";
-import { PuffLoader } from "react-spinners";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
   primary: "Onay Bekliyor",
@@ -23,23 +20,13 @@ type DataType = {
   explanation: string;
   ticketNo: string;
   reqDate: string;
-  taskId:number;
+  taskId: number;
   badge: BadgeProps["badgeColor"];
 };
 
-export const GridSupport = () => {
-  const { info:tasks , loading }=useAppSelector(state => state.taskSlice);
-
-  console.log(tasks);
-
+export const GridSupport = ({ data }: { data: [] }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [tableData , setTableData]=useState<DataType[] | "">("");
-
-  const dispatch=useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getAllTask());
-  } , []);
+  const [tableData, setTableData] = useState<DataType[] | "">("");
 
   const columns: TableColumn<DataType>[] = [
     {
@@ -86,7 +73,12 @@ export const GridSupport = () => {
               viewBox="0 0 24 24"
               className="text-primary"
             />
-            <Link to={`ticketDetail/${row.taskId}`} state={{token:localStorage.trpos__access_token}}>Görüntüle</Link>
+            <Link
+              to={`ticketDetail/${row.taskId}`}
+              state={{ token: localStorage.trpos__access_token }}
+            >
+              Görüntüle
+            </Link>
           </Button>
         </div>
       ),
@@ -95,22 +87,23 @@ export const GridSupport = () => {
   ];
 
   useEffect(() => {
-    if(tasks.length) {
-      const tableData : DataType[]=tasks.map((task : any , index : number) => {
+    if (data.length) {
+      const tableData: DataType[] = data.map((task: any, index: number) => {
         return {
-          id: index + 1,
+          rowId: index + 1,
+          id: task.id,
           title: "Arçelik Televizyon QHD",
-          explanation:task.taskItems[0].description,
-          ticketNo:task.referenceNo,
-          reqDate:new Date(task.creationDate).toLocaleDateString(),
-          taskId:task.id,
+          explanation: task.taskItems[0].description,
+          ticketNo: task.referenceNo,
+          reqDate: new Date(task.creationDate).toLocaleDateString(),
+          taskId: task.id,
           badge: "primary",
-        }
-      })
+        };
+      });
 
       setTableData(tableData);
     }
-  } , [tasks]);
+  }, [data]);
 
   const closeModalHandler = () => {
     isOpenModal && setIsOpenModal(false);
@@ -147,13 +140,8 @@ export const GridSupport = () => {
               </div>
             </div>
           </div>
-          {
-            loading ?
-            <div className="w-full h-full flex justify-center items-center">
-              <PuffLoader color="#22B789" size={40} />
-            </div> :
-            <Table columns={columns} data={tableData} />
-          }
+
+          <Table columns={columns} data={tableData} />
         </div>
       </div>
     </>

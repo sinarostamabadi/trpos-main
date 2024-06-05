@@ -3,29 +3,29 @@ import { createData } from "../../../core/http-service";
 import { setErrors } from "../../reducers/errors";
 import { setButtonLoading } from "../../reducers/button-loading";
 import { AppDispatch } from "../../store/store";
-import axios, { AxiosRequestHeaders, AxiosResponse } from "axios";
-import { setTasks , setTaskTypes , setLoading } from "../../reducers/helpAndSupport/task";
-import { BASE_URL } from "../../../configs/global";
-import { setSelectLoading } from "../../reducers/select-loading";
+import { AxiosResponse } from "axios";
+import {
+  setTaskTypes,
+  setTasks,
+  setTaskLoading,
+} from "../../reducers/helpAndSupport/task";
+import { setContentLoading } from "../../reducers/content-loading";
 
 export const addTask =
-  (data : {} , onCloseModal : () => void) => async (dispatch: AppDispatch) => {
+  (data: {}, onCloseModal: () => void) => async (dispatch: AppDispatch) => {
     dispatch(setButtonLoading(true));
     try {
-        const response: AxiosResponse = await axios.post(
-            BASE_URL+api.settingsApi.addTask,
-            data,
-            {
-              headers : {
-                "Authorization": `Bearer ${localStorage.trpos__access_token}`,
-                "Content-Type":"multipart/form-data"
-              }
-            }
-          );
+      const response: AxiosResponse = await createData(
+        api.settingsApi.addTask,
+        data,
+        undefined,
+        true
+      );
 
-          onCloseModal();
-          dispatch(getAllTask());
-
+      if (response) {
+        onCloseModal();
+        dispatch(getAllTask());
+      }
     } catch (error: any) {
       error.statusCode == 400 && dispatch(setErrors(error.message));
       console.log(error);
@@ -34,50 +34,36 @@ export const addTask =
     }
   };
 
-  export const getAllTask =
-  () => async (dispatch: AppDispatch) => {
-    dispatch(setButtonLoading(true));
-    dispatch(setLoading(true));
-    try {
-        const response: AxiosResponse = await createData(
-            api.settingsApi.getAllTask,
-            {},
-            {
-              Authorization: `Bearer ${localStorage.trpos__access_token}`,
-            } as AxiosRequestHeaders
-          );
+export const getAllTask = () => async (dispatch: AppDispatch) => {
+  dispatch(setContentLoading(true));
+  try {
+    const response: AxiosResponse = await createData(
+      api.settingsApi.getAllTask,
+      {}
+    );
 
-          dispatch(setTasks(response.data));
+    dispatch(setTasks(response.data));
+  } catch (error: any) {
+    error.statusCode == 400 && dispatch(setErrors(error.message));
+    console.log(error);
+  } finally {
+    dispatch(setContentLoading(false));
+  }
+};
 
-    } catch (error: any) {
-      error.statusCode == 400 && dispatch(setErrors(error.message));
-      console.log(error);
-    } finally {
-      dispatch(setButtonLoading(false));
-      dispatch(setLoading(false));
-    }
-  };
+export const getAllTaskType = () => async (dispatch: AppDispatch) => {
+  dispatch(setTaskLoading(true));
+  try {
+    const response: AxiosResponse = await createData(
+      api.settingsApi.taskTypeGetAll,
+      {}
+    );
 
-  export const getAllTaskType =
-  () => async (dispatch: AppDispatch) => {
-    dispatch(setButtonLoading(true));
-    dispatch(setSelectLoading(true));
-    try {
-        const response: AxiosResponse = await createData(
-            api.settingsApi.taskTypeGetAll,
-            {},
-            {
-              Authorization: `Bearer ${localStorage.trpos__access_token}`,
-            } as AxiosRequestHeaders
-          );
-
-          dispatch(setTaskTypes(response.data));
-
-    } catch (error: any) {
-      error.statusCode == 400 && dispatch(setErrors(error.message));
-      console.log(error);
-    } finally {
-      dispatch(setButtonLoading(false));
-      dispatch(setSelectLoading(false));
-    }
-  };
+    dispatch(setTaskTypes(response.data));
+  } catch (error: any) {
+    error.statusCode == 400 && dispatch(setErrors(error.message));
+    console.log(error);
+  } finally {
+    dispatch(setTaskLoading(false));
+  }
+};

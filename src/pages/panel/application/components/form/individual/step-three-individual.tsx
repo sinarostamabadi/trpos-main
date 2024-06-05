@@ -1,6 +1,6 @@
 import { Button } from "../../../../../../components/button";
 import { useAppDispatch } from "../../../../../../hooks/redux-hooks";
-import { setCustomerApplicationStep } from "../../../../../../redux/reducers/settings/customer-application";
+import { setCustomerApplicationStep } from "../../../../../../redux/reducers/application/customer-application";
 import { BaseModalProps } from "../../../../../../types/modal.types";
 import CheckCircleLight from "../../../../../../assets/images/CheckCircleLight.svg";
 

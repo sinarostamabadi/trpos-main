@@ -3,7 +3,7 @@ import { AppDispatch } from "../../store/store";
 import {
   setCustomerApplicationError,
   setCustomerApplicationStep,
-} from "../../reducers/settings/customer-application";
+} from "../../reducers/application/customer-application";
 import { setButtonLoading } from "../../reducers/button-loading";
 import { createData } from "../../../core/http-service";
 

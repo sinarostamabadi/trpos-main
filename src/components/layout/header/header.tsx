@@ -1,17 +1,22 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   IconArrowDown,
   IconNotification,
 } from "../../../components/icons/icons";
 import { getUserDataFromLocalstorage } from "../../../helper/get-user-data-from-local";
 import { HeaderProps } from "./header.types";
-import { items } from "../../../data/profile-dropdown-items";
+import { ProfileMenuItems } from "../../../data/profile-dropdown-items";
+import { useAppDispatch } from "../../../hooks/redux-hooks";
 import user from "../../../assets/images/user.png";
 import Dropdown from "antd/es/dropdown";
 import Space from "antd/es/space";
 
 export const Header: React.FC<HeaderProps> = ({ isToggled }) => {
   const { pathname } = useLocation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const items = ProfileMenuItems(dispatch, navigate);
 
   return (
     <header

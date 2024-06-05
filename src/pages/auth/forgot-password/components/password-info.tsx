@@ -8,7 +8,7 @@ import { ForgotPasswordInputs } from "../forgot-password.types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
 import { ForgetPasswordRequest } from "../../../../redux/actions/auth/forget-password";
 import { parsePhoneNumber } from "../../../../helper/parse-phone";
-import { PhoneInput } from "../../../../components/phoneInput";
+import { PhoneInput } from "../../../../components/phone-input";
 import * as yup from "yup";
 
 export const PasswordInfo = () => {
