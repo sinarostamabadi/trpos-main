@@ -5,7 +5,7 @@ import {
   IconBag,
   IconPieChart,
 } from "../../../components/icons/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiUserLine } from "react-icons/ri";
 import { Menu } from "../../menu";
 import { MenuItem } from "../../menu/components/menu-item";
@@ -20,6 +20,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setIsToggled,
 }) => {
   const [menuNumber, setMenuNumber] = useState<0 | 1 | 2>(0);
+
+  const pathName=useLocation().pathname;
+
+  useEffect(() => {
+    if(pathName.includes("application")) {
+      setMenuNumber(0)
+    } else if(pathName.includes("personal")) {
+      setMenuNumber(1)
+    } else if(pathName.includes("Institutional")) {
+      setMenuNumber(2)
+    }
+  } , [pathName]);
 
   const { pathname } = useLocation();
 

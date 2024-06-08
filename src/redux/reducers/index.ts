@@ -20,6 +20,8 @@ import requestSlice from "./settings/request";
 import customerApplicationSlice from "./application/customer-application";
 import professionSlice from "./settings/profession";
 import taskSlice from "./helpAndSupport/task";
+import changeTokenSlice from "./auth/change-token";
+import websiteSlice from "./institutional/website";
 
 export const reducers = combineReducers({
   IpSlice,
@@ -43,6 +45,8 @@ export const reducers = combineReducers({
   customerApplicationSlice,
   professionSlice,
   taskSlice,
+  changeTokenSlice,
+  websiteSlice,
 });
 
 export type RootReducer = ReturnType<typeof reducers>;

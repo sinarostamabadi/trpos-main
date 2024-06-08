@@ -2,6 +2,10 @@ import { Button } from "../../../../components/button";
 import { IconArrowDown } from "../../../../components/icons/icons";
 import PlusFillBlue from "../../../../assets/images/PlusFillBlue.svg";
 import UserAvatar from "../../../../assets/images/user.png";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks";
+import { changeToken } from "../../../../redux/actions/auth/change-token";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type ApplicationGridProps = {
   setShow: (type: "individual" | "corporate" | "") => void;
@@ -14,11 +18,24 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
   userCustomerData,
   requestData,
 }) => {
+
+  const { isButtonLoading }=useAppSelector(state => state.buttonLoadingSlice);
+
+  const [customerId , setCustomerId]=useState<number>(0);
+
+  const dispatch=useAppDispatch();
+
+  const navigate=useNavigate();
+
   const personalCustomer = userCustomerData.length
     ? userCustomerData.filter((customer: { customerNo: string }) => {
         return customer.customerNo.startsWith("1");
       })
     : [];
+
+    const selectCompany = (id : string | number) => {
+      dispatch(changeToken(id , navigate));
+    };
 
   return (
     <div className="mt-8 me-6">
@@ -78,6 +95,11 @@ export const ApplicationGrid: React.FC<ApplicationGridProps> = ({
                               variant="primary"
                               className="!text-primary !rounded-full"
                               size="small"
+                              onClick={() => {
+                                selectCompany(customer.id)
+                                setCustomerId(customer.id)
+                              }}
+                              isLoading={customerId === customer.id ? isButtonLoading : false}
                             >
                               <span>Devam Et</span>
                               <IconArrowDown
