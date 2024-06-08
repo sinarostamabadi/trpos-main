@@ -33,6 +33,7 @@ export const CreateInstitutionalWebsiteModal : React.FC<BaseModalProps> = ({
     state,
 }) => {
     const { isButtonLoading }=useAppSelector(state => state.buttonLoadingSlice);
+    const { showModal:{isShow , type} }=useAppSelector(state => state.showModalSlice);
 
     const [fileName, setFileName] = useState<string>("");
 
@@ -73,7 +74,7 @@ export const CreateInstitutionalWebsiteModal : React.FC<BaseModalProps> = ({
         state={state}
         title="Yeni Site Ekle"
         small={true}
-        onCloseModal={() => dispatch(setShowModal({isShow:false , type:""}))}
+        onCloseModal={() => type === "create" && dispatch(setShowModal({isShow:false , type:""}))}
         subTitle="Lütfen formu doldurunuz."
       >
         <form action="" onSubmit={handleSubmit(onSubmit)}>
