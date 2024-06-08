@@ -2,14 +2,11 @@ import React, { Dispatch, SetStateAction } from "react";
 import clouds from "../../../../assets/images/Clouds.svg"
 import { IconArrowRight, IconPlus } from "../../../../components/icons/icons";
 import { Button } from "../../../../components/button";
+import { useAppDispatch } from "../../../../hooks/redux-hooks";
+import { setShowModal } from "../../../../redux/reducers/show-modal";
 
-type Props = {
-    setIsOpenModal:Dispatch<SetStateAction<boolean>>
-  }
-
-export const NoContentInstitutionalWebManagement : React.FC<Props> = ({
-    setIsOpenModal
-}) => {
+export const NoContentInstitutionalWebManagement : React.FC = () => {
+    const dispatch=useAppDispatch();
     return (
         <>
             <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
@@ -33,7 +30,7 @@ export const NoContentInstitutionalWebManagement : React.FC<Props> = ({
                     </div>
                     <div>
                         <Button
-                        onClick={() => setIsOpenModal(true)}
+                        onClick={() => dispatch(setShowModal({isShow:true , type:"create"}))}
                         variant="primary"
                         className="text-sm !rounded-2xl"
                         isInTop

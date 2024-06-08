@@ -5,9 +5,9 @@ import { Button } from "../../../../components/button";
 import { IconArrowRight, IconEyeComplete, IconPen, IconPlus } from "../../../../components/icons/icons";
 import { Link } from "react-router-dom";
 import { Table } from "../../../../components/table";
-import { BaseModalProps } from "../../../../types/modal.types";
-import { CreateInstitutionalWebsiteModal } from "../modal/create";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useAppDispatch } from "../../../../hooks/redux-hooks";
+import { setShowModal } from "../../../../redux/reducers/show-modal";
 
 const badgeText: Record<BadgeProps["badgeColor"], string> = {
     primary: "Onay Bekliyor",
@@ -16,19 +16,24 @@ const badgeText: Record<BadgeProps["badgeColor"], string> = {
   };
 
   type Props = {
-    setIsOpenModal:Dispatch<SetStateAction<boolean>>
+    data:[]
   }
 
+  type DataType = {
+    id: number;
+    site: string;
+    url: string;
+    installment: string;
+    badge: BadgeProps["badgeColor"];
+  };
+
 export const GridInstitutionalWebManagement : React.FC<Props> = ({
-    setIsOpenModal,
+    data
 }) => {
-    type DataType = {
-        id: number;
-        site: string;
-        url: string;
-        installment: string;
-        badge: BadgeProps["badgeColor"];
-      };
+
+    const dispatch=useAppDispatch();
+
+    const [tableData, setTableData] = useState<DataType[] | "">("");
     
       const columns: TableColumn<DataType>[] = [
         {
@@ -86,30 +91,20 @@ export const GridInstitutionalWebManagement : React.FC<Props> = ({
           grow: 5,
         },
       ];
+
+
+      useEffect(() => {
+        if (data.length) {
+          const tableData: any = data.map((task: any, index: number) => {
+            return {
+              
+            };
+          });
     
-      const data: DataType[] = [
-        {
-          id: 1,
-          site: "Raven Soft",
-          url: "raven.com.tr",
-          installment: "Peşin",
-          badge: "primary",
-        },
-        {
-          id: 2,
-          site: "Trpos Ödeme Şirketi",
-          url: "trpos.com",
-          installment: "3 Taksit",
-          badge: "success",
-        },
-        {
-          id: 3,
-          site: "Migros",
-          url: "migros.com",
-          installment: "6 Taksit",
-          badge: "error",
-        },
-      ];
+          setTableData(tableData);
+        }
+      }, [data]);
+
     return (
         <>
             <div className="container w-full flex items-center gap-6 text-sm text-base-content-40 p-4">
@@ -133,7 +128,7 @@ export const GridInstitutionalWebManagement : React.FC<Props> = ({
                     </div>
                     <div>
                         <Button
-                        onClick={() => setIsOpenModal(true)}
+                        onClick={() => dispatch(setShowModal({isShow:true , type:"create"}))}
                         variant="primary"
                         className="text-sm !rounded-2xl"
                         isInTop

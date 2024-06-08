@@ -6,6 +6,8 @@ import { AppDispatch } from "../../store/store";
 import { AxiosResponse } from "axios";
 import { setWebsiteInfo } from "../../reducers/institutional/website";
 import { setContentLoading } from "../../reducers/content-loading";
+import { Dispatch, SetStateAction } from "react";
+import { setShowModal } from "../../reducers/show-modal";
 
 export const getAllWebsite = (data : {pageNumber : number , pageSize : number}) => async (dispatch: AppDispatch) => {
     dispatch(setContentLoading(true));
@@ -35,10 +37,7 @@ export const websiteAdd = (data : {}) => async (dispatch: AppDispatch) => {
       true
     );
 
-    dispatch(getAllWebsite({
-        pageNumber:0,
-        pageSize:0
-    }));
+    dispatch(setShowModal({isShow:true , type:"success"}));
 
   } catch (error: any) {
     error.statusCode == 400 && dispatch(setErrors(error.message));

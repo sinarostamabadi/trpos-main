@@ -1,29 +1,18 @@
-import { Button } from "../../../components/button";
-import {
-  IconArrowRight,
-  IconPlus,
-} from "../../../components/icons/icons";
-import { Modal } from "../../../components/modal";
 import { useEffect, useState } from "react";
-import { Divider } from "../../../components/divider";
-import { Input } from "../../../components/input";
-import { SelectInput } from "../../../components/select";
-import { CheckBox } from "../../../components/checkboxes";
-import { FileUploader } from "../../../components/uploader";
 import { NoContentInstitutionalWebManagement } from "./components/no-content";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks";
 import { getAllWebsite } from "../../../redux/actions/institutional/website";
 import { CreateInstitutionalWebsiteModal } from "./modal/create";
 import { TopLoader } from "../../../components/top-loader";
 import { GridInstitutionalWebManagement } from "./components/grid";
+import { SuccessCreateInstitutionalWebsite } from "./modal/success";
 
 const WebManagement: React.FC = () => {
   const { info:websites }=useAppSelector(state => state.websiteSlice);
   const { isContentLoading }=useAppSelector(state => state.contentLoadingSlice);
+  const { showModal:{type} }=useAppSelector(state => state.showModalSlice);
 
-  console.log(websites);
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  console.log(type);
 
   const dispatch=useAppDispatch();
 
@@ -34,21 +23,18 @@ const WebManagement: React.FC = () => {
     }));
   } , []);
 
-  const closeModalHandler = () => {
-    isModalOpen && setIsModalOpen(false);
-  };
-
   
 
   return (
      <>
      {
        isContentLoading ? <TopLoader /> : (
-         websites.length ? <GridInstitutionalWebManagement setIsOpenModal={setIsModalOpen} /> :
-         <NoContentInstitutionalWebManagement setIsOpenModal={setIsModalOpen} />
+         websites.length ? <GridInstitutionalWebManagement data={websites} /> :
+         <NoContentInstitutionalWebManagement />
        )
      }
-     <CreateInstitutionalWebsiteModal state={isModalOpen} onCloseModal={closeModalHandler} />
+     <CreateInstitutionalWebsiteModal state={type === "create"} />
+     <SuccessCreateInstitutionalWebsite state={type === "success"} />
     </>
   )
 };
