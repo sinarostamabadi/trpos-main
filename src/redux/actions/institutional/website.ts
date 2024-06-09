@@ -13,7 +13,7 @@ export const getAllWebsite = (data : {pageNumber : number , pageSize : number}) 
     dispatch(setContentLoading(true));
   try {
     const response: AxiosResponse = await createData(
-      api.settingsApi.getAllActiveWebsites,
+      api.settingsApi.websiteGetAll,
       data
     );
 

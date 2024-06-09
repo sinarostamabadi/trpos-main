@@ -18,8 +18,8 @@ const WebManagement: React.FC = () => {
 
   useEffect(() => {
     dispatch(getAllWebsite({
-      pageNumber:0,
-      pageSize:0
+      pageNumber:1,
+      pageSize:5
     }));
   } , []);
 
